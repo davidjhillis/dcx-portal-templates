@@ -5,49 +5,49 @@
  */
 
 export const radixThemes = {
-  // Pre-built theme combinations
+  // Pre-built theme combinations using official Radix color names
   presets: {
     indigo: {
       name: 'Indigo',
       primary: 'indigo',
       accent: 'purple',
       neutral: 'slate',
-      description: 'Professional and modern'
+      description: 'Professional, trustworthy'
     },
     blue: {
-      name: 'Blue Ocean',
+      name: 'Blue',
       primary: 'blue',
       accent: 'cyan',
       neutral: 'slate',
-      description: 'Trust and reliability'
+      description: 'Calm, reliable'
     },
-    emerald: {
-      name: 'Emerald',
+    green: {
+      name: 'Green',
       primary: 'green',
       accent: 'teal',
       neutral: 'sage',
-      description: 'Fresh and natural'
+      description: 'Fresh, natural'
     },
     ruby: {
       name: 'Ruby',
-      primary: 'red',
+      primary: 'ruby',
       accent: 'crimson',
       neutral: 'mauve',
-      description: 'Bold and energetic'
+      description: 'Bold, energetic'
     },
     amber: {
-      name: 'Amber Sunset',
+      name: 'Amber',
       primary: 'amber',
       accent: 'orange',
       neutral: 'sand',
-      description: 'Warm and inviting'
+      description: 'Warm, inviting'
     },
     violet: {
-      name: 'Violet Dream',
+      name: 'Violet',
       primary: 'violet',
       accent: 'iris',
       neutral: 'slate',
-      description: 'Creative and elegant'
+      description: 'Creative, elegant'
     }
   },
 
