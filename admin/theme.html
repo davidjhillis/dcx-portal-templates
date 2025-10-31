@@ -686,15 +686,16 @@
           }
         ` : ''}
         
-        /* Primary Color - Backgrounds */
+        /* Primary Color - Backgrounds 
+           Tailwind naming (dark mode): 900=#581c87(step4), 800=#6b21a8(step5), 700=#7e22ce(step6), 600=#9333ea(step7) */
         .bg-purple-50 { background-color: var(--color-primary-2) !important; }
         .bg-purple-100 { background-color: var(--color-primary-3) !important; }
         .bg-purple-200 { background-color: var(--color-primary-4) !important; }
         .bg-purple-500 { background-color: var(--color-primary-8) !important; }
-        .bg-purple-600, .hover\\:bg-purple-600:hover { background-color: var(--color-primary-9) !important; }
-        .bg-purple-700, .hover\\:bg-purple-700:hover { background-color: var(--color-primary-10) !important; }
-        .bg-purple-800, .hover\\:bg-purple-800:hover { background-color: var(--color-primary-10) !important; }
-        .bg-purple-900, .hover\\:bg-purple-900:hover { background-color: var(--color-primary-11) !important; }
+        .bg-purple-600, .hover\\:bg-purple-600:hover { background-color: var(--color-primary-7) !important; }
+        .bg-purple-700, .hover\\:bg-purple-700:hover { background-color: var(--color-primary-6) !important; }
+        .bg-purple-800, .hover\\:bg-purple-800:hover { background-color: var(--color-primary-5) !important; }
+        .bg-purple-900, .hover\\:bg-purple-900:hover { background-color: var(--color-primary-4) !important; }
         
         /* Primary Color - Dark Mode Backgrounds */
         .dark\\:bg-purple-900\\/20 { background-color: color-mix(in srgb, var(--color-primary-3) 50%, transparent) !important; }
@@ -715,23 +716,25 @@
         .border-purple-500, .hover\\:border-purple-500:hover, .dark\\:hover\\:border-purple-400:hover { border-color: var(--color-primary-8) !important; }
         .border-purple-600, .dark\\:border-purple-400 { border-color: var(--color-primary-9) !important; }
         
-        /* Primary Color - Gradients (Product Cards) */
+        /* Primary Color - Gradients (Product Cards) 
+           Dark mode: 900→step4, 800→step5, 700→step6, 600→step7, etc.
+           Light mode: 50→step2, 100→step3, etc. */
         .from-purple-50 { --tw-gradient-from: var(--color-primary-2) !important; }
         .from-purple-100 { --tw-gradient-from: var(--color-primary-3) !important; }
         .from-purple-500 { --tw-gradient-from: var(--color-primary-8) !important; }
-        .from-purple-600 { --tw-gradient-from: var(--color-primary-9) !important; }
-        .from-purple-700 { --tw-gradient-from: var(--color-primary-10) !important; }
-        .from-purple-800 { --tw-gradient-from: var(--color-primary-10) !important; }
-        .from-purple-900 { --tw-gradient-from: var(--color-primary-11) !important; }
+        .from-purple-600 { --tw-gradient-from: var(--color-primary-7) !important; }
+        .from-purple-700 { --tw-gradient-from: var(--color-primary-6) !important; }
+        .from-purple-800 { --tw-gradient-from: var(--color-primary-5) !important; }
+        .from-purple-900 { --tw-gradient-from: var(--color-primary-4) !important; }
         .from-purple-900\\/20 { --tw-gradient-from: color-mix(in srgb, var(--color-primary-3) 20%, transparent) !important; }
         
         .to-purple-50 { --tw-gradient-to: var(--color-primary-2) !important; }
         .to-purple-100 { --tw-gradient-to: var(--color-primary-3) !important; }
         .to-purple-500 { --tw-gradient-to: var(--color-primary-8) !important; }
-        .to-purple-600 { --tw-gradient-to: var(--color-primary-9) !important; }
-        .to-purple-700 { --tw-gradient-to: var(--color-primary-10) !important; }
-        .to-purple-800 { --tw-gradient-to: var(--color-primary-10) !important; }
-        .to-purple-900 { --tw-gradient-to: var(--color-primary-11) !important; }
+        .to-purple-600 { --tw-gradient-to: var(--color-primary-7) !important; }
+        .to-purple-700 { --tw-gradient-to: var(--color-primary-6) !important; }
+        .to-purple-800 { --tw-gradient-to: var(--color-primary-5) !important; }
+        .to-purple-900 { --tw-gradient-to: var(--color-primary-4) !important; }
         .to-blue-50 { --tw-gradient-to: var(--color-accent-2) !important; }
         .to-blue-100 { --tw-gradient-to: var(--color-accent-3) !important; }
         .to-blue-900\\/20 { --tw-gradient-to: color-mix(in srgb, var(--color-accent-3) 20%, transparent) !important; }
