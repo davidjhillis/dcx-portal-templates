@@ -1,0 +1,168 @@
+/**
+ * Radix Themes Database
+ * Complete color scales for all Radix colors in light and dark modes
+ * Source: https://www.radix-ui.com/colors
+ */
+
+export const radixThemes = {
+  // Pre-built theme combinations
+  presets: {
+    indigo: {
+      name: 'Indigo',
+      primary: 'indigo',
+      accent: 'purple',
+      neutral: 'slate',
+      description: 'Professional and modern'
+    },
+    blue: {
+      name: 'Blue Ocean',
+      primary: 'blue',
+      accent: 'cyan',
+      neutral: 'slate',
+      description: 'Trust and reliability'
+    },
+    emerald: {
+      name: 'Emerald',
+      primary: 'green',
+      accent: 'teal',
+      neutral: 'sage',
+      description: 'Fresh and natural'
+    },
+    ruby: {
+      name: 'Ruby',
+      primary: 'red',
+      accent: 'crimson',
+      neutral: 'mauve',
+      description: 'Bold and energetic'
+    },
+    amber: {
+      name: 'Amber Sunset',
+      primary: 'amber',
+      accent: 'orange',
+      neutral: 'sand',
+      description: 'Warm and inviting'
+    },
+    violet: {
+      name: 'Violet Dream',
+      primary: 'violet',
+      accent: 'iris',
+      neutral: 'slate',
+      description: 'Creative and elegant'
+    }
+  },
+
+  // Dark mode color scales
+  dark: {
+    indigo: {1:"#11131f",2:"#141726",3:"#182449",4:"#1d2e62",5:"#253974",6:"#304384",7:"#3a4f97",8:"#435db1",9:"#3e63dd",10:"#5472e4",11:"#9eb1ff",12:"#d6e1ff"},
+    blue: {1:"#0d1520",2:"#111927",3:"#0d2847",4:"#003362",5:"#004074",6:"#104d87",7:"#205d9e",8:"#2870bd",9:"#0090ff",10:"#3b9eff",11:"#70b8ff",12:"#c2e6ff"},
+    cyan: {1:"#0b161a",2:"#101b20",3:"#082c36",4:"#003848",5:"#004558",6:"#045468",7:"#12677e",8:"#11809c",9:"#00a2c7",10:"#23afd0",11:"#4ccce6",12:"#b6ecf7"},
+    teal: {1:"#0d1514",2:"#111c1b",3:"#0d2d2a",4:"#023b37",5:"#084843",6:"#145750",7:"#1c6961",8:"#207e73",9:"#12a594",10:"#19b5a4",11:"#0ac5b3",12:"#adf0dd"},
+    green: {1:"#0e1512",2:"#121b17",3:"#132d21",4:"#113b29",5:"#174933",6:"#20573e",7:"#28684a",8:"#2f7c57",9:"#30a46c",10:"#3cb179",11:"#4cc38a",12:"#b4f1c9"},
+    lime: {1:"#141807",2:"#1a1d0f",3:"#1f2917",4:"#29371d",5:"#334423",6:"#3d522a",7:"#496231",8:"#577538",9:"#99d52a",10:"#a5df35",11:"#b0eb4a",12:"#d7fc76"},
+    amber: {1:"#16120c",2:"#1d180f",3:"#302008",4:"#3f2700",5:"#4d3000",6:"#5c3d05",7:"#714f19",8:"#8f6424",9:"#ffb224",10:"#ffb83d",11:"#ffc453",12:"#ffefd6"},
+    orange: {1:"#17120e",2:"#1e160f",3:"#331e0b",4:"#462100",5:"#562800",6:"#66350c",7:"#7e451d",8:"#a35829",9:"#f76b15",10:"#ff7d33",11:"#ff8b3f",12:"#ffe0c2"},
+    red: {1:"#191111",2:"#201314",3:"#3b1219",4:"#500f1c",5:"#611623",6:"#72232d",7:"#8c333a",8:"#b54548",9:"#e5484d",10:"#ec5d5e",11:"#ff6369",12:"#ffd1d9"},
+    crimson: {1:"#191114",2:"#201318",3:"#381525",4:"#4d122f",5:"#5c1839",6:"#6d2045",7:"#873356",8:"#b0436e",9:"#e5484d",10:"#ec5d5e",11:"#ff6369",12:"#fdd3e8"},
+    purple: {1:"#1b141d",2:"#221527",3:"#301a3a",4:"#3a1e48",5:"#432155",6:"#4e2667",7:"#5f2d84",8:"#7938b2",9:"#8e4ec6",10:"#9d5bd2",11:"#d19dff",12:"#ecd9fa"},
+    violet: {1:"#14121f",2:"#1b1525",3:"#291f43",4:"#33255b",5:"#3c2e69",6:"#473876",7:"#56468b",8:"#6958ad",9:"#6e56cf",10:"#7c66dc",11:"#9e8cfc",12:"#dcd1ff"},
+    pink: {1:"#1f121b",2:"#271421",3:"#3a182f",4:"#4a1939",5:"#581d42",6:"#69224e",7:"#7e2b5f",8:"#a23776",9:"#d6409f",10:"#de51ab",11:"#ec6cb9",12:"#faddf4"},
+    plum: {1:"#181118",2:"#21131e",3:"#351631",4:"#451841",5:"#53214e",6:"#642b5f",7:"#7e3973",8:"#a84d90",9:"#ab4aba",10:"#b658c4",11:"#e796f3",12:"#f4d4f4"},
+    iris: {1:"#13131e",2:"#171625",3:"#202248",4:"#262a65",5:"#303374",6:"#3d3e82",7:"#4a4a95",8:"#5958b1",9:"#5b5bd6",10:"#6e6ade",11:"#b1a9ff",12:"#e0dffe"},
+    ruby: {1:"#191113",2:"#1e1317",3:"#3a141e",4:"#4e1325",5:"#5e1a2e",6:"#6f2539",7:"#883447",8:"#b3445a",9:"#e54666",10:"#ed5571",11:"#ff6a7d",12:"#fed2e1"},
+    slate: {1:"#111113",2:"#18181b",3:"#212225",4:"#272a2e",5:"#2e3135",6:"#363a3f",7:"#43484e",8:"#5a6169",9:"#696e77",10:"#777b84",11:"#b0b4ba",12:"#edeef0"},
+    gray: {1:"#111111",2:"#191919",3:"#222222",4:"#2a2a2a",5:"#313131",6:"#3a3a3a",7:"#484848",8:"#606060",9:"#6e6e6e",10:"#7c7c7c",11:"#b5b5b5",12:"#eeeeee"},
+    mauve: {1:"#121113",2:"#1a181b",3:"#232225",4:"#2b292e",5:"#323035",6:"#3c393f",7:"#49474e",8:"#625f69",9:"#6f6d78",10:"#7d7b86",11:"#b2b0bc",12:"#eeeef0"},
+    sage: {1:"#101211",2:"#171918",3:"#202221",4:"#272a29",5:"#2e3130",6:"#373b39",7:"#444947",8:"#5b625f",9:"#68766e",10:"#7a867c",11:"#afbcb6",12:"#e5edeb"},
+    olive: {1:"#111210",2:"#181917",3:"#212220",4:"#282a28",5:"#2f312e",6:"#383a36",7:"#454843",8:"#5c625b",9:"#6a746a",10:"#788278",11:"#b2bcb1",12:"#e6ebe5"},
+    sand: {1:"#111110",2:"#191918",3:"#222221",4:"#2a2a28",5:"#31312e",6:"#3b3a37",7:"#494844",8:"#62605b",9:"#71706b",10:"#7f7e79",11:"#b0afa9",12:"#ecebe9"}
+  },
+
+  // Light mode color scales
+  light: {
+    indigo: {1:"#fdfdfe",2:"#f7f9ff",3:"#edf2fe",4:"#e1e9ff",5:"#d2deff",6:"#c1d0ff",7:"#abbdf9",8:"#8da4ef",9:"#3e63dd",10:"#3358d4",11:"#3a5bc7",12:"#1f2d5c"},
+    blue: {1:"#fbfdff",2:"#f4faff",3:"#e6f4fe",4:"#d5efff",5:"#c2e5ff",6:"#acd8fc",7:"#8ec8f6",8:"#5eb1ef",9:"#0090ff",10:"#0588f0",11:"#0d74ce",12:"#113264"},
+    cyan: {1:"#fafdfe",2:"#f2fcfd",3:"#e7f9fb",4:"#d8f3f6",5:"#c4eaef",6:"#aadee6",7:"#84cdda",8:"#3db9cf",9:"#00a2c7",10:"#0797b9",11:"#107d98",12:"#0d3c48"},
+    teal: {1:"#fafefd",2:"#f3fbf9",3:"#e0f8f3",4:"#ccf3ea",5:"#b8eae0",6:"#a1ded2",7:"#83cdc1",8:"#53b9ab",9:"#12a594",10:"#0d9b8a",11:"#008573",12:"#0d3d38"},
+    green: {1:"#fbfefc",2:"#f4fbf6",3:"#e6f6eb",4:"#d6f1df",5:"#c4e8ca",6:"#addcb8",7:"#8ecea2",8:"#5bb98b",9:"#30a46c",10:"#2b9a66",11:"#218358",12:"#193b2d"},
+    lime: {1:"#fcfdfa",2:"#f8faf3",3:"#eef6d6",4:"#e2f0bd",5:"#d3e7a6",6:"#c2da91",7:"#abc978",8:"#8db654",9:"#99d52a",10:"#8cc51e",11:"#71a012",12:"#35460c"},
+    amber: {1:"#fefdfb",2:"#fefbe9",3:"#fff7c2",4:"#ffee9c",5:"#fbe27f",6:"#f3d768",7:"#e9c748",8:"#e2b72f",9:"#ffb224",10:"#ffa01c",11:"#ad5700",12:"#4e2009"},
+    orange: {1:"#fefcfb",2:"#fff7ed",3:"#ffefd6",4:"#ffdfb5",5:"#ffd19a",6:"#ffc182",7:"#f5ae73",8:"#ec9455",9:"#f76b15",10:"#ef5f00",11:"#cc4e00",12:"#582d1d"},
+    red: {1:"#fffcfc",2:"#fff7f7",3:"#feebec",4:"#ffdbdc",5:"#ffcdce",6:"#fdbdbe",7:"#f4a9aa",8:"#eb8e90",9:"#e5484d",10:"#dc3e42",11:"#ce2c31",12:"#641723"},
+    crimson: {1:"#fffcfd",2:"#fef7f9",3:"#ffe0e9",4:"#fdd3e8",5:"#f9c6db",6:"#f3b8d0",7:"#eca5bf",8:"#e38daa",9:"#e5484d",10:"#dc3e42",11:"#ce2c31",12:"#632531"},
+    purple: {1:"#fefcfe",2:"#fdfaff",3:"#f9f1fe",4:"#f3e7fc",5:"#eddc",6:"#e4d4f4",7:"#d9c8ec",8:"#c9b5e3",9:"#8e4ec6",10:"#8347b9",11:"#8145b5",12:"#402060"},
+    violet: {1:"#fdfcfe",2:"#faf8ff",3:"#f4f0fe",4:"#ebe4ff",5:"#e1d9ff",6:"#d4cafe",7:"#c2b5f5",8:"#aa99ec",9:"#6e56cf",10:"#654dc4",11:"#6550b9",12:"#2f265f"},
+    pink: {1:"#fffcfe",2:"#fef7fb",3:"#fee9f5",4:"#fbdcef",5:"#f6cee7",6:"#efbfdd",7:"#e7acd0",8:"#dd93c2",9:"#d6409f",10:"#cf3897",11:"#c2298a",12:"#651249"},
+    plum: {1:"#fefdff",2:"#fff8ff",3:"#fceffc",4:"#f9e5f9",5:"#f3d9f4",6:"#ebc8ed",7:"#dfb1e6",8:"#cf91d8",9:"#ab4aba",10:"#a144af",11:"#953ea3",12:"#53195d"},
+    iris: {1:"#fdfdff",2:"#f8f8ff",3:"#f0f1fe",4:"#e6e7ff",5:"#dadcff",6:"#cbcdff",7:"#b8baf8",8:"#9b9ef0",9:"#5b5bd6",10:"#5151cd",11:"#5753c6",12:"#272962"},
+    ruby: {1:"#fffcfd",2:"#fff7f8",3:"#feeaed",4:"#ffdce1",5:"#ffced6",6:"#f8bfc8",7:"#efacb8",8:"#e592a3",9:"#e54666",10:"#dc3b5d",11:"#ca244d",12:"#64172b"},
+    slate: {1:"#111113",2:"#18181b",3:"#212225",4:"#272a2e",5:"#2e3135",6:"#363a3f",7:"#43484e",8:"#5a6169",9:"#696e77",10:"#777b84",11:"#b0b4ba",12:"#edeef0"},
+    gray: {1:"#111111",2:"#191919",3:"#222222",4:"#2a2a2a",5:"#313131",6:"#3a3a3a",7:"#484848",8:"#606060",9:"#6e6e6e",10:"#7c7c7c",11:"#b5b5b5",12:"#eeeeee"},
+    mauve: {1:"#121113",2:"#1a181b",3:"#232225",4:"#2b292e",5:"#323035",6:"#3c393f",7:"#49474e",8:"#625f69",9:"#6f6d78",10:"#7d7b86",11:"#b2b0bc",12:"#eeeef0"},
+    sage: {1:"#101211",2:"#171918",3:"#202221",4:"#272a29",5:"#2e3130",6:"#373b39",7:"#444947",8:"#5b625f",9:"#68766e",10:"#7a867c",11:"#afbcb6",12:"#e5edeb"},
+    olive: {1:"#111210",2:"#181917",3:"#212220",4:"#282a28",5:"#2f312e",6:"#383a36",7:"#454843",8:"#5c625b",9:"#6a746a",10:"#788278",11:"#b2bcb1",12:"#e6ebe5"},
+    sand: {1:"#111110",2:"#191918",3:"#222221",4:"#2a2a28",5:"#31312e",6:"#3b3a37",7:"#494844",8:"#62605b",9:"#71706b",10:"#7f7e79",11:"#b0afa9",12:"#ecebe9"}
+  },
+
+  // Light mode color scales
+  light: {
+    indigo: {1:"#fdfdfe",2:"#f7f9ff",3:"#edf2fe",4:"#e1e9ff",5:"#d2deff",6:"#c1d0ff",7:"#abbdf9",8:"#8da4ef",9:"#3e63dd",10:"#3358d4",11:"#3a5bc7",12:"#1f2d5c"},
+    blue: {1:"#fbfdff",2:"#f4faff",3:"#e6f4fe",4:"#d5efff",5:"#c2e5ff",6:"#acd8fc",7:"#8ec8f6",8:"#5eb1ef",9:"#0090ff",10:"#0588f0",11:"#0d74ce",12:"#113264"},
+    cyan: {1:"#fafdfe",2:"#f2fcfd",3:"#e7f9fb",4:"#d8f3f6",5:"#c4eaef",6:"#aadee6",7:"#84cdda",8:"#3db9cf",9:"#00a2c7",10:"#0797b9",11:"#107d98",12:"#0d3c48"},
+    teal: {1:"#fafefd",2:"#f3fbf9",3:"#e0f8f3",4:"#ccf3ea",5:"#b8eae0",6:"#a1ded2",7:"#83cdc1",8:"#53b9ab",9:"#12a594",10:"#0d9b8a",11:"#008573",12:"#0d3d38"},
+    green: {1:"#fbfefc",2:"#f4fbf6",3:"#e6f6eb",4:"#d6f1df",5:"#c4e8ca",6:"#addcb8",7:"#8ecea2",8:"#5bb98b",9:"#30a46c",10:"#2b9a66",11:"#218358",12:"#193b2d"},
+    lime: {1:"#fcfdfa",2:"#f8faf3",3:"#eef6d6",4:"#e2f0bd",5:"#d3e7a6",6:"#c2da91",7:"#abc978",8:"#8db654",9:"#99d52a",10:"#8cc51e",11:"#71a012",12:"#35460c"},
+    amber: {1:"#fefdfb",2:"#fefbe9",3:"#fff7c2",4:"#ffee9c",5:"#fbe27f",6:"#f3d768",7:"#e9c748",8:"#e2b72f",9:"#ffb224",10:"#ffa01c",11:"#ad5700",12:"#4e2009"},
+    orange: {1:"#fefcfb",2:"#fff7ed",3:"#ffefd6",4:"#ffdfb5",5:"#ffd19a",6:"#ffc182",7:"#f5ae73",8:"#ec9455",9:"#f76b15",10:"#ef5f00",11:"#cc4e00",12:"#582d1d"},
+    red: {1:"#fffcfc",2:"#fff7f7",3:"#feebec",4:"#ffdbdc",5:"#ffcdce",6:"#fdbdbe",7:"#f4a9aa",8:"#eb8e90",9:"#e5484d",10:"#dc3e42",11:"#ce2c31",12:"#641723"},
+    crimson: {1:"#fffcfd",2:"#fef7f9",3:"#ffe0e9",4:"#fdd3e8",5:"#f9c6db",6:"#f3b8d0",7:"#eca5bf",8:"#e38daa",9:"#e5484d",10:"#dc3e42",11:"#ce2c31",12:"#632531"},
+    purple: {1:"#fefcfe",2:"#fdfaff",3:"#f9f1fe",4:"#f3e7fc",5:"#eddc",6:"#e4d4f4",7:"#d9c8ec",8:"#c9b5e3",9:"#8e4ec6",10:"#8347b9",11:"#8145b5",12:"#402060"},
+    violet: {1:"#fdfcfe",2:"#faf8ff",3:"#f4f0fe",4:"#ebe4ff",5:"#e1d9ff",6:"#d4cafe",7:"#c2b5f5",8:"#aa99ec",9:"#6e56cf",10:"#654dc4",11:"#6550b9",12:"#2f265f"},
+    pink: {1:"#fffcfe",2:"#fef7fb",3:"#fee9f5",4:"#fbdcef",5:"#f6cee7",6:"#efbfdd",7:"#e7acd0",8:"#dd93c2",9:"#d6409f",10:"#cf3897",11:"#c2298a",12:"#651249"},
+    plum: {1:"#fefdff",2:"#fff8ff",3:"#fceffc",4:"#f9e5f9",5:"#f3d9f4",6:"#ebc8ed",7:"#dfb1e6",8:"#cf91d8",9:"#ab4aba",10:"#a144af",11:"#953ea3",12:"#53195d"},
+    iris: {1:"#fdfdff",2:"#f8f8ff",3:"#f0f1fe",4:"#e6e7ff",5:"#dadcff",6:"#cbcdff",7:"#b8baf8",8:"#9b9ef0",9:"#5b5bd6",10:"#5151cd",11:"#5753c6",12:"#272962"},
+    ruby: {1:"#fffcfd",2:"#fff7f8",3:"#feeaed",4:"#ffdce1",5:"#ffced6",6:"#f8bfc8",7:"#efacb8",8:"#e592a3",9:"#e54666",10:"#dc3b5d",11:"#ca244d",12:"#64172b"},
+    slate: {1:"#fcfcfd",2:"#f9f9fb",3:"#eff0f3",4:"#e7e8ec",5:"#dfe1e5",6:"#d7d9de",7:"#cbced6",8:"#b8bcc8",9:"#696e77",10:"#5f646e",11:"#4b515d",12:"#1c2024"},
+    gray: {1:"#fcfcfc",2:"#f9f9f9",3:"#f0f0f0",4:"#e8e8e8",5:"#e0e0e0",6:"#d9d9d9",7:"#cecece",8:"#bbbbbb",9:"#6e6e6e",10:"#646464",11:"#202020",12:"#1c1c1c"},
+    mauve: {1:"#fdfcfd",2:"#f9f8fa",3:"#f0eff3",4:"#e7e6eb",5:"#dfdee4",6:"#d7d6dd",7:"#cbcad3",8:"#b8b7c4",9:"#6f6d78",10:"#65636e",11:"#514f5a",12:"#1f1e23"},
+    sage: {1:"#fbfcfc",2:"#f8f9f8",3:"#eff1ef",4:"#e6e9e6",5:"#dfe2df",6:"#d7dad7",7:"#cbcfcb",8:"#b8bcb8",9:"#68766e",10:"#5e6c64",11:"#4a5851",12:"#1f2520"},
+    olive: {1:"#fcfcfc",2:"#f8f9f8",3:"#eff1ef",4:"#e7e9e7",5:"#dfe2df",6:"#d7dad7",7:"#cccfcc",8:"#b9bcb8",9:"#6a746a",10:"#606a60",11:"#4c5649",12:"#1f211f"},
+    sand: {1:"#fdfdfc",2:"#f9f9f8",3:"#f1f0ef",4:"#e9e8e6",5:"#e2e1de",6:"#dad9d6",7:"#cfceca",8:"#bcbbb5",9:"#71706b",10:"#676662",11:"#52514e",12:"#21201d"}
+  }
+};
+
+/**
+ * Get color scale for a specific color and mode
+ */
+export function getColorScale(colorName, mode = 'dark') {
+  return radixThemes[mode][colorName] || radixThemes.dark.slate;
+}
+
+/**
+ * Get theme preset
+ */
+export function getThemePreset(presetName) {
+  return radixThemes.presets[presetName] || radixThemes.presets.indigo;
+}
+
+/**
+ * Apply theme to CSS variables
+ */
+export function applyThemeToElement(element, theme, mode = 'dark') {
+  const primary = getColorScale(theme.primary, mode);
+  const accent = getColorScale(theme.accent, mode);
+  const neutral = getColorScale(theme.neutral, mode);
+
+  // Apply CSS variables
+  Object.entries(primary).forEach(([step, color]) => {
+    element.style.setProperty(`--primary-${step}`, color);
+  });
+  
+  Object.entries(accent).forEach(([step, color]) => {
+    element.style.setProperty(`--accent-${step}`, color);
+  });
+  
+  Object.entries(neutral).forEach(([step, color]) => {
+    element.style.setProperty(`--neutral-${step}`, color);
+  });
+}
+

@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Theme Editor - Admin Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    
+    * {
+      font-family: 'Inter', -apple-system, system-ui, sans-serif;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body { overflow: hidden; }
+    
+    /* Elegant scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.15); }
+    
+    /* Collapsible sections */
+    .section-header { transition: all 0.12s ease; }
+    .section-header:hover { background: rgba(255,255,255,0.03); }
+    .section-content { 
+      overflow: hidden;
+      transition: max-height 0.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.15s;
+    }
+    .section-content.collapsed { max-height: 0 !important; opacity: 0; }
+    
+    /* Theme preset card */
+    .theme-preset {
+      cursor: pointer;
+      border: 1.5px solid rgba(255,255,255,0.08);
+      transition: all 0.15s ease;
+    }
+    .theme-preset:hover {
+      border-color: rgba(255,255,255,0.15);
+      transform: translateY(-1px);
+    }
+    .theme-preset.selected {
+      border-color: #8b5cf6;
+      box-shadow: 0 0 0 2px rgba(139,92,246,0.2);
+    }
+    
+    /* Color swatch */
+    .color-swatch {
+      border: 1.5px solid rgba(255,255,255,0.08);
+      cursor: pointer;
+      transition: all 0.12s ease;
+    }
+    .color-swatch:hover {
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,0.2);
+    }
+    .color-swatch.selected {
+      border-color: #8b5cf6;
+      box-shadow: 0 0 0 2px rgba(139,92,246,0.25);
+    }
+    
+    /* Scale dot */
+    .scale-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.15);
+      transition: transform 0.12s;
+      cursor: pointer;
+    }
+    .scale-dot:hover { transform: scale(1.25); }
+    
+    /* Elegant input */
+    .elegant-input {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 6px;
+      padding: 7px 10px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.9);
+      transition: all 0.12s;
+      width: 100%;
+    }
+    .elegant-input:hover {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.12);
+    }
+    .elegant-input:focus {
+      outline: none;
+      background: rgba(255,255,255,0.06);
+      border-color: #8b5cf6;
+      box-shadow: 0 0 0 2px rgba(139,92,246,0.15);
+    }
+    
+    /* Divider */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+      margin: 12px 0;
+    }
+  </style>
+</head>
+<body class="bg-[#0a0a0a] text-white">
+
+  <!-- Split View Container -->
+  <div class="flex h-screen">
+    
+    <!-- LEFT PANEL: Properties (360px) -->
+    <div class="w-[360px] bg-[#111111] border-r border-white/[0.08] flex flex-col">
+      
+      <!-- Header -->
+      <div class="px-4 py-3 border-b border-white/[0.08] flex items-center justify-between flex-shrink-0">
+        <div class="flex items-center gap-2.5">
+          <a href="index.html" class="w-7 h-7 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-md flex items-center justify-center hover:opacity-90 transition-opacity">
+            <i data-lucide="arrow-left" class="w-4 h-4 text-white"></i>
+          </a>
+          <div>
+            <div class="text-[13px] font-semibold text-white/90">Theme Editor</div>
+            <div class="text-[11px] text-white/40">Configure colors & styles</div>
+          </div>
+        </div>
+        
+        <!-- Undo/Redo -->
+        <div class="flex items-center gap-1">
+          <button id="undo-btn" disabled class="w-7 h-7 hover:bg-white/[0.05] rounded-md flex items-center justify-center transition-colors disabled:opacity-30 disabled:cursor-not-allowed" title="Undo">
+            <i data-lucide="undo-2" class="w-3.5 h-3.5 text-white/60"></i>
+          </button>
+          <button id="redo-btn" disabled class="w-7 h-7 hover:bg-white/[0.05] rounded-md flex items-center justify-center transition-colors disabled:opacity-30 disabled:cursor-not-allowed" title="Redo">
+            <i data-lucide="redo-2" class="w-3.5 h-3.5 text-white/60"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Scrollable Content -->
+      <div class="flex-1 overflow-y-auto px-4 py-4">
+        
+        <!-- Theme Presets -->
+        <div class="section mb-4">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-[11px] font-semibold text-white/50 uppercase tracking-wider">Theme Presets</span>
+            <button id="custom-theme-btn" class="text-[11px] text-purple-400 hover:text-purple-300 font-medium">+ Custom</button>
+          </div>
+          <div class="space-y-2" id="theme-presets">
+            <!-- Generated dynamically -->
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Color Mode -->
+        <div class="section mb-4">
+          <button class="section-header w-full flex items-center justify-between py-2 px-2 -mx-2 rounded-md">
+            <div class="flex items-center gap-2">
+              <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-white/40 transition-transform"></i>
+              <span class="text-[13px] font-medium text-white/90">Appearance</span>
+            </div>
+          </button>
+          <div class="section-content pl-5 pr-2 pt-3" style="max-height: 200px;">
+            <div class="flex gap-1.5 p-0.5 bg-white/[0.03] rounded-lg">
+              <button id="light-mode" class="flex-1 px-3 py-1.5 rounded-md text-[12px] font-medium transition-all text-white/50 hover:text-white/70">
+                <div class="flex items-center justify-center gap-1.5">
+                  <i data-lucide="sun" class="w-3.5 h-3.5"></i>
+                  <span>Light</span>
+                </div>
+              </button>
+              <button id="dark-mode" class="flex-1 px-3 py-1.5 rounded-md text-[12px] font-medium transition-all bg-white/[0.08] text-white/90">
+                <div class="flex items-center justify-center gap-1.5">
+                  <i data-lucide="moon" class="w-3.5 h-3.5"></i>
+                  <span>Dark</span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Primary Color -->
+        <div class="section mb-4">
+          <button class="section-header w-full flex items-center justify-between py-2 px-2 -mx-2 rounded-md">
+            <div class="flex items-center gap-2">
+              <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-white/40 transition-transform"></i>
+              <span class="text-[13px] font-medium text-white/90">Primary</span>
+            </div>
+            <span id="primary-name" class="text-[11px] text-white/40 font-medium">Indigo</span>
+          </button>
+          <div class="section-content pl-5 pr-2 pt-3" style="max-height: 300px;">
+            <div class="grid grid-cols-4 gap-1.5 mb-3" id="primary-swatches">
+              <!-- Generated dynamically -->
+            </div>
+            <div class="text-[10px] text-white/30 mb-1.5 font-medium uppercase tracking-wide">Scale Preview</div>
+            <div id="primary-scale" class="flex gap-0.5 h-2 rounded-sm overflow-hidden mb-3"></div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Accent Color -->
+        <div class="section mb-4">
+          <button class="section-header w-full flex items-center justify-between py-2 px-2 -mx-2 rounded-md">
+            <div class="flex items-center gap-2">
+              <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-white/40 transition-transform"></i>
+              <span class="text-[13px] font-medium text-white/90">Accent</span>
+            </div>
+            <span id="accent-name" class="text-[11px] text-white/40 font-medium">Purple</span>
+          </button>
+          <div class="section-content pl-5 pr-2 pt-3" style="max-height: 300px;">
+            <div class="grid grid-cols-4 gap-1.5 mb-3" id="accent-swatches">
+              <!-- Generated dynamically -->
+            </div>
+            <div class="text-[10px] text-white/30 mb-1.5 font-medium uppercase tracking-wide">Scale Preview</div>
+            <div id="accent-scale" class="flex gap-0.5 h-2 rounded-sm overflow-hidden mb-3"></div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Version History -->
+        <div class="section mb-4">
+          <button class="section-header w-full flex items-center justify-between py-2 px-2 -mx-2 rounded-md">
+            <div class="flex items-center gap-2">
+              <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-white/40 transition-transform"></i>
+              <span class="text-[13px] font-medium text-white/90">Version History</span>
+            </div>
+            <span class="text-[11px] text-white/40 font-medium" id="version-count">3 saved</span>
+          </button>
+          <div class="section-content collapsed pl-5 pr-2 pt-3" style="max-height: 0;">
+            <div class="space-y-1.5" id="version-list">
+              <!-- Generated dynamically -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Actions -->
+      <div class="px-4 py-3 border-t border-white/[0.08] flex gap-2 flex-shrink-0">
+        <button id="apply-btn" class="flex-1 px-3 py-2.5 bg-purple-600 hover:bg-purple-700 rounded-lg text-[13px] font-semibold transition-colors flex items-center justify-center gap-2">
+          <i data-lucide="check" class="w-4 h-4"></i>
+          <span>Apply & Save</span>
+        </button>
+        <button id="save-version-btn" class="px-3 py-2.5 hover:bg-white/[0.05] rounded-lg transition-colors" title="Save version">
+          <i data-lucide="bookmark" class="w-4 h-4 text-white/60"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL: Live Preview -->
+    <div class="flex-1 bg-[#0a0a0a] flex flex-col">
+      
+      <!-- Preview Toolbar -->
+      <div class="px-6 py-3 border-b border-white/[0.08] flex items-center justify-between flex-shrink-0">
+        <div class="flex items-center gap-4">
+          <span class="text-[13px] font-semibold text-white/90">Live Preview</span>
+          
+          <!-- Device Toggle -->
+          <div class="flex items-center gap-0.5 bg-white/[0.03] rounded-lg p-0.5">
+            <button data-device="desktop" class="device-btn px-2.5 py-1 rounded-md text-[11px] font-medium transition-all bg-white/[0.08] text-white/90">
+              <i data-lucide="monitor" class="w-3.5 h-3.5"></i>
+            </button>
+            <button data-device="tablet" class="device-btn px-2.5 py-1 rounded-md text-[11px] font-medium transition-all text-white/40 hover:text-white/60">
+              <i data-lucide="tablet" class="w-3.5 h-3.5"></i>
+            </button>
+            <button data-device="mobile" class="device-btn px-2.5 py-1 rounded-md text-[11px] font-medium transition-all text-white/40 hover:text-white/60">
+              <i data-lucide="smartphone" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Page Selector -->
+        <div class="flex items-center gap-2">
+          <span class="text-[11px] text-white/30 font-medium">Page:</span>
+          <select id="page-select" class="elegant-input text-[12px] py-1 px-2 bg-white/[0.03] border border-white/[0.08] rounded-md text-white/70">
+            <option value="index.html">Home</option>
+            <option value="doc-page.html">Documentation</option>
+            <option value="search-results.html">Search Results</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Preview Container -->
+      <div id="preview-container" class="flex-1 flex items-center justify-center p-6 overflow-auto">
+        <div id="preview-wrapper" class="transition-all duration-300" style="width: 100%; height: 100%;">
+          <iframe 
+            id="preview-iframe" 
+            src="preview-templates/index.html" 
+            class="w-full h-full bg-white dark:bg-gray-900 rounded-lg shadow-2xl border border-white/[0.08]"
+            style="transform-origin: center center;"
+          ></iframe>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script type="module">
+    import { radixThemes, getColorScale, getThemePreset, applyThemeToElement } from './assets/radix-themes.js';
+    
+    lucide.createIcons();
+
+    // ========================================
+    // State Management
+    // ========================================
+    
+    let currentState = {
+      mode: 'dark',
+      preset: 'indigo',
+      primary: 'indigo',
+      accent: 'purple',
+      neutral: 'slate',
+      fonts: {
+        heading: 'Inter',
+        body: 'Geist',
+        code: 'Fira Code'
+      }
+    };
+
+    let history = [];
+    let historyIndex = -1;
+    let savedVersions = [];
+
+    // ========================================
+    // Undo/Redo System
+    // ========================================
+    
+    function saveToHistory(state) {
+      // Remove future history if we're not at the end
+      if (historyIndex < history.length - 1) {
+        history = history.slice(0, historyIndex + 1);
+      }
+      
+      history.push(JSON.parse(JSON.stringify(state)));
+      historyIndex = history.length - 1;
+      
+      // Limit history to 50 states
+      if (history.length > 50) {
+        history.shift();
+        historyIndex--;
+      }
+      
+      updateUndoRedoButtons();
+    }
+
+    function undo() {
+      if (historyIndex > 0) {
+        historyIndex--;
+        currentState = JSON.parse(JSON.stringify(history[historyIndex]));
+        applyTheme();
+        updateUI();
+        updateUndoRedoButtons();
+      }
+    }
+
+    function redo() {
+      if (historyIndex < history.length - 1) {
+        historyIndex++;
+        currentState = JSON.parse(JSON.stringify(history[historyIndex]));
+        applyTheme();
+        updateUI();
+        updateUndoRedoButtons();
+      }
+    }
+
+    function updateUndoRedoButtons() {
+      const undoBtn = document.getElementById('undo-btn');
+      const redoBtn = document.getElementById('redo-btn');
+      
+      undoBtn.disabled = historyIndex <= 0;
+      redoBtn.disabled = historyIndex >= history.length - 1;
+    }
+
+    // ========================================
+    // Version Management
+    // ========================================
+    
+    function saveVersion() {
+      const timestamp = new Date().toISOString();
+      const version = {
+        id: Date.now(),
+        timestamp,
+        state: JSON.parse(JSON.stringify(currentState)),
+        name: `Version ${savedVersions.length + 1}`
+      };
+      
+      savedVersions.push(version);
+      updateVersionList();
+      showNotification('Version saved successfully', 'success');
+    }
+
+    function loadVersion(versionId) {
+      const version = savedVersions.find(v => v.id === versionId);
+      if (version) {
+        currentState = JSON.parse(JSON.stringify(version.state));
+        saveToHistory(currentState);
+        applyTheme();
+        updateUI();
+        showNotification('Version restored', 'success');
+      }
+    }
+
+    function updateVersionList() {
+      const container = document.getElementById('version-list');
+      const count = document.getElementById('version-count');
+      
+      count.textContent = `${savedVersions.length} saved`;
+      
+      container.innerHTML = savedVersions.slice().reverse().map(version => {
+        const date = new Date(version.timestamp);
+        const timeStr = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+        const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        
+        return `
+          <button 
+            class="w-full flex items-center justify-between py-2 px-2.5 rounded-md hover:bg-white/[0.03] transition-colors text-left group"
+            onclick="window.loadVersion(${version.id})"
+          >
+            <div class="flex-1">
+              <div class="text-[12px] text-white/80 font-medium group-hover:text-white/90">${version.name}</div>
+              <div class="text-[10px] text-white/30">${dateStr} at ${timeStr}</div>
+            </div>
+            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5 text-white/20 group-hover:text-white/40"></i>
+          </button>
+        `;
+      }).join('');
+      
+      lucide.createIcons();
+    }
+
+    // ========================================
+    // Theme Application
+    // ========================================
+    
+    function applyTheme() {
+      const iframe = document.getElementById('preview-iframe');
+      if (!iframe || !iframe.contentDocument) return;
+      
+      const doc = iframe.contentDocument;
+      const html = doc.documentElement;
+      
+      // Get color scales
+      const primaryScale = getColorScale(currentState.primary, currentState.mode);
+      const accentScale = getColorScale(currentState.accent, currentState.mode);
+      const neutralScale = getColorScale(currentState.neutral, currentState.mode);
+      
+      // Apply CSS variables to iframe
+      Object.entries(primaryScale).forEach(([step, color]) => {
+        html.style.setProperty(`--color-primary-${step}`, color);
+      });
+      
+      Object.entries(accentScale).forEach(([step, color]) => {
+        html.style.setProperty(`--color-accent-${step}`, color);
+      });
+      
+      Object.entries(neutralScale).forEach(([step, color]) => {
+        html.style.setProperty(`--color-neutral-${step}`, color);
+      });
+      
+      // Apply mode class
+      if (currentState.mode === 'dark') {
+        html.classList.add('dark');
+        html.classList.remove('light');
+      } else {
+        html.classList.add('light');
+        html.classList.remove('dark');
+      }
+      
+      // Apply custom styles for dynamic color usage
+      let styleEl = doc.getElementById('theme-editor-styles');
+      if (!styleEl) {
+        styleEl = doc.createElement('style');
+        styleEl.id = 'theme-editor-styles';
+        doc.head.appendChild(styleEl);
+      }
+      
+      styleEl.textContent = `
+        /* Theme Editor Dynamic Styles */
+        .bg-purple-600, .hover\\:bg-purple-600:hover { background-color: ${primaryScale[9]} !important; }
+        .bg-purple-700, .hover\\:bg-purple-700:hover { background-color: ${primaryScale[10]} !important; }
+        .text-purple-600 { color: ${primaryScale[11]} !important; }
+        .text-purple-400 { color: ${primaryScale[10]} !important; }
+        .border-purple-600 { border-color: ${primaryScale[9]} !important; }
+        .border-purple-500 { border-color: ${primaryScale[8]} !important; }
+        .border-purple-400 { border-color: ${primaryScale[7]} !important; }
+        
+        /* Accent colors */
+        .bg-indigo-600 { background-color: ${accentScale[9]} !important; }
+        .text-indigo-600 { background-color: ${accentScale[11]} !important; }
+      `;
+    }
+
+    // ========================================
+    // UI Updates
+    // ========================================
+    
+    function updateUI() {
+      // Update mode buttons
+      const lightBtn = document.getElementById('light-mode');
+      const darkBtn = document.getElementById('dark-mode');
+      
+      if (currentState.mode === 'dark') {
+        darkBtn.classList.add('bg-white/[0.08]', 'text-white/90');
+        darkBtn.classList.remove('text-white/50');
+        lightBtn.classList.remove('bg-white/[0.08]', 'text-white/90');
+        lightBtn.classList.add('text-white/50');
+      } else {
+        lightBtn.classList.add('bg-white/[0.08]', 'text-white/90');
+        lightBtn.classList.remove('text-white/50');
+        darkBtn.classList.remove('bg-white/[0.08]', 'text-white/90');
+        darkBtn.classList.add('text-white/50');
+      }
+      
+      // Update color names
+      document.getElementById('primary-name').textContent = capitalize(currentState.primary);
+      document.getElementById('accent-name').textContent = capitalize(currentState.accent);
+      
+      // Update scale previews
+      updateScalePreview('primary', currentState.primary);
+      updateScalePreview('accent', currentState.accent);
+      
+      // Update selected swatches
+      updateSwatchSelection();
+      
+      lucide.createIcons();
+    }
+
+    function updateScalePreview(role, colorName) {
+      const container = document.getElementById(`${role}-scale`);
+      const colors = Object.values(getColorScale(colorName, currentState.mode));
+      
+      container.innerHTML = colors.map(color => 
+        `<div class="flex-1" style="background-color: ${color};" title="${color}"></div>`
+      ).join('');
+    }
+
+    function updateSwatchSelection() {
+      document.querySelectorAll('[data-role="primary"]').forEach(el => {
+        el.classList.toggle('selected', el.dataset.color === currentState.primary);
+      });
+      document.querySelectorAll('[data-role="accent"]').forEach(el => {
+        el.classList.toggle('selected', el.dataset.color === currentState.accent);
+      });
+    }
+
+    function capitalize(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    // ========================================
+    // Theme Presets
+    // ========================================
+    
+    function generateThemePresets() {
+      const container = document.getElementById('theme-presets');
+      
+      container.innerHTML = Object.entries(radixThemes.presets).map(([key, theme]) => {
+        const primaryColor = getColorScale(theme.primary, currentState.mode)[9];
+        const accentColor = getColorScale(theme.accent, currentState.mode)[9];
+        
+        return `
+          <button 
+            class="theme-preset w-full flex items-center gap-3 p-3 rounded-lg ${currentState.preset === key ? 'selected' : ''}"
+            data-preset="${key}"
+          >
+            <div class="flex gap-1">
+              <div class="w-6 h-6 rounded-md" style="background: ${primaryColor};"></div>
+              <div class="w-6 h-6 rounded-md" style="background: ${accentColor};"></div>
+            </div>
+            <div class="flex-1 text-left">
+              <div class="text-[12px] font-semibold text-white/90">${theme.name}</div>
+              <div class="text-[10px] text-white/40">${theme.description}</div>
+            </div>
+            ${currentState.preset === key ? '<i data-lucide="check" class="w-4 h-4 text-purple-400"></i>' : ''}
+          </button>
+        `;
+      }).join('');
+      
+      lucide.createIcons();
+      
+      // Attach click handlers
+      document.querySelectorAll('.theme-preset').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const presetKey = this.dataset.preset;
+          const preset = radixThemes.presets[presetKey];
+          
+          currentState.preset = presetKey;
+          currentState.primary = preset.primary;
+          currentState.accent = preset.accent;
+          currentState.neutral = preset.neutral;
+          
+          saveToHistory(currentState);
+          applyTheme();
+          updateUI();
+          generateColorSwatches();
+          generateThemePresets();
+        });
+      });
+    }
+
+    // ========================================
+    // Color Swatches
+    // ========================================
+    
+    function generateColorSwatches() {
+      const primaryColors = ['indigo', 'blue', 'cyan', 'teal', 'green', 'lime', 'amber', 'orange'];
+      const accentColors = ['purple', 'violet', 'pink', 'crimson', 'red', 'plum', 'iris', 'ruby'];
+      
+      // Primary swatches
+      const primaryContainer = document.getElementById('primary-swatches');
+      primaryContainer.innerHTML = primaryColors.map(color => {
+        const scale = getColorScale(color, currentState.mode);
+        return `
+          <div 
+            class="color-swatch w-full h-9 rounded-md ${currentState.primary === color ? 'selected' : ''}"
+            data-color="${color}"
+            data-role="primary"
+            style="background: linear-gradient(135deg, ${scale[9]}, ${scale[10]});"
+            title="${capitalize(color)}"
+          ></div>
+        `;
+      }).join('');
+      
+      // Accent swatches
+      const accentContainer = document.getElementById('accent-swatches');
+      accentContainer.innerHTML = accentColors.map(color => {
+        const scale = getColorScale(color, currentState.mode);
+        return `
+          <div 
+            class="color-swatch w-full h-9 rounded-md ${currentState.accent === color ? 'selected' : ''}"
+            data-color="${color}"
+            data-role="accent"
+            style="background: linear-gradient(135deg, ${scale[9]}, ${scale[10]});"
+            title="${capitalize(color)}"
+          ></div>
+        `;
+      }).join('');
+      
+      // Attach click handlers
+      document.querySelectorAll('.color-swatch').forEach(swatch => {
+        swatch.addEventListener('click', function() {
+          const role = this.dataset.role;
+          const color = this.dataset.color;
+          
+          currentState[role] = color;
+          saveToHistory(currentState);
+          applyTheme();
+          updateUI();
+          generateColorSwatches();
+        });
+      });
+    }
+
+    // ========================================
+    // Collapsible Sections
+    // ========================================
+    
+    document.querySelectorAll('.section-header').forEach(header => {
+      header.addEventListener('click', function() {
+        const content = this.nextElementSibling;
+        const chevron = this.querySelector('[data-lucide^="chevron"]');
+        
+        content.classList.toggle('collapsed');
+        
+        if (content.classList.contains('collapsed')) {
+          chevron.style.transform = 'rotate(-90deg)';
+        } else {
+          chevron.style.transform = 'rotate(0deg)';
+        }
+      });
+    });
+
+    // ========================================
+    // Event Handlers
+    // ========================================
+    
+    // Mode toggle
+    document.getElementById('light-mode').addEventListener('click', () => {
+      currentState.mode = 'light';
+      saveToHistory(currentState);
+      applyTheme();
+      updateUI();
+      generateColorSwatches();
+      generateThemePresets();
+    });
+    
+    document.getElementById('dark-mode').addEventListener('click', () => {
+      currentState.mode = 'dark';
+      saveToHistory(currentState);
+      applyTheme();
+      updateUI();
+      generateColorSwatches();
+      generateThemePresets();
+    });
+
+    // Undo/Redo
+    document.getElementById('undo-btn').addEventListener('click', undo);
+    document.getElementById('redo-btn').addEventListener('click', redo);
+    
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'z' && !e.shiftKey) {
+        e.preventDefault();
+        undo();
+      }
+      if ((e.metaKey || e.ctrlKey) && (e.key === 'y' || (e.key === 'z' && e.shiftKey))) {
+        e.preventDefault();
+        redo();
+      }
+    });
+
+    // Save version
+    document.getElementById('save-version-btn').addEventListener('click', saveVersion);
+
+    // Page selector
+    document.getElementById('page-select').addEventListener('change', function() {
+      const iframe = document.getElementById('preview-iframe');
+      iframe.src = `preview-templates/${this.value}`;
+      
+      // Reapply theme after iframe loads
+      iframe.onload = () => {
+        applyTheme();
+      };
+    });
+
+    // Device preview
+    document.querySelectorAll('.device-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const device = this.dataset.device;
+        const wrapper = document.getElementById('preview-wrapper');
+        
+        // Remove active state from all
+        document.querySelectorAll('.device-btn').forEach(b => {
+          b.classList.remove('bg-white/[0.08]', 'text-white/90');
+          b.classList.add('text-white/40');
+        });
+        
+        // Add active state
+        this.classList.add('bg-white/[0.08]', 'text-white/90');
+        this.classList.remove('text-white/40');
+        
+        // Update wrapper size
+        if (device === 'tablet') {
+          wrapper.style.width = '768px';
+          wrapper.style.height = '1024px';
+        } else if (device === 'mobile') {
+          wrapper.style.width = '375px';
+          wrapper.style.height = '812px';
+        } else {
+          wrapper.style.width = '100%';
+          wrapper.style.height = '100%';
+        }
+      });
+    });
+
+    // Apply button
+    document.getElementById('apply-btn').addEventListener('click', () => {
+      // In production, this would save to config.json
+      showNotification('Theme applied successfully!', 'success');
+    });
+
+    // ========================================
+    // Notifications
+    // ========================================
+    
+    function showNotification(message, type = 'success') {
+      const notification = document.createElement('div');
+      notification.className = `fixed top-4 right-4 px-4 py-2.5 rounded-lg text-[13px] font-medium z-50 flex items-center gap-2 ${
+        type === 'success' ? 'bg-green-600 text-white' : 'bg-red-600 text-white'
+      }`;
+      notification.innerHTML = `
+        <i data-lucide="${type === 'success' ? 'check-circle' : 'alert-circle'}" class="w-4 h-4"></i>
+        <span>${message}</span>
+      `;
+      document.body.appendChild(notification);
+      lucide.createIcons();
+      
+      setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transition = 'opacity 0.2s';
+        setTimeout(() => notification.remove(), 200);
+      }, 3000);
+    }
+
+    // ========================================
+    // Initialization
+    // ========================================
+    
+    // Wait for iframe to load
+    const iframe = document.getElementById('preview-iframe');
+    iframe.onload = () => {
+      // Initialize
+      saveToHistory(currentState);
+      generateThemePresets();
+      generateColorSwatches();
+      updateUI();
+      applyTheme();
+      
+      // Create initial saved versions
+      savedVersions = [
+        {
+          id: 1,
+          timestamp: new Date(Date.now() - 86400000).toISOString(),
+          state: JSON.parse(JSON.stringify(currentState)),
+          name: 'Initial Design'
+        }
+      ];
+      updateVersionList();
+    };
+
+    // Expose loadVersion globally
+    window.loadVersion = loadVersion;
+    window.getColorScale = getColorScale;
+    window.radixThemes = radixThemes;
+  </script>
+
+</body>
+</html>
+
