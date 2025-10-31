@@ -1253,10 +1253,24 @@
     };
     
     // ========================================
-    // CUSTOMIZE MODAL
+    // CUSTOMIZE MODAL - Enterprise Features
     // ========================================
     
-    let modalTempState = null; // Temporary state while modal is open
+    // Modal state with light/dark variants
+    let modalState = {
+      currentMode: 'dark',  // 'light' or 'dark'
+      themeName: '',
+      light: {
+        primary: {},
+        accent: {},
+        neutral: {}
+      },
+      dark: {
+        primary: {},
+        accent: {},
+        neutral: {}
+      }
+    }; // Temporary state while modal is open
     
     // Open modal
     document.getElementById('custom-theme-btn').addEventListener('click', () => {
@@ -1289,7 +1303,80 @@
     function closeModal() {
       const modal = document.getElementById('customize-modal');
       modal.classList.add('hidden');
-      modalTempState = null;
+      // Reset modal state
+      modalState.themeName = '';
+    }
+    
+    // Update modal mode UI (toggle button states)
+    function updateModalModeUI() {
+      const lightBtn = document.getElementById('modal-light-mode');
+      const darkBtn = document.getElementById('modal-dark-mode');
+      const preview = document.getElementById('modal-component-preview');
+      
+      if (modalState.currentMode === 'light') {
+        lightBtn.classList.add('text-purple-400', 'bg-purple-500/20');
+        lightBtn.classList.remove('text-white/60');
+        darkBtn.classList.remove('text-purple-400', 'bg-purple-500/20');
+        darkBtn.classList.add('text-white/60');
+        preview.classList.remove('dark');
+      } else {
+        darkBtn.classList.add('text-purple-400', 'bg-purple-500/20');
+        darkBtn.classList.remove('text-white/60');
+        lightBtn.classList.remove('text-purple-400', 'bg-purple-500/20');
+        lightBtn.classList.add('text-white/60');
+        preview.classList.add('dark');
+      }
+    }
+    
+    // Light/Dark mode toggle in modal
+    document.getElementById('modal-light-mode').addEventListener('click', () => {
+      modalState.currentMode = 'light';
+      updateModalModeUI();
+      loadModalColorsForMode('light');
+      updateModalPreviewFromInputs();
+    });
+    
+    document.getElementById('modal-dark-mode').addEventListener('click', () => {
+      modalState.currentMode = 'dark';
+      updateModalModeUI();
+      loadModalColorsForMode('dark');
+      updateModalPreviewFromInputs();
+    });
+    
+    // Load colors for current mode into inputs
+    function loadModalColorsForMode(mode) {
+      const shades = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
+      
+      ['primary', 'accent', 'neutral'].forEach(colorType => {
+        shades.forEach(shade => {
+          const input = document.getElementById(`${colorType}-${shade}`);
+          const storedColor = modalState[mode][colorType][shade];
+          if (input && storedColor) {
+            input.value = storedColor;
+          }
+        });
+      });
+    }
+    
+    // Update preview from all 30 individual inputs
+    function updateModalPreviewFromInputs() {
+      const shades = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
+      const mode = modalState.currentMode;
+      const preview = document.getElementById('modal-component-preview');
+      
+      // Read all inputs and update modal state + preview
+      ['primary', 'accent', 'neutral'].forEach(colorType => {
+        shades.forEach(shade => {
+          const input = document.getElementById(`${colorType}-${shade}`);
+          if (input) {
+            const color = input.value;
+            // Store in current mode
+            modalState[mode][colorType][shade] = color;
+            // Apply to preview
+            preview.style.setProperty(`--preview-${colorType}-${shade}`, color);
+          }
+        });
+      });
     }
     
     document.getElementById('close-modal-btn').addEventListener('click', closeModal);
@@ -1309,27 +1396,188 @@
       }
     });
     
-    // Apply custom colors
-    document.getElementById('modal-apply-btn').addEventListener('click', () => {
-      // Find closest Tailwind color match for each hex value
-      const primaryHex = document.getElementById('modal-primary-hex').value;
-      const accentHex = document.getElementById('modal-accent-hex').value;
-      const neutralHex = document.getElementById('modal-neutral-hex').value;
+    // ========================================
+    // INDIVIDUAL COLOR STEP LISTENERS
+    // ========================================
+    
+    // Add live update listeners to all 30 color inputs
+    const shades = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
+    ['primary', 'accent', 'neutral'].forEach(colorType => {
+      shades.forEach(shade => {
+        const input = document.getElementById(`${colorType}-${shade}`);
+        if (input) {
+          input.addEventListener('input', (e) => {
+            const color = e.target.value;
+            const mode = modalState.currentMode;
+            
+            // Store in current mode state
+            modalState[mode][colorType][shade] = color;
+            
+            // Update preview immediately
+            const preview = document.getElementById('modal-component-preview');
+            preview.style.setProperty(`--preview-${colorType}-${shade}`, color);
+          });
+        }
+      });
+    });
+    
+    // ========================================
+    // AUTO-GENERATE BUTTONS
+    // ========================================
+    
+    // Auto-generate Primary scale from 600 (base color)
+    document.getElementById('primary-auto-generate').addEventListener('click', () => {
+      const baseColor = document.getElementById('primary-600').value;
+      const scale = generateCustomScale(baseColor);
+      if (scale) {
+        shades.forEach(shade => {
+          const input = document.getElementById(`primary-${shade}`);
+          if (input && scale[shade]) {
+            input.value = scale[shade];
+            modalState[modalState.currentMode].primary[shade] = scale[shade];
+          }
+        });
+        updateModalPreviewFromInputs();
+      }
+    });
+    
+    // Auto-generate Accent scale from 600 (base color)
+    document.getElementById('accent-auto-generate').addEventListener('click', () => {
+      const baseColor = document.getElementById('accent-600').value;
+      const scale = generateCustomScale(baseColor);
+      if (scale) {
+        shades.forEach(shade => {
+          const input = document.getElementById(`accent-${shade}`);
+          if (input && scale[shade]) {
+            input.value = scale[shade];
+            modalState[modalState.currentMode].accent[shade] = scale[shade];
+          }
+        });
+        updateModalPreviewFromInputs();
+      }
+    });
+    
+    // Auto-generate Neutral scale from 600 (base color)
+    document.getElementById('neutral-auto-generate').addEventListener('click', () => {
+      const baseColor = document.getElementById('neutral-600').value;
+      const scale = generateCustomScale(baseColor);
+      if (scale) {
+        shades.forEach(shade => {
+          const input = document.getElementById(`neutral-${shade}`);
+          if (input && scale[shade]) {
+            input.value = scale[shade];
+            modalState[modalState.currentMode].neutral[shade] = scale[shade];
+          }
+        });
+        updateModalPreviewFromInputs();
+      }
+    });
+    
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !document.getElementById('customize-modal').classList.contains('hidden')) {
+        closeModal();
+      }
+    });
+    
+    // ========================================
+    // SAVE THEME FUNCTIONALITY
+    // ========================================
+    
+    // Save Theme - Add to preset list permanently
+    document.getElementById('modal-save-theme-btn').addEventListener('click', () => {
+      const themeName = document.getElementById('modal-theme-name').value.trim();
       
-      // For now, set to custom values (we'll enhance this to find closest match)
-      currentState.primary = findClosestTailwindColor(primaryHex) || 'purple';
-      currentState.accent = findClosestTailwindColor(accentHex) || 'violet';
-      currentState.neutral = findClosestTailwindColor(neutralHex) || 'gray';
-      currentState.preset = 'custom';
+      // Validation
+      if (!themeName) {
+        alert('Please enter a theme name');
+        document.getElementById('modal-theme-name').focus();
+        return;
+      }
       
+      // Generate unique key from name
+      const themeKey = themeName.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      
+      // Check if theme already exists
+      if (tailwindColors.presets[themeKey]) {
+        const overwrite = confirm(`Theme "${themeName}" already exists. Overwrite?`);
+        if (!overwrite) return;
+      }
+      
+      // Create custom color IDs
+      const customPrimaryId = `custom-${themeKey}-primary`;
+      const customAccentId = `custom-${themeKey}-accent`;
+      const customNeutralId = `custom-${themeKey}-neutral`;
+      
+      // Build light and dark color scales from modal inputs
+      const lightPrimary = {};
+      const darkPrimary = {};
+      const lightAccent = {};
+      const darkAccent = {};
+      const lightNeutral = {};
+      const darkNeutral = {};
+      
+      shades.forEach(shade => {
+        lightPrimary[shade] = modalState.light.primary[shade] || tailwindColors.getColor('purple', shade);
+        darkPrimary[shade] = modalState.dark.primary[shade] || tailwindColors.getColor('purple', shade);
+        lightAccent[shade] = modalState.light.accent[shade] || tailwindColors.getColor('violet', shade);
+        darkAccent[shade] = modalState.dark.accent[shade] || tailwindColors.getColor('violet', shade);
+        lightNeutral[shade] = modalState.light.neutral[shade] || tailwindColors.getColor('gray', shade);
+        darkNeutral[shade] = modalState.dark.neutral[shade] || tailwindColors.getColor('gray', shade);
+      });
+      
+      // Add custom colors to tailwindColors.colors
+      tailwindColors.colors[customPrimaryId] = lightPrimary;  // Use light as default for simplicity
+      tailwindColors.colors[customAccentId] = lightAccent;
+      tailwindColors.colors[customNeutralId] = lightNeutral;
+      
+      // Add new preset
+      tailwindColors.presets[themeKey] = {
+        name: themeName,
+        primary: customPrimaryId,
+        accent: customAccentId,
+        neutral: customNeutralId,
+        description: 'Custom enterprise theme'
+      };
+      
+      // Save to localStorage for persistence
+      const customThemes = JSON.parse(localStorage.getItem('customThemes') || '{}');
+      customThemes[themeKey] = {
+        name: themeName,
+        light: { primary: lightPrimary, accent: lightAccent, neutral: lightNeutral },
+        dark: { primary: darkPrimary, accent: darkAccent, neutral: darkNeutral }
+      };
+      localStorage.setItem('customThemes', JSON.stringify(customThemes));
+      
+      // Apply the new theme immediately
+      currentState.preset = themeKey;
+      currentState.primary = customPrimaryId;
+      currentState.accent = customAccentId;
+      currentState.neutral = customNeutralId;
+      
+      // Regenerate theme preset UI
+      generateThemePresets();
+      
+      // Apply and save
       saveToHistory(currentState);
-      generateColorSwatches();
       applyTheme();
       updateUI();
-      updateScalePreview();
       
       closeModal();
-      showNotification('Custom colors applied successfully!');
+      
+      // Success message
+      setTimeout(() => {
+        alert(`✓ Theme "${themeName}" saved successfully!\n\nYou can now select it from the theme preset list.`);
+      }, 100);
+    });
+    
+    // Apply (Temporary) - Just preview without saving
+    document.getElementById('modal-apply-btn').addEventListener('click', () => {
+      // Temporarily apply custom colors to main preview
+      // This doesn't save to preset list
+      updateModalPreviewFromInputs();
+      
+      alert('Preview updated in modal! Click "Save Theme" to make it permanent, or continue editing.');
     });
     
     // Helper function to find closest Tailwind color
