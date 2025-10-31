@@ -1538,14 +1538,40 @@
               <p class="text-xs text-white/50">Create your perfect brand theme</p>
             </div>
           </div>
-          <button id="close-modal-btn" class="px-3 py-2 hover:bg-white/[0.05] rounded-lg transition-colors">
-            <i data-lucide="x" class="w-5 h-5 text-white/60"></i>
-          </button>
+          
+          <!-- Light/Dark Mode Toggle -->
+          <div class="flex items-center gap-3">
+            <div class="flex items-center gap-2 px-3 py-1.5 bg-white/[0.03] rounded-lg border border-white/10">
+              <button id="modal-light-mode" class="px-2 py-1 text-xs font-medium text-white/60 hover:text-white rounded transition-colors">
+                <i data-lucide="sun" class="w-3.5 h-3.5"></i>
+              </button>
+              <button id="modal-dark-mode" class="px-2 py-1 text-xs font-medium text-purple-400 bg-purple-500/20 rounded transition-colors">
+                <i data-lucide="moon" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+            
+            <button id="close-modal-btn" class="px-3 py-2 hover:bg-white/[0.05] rounded-lg transition-colors">
+              <i data-lucide="x" class="w-5 h-5 text-white/60"></i>
+            </button>
+          </div>
         </div>
 
         <!-- Modal Body -->
         <div class="flex-1 overflow-y-auto">
           <div class="p-6 space-y-6">
+            
+            <!-- Theme Name Input -->
+            <div class="bg-white/[0.03] border border-white/10 rounded-xl p-4">
+              <label class="text-sm font-semibold text-white/90 mb-2 block">Theme Name</label>
+              <input 
+                type="text" 
+                id="modal-theme-name" 
+                class="w-full px-4 py-2.5 bg-white/[0.05] border border-white/10 rounded-lg text-white text-sm placeholder:text-white/30"
+                placeholder="My Custom Theme"
+                value=""
+              />
+              <p class="text-xs text-white/40 mt-2">This theme will be added to your theme preset list</p>
+            </div>
             
             <!-- Color Inputs -->
             <div class="grid grid-cols-3 gap-4">
@@ -1760,10 +1786,16 @@
           <button id="modal-cancel-btn" class="px-4 py-2.5 hover:bg-white/[0.05] rounded-lg text-sm font-semibold text-white/70 hover:text-white transition-colors">
             Cancel
           </button>
-          <button id="modal-apply-btn" class="px-6 py-2.5 bg-purple-600 hover:bg-purple-700 rounded-lg text-sm font-semibold text-white transition-colors flex items-center gap-2">
-            <i data-lucide="check" class="w-4 h-4"></i>
-            Apply Custom Colors
-          </button>
+          <div class="flex items-center gap-3">
+            <button id="modal-apply-btn" class="px-5 py-2.5 bg-white/10 hover:bg-white/15 rounded-lg text-sm font-semibold text-white transition-colors flex items-center gap-2">
+              <i data-lucide="eye" class="w-4 h-4"></i>
+              Apply (Temporary)
+            </button>
+            <button id="modal-save-theme-btn" class="px-5 py-2.5 bg-purple-600 hover:bg-purple-700 rounded-lg text-sm font-semibold text-white transition-colors flex items-center gap-2">
+              <i data-lucide="save" class="w-4 h-4"></i>
+              Save Theme
+            </button>
+          </div>
         </div>
 
       </div>
