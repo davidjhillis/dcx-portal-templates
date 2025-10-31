@@ -352,22 +352,27 @@
   </div>
 
   <script type="module">
-    import { radixThemes, getColorScale, getThemePreset, applyThemeToElement } from './assets/radix-themes.js';
+    import { tailwindColors } from './assets/tailwind-colors.js';
     
     lucide.createIcons();
+    
+    // Helper function to get color scale (Tailwind doesn't need mode parameter)
+    function getColorScale(colorName, mode) {
+      return tailwindColors.getScale(colorName);
+    }
 
     // ========================================
     // State Management
     // ========================================
     
     // Base/Default Theme (for reset functionality)
-    // Matches original template design (EXACT Tailwind CSS purple colors)
+    // Matches original template design (Tailwind CSS purple)
     const BASE_THEME = {
       mode: 'dark',
-      preset: 'tailwind',
-      primary: 'tailwind-purple',  // Exact Tailwind CSS purple (#9333EA)
+      preset: 'purple',
+      primary: 'purple',  // Tailwind purple (#9333EA for 600)
       accent: 'violet',
-      neutral: 'slate',
+      neutral: 'gray',
       useGradients: true,
       fonts: {
         heading: 'Inter',
@@ -497,62 +502,66 @@
  * Accent: ${capitalize(currentState.accent)}
  * Neutral: ${capitalize(currentState.neutral)}
  * Gradients: ${currentState.useGradients ? 'Enabled' : 'Disabled'}
+ * 
+ * Based on: Tailwind CSS v2 Color System
+ * https://v2.tailwindcss.com/docs/customizing-colors
  */
 
 :root {
   /* ============================================
-     RADIX COLOR SCALES
+     TAILWIND COLOR SCALES (50-900)
      ============================================ */
   
-  /* Primary Color Scale (${capitalize(currentState.primary)}) */
-  ${Object.entries(primaryScale).map(([step, color]) => 
-    `--color-primary-${step}: ${color};`
+  /* Primary Color Scale - ${capitalize(currentState.primary)} (50=lightest, 900=darkest) */
+  ${Object.entries(primaryScale).map(([shade, color]) => 
+    `--color-primary-${shade}: ${color};`
   ).join('\n  ')}
   
-  /* Accent Color Scale (${capitalize(currentState.accent)}) */
-  ${Object.entries(accentScale).map(([step, color]) => 
-    `--color-accent-${step}: ${color};`
+  /* Accent Color Scale - ${capitalize(currentState.accent)} */
+  ${Object.entries(accentScale).map(([shade, color]) => 
+    `--color-accent-${shade}: ${color};`
   ).join('\n  ')}
   
-  /* Neutral Color Scale (${capitalize(currentState.neutral)}) */
-  ${Object.entries(neutralScale).map(([step, color]) => 
-    `--color-neutral-${step}: ${color};`
+  /* Neutral Color Scale - ${capitalize(currentState.neutral)} */
+  ${Object.entries(neutralScale).map(([shade, color]) => 
+    `--color-neutral-${shade}: ${color};`
   ).join('\n  ')}
   
   /* ============================================
-     SEMANTIC ALIASES
+     SEMANTIC ALIASES (Tailwind-based)
+     Use these for consistent theming across components
      ============================================ */
   
-  /* Backgrounds */
-  --bg-app: var(--color-neutral-1);
-  --bg-elevated: var(--color-neutral-2);
-  --bg-surface: var(--color-neutral-3);
-  --bg-overlay: var(--color-neutral-4);
+  /* Backgrounds (adjust based on light/dark mode in your CSS) */
+  --bg-app: var(--color-neutral-50);       /* Light: 50, Dark: use dark:bg-gray-900 */
+  --bg-elevated: var(--color-neutral-100);
+  --bg-surface: var(--color-neutral-200);
+  --bg-overlay: var(--color-neutral-300);
   
-  /* Text */
-  --text-primary: var(--color-neutral-12);
-  --text-secondary: var(--color-neutral-11);
-  --text-tertiary: var(--color-neutral-10);
-  --text-brand: var(--color-primary-11);
-  --text-accent: var(--color-accent-11);
+  /* Text (dark mode: use light shades, light mode: use dark shades) */
+  --text-primary: var(--color-neutral-900);      /* Dark text for light mode */
+  --text-secondary: var(--color-neutral-700);
+  --text-tertiary: var(--color-neutral-600);
+  --text-brand: var(--color-primary-600);        /* Primary brand color */
+  --text-accent: var(--color-accent-600);
   
   /* Borders */
-  --border-subtle: var(--color-neutral-6);
-  --border-default: var(--color-neutral-7);
-  --border-strong: var(--color-neutral-8);
+  --border-subtle: var(--color-neutral-200);
+  --border-default: var(--color-neutral-300);
+  --border-strong: var(--color-neutral-400);
   
   /* Interactive Elements */
-  --interactive-default: var(--color-primary-9);
-  --interactive-hover: var(--color-primary-10);
-  --interactive-active: var(--color-primary-8);
-  --interactive-disabled: var(--color-neutral-6);
+  --interactive-default: var(--color-primary-600);    /* Tailwind 600 is primary */
+  --interactive-hover: var(--color-primary-700);
+  --interactive-active: var(--color-primary-800);
+  --interactive-disabled: var(--color-neutral-400);
   
   /* Component-Specific */
   --product-card-bg: ${currentState.useGradients 
-    ? `linear-gradient(135deg, var(--color-primary-9), var(--color-primary-10))`
-    : `var(--color-primary-9)`};
-  --product-card-border: var(--color-primary-7);
-  --product-card-text: var(--color-primary-12);
+    ? `linear-gradient(135deg, var(--color-primary-900), var(--color-primary-800))`
+    : `var(--color-primary-900)`};
+  --product-card-border: var(--color-primary-700);
+  --product-card-text: var(--color-primary-100);
   
   --nav-bg: var(--bg-elevated);
   --nav-text: var(--text-secondary);
@@ -565,17 +574,19 @@
 }
 
 /* ============================================
-   ACCESSIBILITY NOTES
+   USAGE GUIDE - Tailwind Color System
    ============================================
    
-   Radix color scales are designed for accessibility:
-   - Steps 1-3: App backgrounds
-   - Steps 4-5: Interactive component backgrounds
-   - Steps 6-7: Borders and separators
-   - Steps 8-9: Solid backgrounds
-   - Steps 11-12: Text (guaranteed WCAG AA contrast)
+   Tailwind uses a 50-900 scale where numbers indicate lightness:
+   - 50-300: Light shades (backgrounds in light mode)
+   - 400-600: Mid shades (primary brand colors, interactive elements)
+   - 700-900: Dark shades (backgrounds in dark mode, text in light mode)
    
-   Always use steps 11-12 for text to ensure readability.
+   For dark mode, use the dark: variant with inverted shades:
+   - Light mode: bg-gray-100 text-gray-900
+   - Dark mode: dark:bg-gray-900 dark:text-gray-100
+   
+   Accessibility: Ensure 4.5:1 contrast for normal text (WCAG AA)
    ============================================ */
 `;
 
@@ -641,17 +652,17 @@
       const accentScale = getColorScale(currentState.accent, currentState.mode);
       const neutralScale = getColorScale(currentState.neutral, currentState.mode);
       
-      // Apply CSS variables to iframe
-      Object.entries(primaryScale).forEach(([step, color]) => {
-        html.style.setProperty(`--color-primary-${step}`, color);
+      // Apply CSS variables to iframe (Tailwind uses shade numbers: 50, 100, ..., 900)
+      Object.entries(primaryScale).forEach(([shade, color]) => {
+        html.style.setProperty(`--color-primary-${shade}`, color);
       });
       
-      Object.entries(accentScale).forEach(([step, color]) => {
-        html.style.setProperty(`--color-accent-${step}`, color);
+      Object.entries(accentScale).forEach(([shade, color]) => {
+        html.style.setProperty(`--color-accent-${shade}`, color);
       });
       
-      Object.entries(neutralScale).forEach(([step, color]) => {
-        html.style.setProperty(`--color-neutral-${step}`, color);
+      Object.entries(neutralScale).forEach(([shade, color]) => {
+        html.style.setProperty(`--color-neutral-${shade}`, color);
       });
       
       // Apply mode class
@@ -674,117 +685,130 @@
       const useGradients = currentState.useGradients;
       
       styleEl.textContent = `
-        /* Theme Editor Dynamic Styles - Using CSS Variables */
-        /* All colors reference CSS custom properties for easy customization */
+        /* ========================================
+           TAILWIND THEME SYSTEM - Simplified
+           ======================================== */
         
-        /* Gradient Override - When gradients are disabled, use solid colors */
+        /* Gradient Override */
         ${!useGradients ? `
           .bg-gradient-to-r.from-purple-900,
-          .bg-gradient-to-r.from-indigo-900 {
+          .bg-gradient-to-r.from-indigo-900,
+          .bg-gradient-to-r.from-blue-900 {
             background-image: none !important;
-            background-color: var(--color-primary-9) !important;
+            background-color: var(--color-primary-900) !important;
           }
         ` : ''}
         
-        /* Primary Color - Backgrounds 
-           Tailwind naming (dark mode): 900=#581c87(step4), 800=#6b21a8(step5), 700=#7e22ce(step6), 600=#9333ea(step7) */
-        .bg-purple-50 { background-color: var(--color-primary-2) !important; }
-        .bg-purple-100 { background-color: var(--color-primary-3) !important; }
-        .bg-purple-200 { background-color: var(--color-primary-4) !important; }
-        .bg-purple-500 { background-color: var(--color-primary-8) !important; }
-        .bg-purple-600, .hover\\:bg-purple-600:hover { background-color: var(--color-primary-7) !important; }
-        .bg-purple-700, .hover\\:bg-purple-700:hover { background-color: var(--color-primary-6) !important; }
-        .bg-purple-800, .hover\\:bg-purple-800:hover { background-color: var(--color-primary-5) !important; }
-        .bg-purple-900, .hover\\:bg-purple-900:hover { background-color: var(--color-primary-4) !important; }
+        /* ========================================
+           PRIMARY COLOR - All Shades
+           Direct Tailwind mapping: 50=50, 600=600, 900=900
+           ======================================== */
         
-        /* Primary Color - Dark Mode Backgrounds */
-        .dark\\:bg-purple-900\\/20 { background-color: color-mix(in srgb, var(--color-primary-3) 50%, transparent) !important; }
-        .dark\\:bg-purple-900\\/30 { background-color: color-mix(in srgb, var(--color-primary-3) 80%, transparent) !important; }
-        .dark\\:bg-purple-800 { background-color: var(--color-primary-4) !important; }
+        /* Backgrounds */
+        .bg-purple-50 { background-color: var(--color-primary-50) !important; }
+        .bg-purple-100 { background-color: var(--color-primary-100) !important; }
+        .bg-purple-200 { background-color: var(--color-primary-200) !important; }
+        .bg-purple-300 { background-color: var(--color-primary-300) !important; }
+        .bg-purple-400 { background-color: var(--color-primary-400) !important; }
+        .bg-purple-500 { background-color: var(--color-primary-500) !important; }
+        .bg-purple-600, .hover\\:bg-purple-600:hover { background-color: var(--color-primary-600) !important; }
+        .bg-purple-700, .hover\\:bg-purple-700:hover { background-color: var(--color-primary-700) !important; }
+        .bg-purple-800, .hover\\:bg-purple-800:hover { background-color: var(--color-primary-800) !important; }
+        .bg-purple-900, .hover\\:bg-purple-900:hover { background-color: var(--color-primary-900) !important; }
         
-        /* Primary Color - Text */
-        .text-purple-200, .dark\\:text-purple-200 { color: var(--color-primary-10) !important; }
-        .text-purple-300, .dark\\:text-purple-300 { color: var(--color-primary-11) !important; }
-        .text-purple-400, .dark\\:text-purple-400, .hover\\:text-purple-400:hover, .dark\\:hover\\:text-purple-400:hover { color: var(--color-primary-10) !important; }
-        .text-purple-500 { color: var(--color-primary-9) !important; }
-        .text-purple-600, .hover\\:text-purple-600:hover, .dark\\:hover\\:text-purple-600:hover { color: var(--color-primary-11) !important; }
-        .text-purple-700, .dark\\:text-purple-300 { color: var(--color-primary-11) !important; }
+        /* Dark mode backgrounds (using dark: variants) */
+        .dark\\:bg-purple-900\\/20 { background-color: color-mix(in srgb, var(--color-primary-900) 20%, transparent) !important; }
+        .dark\\:bg-purple-900\\/30 { background-color: color-mix(in srgb, var(--color-primary-900) 30%, transparent) !important; }
+        .dark\\:bg-purple-800 { background-color: var(--color-primary-800) !important; }
         
-        /* Primary Color - Borders */
-        .border-purple-200, .dark\\:border-purple-700 { border-color: var(--color-primary-7) !important; }
-        .border-purple-400, .dark\\:border-purple-400, .hover\\:border-purple-400:hover { border-color: var(--color-primary-7) !important; }
-        .border-purple-500, .hover\\:border-purple-500:hover, .dark\\:hover\\:border-purple-400:hover { border-color: var(--color-primary-8) !important; }
-        .border-purple-600, .dark\\:border-purple-400 { border-color: var(--color-primary-9) !important; }
+        /* Text colors */
+        .text-purple-100 { color: var(--color-primary-100) !important; }
+        .text-purple-200, .dark\\:text-purple-200 { color: var(--color-primary-200) !important; }
+        .text-purple-300, .dark\\:text-purple-300 { color: var(--color-primary-300) !important; }
+        .text-purple-400, .dark\\:text-purple-400, .hover\\:text-purple-400:hover, .dark\\:hover\\:text-purple-400:hover { color: var(--color-primary-400) !important; }
+        .text-purple-500 { color: var(--color-primary-500) !important; }
+        .text-purple-600, .hover\\:text-purple-600:hover, .dark\\:hover\\:text-purple-600:hover { color: var(--color-primary-600) !important; }
+        .text-purple-700 { color: var(--color-primary-700) !important; }
+        .text-purple-800 { color: var(--color-primary-800) !important; }
+        .text-purple-900 { color: var(--color-primary-900) !important; }
         
-        /* Primary Color - Gradients (Product Cards) 
-           Dark mode: 900→step4, 800→step5, 700→step6, 600→step7, etc.
-           Light mode: 50→step2, 100→step3, etc. */
-        .from-purple-50 { --tw-gradient-from: var(--color-primary-2) !important; }
-        .from-purple-100 { --tw-gradient-from: var(--color-primary-3) !important; }
-        .from-purple-500 { --tw-gradient-from: var(--color-primary-8) !important; }
-        .from-purple-600 { --tw-gradient-from: var(--color-primary-7) !important; }
-        .from-purple-700 { --tw-gradient-from: var(--color-primary-6) !important; }
-        .from-purple-800 { --tw-gradient-from: var(--color-primary-5) !important; }
-        .from-purple-900 { --tw-gradient-from: var(--color-primary-4) !important; }
-        .from-purple-900\\/20 { --tw-gradient-from: color-mix(in srgb, var(--color-primary-3) 20%, transparent) !important; }
+        /* Borders */
+        .border-purple-200 { border-color: var(--color-primary-200) !important; }
+        .border-purple-400, .hover\\:border-purple-400:hover { border-color: var(--color-primary-400) !important; }
+        .border-purple-500, .hover\\:border-purple-500:hover { border-color: var(--color-primary-500) !important; }
+        .border-purple-600 { border-color: var(--color-primary-600) !important; }
+        .border-purple-700, .dark\\:border-purple-700 { border-color: var(--color-primary-700) !important; }
         
-        .to-purple-50 { --tw-gradient-to: var(--color-primary-2) !important; }
-        .to-purple-100 { --tw-gradient-to: var(--color-primary-3) !important; }
-        .to-purple-500 { --tw-gradient-to: var(--color-primary-8) !important; }
-        .to-purple-600 { --tw-gradient-to: var(--color-primary-7) !important; }
-        .to-purple-700 { --tw-gradient-to: var(--color-primary-6) !important; }
-        .to-purple-800 { --tw-gradient-to: var(--color-primary-5) !important; }
-        .to-purple-900 { --tw-gradient-to: var(--color-primary-4) !important; }
-        .to-blue-50 { --tw-gradient-to: var(--color-accent-2) !important; }
-        .to-blue-100 { --tw-gradient-to: var(--color-accent-3) !important; }
-        .to-blue-900\\/20 { --tw-gradient-to: color-mix(in srgb, var(--color-accent-3) 20%, transparent) !important; }
+        /* Gradients - Product Cards */
+        .from-purple-50 { --tw-gradient-from: var(--color-primary-50) !important; }
+        .from-purple-100 { --tw-gradient-from: var(--color-primary-100) !important; }
+        .from-purple-600 { --tw-gradient-from: var(--color-primary-600) !important; }
+        .from-purple-700 { --tw-gradient-from: var(--color-primary-700) !important; }
+        .from-purple-800 { --tw-gradient-from: var(--color-primary-800) !important; }
+        .from-purple-900 { --tw-gradient-from: var(--color-primary-900) !important; }
         
-        /* Accent Color (Indigo) - Backgrounds */
-        .bg-indigo-50 { background-color: var(--color-accent-2) !important; }
-        .bg-indigo-100 { background-color: var(--color-accent-3) !important; }
-        .bg-indigo-600 { background-color: var(--color-accent-9) !important; }
-        .bg-indigo-700 { background-color: var(--color-accent-10) !important; }
-        .bg-indigo-800, .hover\\:bg-indigo-800:hover { background-color: var(--color-accent-10) !important; }
-        .bg-indigo-900, .hover\\:bg-indigo-900:hover { background-color: var(--color-accent-11) !important; }
-        .dark\\:bg-indigo-900\\/20 { background-color: color-mix(in srgb, var(--color-accent-3) 20%, transparent) !important; }
-        .dark\\:bg-indigo-900\\/30 { background-color: color-mix(in srgb, var(--color-accent-3) 30%, transparent) !important; }
+        .to-purple-50 { --tw-gradient-to: var(--color-primary-50) !important; }
+        .to-purple-100 { --tw-gradient-to: var(--color-primary-100) !important; }
+        .to-purple-600 { --tw-gradient-to: var(--color-primary-600) !important; }
+        .to-purple-700 { --tw-gradient-to: var(--color-primary-700) !important; }
+        .to-purple-800 { --tw-gradient-to: var(--color-primary-800) !important; }
+        .to-purple-900 { --tw-gradient-to: var(--color-primary-900) !important; }
         
-        /* Accent Color (Indigo) - Text */
-        .text-indigo-200, .dark\\:text-indigo-200 { color: var(--color-accent-10) !important; }
-        .text-indigo-300, .dark\\:text-indigo-300 { color: var(--color-accent-11) !important; }
-        .text-indigo-400, .dark\\:text-indigo-400 { color: var(--color-accent-10) !important; }
-        .text-indigo-600, .hover\\:text-indigo-600:hover, .dark\\:hover\\:text-indigo-400:hover { color: var(--color-accent-11) !important; }
-        .text-indigo-700, .dark\\:text-indigo-300 { color: var(--color-accent-11) !important; }
+        /* ========================================
+           ACCENT COLOR (Indigo/Blue/Violet)
+           ======================================== */
         
-        /* Accent Color (Indigo) - Borders */
-        .border-indigo-200, .dark\\:border-indigo-700 { border-color: var(--color-accent-7) !important; }
-        .border-indigo-500, .hover\\:border-indigo-500:hover, .dark\\:hover\\:border-indigo-400:hover { border-color: var(--color-accent-8) !important; }
+        /* Backgrounds */
+        .bg-indigo-50 { background-color: var(--color-accent-50) !important; }
+        .bg-indigo-100 { background-color: var(--color-accent-100) !important; }
+        .bg-indigo-600 { background-color: var(--color-accent-600) !important; }
+        .bg-indigo-700 { background-color: var(--color-accent-700) !important; }
+        .bg-indigo-800, .hover\\:bg-indigo-800:hover { background-color: var(--color-accent-800) !important; }
+        .bg-indigo-900, .hover\\:bg-indigo-900:hover { background-color: var(--color-accent-900) !important; }
+        .dark\\:bg-indigo-900\\/20 { background-color: color-mix(in srgb, var(--color-accent-900) 20%, transparent) !important; }
+        .dark\\:bg-indigo-900\\/30 { background-color: color-mix(in srgb, var(--color-accent-900) 30%, transparent) !important; }
         
-        /* Accent Color - Gradients */
-        .from-indigo-50 { --tw-gradient-from: var(--color-accent-2) !important; }
-        .from-indigo-100 { --tw-gradient-from: var(--color-accent-3) !important; }
-        .from-indigo-500 { --tw-gradient-from: var(--color-accent-8) !important; }
-        .from-indigo-600 { --tw-gradient-from: var(--color-accent-9) !important; }
-        .from-indigo-700 { --tw-gradient-from: var(--color-accent-10) !important; }
-        .from-indigo-800 { --tw-gradient-from: var(--color-accent-10) !important; }
-        .from-indigo-900 { --tw-gradient-from: var(--color-accent-11) !important; }
-        .from-indigo-900\\/20 { --tw-gradient-from: color-mix(in srgb, var(--color-accent-3) 20%, transparent) !important; }
+        /* Text colors */
+        .text-indigo-200 { color: var(--color-accent-200) !important; }
+        .text-indigo-300 { color: var(--color-accent-300) !important; }
+        .text-indigo-400, .dark\\:text-indigo-400 { color: var(--color-accent-400) !important; }
+        .text-indigo-600, .hover\\:text-indigo-600:hover { color: var(--color-accent-600) !important; }
+        .text-indigo-700 { color: var(--color-accent-700) !important; }
         
-        .to-indigo-50 { --tw-gradient-to: var(--color-accent-2) !important; }
-        .to-indigo-100 { --tw-gradient-to: var(--color-accent-3) !important; }
-        .to-indigo-600 { --tw-gradient-to: var(--color-accent-9) !important; }
-        .to-indigo-700 { --tw-gradient-to: var(--color-accent-10) !important; }
-        .to-indigo-800 { --tw-gradient-to: var(--color-accent-10) !important; }
-        .to-indigo-900 { --tw-gradient-to: var(--color-accent-11) !important; }
-        .to-indigo-900\\/20 { --tw-gradient-to: color-mix(in srgb, var(--color-accent-3) 20%, transparent) !important; }
+        /* Borders */
+        .border-indigo-200 { border-color: var(--color-accent-200) !important; }
+        .border-indigo-500, .hover\\:border-indigo-500:hover { border-color: var(--color-accent-500) !important; }
+        .border-indigo-700 { border-color: var(--color-accent-700) !important; }
         
-        /* Secondary Color (Pink/Rose) - for accents like avatar */
-        .to-pink-600 { --tw-gradient-to: var(--color-accent-9) !important; }
+        /* Gradients */
+        .from-indigo-50 { --tw-gradient-from: var(--color-accent-50) !important; }
+        .from-indigo-100 { --tw-gradient-from: var(--color-accent-100) !important; }
+        .from-indigo-600 { --tw-gradient-from: var(--color-accent-600) !important; }
+        .from-indigo-700 { --tw-gradient-from: var(--color-accent-700) !important; }
+        .from-indigo-800 { --tw-gradient-from: var(--color-accent-800) !important; }
+        .from-indigo-900 { --tw-gradient-from: var(--color-accent-900) !important; }
         
-        /* Logo and Brand Gradients */
+        .to-indigo-50 { --tw-gradient-to: var(--color-accent-50) !important; }
+        .to-indigo-100 { --tw-gradient-to: var(--color-accent-100) !important; }
+        .to-indigo-600 { --tw-gradient-to: var(--color-accent-600) !important; }
+        .to-indigo-700 { --tw-gradient-to: var(--color-accent-700) !important; }
+        .to-indigo-800 { --tw-gradient-to: var(--color-accent-800) !important; }
+        .to-indigo-900 { --tw-gradient-to: var(--color-accent-900) !important; }
+        
+        /* Blue gradients */
+        .from-blue-900 { --tw-gradient-from: var(--color-accent-900) !important; }
+        .from-blue-800 { --tw-gradient-from: var(--color-accent-800) !important; }
+        .to-blue-900 { --tw-gradient-to: var(--color-accent-900) !important; }
+        .to-blue-800 { --tw-gradient-to: var(--color-accent-800) !important; }
+        
+        /* Pink gradients (for avatar, etc.) */
+        .to-pink-600 { --tw-gradient-to: var(--color-accent-600) !important; }
+        .to-pink-900 { --tw-gradient-to: var(--color-accent-900) !important; }
+        
+        /* Logo brand gradients */
         .from-purple-600.to-indigo-600 { 
-          --tw-gradient-from: var(--color-primary-9) !important;
-          --tw-gradient-to: var(--color-accent-9) !important;
+          --tw-gradient-from: var(--color-primary-600) !important;
+          --tw-gradient-to: var(--color-accent-600) !important;
         }
       `;
     }
@@ -856,9 +880,9 @@
     function generateThemePresets() {
       const container = document.getElementById('theme-presets');
       
-      container.innerHTML = Object.entries(radixThemes.presets).map(([key, theme]) => {
-        const primaryColor = getColorScale(theme.primary, currentState.mode)[9];
-        const accentColor = getColorScale(theme.accent, currentState.mode)[9];
+      container.innerHTML = Object.entries(tailwindColors.presets).map(([key, theme]) => {
+        const primaryColor = tailwindColors.getColor(theme.primary, 600);  // Use 600 as primary shade
+        const accentColor = tailwindColors.getColor(theme.accent, 600);
         
         return `
           <button 
@@ -884,7 +908,7 @@
       document.querySelectorAll('.theme-preset').forEach(btn => {
         btn.addEventListener('click', function() {
           const presetKey = this.dataset.preset;
-          const preset = radixThemes.presets[presetKey];
+          const preset = tailwindColors.presets[presetKey];
           
           currentState.preset = presetKey;
           currentState.primary = preset.primary;
@@ -905,19 +929,19 @@
     // ========================================
     
     function generateColorSwatches() {
-      const primaryColors = ['indigo', 'blue', 'cyan', 'teal', 'green', 'lime', 'amber', 'orange'];
-      const accentColors = ['purple', 'violet', 'pink', 'crimson', 'red', 'plum', 'iris', 'ruby'];
+      const primaryColors = ['indigo', 'blue', 'sky', 'cyan', 'teal', 'green', 'lime', 'amber', 'orange'];
+      const accentColors = ['purple', 'violet', 'fuchsia', 'pink', 'rose', 'red'];
       
       // Primary swatches
       const primaryContainer = document.getElementById('primary-swatches');
       primaryContainer.innerHTML = primaryColors.map(color => {
-        const scale = getColorScale(color, currentState.mode);
+        const scale = tailwindColors.getScale(color);
         return `
           <div 
             class="color-swatch w-full h-9 rounded-md ${currentState.primary === color ? 'selected' : ''}"
             data-color="${color}"
             data-role="primary"
-            style="background: linear-gradient(135deg, ${scale[9]}, ${scale[10]});"
+            style="background: linear-gradient(135deg, ${scale[600]}, ${scale[700]});"
             title="${capitalize(color)}"
           ></div>
         `;
@@ -926,13 +950,13 @@
       // Accent swatches
       const accentContainer = document.getElementById('accent-swatches');
       accentContainer.innerHTML = accentColors.map(color => {
-        const scale = getColorScale(color, currentState.mode);
+        const scale = tailwindColors.getScale(color);
         return `
           <div 
             class="color-swatch w-full h-9 rounded-md ${currentState.accent === color ? 'selected' : ''}"
             data-color="${color}"
             data-role="accent"
-            style="background: linear-gradient(135deg, ${scale[9]}, ${scale[10]});"
+            style="background: linear-gradient(135deg, ${scale[600]}, ${scale[700]});"
             title="${capitalize(color)}"
           ></div>
         `;
@@ -1131,7 +1155,7 @@
     // Expose loadVersion globally
     window.loadVersion = loadVersion;
     window.getColorScale = getColorScale;
-    window.radixThemes = radixThemes;
+    window.tailwindColors = tailwindColors;
   </script>
 
 </body>
