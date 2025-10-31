@@ -1230,9 +1230,39 @@
     // Initialization
     // ========================================
     
+    // Load custom themes from localStorage on startup
+    function loadCustomThemesFromStorage() {
+      const customThemes = JSON.parse(localStorage.getItem('customThemes') || '{}');
+      
+      Object.entries(customThemes).forEach(([key, theme]) => {
+        const customPrimaryId = `custom-${key}-primary`;
+        const customAccentId = `custom-${key}-accent`;
+        const customNeutralId = `custom-${key}-neutral`;
+        
+        // Add colors to tailwindColors.colors
+        tailwindColors.colors[customPrimaryId] = theme.light.primary;
+        tailwindColors.colors[customAccentId] = theme.light.accent;
+        tailwindColors.colors[customNeutralId] = theme.light.neutral;
+        
+        // Add preset if not already exists
+        if (!tailwindColors.presets[key]) {
+          tailwindColors.presets[key] = {
+            name: theme.name,
+            primary: customPrimaryId,
+            accent: customAccentId,
+            neutral: customNeutralId,
+            description: 'Custom enterprise theme'
+          };
+        }
+      });
+    }
+    
     // Wait for iframe to load
     const iframe = document.getElementById('preview-iframe');
     iframe.onload = () => {
+      // Load custom themes from storage first
+      loadCustomThemesFromStorage();
+      
       // Initialize
       saveToHistory(currentState);
       generateThemePresets();
@@ -1276,23 +1306,36 @@
     document.getElementById('custom-theme-btn').addEventListener('click', () => {
       const modal = document.getElementById('customize-modal');
       
-      // Store current state as temporary
-      modalTempState = JSON.parse(JSON.stringify(currentState));
+      // Initialize modal state from current theme
+      modalState.currentMode = currentState.mode;
+      modalState.themeName = '';
       
-      // Populate modal with current colors
-      const primaryHex = tailwindColors.getColor(currentState.primary, 600);
-      const accentHex = tailwindColors.getColor(currentState.accent, 600);
-      const neutralHex = tailwindColors.getColor(currentState.neutral, 600);
+      // Populate all 30 color inputs from current theme
+      ['primary', 'accent', 'neutral'].forEach(colorType => {
+        const colorName = currentState[colorType];
+        shades.forEach(shade => {
+          const hex = tailwindColors.getColor(colorName, shade);
+          const input = document.getElementById(`${colorType}-${shade}`);
+          if (input) {
+            input.value = hex;
+            // Store in modal state for both modes initially
+            if (!modalState.light[colorType][shade]) modalState.light[colorType][shade] = hex;
+            if (!modalState.dark[colorType][shade]) modalState.dark[colorType][shade] = hex;
+          }
+        });
+      });
       
-      document.getElementById('modal-primary-hex').value = primaryHex;
-      document.getElementById('modal-primary-color').value = primaryHex;
-      document.getElementById('modal-accent-hex').value = accentHex;
-      document.getElementById('modal-accent-color').value = accentHex;
-      document.getElementById('modal-neutral-hex').value = neutralHex;
-      document.getElementById('modal-neutral-color').value = neutralHex;
+      // Update top-level inputs (for backward compatibility)
+      document.getElementById('modal-primary-hex').value = tailwindColors.getColor(currentState.primary, 600);
+      document.getElementById('modal-primary-color').value = tailwindColors.getColor(currentState.primary, 600);
+      document.getElementById('modal-accent-hex').value = tailwindColors.getColor(currentState.accent, 600);
+      document.getElementById('modal-accent-color').value = tailwindColors.getColor(currentState.accent, 600);
+      document.getElementById('modal-neutral-hex').value = tailwindColors.getColor(currentState.neutral, 600);
+      document.getElementById('modal-neutral-color').value = tailwindColors.getColor(currentState.neutral, 600);
       
-      // Update scale previews
-      updateModalScales();
+      // Update UI for current mode
+      updateModalModeUI();
+      updateModalPreviewFromInputs();
       
       // Show modal
       modal.classList.remove('hidden');
