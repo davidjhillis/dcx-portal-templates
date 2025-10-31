@@ -179,6 +179,30 @@
 
         <div class="divider"></div>
 
+        <!-- Gradients -->
+        <div class="section mb-4">
+          <button class="section-header w-full flex items-center justify-between py-2 px-2 -mx-2 rounded-md">
+            <div class="flex items-center gap-2">
+              <i data-lucide="sparkles" class="w-4 h-4 text-white/60"></i>
+              <span class="text-[13px] font-medium text-white/90">Gradients</span>
+            </div>
+          </button>
+          <div class="section-content pl-5 pr-2 pt-3" style="max-height: 200px;">
+            <div class="flex items-center justify-between gap-3">
+              <div class="flex-1">
+                <div class="text-[12px] font-medium text-white/90 mb-0.5">Use Gradients</div>
+                <div class="text-[10px] text-white/50">Apply gradient backgrounds to product cards</div>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" id="gradient-toggle" class="sr-only peer" checked>
+                <div class="w-9 h-5 bg-white/[0.08] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white/60 after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-purple-600 peer-checked:after:bg-white"></div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
         <!-- Primary Color -->
         <div class="section mb-4">
           <button class="section-header w-full flex items-center justify-between py-2 px-2 -mx-2 rounded-md">
@@ -313,6 +337,7 @@
       primary: 'indigo',
       accent: 'purple',
       neutral: 'slate',
+      useGradients: true, // Toggle for product card gradients
       fonts: {
         heading: 'Inter',
         body: 'Geist',
@@ -477,8 +502,19 @@
         doc.head.appendChild(styleEl);
       }
       
+      const useGradients = currentState.useGradients;
+      
       styleEl.textContent = `
         /* Theme Editor Comprehensive Dynamic Styles */
+        
+        /* Gradient Override - When gradients are disabled, use solid colors */
+        ${!useGradients ? `
+          .bg-gradient-to-r.from-purple-900,
+          .bg-gradient-to-r.from-indigo-900 {
+            background-image: none !important;
+            background-color: ${primaryScale[9]} !important;
+          }
+        ` : ''}
         
         /* Primary Color - Backgrounds */
         .bg-purple-50 { background-color: ${primaryScale[2]} !important; }
@@ -600,6 +636,9 @@
         darkBtn.classList.remove('bg-white/[0.08]', 'text-white/90');
         darkBtn.classList.add('text-white/50');
       }
+      
+      // Update gradient toggle
+      document.getElementById('gradient-toggle').checked = currentState.useGradients;
       
       // Update color names
       document.getElementById('primary-name').textContent = capitalize(currentState.primary);
@@ -781,6 +820,13 @@
       updateUI();
       generateColorSwatches();
       generateThemePresets();
+    });
+
+    // Gradient Toggle
+    document.getElementById('gradient-toggle').addEventListener('change', (e) => {
+      currentState.useGradients = e.target.checked;
+      saveToHistory(currentState);
+      applyTheme();
     });
 
     // Undo/Redo
