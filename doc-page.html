@@ -267,12 +267,58 @@
       </nav>
     </aside>
 
-    <!-- Main Content -->
-    <main class="flex-1 lg:ml-64 lg:mr-64">
-      <div class="max-w-2xl mx-auto px-6 py-12">
-        
-        <!-- Section Label -->
-        <p class="text-sm font-semibold text-purple-600 dark:text-purple-400 mb-4">Introduction</p>
+      <!-- Main Content -->
+      <main class="flex-1 lg:ml-64 lg:mr-64">
+        <div class="max-w-4xl mx-auto px-6 py-12">
+          
+          <!-- Article Toolbar -->
+          <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-200 dark:border-gray-700">
+            <div class="flex items-center gap-2">
+              <button class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors" title="Previous article">
+                <i data-lucide="chevron-left" class="w-5 h-5 text-gray-600 dark:text-gray-400"></i>
+              </button>
+              <button class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors" title="Next article">
+                <i data-lucide="chevron-right" class="w-5 h-5 text-gray-600 dark:text-gray-400"></i>
+              </button>
+            </div>
+            
+            <div class="flex items-center gap-2">
+              <button class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors" title="Download PDF">
+                <i data-lucide="download" class="w-5 h-5 text-gray-600 dark:text-gray-400"></i>
+              </button>
+              <button class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors" title="Share">
+                <i data-lucide="share-2" class="w-5 h-5 text-gray-600 dark:text-gray-400"></i>
+              </button>
+              <button class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors" title="Feedback">
+                <i data-lucide="message-square" class="w-5 h-5 text-gray-600 dark:text-gray-400"></i>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Version & Tags -->
+          <div class="flex flex-wrap items-center gap-3 mb-6 pb-4 border-b border-gray-200 dark:border-gray-700">
+            <div class="flex items-center gap-2">
+              <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">Version:</span>
+              <div class="relative">
+                <button class="flex items-center gap-2 px-3 py-1.5 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-900 dark:text-white hover:border-purple-500 dark:hover:border-purple-400 transition-colors">
+                  <span>Discover CX Enterprise</span>
+                  <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
+            <span class="text-gray-400">|</span>
+            <span class="text-sm text-gray-600 dark:text-gray-400">Last updated Feb 1, 2025</span>
+            <span class="text-gray-400">|</span>
+            <span class="text-sm text-gray-600 dark:text-gray-400">Documentation</span>
+            <div class="flex items-center gap-2 ml-auto">
+              <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 text-xs font-semibold rounded-full">Discover CX Enterprise</span>
+              <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 text-xs font-semibold rounded-full">Core Concepts</span>
+              <span class="px-3 py-1 bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-300 text-xs font-semibold rounded-full">GA</span>
+            </div>
+          </div>
+          
+          <!-- Section Label -->
+          <p class="text-sm font-semibold text-purple-600 dark:text-purple-400 mb-4">Introduction</p>
         
         <!-- Article -->
         <article>
@@ -380,22 +426,37 @@
           
         </article>
 
-        <!-- Next/Previous Navigation (Syntax-style) -->
-        <nav class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700 flex items-center justify-between text-sm">
-          <div class="text-left">
-            <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Previous</p>
-            <a href="index.html" class="text-purple-600 dark:text-purple-400 font-semibold hover:text-purple-700 flex items-center gap-2">
-              <i data-lucide="arrow-left" class="w-4 h-4"></i>
-              <span>Home</span>
-            </a>
+        <!-- Feedback Section -->
+        <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+          <p class="text-sm font-semibold text-gray-900 dark:text-white mb-4 text-center">Was this article helpful?</p>
+          <div class="flex items-center justify-center gap-4 mb-12">
+            <button class="flex items-center gap-2 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:border-green-500 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-900/20 transition-colors">
+              <i data-lucide="thumbs-up" class="w-4 h-4"></i>
+              <span>Yes</span>
+            </button>
+            <button class="flex items-center gap-2 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:border-red-500 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors">
+              <i data-lucide="thumbs-down" class="w-4 h-4"></i>
+              <span>No</span>
+            </button>
           </div>
-          <div class="text-right">
-            <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Next</p>
-            <a href="#" class="text-purple-600 dark:text-purple-400 font-semibold hover:text-purple-700 flex items-center gap-2">
-              <span>Installation</span>
-              <i data-lucide="arrow-right" class="w-4 h-4"></i>
-            </a>
-          </div>
+        </div>
+        
+        <!-- Next/Previous Navigation (Centered) -->
+        <nav class="flex items-center justify-center gap-12 text-center">
+          <a href="index.html" class="flex flex-col items-center gap-2 text-sm hover:text-purple-600 dark:hover:text-purple-400 transition-colors group">
+            <i data-lucide="arrow-left" class="w-5 h-5 text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-400"></i>
+            <div>
+              <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Previous</p>
+              <p class="font-semibold text-gray-900 dark:text-white">Home</p>
+            </div>
+          </a>
+          <a href="#" class="flex flex-col items-center gap-2 text-sm hover:text-purple-600 dark:hover:text-purple-400 transition-colors group">
+            <i data-lucide="arrow-right" class="w-5 h-5 text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-400"></i>
+            <div>
+              <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Next</p>
+              <p class="font-semibold text-gray-900 dark:text-white">Installation</p>
+            </div>
+          </a>
         </nav>
 
       </div>
@@ -1508,6 +1569,38 @@
   <!-- Initialize Lucide Icons -->
   <script>
     lucide.createIcons();
+  </script>
+  
+  <!-- Left Navigation Toggle Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Setup left nav section toggles
+      const navToggles = document.querySelectorAll('.nav-section-toggle');
+      navToggles.forEach(button => {
+        button.addEventListener('click', function() {
+          const content = this.nextElementSibling;
+          const chevronContainer = this.querySelector('i, svg');
+          
+          if (content) {
+            content.classList.toggle('hidden');
+            
+            // Toggle chevron state
+            const currentState = this.getAttribute('data-chevron-state');
+            const newState = currentState === 'up' ? 'down' : 'up';
+            this.setAttribute('data-chevron-state', newState);
+            
+            // Replace icon
+            if (chevronContainer) {
+              const newIcon = document.createElement('i');
+              newIcon.setAttribute('data-lucide', `chevron-${newState}`);
+              newIcon.className = 'w-4 h-4';
+              chevronContainer.replaceWith(newIcon);
+              lucide.createIcons();
+            }
+          }
+        });
+      });
+    });
   </script>
 
 </body>
