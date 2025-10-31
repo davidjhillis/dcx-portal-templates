@@ -7,6 +7,13 @@
 export const radixThemes = {
   // Pre-built theme combinations using official Radix color names
   presets: {
+    tailwind: {
+      name: 'Tailwind Purple',
+      primary: 'purple',
+      accent: 'violet',
+      neutral: 'slate',
+      description: 'Original template design'
+    },
     indigo: {
       name: 'Indigo',
       primary: 'indigo',
