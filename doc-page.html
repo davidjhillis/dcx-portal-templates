@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Getting Started - Discover CX Docs</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Configure Tailwind for dark mode
+    tailwind.config = {
+      darkMode: 'class'
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* Remove default margins */
+    * { margin: 0; padding: 0; }
+    
+    /* Article styling - Syntax-inspired */
+    article h1 { 
+      font-size: 2.25rem; 
+      font-weight: 800; 
+      color: #111827; 
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+    article h2 { 
+      font-size: 1.5rem; 
+      font-weight: 700; 
+      color: #111827; 
+      margin-top: 3rem; 
+      margin-bottom: 1rem; 
+      padding-top: 3rem;
+      border-top: 1px solid #e5e7eb;
+    }
+    article h3 { 
+      font-size: 1.25rem; 
+      font-weight: 600; 
+      color: #111827; 
+      margin-top: 2rem; 
+      margin-bottom: 0.75rem; 
+    }
+    article p { 
+      color: #6b7280; 
+      line-height: 1.75; 
+      margin-bottom: 1.25rem;
+      font-size: 1rem;
+    }
+    article hr {
+      border: none;
+      border-top: 1px solid #e5e7eb;
+      margin: 3rem 0;
+    }
+    
+    /* Dark mode */
+    .dark article h1, .dark article h2, .dark article h3 { color: #f9fafb; }
+    .dark article h2 { border-top-color: #374151; }
+    .dark article p { color: #9ca3af; }
+    .dark article hr { border-top-color: #374151; }
+    
+    /* Glossary terms */
+    .glossary-term {
+      cursor: help;
+      transition: all 0.2s;
+    }
+    .glossary-active .glossary-term {
+      border-bottom: 2px dashed #9333ea;
+      border-bottom-color: #9333ea;
+    }
+    .dark .glossary-active .glossary-term {
+      border-bottom-color: #a855f7;
+    }
+    .glossary-term:hover {
+      color: #9333ea;
+    }
+    .dark .glossary-term:hover {
+      color: #a855f7;
+    }
+  </style>
+</head>
+<body class="bg-white dark:bg-gray-950 text-gray-900 dark:text-white">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+    <div class="max-w-screen-2xl mx-auto px-6">
+      <div class="flex items-center justify-between h-16 gap-4">
+        
+        <!-- Logo (Always visible) -->
+        <a href="index.html" class="flex items-center gap-3 hover:opacity-80 flex-shrink-0">
+          <svg class="w-8 h-8 text-purple-600 dark:text-purple-400" viewBox="0 0 32 32" fill="currentColor">
+            <path d="M16 2L3 9v14l13 7 13-7V9L16 2zm0 3.24L25.08 9 16 13.76 6.92 9 16 5.24zM5 10.92l10 5.38v10.46l-10-5.38V10.92zm12 15.84V16.3l10-5.38v10.46l-10 5.38z"/>
+          </svg>
+          <div class="hidden sm:flex items-baseline gap-2">
+            <span class="font-bold text-lg text-gray-900 dark:text-white">Discover CX</span>
+            <span class="font-normal text-lg text-gray-600 dark:text-gray-400">Product Documentation</span>
+          </div>
+        </a>
+        
+        <!-- Command K Search Trigger (Big search bar - centered) -->
+        <button id="cmd-k-trigger" class="flex-1 max-w-2xl mx-auto hidden md:flex items-center gap-3 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-left hover:border-purple-500 dark:hover:border-purple-400 transition-colors group">
+          <i data-lucide="search" class="w-5 h-5 text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-400"></i>
+          <span class="flex-1 text-sm text-gray-500 dark:text-gray-400">Search documentation...</span>
+          <kbd class="hidden lg:inline-flex items-center gap-1 px-2 py-1 text-xs font-semibold text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded">
+            <span class="text-xs">⌘</span>K
+          </kbd>
+        </button>
+        
+        <!-- Right Actions -->
+        <div class="flex items-center gap-3">
+          <!-- Menu Button with Dropdown -->
+          <div class="relative">
+            <button id="mobile-menu-btn" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg flex-shrink-0">
+              <i data-lucide="menu" class="w-6 h-6 text-gray-600 dark:text-gray-400"></i>
+            </button>
+            
+            <!-- Mobile Menu Dropdown -->
+            <div id="mobile-menu" class="hidden absolute right-0 top-full mt-2 w-64 bg-white dark:bg-gray-900 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 z-50 py-2">
+              <nav class="py-2">
+                <a href="index.html#products" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                  <i data-lucide="package" class="w-4 h-4 text-gray-600 dark:text-gray-400"></i>
+                  <span class="text-sm font-medium text-gray-900 dark:text-white">Products</span>
+                </a>
+                <a href="doc-page.html" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                  <i data-lucide="book-open" class="w-4 h-4 text-gray-600 dark:text-gray-400"></i>
+                  <span class="text-sm font-medium text-gray-900 dark:text-white">Documentation</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                  <i data-lucide="life-buoy" class="w-4 h-4 text-gray-600 dark:text-gray-400"></i>
+                  <span class="text-sm font-medium text-gray-900 dark:text-white">Support</span>
+                </a>
+              </nav>
+            </div>
+          </div>
+          
+          <!-- User Avatar Dropdown -->
+        <div class="relative">
+          <button id="user-menu-btn" class="flex items-center gap-2 p-1.5 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors">
+            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center text-white font-semibold text-sm">
+              JD
+            </div>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-gray-600 dark:text-gray-400 hidden sm:block"></i>
+          </button>
+          
+          <!-- Dropdown Menu -->
+          <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-56 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 py-2 z-50">
+            <!-- User Info -->
+            <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+              <p class="text-sm font-semibold text-gray-900 dark:text-white">Jane Doe</p>
+              <p class="text-xs text-gray-600 dark:text-gray-400">jane.doe@company.com</p>
+            </div>
+            
+            <!-- Theme Selector -->
+            <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+              <div class="flex items-center justify-between gap-2">
+                <button id="theme-auto" class="flex-1 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" title="Auto">
+                  <i data-lucide="monitor" class="w-4 h-4 mx-auto text-gray-600 dark:text-gray-400"></i>
+                </button>
+                <button id="theme-light" class="flex-1 p-2 rounded-lg bg-yellow-100 dark:bg-yellow-900/30 transition-colors" title="Light">
+                  <i data-lucide="sun" class="w-4 h-4 mx-auto text-yellow-600 dark:text-yellow-400"></i>
+                </button>
+                <button id="theme-dark" class="flex-1 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" title="Dark">
+                  <i data-lucide="moon" class="w-4 h-4 mx-auto text-gray-600 dark:text-gray-400"></i>
+                </button>
+              </div>
+            </div>
+            
+            <!-- Menu Items -->
+            <div class="py-2">
+              <a href="user-profile.html" class="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                <i data-lucide="user" class="w-4 h-4 text-gray-600 dark:text-gray-400"></i>
+                <span class="text-sm text-gray-900 dark:text-white">My Profile</span>
+              </a>
+              <a href="#" class="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                <i data-lucide="bookmark" class="w-4 h-4 text-gray-600 dark:text-gray-400"></i>
+                <span class="text-sm text-gray-900 dark:text-white">Bookmarks</span>
+              </a>
+              <a href="#" class="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                <i data-lucide="clock" class="w-4 h-4 text-gray-600 dark:text-gray-400"></i>
+                <span class="text-sm text-gray-900 dark:text-white">Reading History</span>
+              </a>
+              <a href="#" class="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                <i data-lucide="settings" class="w-4 h-4 text-gray-600 dark:text-gray-400"></i>
+                <span class="text-sm text-gray-900 dark:text-white">Settings</span>
+              </a>
+            </div>
+            
+            <!-- Divider -->
+            <div class="border-t border-gray-200 dark:border-gray-700 my-2"></div>
+            
+            <!-- Logout -->
+            <div class="py-2">
+              <a href="#" class="flex items-center gap-3 px-4 py-2 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors">
+                <i data-lucide="log-out" class="w-4 h-4 text-red-600 dark:text-red-400"></i>
+                <span class="text-sm text-red-600 dark:text-red-400 font-semibold">Log Out</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 3-Column Layout Container -->
+  <div class="max-w-screen-2xl mx-auto relative">
+    <div class="flex">
+      
+      <!-- Left Sidebar - Syntax-style Navigation -->
+      <aside class="hidden lg:block fixed left-0 top-16 bottom-0 w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 overflow-y-auto" style="left: max(0px, calc(50% - 768px))">
+      <nav class="p-6">
+        
+        <!-- Section: Introduction -->
+        <div class="mb-8">
+          <h2 class="text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3">Introduction</h2>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="text-purple-600 dark:text-purple-400 font-semibold">Getting started</a></li>
+            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Installation</a></li>
+          </ul>
+        </div>
+        
+        <!-- Section: Core concepts -->
+        <div class="mb-8">
+          <h2 class="text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3">Core concepts</h2>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Understanding caching</a></li>
+            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Predicting user behavior</a></li>
+            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Basics of time-travel</a></li>
+            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Introduction to string theory</a></li>
+            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">The butterfly effect</a></li>
+          </ul>
+        </div>
+        
+        <!-- Section: Advanced guides -->
+        <div class="mb-8">
+          <h2 class="text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3">Advanced guides</h2>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Writing plugins</a></li>
+            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Neuralink integration</a></li>
+            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Temporal paradoxes</a></li>
+            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Testing</a></li>
+            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Compile-time caching</a></li>
+            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Predictive data generation</a></li>
+          </ul>
+        </div>
+        
+        <!-- Section: API reference -->
+        <div class="mb-8">
+          <h2 class="text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3">API reference</h2>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-mono text-xs">CacheAdvance.predict()</a></li>
+            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-mono text-xs">CacheAdvance.flush()</a></li>
+            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-mono text-xs">CacheAdvance.revert()</a></li>
+            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-mono text-xs">CacheAdvance.regret()</a></li>
+          </ul>
+        </div>
+        
+        <!-- Section: Contributing -->
+        <div class="mb-8">
+          <h2 class="text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3">Contributing</h2>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">How to contribute</a></li>
+            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Architecture guide</a></li>
+            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Design principles</a></li>
+          </ul>
+        </div>
+        
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 lg:ml-64 lg:mr-64">
+      <div class="max-w-2xl mx-auto px-6 py-12">
+        
+        <!-- Section Label -->
+        <p class="text-sm font-semibold text-purple-600 dark:text-purple-400 mb-4">Introduction</p>
+        
+        <!-- Article -->
+        <article>
+          
+          <!-- Title -->
+          <h1>Getting started</h1>
+          <p style="font-size: 1.25rem; color: #6b7280; margin-bottom: 2rem; margin-top: 0.5rem;">
+            Learn how to get CacheAdvance set up in your project in under thirty minutes or it's free.
+          </p>
+
+          <!-- AI Tools (Inline at top) -->
+          <div class="flex flex-wrap gap-3" style="margin-bottom: 2rem;">
+            <button class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg text-sm font-semibold hover:from-purple-700 hover:to-blue-700 transition-all">
+              <i data-lucide="sparkles" class="w-4 h-4"></i>
+              Summarize
+            </button>
+            <button class="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 border-2 border-purple-600 text-purple-600 dark:text-purple-400 rounded-lg text-sm font-semibold hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-all">
+              <i data-lucide="headphones" class="w-4 h-4"></i>
+              Listen
+            </button>
+            <button class="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 border-2 border-purple-600 text-purple-600 dark:text-purple-400 rounded-lg text-sm font-semibold hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-all">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+              Ask AI
+            </button>
+            <button id="glossary-toggle" class="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg text-sm font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition-all">
+              <i data-lucide="book-open" class="w-4 h-4"></i>
+              <span>Glossary</span>
+              <span class="text-xs opacity-60">Off</span>
+            </button>
+          </div>
+          
+          <!-- Quick start -->
+          <h2 id="quick-start">Quick start</h2>
+          <p>The <span class="glossary-term" data-term="cache" data-definition="A high-speed data storage layer that stores a subset of data for quick retrieval.">cache</span> is a high-speed data storage layer. This guide will help you implement <span class="glossary-term" data-term="predictive-caching" data-definition="A caching strategy that anticipates future user actions and preloads content before it's requested.">predictive caching</span> to improve your application's <span class="glossary-term" data-term="performance" data-definition="The speed and efficiency with which an application responds to user actions.">performance</span>.</p>
+          
+          <h3 id="installing-dependencies">Installing dependencies</h3>
+          <p>Before you begin, ensure you have <span class="glossary-term" data-term="npm" data-definition="Node Package Manager - a package manager for JavaScript that allows you to install and manage dependencies.">npm</span> installed on your system. The <span class="glossary-term" data-term="sdk" data-definition="Software Development Kit - a collection of tools, libraries, and documentation for building applications.">SDK</span> provides all the tools you need for <span class="glossary-term" data-term="cache-management" data-definition="The process of controlling and optimizing how data is stored and retrieved from the cache.">cache management</span> and configuration.</p>
+          
+          <!-- Code Block with AI -->
+          <div class="not-prose mb-6">
+            <div class="flex items-center justify-between mb-2">
+              <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-md text-xs font-semibold hover:from-purple-700 hover:to-blue-700">
+                <i data-lucide="sparkles" class="w-3 h-3"></i>
+                Explain this code
+              </button>
+              <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-700 dark:bg-gray-800 text-white rounded-md text-xs font-semibold hover:bg-gray-600">
+                <i data-lucide="copy" class="w-3 h-3"></i>
+                Copy
+              </button>
+            </div>
+            <pre class="bg-black rounded-lg p-4 overflow-x-auto" style="margin: 0;"><code style="font-size: 14px; color: #e5e7eb; line-height: 1.7;"><span style="color: #f472b6;">npm</span> <span style="color: #fbbf24;">install</span> <span style="color: #34d399;">@tailwindlabs/cache-advance</span></code></pre>
+          </div>
+          
+          <p>Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit perferendis fuga eveniet possimus rerum cumque. Ea deleniti voluptatum deserunt voluptatibus ut non iste.</p>
+          
+          <h3 id="configuring">Configuring the library</h3>
+          <p>Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem.</p>
+          
+          <!-- Code Block with AI -->
+          <div class="not-prose mb-6">
+            <div class="flex items-center justify-between mb-2">
+              <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-md text-xs font-semibold hover:from-purple-700 hover:to-blue-700">
+                <i data-lucide="sparkles" class="w-3 h-3"></i>
+                Explain this code
+              </button>
+              <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-700 dark:bg-gray-800 text-white rounded-md text-xs font-semibold hover:bg-gray-600">
+                <i data-lucide="copy" class="w-3 h-3"></i>
+                Copy
+              </button>
+            </div>
+            <pre class="bg-black rounded-lg p-4 overflow-x-auto" style="margin: 0;"><code style="font-size: 14px; color: #e5e7eb; line-height: 1.7;"><span style="color: #9ca3af;">// cache-advance.config.js</span>
+<span style="color: #f472b6;">export default</span> {
+  <span style="color: #fbbf24;">strategy</span>: <span style="color: #34d399;">'predictive'</span>,
+  <span style="color: #fbbf24;">engine</span>: {
+    <span style="color: #fbbf24;">cpus</span>: <span style="color: #60a5fa;">12</span>,
+    <span style="color: #fbbf24;">backups</span>: [<span style="color: #34d399;">'./storage/cache.wtf'</span>],
+  },
+}</code></pre>
+          </div>
+          
+          <!-- Basic usage -->
+          <h2 id="basic-usage">Basic usage</h2>
+          <p>Praesentium laudantium magni. Consequatur reiciendis aliquid nihil iusto ut in et. Quisquam ut et aliquid occaecati. Culpa veniam aut et voluptates amet perspiciatis. Qui exercitationem in qui. Vel qui dignissimos sit quae distinctio.</p>
+          
+          <h3 id="first-cache">Your first cache</h3>
+          <p>Minima vel non iste debitis. Consequatur repudiandae et quod accusamus sit molestias consequatur aperiam. Et sequi ipsa eum voluptatibus ipsam. Et quisquam ut.</p>
+          <p>Qui quae esse aspernatur fugit possimus. Quam sed molestiae temporibus. Eum perferendis dignissimos provident ea et.</p>
+          
+          <h3 id="clearing">Clearing the cache</h3>
+          <p>Vel aut velit sit dolor aut suscipit at veritatis voluptas. Laudantium tempore praesentium. Qui ut voluptatem.</p>
+          <p>Ea est autem fugiat velit esse a alias earum. Dolore non amet soluta eos libero est. Consequatur qui aliquam qui odit eligendi ut impedit illo dignissimos.</p>
+          
+          <h3 id="middleware">Adding middleware</h3>
+          <p>Officia nobis tempora maiores id iusto magni reprehenderit velit. Quae dolores inventore molestiae perspiciatis aut. Quis sequi officia quasi rem officiis officiis.</p>
+          
+          <!-- Getting help -->
+          <h2 id="getting-help">Getting help</h2>
+          <p>Consequuntur et aut quisquam et qui consequatur eligendi. Necessitatibus dolorem sit. Excepturi cumque quibusdam soluta ullam rerum voluptatibus.</p>
+          
+          <h3>Submit an issue</h3>
+          <p>Inventore et aut minus ut voluptatem nihil commodi doloribus consequatur. Facilis perferendis nihil sit aut aspernatur iure ut dolores et.</p>
+          
+          <h3>Join the community</h3>
+          <p>Praesentium facilis iste aliquid quo quia a excepturi. Fuga reprehenderit illo sequi voluptatem voluptatem omnis. Id quia consequatur rerum consectetur eligendi et omnis.</p>
+          
+        </article>
+
+        <!-- Next/Previous Navigation (Syntax-style) -->
+        <nav class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700 flex items-center justify-between text-sm">
+          <div class="text-left">
+            <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Previous</p>
+            <a href="index.html" class="text-purple-600 dark:text-purple-400 font-semibold hover:text-purple-700 flex items-center gap-2">
+              <i data-lucide="arrow-left" class="w-4 h-4"></i>
+              <span>Home</span>
+            </a>
+          </div>
+          <div class="text-right">
+            <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Next</p>
+            <a href="#" class="text-purple-600 dark:text-purple-400 font-semibold hover:text-purple-700 flex items-center gap-2">
+              <span>Installation</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </nav>
+
+      </div>
+    </main>
+
+      <!-- Right Sidebar - "On this page" TOC (Syntax-style) -->
+      <aside class="hidden lg:block fixed right-0 top-16 bottom-0 w-64 bg-white dark:bg-gray-900 border-l border-gray-200 dark:border-gray-700 overflow-y-auto" style="right: max(0px, calc(50% - 768px))">
+        <nav class="p-6">
+        <h2 class="text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-4">On this page</h2>
+        <ul class="space-y-3 text-sm">
+          <li><a href="#quick-start" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white block">Quick start</a>
+            <ul class="ml-4 mt-2 space-y-2 text-xs">
+              <li><a href="#installing-dependencies" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white block">Installing dependencies</a></li>
+              <li><a href="#configuring" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white block">Configuring the library</a></li>
+            </ul>
+          </li>
+          <li><a href="#basic-usage" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white block">Basic usage</a>
+            <ul class="ml-4 mt-2 space-y-2 text-xs">
+              <li><a href="#first-cache" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white block">Your first cache</a></li>
+              <li><a href="#clearing" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white block">Clearing the cache</a></li>
+              <li><a href="#middleware" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white block">Adding middleware</a></li>
+            </ul>
+          </li>
+          <li><a href="#getting-help" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white block">Getting help</a></li>
+        </ul>
+        </nav>
+      </aside>
+
+    </div>
+  </div>
+  
+<!-- Footer (outside flex container for full width) -->
+<footer class="bg-gray-900 dark:bg-black text-white py-12" style="width: 100vw; position: relative; left: 0; right: 0;">
+    <div class="max-w-screen-2xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="col-span-1">
+          <div class="flex items-center space-x-2 mb-4">
+            <svg class="w-8 h-8 text-indigo-400" viewBox="0 0 32 32" fill="currentColor">
+              <path d="M16 2L3 9v14l13 7 13-7V9L16 2zm0 3.24L25.08 9 16 13.76 6.92 9 16 5.24zM5 10.92l10 5.38v10.46l-10-5.38V10.92zm12 15.84V16.3l10-5.38v10.46l-10 5.38z"/>
+            </svg>
+            <span class="font-bold text-lg">Discover CX</span>
+          </div>
+        </div>
+        <div>
+          <h3 class="font-bold mb-4">Products</h3>
+          <div class="space-y-2 text-sm text-gray-400">
+            <a href="#" class="block hover:text-white">Discover CX Platform</a>
+            <a href="#" class="block hover:text-white">Discover CX</a>
+            <a href="#" class="block hover:text-white">AI Assists</a>
+            <a href="#" class="block hover:text-white">InSite Search</a>
+          </div>
+        </div>
+        <div>
+          <h3 class="font-bold mb-4">Resources</h3>
+          <div class="space-y-2 text-sm text-gray-400">
+            <a href="#" class="block hover:text-white">Documentation</a>
+            <a href="#" class="block hover:text-white">API Reference</a>
+            <a href="#" class="block hover:text-white">Knowledge Base</a>
+            <a href="#" class="block hover:text-white">Blog</a>
+          </div>
+        </div>
+        <div>
+          <h3 class="font-bold mb-4">Company</h3>
+          <div class="space-y-2 text-sm text-gray-400">
+            <a href="#" class="block hover:text-white">About Us</a>
+            <a href="#" class="block hover:text-white">Careers</a>
+            <a href="#" class="block hover:text-white">Contact Sales</a>
+            <a href="#" class="block hover:text-white">Support</a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-500">
+        © 2025 Discover CX by Ingeniux. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Command K Search Modal -->
+  <div id="cmd-k-modal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 p-4 md:p-8">
+    <div class="max-w-3xl mx-auto mt-20">
+      <!-- Search Container -->
+      <div class="bg-white dark:bg-gray-900 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+        
+        <!-- Search Input -->
+        <div class="flex items-center gap-3 px-4 py-4 border-b border-gray-200 dark:border-gray-700">
+          <i data-lucide="search" class="w-5 h-5 text-gray-400"></i>
+          <input 
+            id="cmd-k-input"
+            type="text" 
+            placeholder="Search documentation or ask AI..." 
+            class="flex-1 bg-transparent text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none text-lg"
+            autocomplete="off"
+          />
+          <button id="cmd-k-close" class="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-800 rounded">
+            <i data-lucide="x" class="w-5 h-5 text-gray-400"></i>
+          </button>
+        </div>
+        
+        <!-- Filters -->
+        <div class="flex items-center gap-2 px-4 py-3 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
+          <span class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">Filter:</span>
+          <div class="flex gap-2">
+            <button class="filter-btn active px-3 py-1.5 rounded-lg text-xs font-semibold bg-purple-600 text-white">
+              All Results
+            </button>
+            <button class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600">
+              Documentation
+            </button>
+            <button class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600">
+              AI Answers
+            </button>
+          </div>
+        </div>
+        
+        <!-- Search Results -->
+        <div id="cmd-k-results" class="max-h-96 overflow-y-auto">
+          
+          <!-- Recent Searches (when empty) -->
+          <div id="recent-searches" class="p-4">
+            <p class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3">Recent Searches</p>
+            <div class="space-y-1">
+              <button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-left">
+                <i data-lucide="clock" class="w-4 h-4 text-gray-400"></i>
+                <span class="text-sm text-gray-700 dark:text-gray-300">Getting started with component schemas</span>
+              </button>
+              <button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-left">
+                <i data-lucide="clock" class="w-4 h-4 text-gray-400"></i>
+                <span class="text-sm text-gray-700 dark:text-gray-300">API authentication methods</span>
+              </button>
+              <button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-left">
+                <i data-lucide="clock" class="w-4 h-4 text-gray-400"></i>
+                <span class="text-sm text-gray-700 dark:text-gray-300">Workflow automation examples</span>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Search Results (when searching) -->
+          <div id="search-results" class="hidden">
+            <!-- AI Answers (Top Priority) -->
+            <div class="p-4 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/10 dark:to-blue-900/10">
+              <p class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3 flex items-center gap-2">
+                <i data-lucide="sparkles" class="w-4 h-4 text-purple-600 dark:text-purple-400"></i>
+                AI Answer
+              </p>
+              <div class="space-y-4">
+                <div class="p-4 rounded-lg bg-white dark:bg-gray-800 border border-purple-200 dark:border-purple-700">
+                  <p class="text-base font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+                    <i data-lucide="zap" class="w-5 h-5 text-purple-600 dark:text-purple-400"></i>
+                    Quick Answer
+                  </p>
+                  <p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                    Component schemas in Discover CX allow you to define reusable content structures with custom fields, validation rules, and relationships. They act as templates for your content, ensuring consistency and enabling powerful content modeling capabilities across your entire system.
+                  </p>
+                  
+                  <!-- Key Points -->
+                  <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-3 mb-3">
+                    <p class="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-2">Key Features:</p>
+                    <ul class="text-xs text-gray-600 dark:text-gray-400 space-y-1 ml-4 list-disc">
+                      <li>Define custom fields with validation</li>
+                      <li>Create relationships between content types</li>
+                      <li>Reusable across multiple projects</li>
+                      <li>Version control and migration support</li>
+                    </ul>
+                  </div>
+                  
+                  <div class="flex flex-wrap gap-2">
+                    <a href="doc-page.html" class="inline-flex items-center gap-1 text-xs text-purple-600 dark:text-purple-400 font-semibold hover:underline">
+                      <i data-lucide="book-open" class="w-3 h-3"></i>
+                      Read full guide
+                    </a>
+                    <a href="#" class="inline-flex items-center gap-1 text-xs text-purple-600 dark:text-purple-400 font-semibold hover:underline">
+                      <i data-lucide="code" class="w-3 h-3"></i>
+                      View examples
+                    </a>
+                    <a href="#" class="inline-flex items-center gap-1 text-xs text-purple-600 dark:text-purple-400 font-semibold hover:underline">
+                      <i data-lucide="play-circle" class="w-3 h-3"></i>
+                      Watch tutorial
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Documentation Results -->
+            <div class="p-4">
+              <p class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3 flex items-center justify-between">
+                <span>Documentation</span>
+                <span class="text-gray-400">8 results</span>
+              </p>
+              <div class="space-y-1">
+                <!-- Result 1 -->
+                <a href="doc-page.html" class="flex items-start gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group">
+                  <i data-lucide="file-text" class="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5"></i>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400">Component Schemas Overview</p>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">Learn how to define reusable content structures with custom fields, validation rules, and relationships between content types.</p>
+                    <div class="flex items-center gap-3 mt-2">
+                      <span class="text-xs text-gray-500 dark:text-gray-400">Core Concepts</span>
+                      <span class="text-xs text-gray-400">•</span>
+                      <span class="text-xs text-gray-500 dark:text-gray-400">5 min read</span>
+                    </div>
+                  </div>
+                  <span class="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded font-semibold flex-shrink-0">Guide</span>
+                </a>
+                
+                <!-- Result 2 -->
+                <a href="#" class="flex items-start gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group">
+                  <i data-lucide="code" class="w-5 h-5 text-purple-600 dark:text-purple-400 flex-shrink-0 mt-0.5"></i>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400">Schema API Reference</p>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">Complete API documentation for creating, updating, and managing component schemas programmatically.</p>
+                    <div class="flex items-center gap-3 mt-2">
+                      <span class="text-xs text-gray-500 dark:text-gray-400">API Reference</span>
+                      <span class="text-xs text-gray-400">•</span>
+                      <span class="text-xs text-gray-500 dark:text-gray-400">Reference</span>
+                    </div>
+                  </div>
+                  <span class="text-xs px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded font-semibold flex-shrink-0">API</span>
+                </a>
+                
+                <!-- Result 3 -->
+                <a href="#" class="flex items-start gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group">
+                  <i data-lucide="play-circle" class="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5"></i>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400">Building Your First Schema</p>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">Step-by-step tutorial with code examples showing how to create a blog post schema with title, content, and author fields.</p>
+                    <div class="flex items-center gap-3 mt-2">
+                      <span class="text-xs text-gray-500 dark:text-gray-400">Tutorials</span>
+                      <span class="text-xs text-gray-400">•</span>
+                      <span class="text-xs text-gray-500 dark:text-gray-400">12 min</span>
+                    </div>
+                  </div>
+                  <span class="text-xs px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded font-semibold flex-shrink-0">Tutorial</span>
+                </a>
+                
+                <!-- Result 4 -->
+                <a href="#" class="flex items-start gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group">
+                  <i data-lucide="file-code" class="w-5 h-5 text-orange-600 dark:text-orange-400 flex-shrink-0 mt-0.5"></i>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400">Schema Field Types</p>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">Reference for all available field types including text, rich text, media, relationships, and custom validators.</p>
+                    <div class="flex items-center gap-3 mt-2">
+                      <span class="text-xs text-gray-500 dark:text-gray-400">Reference</span>
+                      <span class="text-xs text-gray-400">•</span>
+                      <span class="text-xs text-gray-500 dark:text-gray-400">Updated 2 days ago</span>
+                    </div>
+                  </div>
+                  <span class="text-xs px-2 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded font-semibold flex-shrink-0">Reference</span>
+                </a>
+                
+                <!-- Result 5 -->
+                <a href="#" class="flex items-start gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group">
+                  <i data-lucide="lightbulb" class="w-5 h-5 text-yellow-600 dark:text-yellow-400 flex-shrink-0 mt-0.5"></i>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400">Schema Best Practices</p>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">Design patterns and recommendations for building maintainable, scalable content schemas.</p>
+                    <div class="flex items-center gap-3 mt-2">
+                      <span class="text-xs text-gray-500 dark:text-gray-400">Best Practices</span>
+                      <span class="text-xs text-gray-400">•</span>
+                      <span class="text-xs text-gray-500 dark:text-gray-400">8 min read</span>
+                    </div>
+                  </div>
+                  <span class="text-xs px-2 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 rounded font-semibold flex-shrink-0">Guide</span>
+                </a>
+                
+                <!-- View all results -->
+                <a href="search-results.html" class="block w-full text-center py-3 text-sm text-purple-600 dark:text-purple-400 font-semibold hover:bg-purple-50 dark:hover:bg-purple-900/20 rounded-lg transition-colors">
+                  View all 8 results →
+                </a>
+              </div>
+            </div>
+            
+            <!-- Related Topics -->
+            <div class="p-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
+              <p class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3">Related Topics</p>
+              <div class="flex flex-wrap gap-2">
+                <a href="#" class="px-3 py-1.5 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-full text-xs font-medium text-gray-700 dark:text-gray-300 hover:border-purple-500 dark:hover:border-purple-400 transition-colors">
+                  Content Types
+                </a>
+                <a href="#" class="px-3 py-1.5 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-full text-xs font-medium text-gray-700 dark:text-gray-300 hover:border-purple-500 dark:hover:border-purple-400 transition-colors">
+                  Field Validation
+                </a>
+                <a href="#" class="px-3 py-1.5 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-full text-xs font-medium text-gray-700 dark:text-gray-300 hover:border-purple-500 dark:hover:border-purple-400 transition-colors">
+                  Relationships
+                </a>
+                <a href="#" class="px-3 py-1.5 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-full text-xs font-medium text-gray-700 dark:text-gray-300 hover:border-purple-500 dark:hover:border-purple-400 transition-colors">
+                  Migration
+                </a>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+        <!-- Footer hint -->
+        <div class="flex items-center justify-between px-4 py-3 bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+          <div class="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400">
+            <span class="flex items-center gap-1.5">
+              <kbd class="px-1.5 py-0.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded text-xs">↑↓</kbd>
+              Navigate
+            </span>
+            <span class="flex items-center gap-1.5">
+              <kbd class="px-1.5 py-0.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded text-xs">↵</kbd>
+              Select
+            </span>
+            <span class="flex items-center gap-1.5">
+              <kbd class="px-1.5 py-0.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded text-xs">esc</kbd>
+              Close
+            </span>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- AI Modals & Panels -->
+  
+  <!-- Summarize Modal -->
+  <div id="summarize-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-hidden shadow-2xl">
+      <!-- Header -->
+      <div class="bg-gradient-to-r from-purple-600 to-blue-600 px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <i data-lucide="sparkles" class="w-6 h-6 text-white"></i>
+          <h3 class="text-xl font-bold text-white">AI Summary</h3>
+        </div>
+        <button onclick="document.getElementById('summarize-modal').classList.add('hidden')" class="text-white hover:bg-white/20 p-2 rounded-lg transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      
+      <!-- Content -->
+      <div class="p-6 overflow-y-auto max-h-[60vh]">
+        
+        <!-- Summary Length Selector -->
+        <div class="flex items-center gap-2 mb-6">
+          <span class="text-sm text-gray-600 dark:text-gray-400">Summary length:</span>
+          <div class="flex gap-2">
+            <button class="px-3 py-1.5 bg-purple-600 text-white rounded-lg text-xs font-semibold">Short</button>
+            <button class="px-3 py-1.5 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg text-xs font-semibold hover:bg-gray-300 dark:hover:bg-gray-600">Medium</button>
+            <button class="px-3 py-1.5 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg text-xs font-semibold hover:bg-gray-300 dark:hover:bg-gray-600">Detailed</button>
+          </div>
+        </div>
+        
+        <!-- AI Generated Summary (Prose) -->
+        <div class="bg-gradient-to-br from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 border-2 border-purple-200 dark:border-purple-800 rounded-xl p-6 mb-6">
+          <div class="flex items-start gap-3 mb-4">
+            <i data-lucide="sparkles" class="w-5 h-5 text-purple-600 flex-shrink-0 mt-1"></i>
+            <div class="flex-1">
+              <h4 class="font-bold text-gray-900 dark:text-white mb-3">AI-Generated Summary</h4>
+              <div class="prose prose-sm dark:prose-invert max-w-none">
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-3">
+                  This comprehensive guide introduces CacheAdvance, a predictive caching library designed to optimize application performance by preemptively caching resources before users need them. The article walks through the complete setup process, from initial installation via npm to advanced configuration options.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-3">
+                  You'll learn how to install the <code class="text-xs bg-purple-100 dark:bg-purple-900 px-1.5 py-0.5 rounded text-purple-700 dark:text-purple-300">@tailwindlabs/cache-advance</code> package, configure the caching strategy in your config file, and implement basic caching patterns in your application. The guide covers essential concepts like predictive strategies, CPU allocation for cache operations, and backup storage configuration.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                  Advanced topics include middleware integration, cache clearing mechanisms, and troubleshooting common issues. Whether you're new to caching or looking to implement advanced patterns, this guide provides practical examples and best practices to get you started in under 30 minutes.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Key Points (Optional expansion) -->
+        <details class="mb-6">
+          <summary class="cursor-pointer font-semibold text-gray-900 dark:text-white mb-3 hover:text-purple-600 dark:hover:text-purple-400">
+            Key Points (expand for details)
+          </summary>
+          <div class="space-y-2 pl-4 border-l-2 border-purple-200 dark:border-purple-800">
+            <div class="text-sm text-gray-700 dark:text-gray-300">
+              <strong class="text-gray-900 dark:text-white">Installation:</strong> Quick setup using npm package manager
+            </div>
+            <div class="text-sm text-gray-700 dark:text-gray-300">
+              <strong class="text-gray-900 dark:text-white">Configuration:</strong> Flexible strategy options including predictive caching
+            </div>
+            <div class="text-sm text-gray-700 dark:text-gray-300">
+              <strong class="text-gray-900 dark:text-white">Performance:</strong> CPU allocation controls for optimal cache operations
+            </div>
+            <div class="text-sm text-gray-700 dark:text-gray-300">
+              <strong class="text-gray-900 dark:text-white">Storage:</strong> Customizable backup locations for persistent caching
+            </div>
+          </div>
+        </details>
+        
+        <!-- Reading Stats -->
+        <div class="grid grid-cols-2 gap-4 mb-6">
+          <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+            <div class="flex items-center gap-2 text-gray-600 dark:text-gray-400 mb-1">
+              <i data-lucide="clock" class="w-4 h-4"></i>
+              <span class="text-xs uppercase tracking-wide">Reading Time</span>
+            </div>
+            <p class="text-2xl font-bold text-gray-900 dark:text-white">8 min</p>
+          </div>
+          <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+            <div class="flex items-center gap-2 text-gray-600 dark:text-gray-400 mb-1">
+              <i data-lucide="layers" class="w-4 h-4"></i>
+              <span class="text-xs uppercase tracking-wide">Sections</span>
+            </div>
+            <p class="text-2xl font-bold text-gray-900 dark:text-white">5</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Footer -->
+      <div class="border-t border-gray-200 dark:border-gray-700 px-6 py-4 bg-gray-50 dark:bg-gray-900 flex items-center justify-between">
+        <div class="flex gap-3">
+          <button class="text-purple-600 dark:text-purple-400 hover:text-purple-700 text-sm font-semibold flex items-center gap-2">
+            <i data-lucide="copy" class="w-4 h-4"></i>
+            Copy Summary
+          </button>
+          <button class="text-purple-600 dark:text-purple-400 hover:text-purple-700 text-sm font-semibold flex items-center gap-2">
+            <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+            Regenerate
+          </button>
+        </div>
+        <button onclick="document.getElementById('summarize-modal').classList.add('hidden')" class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-semibold text-sm">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Listen Player Modal -->
+  <div id="listen-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl">
+      <!-- Header -->
+      <div class="bg-gradient-to-r from-blue-600 to-cyan-600 px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <i data-lucide="headphones" class="w-6 h-6 text-white"></i>
+          <h3 class="text-xl font-bold text-white">Listen to Article</h3>
+        </div>
+        <button onclick="document.getElementById('listen-modal').classList.add('hidden')" class="text-white hover:bg-white/20 p-2 rounded-lg transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      
+      <!-- Player -->
+      <div class="p-8">
+        <!-- Waveform Visualization (Mock) -->
+        <div class="bg-gradient-to-r from-blue-100 to-cyan-100 dark:from-blue-900/30 dark:to-cyan-900/30 rounded-xl p-6 mb-6">
+          <div class="flex items-center justify-center gap-1 h-20">
+            <div class="w-1 bg-blue-500 rounded-full" style="height: 40%"></div>
+            <div class="w-1 bg-blue-500 rounded-full" style="height: 70%"></div>
+            <div class="w-1 bg-blue-500 rounded-full" style="height: 50%"></div>
+            <div class="w-1 bg-blue-500 rounded-full" style="height: 90%"></div>
+            <div class="w-1 bg-blue-500 rounded-full" style="height: 60%"></div>
+            <div class="w-1 bg-cyan-500 rounded-full" style="height: 80%"></div>
+            <div class="w-1 bg-cyan-500 rounded-full" style="height: 55%"></div>
+            <div class="w-1 bg-cyan-500 rounded-full" style="height: 75%"></div>
+            <div class="w-1 bg-blue-400 rounded-full" style="height: 45%"></div>
+            <div class="w-1 bg-blue-400 rounded-full" style="height: 65%"></div>
+          </div>
+        </div>
+        
+        <!-- Progress Bar -->
+        <div class="mb-4">
+          <div class="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400 mb-2">
+            <span>2:34</span>
+            <span>8:15</span>
+          </div>
+          <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+            <div class="bg-gradient-to-r from-blue-600 to-cyan-600 h-2 rounded-full" style="width: 31%"></div>
+          </div>
+        </div>
+        
+        <!-- Controls -->
+        <div class="flex items-center justify-center gap-4 mb-6">
+          <button class="p-3 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+            <i data-lucide="skip-back" class="w-5 h-5 text-gray-700 dark:text-gray-300"></i>
+          </button>
+          <button class="p-4 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 transition-colors shadow-lg">
+            <i data-lucide="pause" class="w-6 h-6 text-white"></i>
+          </button>
+          <button class="p-3 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+            <i data-lucide="skip-forward" class="w-5 h-5 text-gray-700 dark:text-gray-300"></i>
+          </button>
+        </div>
+        
+        <!-- Speed & Voice Settings -->
+        <div class="flex items-center justify-between pt-6 border-t border-gray-200 dark:border-gray-700">
+          <div class="flex items-center gap-2">
+            <i data-lucide="gauge" class="w-4 h-4 text-gray-600 dark:text-gray-400"></i>
+            <select class="text-sm bg-gray-100 dark:bg-gray-700 rounded-lg px-3 py-1.5 border-0 text-gray-900 dark:text-white">
+              <option>1x</option>
+              <option>1.25x</option>
+              <option>1.5x</option>
+              <option>2x</option>
+            </select>
+          </div>
+          <div class="flex items-center gap-2">
+            <i data-lucide="mic" class="w-4 h-4 text-gray-600 dark:text-gray-400"></i>
+            <select class="text-sm bg-gray-100 dark:bg-gray-700 rounded-lg px-3 py-1.5 border-0 text-gray-900 dark:text-white">
+              <option>Natural Voice</option>
+              <option>Professional Voice</option>
+              <option>Casual Voice</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Inline AI Chat Area (appears below "Ask AI" button when clicked) -->
+  <div id="inline-chat" class="hidden">
+    <!-- This will be inserted into the page by JavaScript -->
+  </div>
+  
+  <!-- Glossary Tooltip (appears on hover) -->
+  <div id="glossary-tooltip" class="fixed hidden z-50 max-w-xs pointer-events-none">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+      <div class="bg-purple-600 px-3 py-1.5">
+        <h4 id="glossary-term-title" class="text-xs font-semibold text-white uppercase tracking-wide">
+          <!-- Term name here -->
+        </h4>
+      </div>
+      <div class="p-3">
+        <p id="glossary-definition" class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+          <!-- Definition here -->
+        </p>
+      </div>
+      <!-- Tooltip Arrow -->
+      <div class="absolute -top-1.5 left-4 w-3 h-3 bg-purple-600 rotate-45"></div>
+    </div>
+  </div>
+  
+  <!-- Text Selection AI Tooltip (Grammarly-style) -->
+  <div id="selection-tooltip" class="fixed hidden z-50 max-w-sm" style="pointer-events: auto;">
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+      <!-- Tooltip Header -->
+      <div class="bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-2 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i data-lucide="sparkles" class="w-4 h-4 text-white"></i>
+          <span class="text-sm font-semibold text-white">AI Explain</span>
+        </div>
+        <button onclick="document.getElementById('selection-tooltip').classList.add('hidden')" class="text-white hover:bg-white/20 p-1 rounded transition-colors">
+          <i data-lucide="x" class="w-3 h-3"></i>
+        </button>
+      </div>
+      
+      <!-- Tooltip Content -->
+      <div class="p-4 max-h-72 overflow-y-auto">
+        <!-- Selected Text (smaller) -->
+        <div class="mb-3">
+          <p id="selected-text-tooltip" class="text-xs text-gray-900 dark:text-white font-medium bg-purple-50 dark:bg-purple-900/30 px-2 py-1 rounded italic border-l-2 border-purple-600">
+            <!-- Selected text here -->
+          </p>
+        </div>
+        
+        <!-- Quick Explanation -->
+        <div class="mb-3">
+          <p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+            This concept refers to a caching strategy that anticipates future user actions and preloads content before it's requested.
+          </p>
+        </div>
+        
+        <!-- Quick Actions (compact) -->
+        <div class="flex flex-wrap gap-1.5 pt-3 border-t border-gray-200 dark:border-gray-700">
+          <button class="inline-flex items-center gap-1 px-2 py-1 bg-purple-50 dark:bg-purple-900/20 border border-purple-300 dark:border-purple-700 rounded-full hover:bg-purple-100 dark:hover:bg-purple-900/40 transition-colors text-xs text-purple-700 dark:text-purple-300 font-medium">
+            <i data-lucide="book-open" class="w-3 h-3"></i>
+            <span>Learn more</span>
+          </button>
+          <button class="inline-flex items-center gap-1 px-2 py-1 bg-purple-50 dark:bg-purple-900/20 border border-purple-300 dark:border-purple-700 rounded-full hover:bg-purple-100 dark:hover:bg-purple-900/40 transition-colors text-xs text-purple-700 dark:text-purple-300 font-medium">
+            <i data-lucide="code" class="w-3 h-3"></i>
+            <span>See example</span>
+          </button>
+          <button class="inline-flex items-center gap-1 px-2 py-1 bg-purple-50 dark:bg-purple-900/20 border border-purple-300 dark:border-purple-700 rounded-full hover:bg-purple-100 dark:hover:bg-purple-900/40 transition-colors text-xs text-purple-700 dark:text-purple-300 font-medium">
+            <i data-lucide="link" class="w-3 h-3"></i>
+            <span>Related docs</span>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Tooltip Arrow (pointing to selection) -->
+      <div class="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gradient-to-br from-purple-600 to-pink-600 rotate-45"></div>
+    </div>
+  </div>
+
+  <!-- Explain Code Modal -->
+  <div id="explain-code-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl max-w-3xl w-full max-h-[80vh] overflow-hidden shadow-2xl">
+      <!-- Header -->
+      <div class="bg-gradient-to-r from-emerald-600 to-teal-600 px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <i data-lucide="code-2" class="w-6 h-6 text-white"></i>
+          <h3 class="text-xl font-bold text-white">Code Explanation</h3>
+        </div>
+        <button onclick="document.getElementById('explain-code-modal').classList.add('hidden')" class="text-white hover:bg-white/20 p-2 rounded-lg transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      
+      <!-- Content -->
+      <div class="p-6 overflow-y-auto max-h-[calc(80vh-180px)]">
+        <!-- Code Block -->
+        <div class="bg-gray-900 rounded-xl p-4 mb-6 font-mono text-sm">
+          <pre class="text-gray-300"><code><span class="text-gray-500">// cache-advance.config.js</span>
+<span class="text-pink-400">export default</span> {
+  <span class="text-yellow-400">strategy</span>: <span class="text-emerald-400">'predictive'</span>,
+  <span class="text-yellow-400">engine</span>: {
+    <span class="text-yellow-400">cpus</span>: <span class="text-cyan-400">12</span>,
+    <span class="text-yellow-400">backups</span>: [<span class="text-emerald-400">'./storage/cache.wtf'</span>],
+  },
+}</code></pre>
+        </div>
+        
+        <!-- Explanation -->
+        <div class="space-y-4">
+          <div class="bg-emerald-50 dark:bg-emerald-900/20 border-2 border-emerald-200 dark:border-emerald-800 rounded-xl p-4">
+            <h4 class="font-bold text-emerald-900 dark:text-emerald-100 mb-2 flex items-center gap-2">
+              <i data-lucide="lightbulb" class="w-5 h-5"></i>
+              What This Code Does
+            </h4>
+            <p class="text-gray-700 dark:text-gray-300 text-sm">
+              This configuration file exports a default object that sets up your CacheAdvance instance with specific performance and storage options.
+            </p>
+          </div>
+          
+          <!-- Line by Line -->
+          <div class="space-y-3">
+            <h4 class="font-semibold text-gray-900 dark:text-white">Line-by-line breakdown:</h4>
+            
+            <div class="flex gap-3">
+              <div class="w-8 h-8 rounded-full bg-yellow-100 dark:bg-yellow-900/30 flex items-center justify-center flex-shrink-0">
+                <span class="text-xs font-bold text-yellow-700 dark:text-yellow-300">1</span>
+              </div>
+              <div class="flex-1">
+                <p class="text-sm font-mono text-purple-600 dark:text-purple-400">strategy: 'predictive'</p>
+                <p class="text-sm text-gray-700 dark:text-gray-300 mt-1">
+                  Sets the caching strategy to <strong>predictive</strong>, which anticipates user behavior to pre-load content.
+                </p>
+              </div>
+            </div>
+            
+            <div class="flex gap-3">
+              <div class="w-8 h-8 rounded-full bg-yellow-100 dark:bg-yellow-900/30 flex items-center justify-center flex-shrink-0">
+                <span class="text-xs font-bold text-yellow-700 dark:text-yellow-300">2</span>
+              </div>
+              <div class="flex-1">
+                <p class="text-sm font-mono text-purple-600 dark:text-purple-400">cpus: 12</p>
+                <p class="text-sm text-gray-700 dark:text-gray-300 mt-1">
+                  Allocates <strong>12 CPU cores</strong> for cache operations to maximize performance.
+                </p>
+              </div>
+            </div>
+            
+            <div class="flex gap-3">
+              <div class="w-8 h-8 rounded-full bg-yellow-100 dark:bg-yellow-900/30 flex items-center justify-center flex-shrink-0">
+                <span class="text-xs font-bold text-yellow-700 dark:text-yellow-300">3</span>
+              </div>
+              <div class="flex-1">
+                <p class="text-sm font-mono text-purple-600 dark:text-purple-400">backups: ['./storage/cache.wtf']</p>
+                <p class="text-sm text-gray-700 dark:text-gray-300 mt-1">
+                  Specifies the backup location for persistent cache storage.
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Related Links -->
+          <div class="border-t border-gray-200 dark:border-gray-700 pt-4 mt-6">
+            <h4 class="font-semibold text-gray-900 dark:text-white mb-3">Related documentation:</h4>
+            <div class="space-y-2">
+              <a href="#" class="flex items-center gap-2 text-sm text-emerald-600 dark:text-emerald-400 hover:underline">
+                <i data-lucide="book-open" class="w-4 h-4"></i>
+                Cache Strategies Guide
+              </a>
+              <a href="#" class="flex items-center gap-2 text-sm text-emerald-600 dark:text-emerald-400 hover:underline">
+                <i data-lucide="settings" class="w-4 h-4"></i>
+                Configuration Options
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Footer -->
+      <div class="border-t border-gray-200 dark:border-gray-700 px-6 py-4 bg-gray-50 dark:bg-gray-900 flex items-center justify-between">
+        <button class="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 text-sm font-semibold flex items-center gap-2">
+          <i data-lucide="copy" class="w-4 h-4"></i>
+          Copy Code
+        </button>
+        <button onclick="document.getElementById('explain-code-modal').classList.add('hidden')" class="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors font-semibold text-sm">
+          Got it!
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="js/main.js"></script>
+  
+  <!-- Navigation Dropdown -->
+  <script>
+    // Hamburger menu dropdown
+    const navMenuBtn = document.getElementById('mobile-menu-btn');
+    const navMenu = document.getElementById('mobile-menu');
+    
+    navMenuBtn?.addEventListener('click', function(e) {
+      e.stopPropagation();
+      navMenu?.classList.toggle('hidden');
+      lucide.createIcons();
+    });
+    
+    // Close when clicking outside
+    document.addEventListener('click', function(e) {
+      if (navMenu && !navMenu.contains(e.target) && !navMenuBtn?.contains(e.target)) {
+        navMenu?.classList.add('hidden');
+      }
+    });
+  </script>
+  
+  <!-- Theme Switcher in User Menu -->
+  <script>
+    // Theme switching
+    function setTheme(theme) {
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      } else if (theme === 'light') {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        // Auto mode - use system preference
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+        localStorage.setItem('theme', 'auto');
+      }
+      updateThemeButtons(theme);
+    }
+    
+    function updateThemeButtons(activeTheme) {
+      const buttons = {
+        auto: document.getElementById('theme-auto'),
+        light: document.getElementById('theme-light'),
+        dark: document.getElementById('theme-dark')
+      };
+      
+      // Reset all
+      Object.values(buttons).forEach(btn => {
+        btn?.classList.remove('bg-yellow-100', 'dark:bg-yellow-900/30', 'bg-gray-700', 'bg-gray-100');
+        btn?.classList.add('hover:bg-gray-100', 'dark:hover:bg-gray-700');
+      });
+      
+      // Highlight active
+      if (activeTheme === 'light') {
+        buttons.light?.classList.add('bg-yellow-100', 'dark:bg-yellow-900/30');
+        buttons.light?.classList.remove('hover:bg-gray-100', 'dark:hover:bg-gray-700');
+      } else if (activeTheme === 'dark') {
+        buttons.dark?.classList.add('bg-gray-100', 'dark:bg-gray-700');
+      } else {
+        buttons.auto?.classList.add('bg-gray-100', 'dark:bg-gray-700');
+      }
+      
+      lucide.createIcons();
+    }
+    
+    // Load saved theme
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    setTheme(savedTheme);
+    
+    // Theme button listeners
+    document.getElementById('theme-auto')?.addEventListener('click', () => setTheme('auto'));
+    document.getElementById('theme-light')?.addEventListener('click', () => setTheme('light'));
+    document.getElementById('theme-dark')?.addEventListener('click', () => setTheme('dark'));
+  </script>
+  
+  <!-- Command K Search -->
+  <script>
+    const cmdKModal = document.getElementById('cmd-k-modal');
+    const cmdKTrigger = document.getElementById('cmd-k-trigger');
+    const cmdKInput = document.getElementById('cmd-k-input');
+    const cmdKClose = document.getElementById('cmd-k-close');
+    const recentSearches = document.getElementById('recent-searches');
+    const searchResults = document.getElementById('search-results');
+    
+    // Open modal
+    function openCmdK() {
+      cmdKModal?.classList.remove('hidden');
+      setTimeout(() => {
+        cmdKInput?.focus();
+        lucide.createIcons();
+      }, 100);
+    }
+    
+    // Close modal
+    function closeCmdK() {
+      cmdKModal?.classList.add('hidden');
+      if (cmdKInput) cmdKInput.value = '';
+      recentSearches?.classList.remove('hidden');
+      searchResults?.classList.add('hidden');
+    }
+    
+    // Keyboard shortcut: Cmd/Ctrl + K
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        openCmdK();
+      }
+      
+      // ESC to close
+      if (e.key === 'Escape' && !cmdKModal?.classList.contains('hidden')) {
+        closeCmdK();
+      }
+    });
+    
+    // Click trigger button
+    cmdKTrigger?.addEventListener('click', openCmdK);
+    
+    // Click close button
+    cmdKClose?.addEventListener('click', closeCmdK);
+    
+    // Click outside modal
+    cmdKModal?.addEventListener('click', (e) => {
+      if (e.target === cmdKModal) {
+        closeCmdK();
+      }
+    });
+    
+    // Search input - show results when typing
+    cmdKInput?.addEventListener('input', (e) => {
+      if (e.target.value.trim().length > 0) {
+        recentSearches?.classList.add('hidden');
+        searchResults?.classList.remove('hidden');
+      } else {
+        recentSearches?.classList.remove('hidden');
+        searchResults?.classList.add('hidden');
+      }
+    });
+    
+    // Filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.filter-btn').forEach(b => {
+          b.classList.remove('bg-purple-600', 'text-white');
+          b.classList.add('bg-white', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300', 'border', 'border-gray-300', 'dark:border-gray-600');
+        });
+        
+        this.classList.remove('bg-white', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300', 'border', 'border-gray-300', 'dark:border-gray-600');
+        this.classList.add('bg-purple-600', 'text-white');
+      });
+    });
+  </script>
+  
+  <!-- AI Interactions -->
+  <script>
+    // Enhanced IGXDocs object with AI features
+    IGXDocs.inlineChatOpen = false;
+    IGXDocs.glossaryActive = false;
+    
+    IGXDocs.closeSelectionTooltip = function() {
+      document.getElementById('selection-tooltip').classList.add('hidden');
+    };
+    
+    // Toggle Glossary
+    IGXDocs.toggleGlossary = function() {
+      this.glossaryActive = !this.glossaryActive;
+      const article = document.querySelector('article');
+      const toggleBtn = document.getElementById('glossary-toggle');
+      const statusText = toggleBtn?.querySelector('.opacity-60');
+      
+      if (this.glossaryActive) {
+        article?.classList.add('glossary-active');
+        if (toggleBtn) {
+          toggleBtn.classList.remove('border-gray-300', 'dark:border-gray-600', 'text-gray-700', 'dark:text-gray-300');
+          toggleBtn.classList.add('border-purple-600', 'text-purple-600', 'dark:text-purple-400', 'bg-purple-50', 'dark:bg-purple-900/20');
+        }
+        if (statusText) statusText.textContent = 'On';
+      } else {
+        article?.classList.remove('glossary-active');
+        if (toggleBtn) {
+          toggleBtn.classList.remove('border-purple-600', 'text-purple-600', 'dark:text-purple-400', 'bg-purple-50', 'dark:bg-purple-900/20');
+          toggleBtn.classList.add('border-gray-300', 'dark:border-gray-600', 'text-gray-700', 'dark:text-gray-300');
+        }
+        if (statusText) statusText.textContent = 'Off';
+      }
+    };
+    
+    // Show glossary tooltip on hover
+    IGXDocs.showGlossaryTooltip = function(element, term, definition) {
+      const tooltip = document.getElementById('glossary-tooltip');
+      const rect = element.getBoundingClientRect();
+      
+      // Update content
+      document.getElementById('glossary-term-title').textContent = term.replace(/-/g, ' ');
+      document.getElementById('glossary-definition').textContent = definition;
+      
+      // Position below term
+      const tooltipWidth = 300; // max-w-xs
+      const left = Math.max(10, Math.min(window.innerWidth - tooltipWidth - 10, rect.left + (rect.width / 2) - (tooltipWidth / 2)));
+      const top = rect.bottom + window.scrollY + 8;
+      
+      tooltip.style.left = left + 'px';
+      tooltip.style.top = top + 'px';
+      tooltip.classList.remove('hidden');
+    };
+    
+    IGXDocs.hideGlossaryTooltip = function() {
+      document.getElementById('glossary-tooltip').classList.add('hidden');
+    };
+    
+    // Show Summarize Modal
+    document.querySelectorAll('button:has([data-lucide="sparkles"])').forEach(btn => {
+      if (btn.textContent.includes('Summarize')) {
+        btn.addEventListener('click', () => {
+          document.getElementById('summarize-modal').classList.remove('hidden');
+          lucide.createIcons();
+        });
+      }
+    });
+    
+    // Show Listen Modal
+    document.querySelectorAll('button:has([data-lucide="headphones"])').forEach(btn => {
+      if (btn.textContent.includes('Listen')) {
+        btn.addEventListener('click', () => {
+          document.getElementById('listen-modal').classList.remove('hidden');
+          lucide.createIcons();
+        });
+      }
+    });
+    
+    // Inline Ask AI - Show chat area below button
+    document.querySelectorAll('button:has([data-lucide="message-circle"])').forEach(btn => {
+      if (btn.textContent.includes('Ask')) {
+        btn.addEventListener('click', (e) => {
+          if (IGXDocs.inlineChatOpen) return;
+          
+          const buttonContainer = btn.parentElement;
+          const chatHTML = `
+            <div id="inline-chat-area" class="mt-6 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 border-2 border-purple-200 dark:border-purple-800 rounded-xl p-5 animate-fadeIn">
+              <div class="flex items-start gap-3 mb-4">
+                <i data-lucide="message-circle" class="w-5 h-5 text-purple-600 flex-shrink-0 mt-1"></i>
+                <div class="flex-1">
+                  <h4 class="font-bold text-gray-900 dark:text-white mb-1">Ask about this article</h4>
+                  <p class="text-xs text-gray-600 dark:text-gray-400">Click a common question or ask your own</p>
+                </div>
+                <button onclick="this.closest('#inline-chat-area').remove(); IGXDocs.inlineChatOpen = false;" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+                  <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+              </div>
+              
+              <!-- Common Questions (Bubble style) -->
+              <div class="flex flex-wrap gap-2 mb-4">
+                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-gray-800 border border-purple-300 dark:border-purple-700 rounded-full hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors text-xs text-gray-900 dark:text-white font-medium">
+                  <span>How to get started?</span>
+                </button>
+                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-gray-800 border border-purple-300 dark:border-purple-700 rounded-full hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors text-xs text-gray-900 dark:text-white font-medium">
+                  <span>Strategy differences?</span>
+                </button>
+                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-gray-800 border border-purple-300 dark:border-purple-700 rounded-full hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors text-xs text-gray-900 dark:text-white font-medium">
+                  <span>Why predictive?</span>
+                </button>
+                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-gray-800 border border-purple-300 dark:border-purple-700 rounded-full hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors text-xs text-gray-900 dark:text-white font-medium">
+                  <span>Common mistakes?</span>
+                </button>
+                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-gray-800 border border-purple-300 dark:border-purple-700 rounded-full hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors text-xs text-gray-900 dark:text-white font-medium">
+                  <span>Best practices?</span>
+                </button>
+                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-gray-800 border border-purple-300 dark:border-purple-700 rounded-full hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors text-xs text-gray-900 dark:text-white font-medium">
+                  <span>Configuration options?</span>
+                </button>
+              </div>
+              
+              <!-- Custom Question -->
+              <div class="border-t border-purple-200 dark:border-purple-800 pt-4">
+                <div class="flex gap-2">
+                  <input 
+                    type="text" 
+                    placeholder="Or ask your own question..." 
+                    class="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm"
+                  />
+                  <button class="px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:from-purple-700 hover:to-pink-700 transition-colors">
+                    <i data-lucide="send" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+          
+          buttonContainer.insertAdjacentHTML('afterend', chatHTML);
+          lucide.createIcons();
+          IGXDocs.inlineChatOpen = true;
+        });
+      }
+    });
+    
+    // Text Selection AI - Show Grammarly-style tooltip
+    let selectionTimeout;
+    document.addEventListener('mouseup', (e) => {
+      // Don't show if clicking inside the tooltip itself
+      if (e.target.closest('#selection-tooltip')) return;
+      
+      clearTimeout(selectionTimeout);
+      selectionTimeout = setTimeout(() => {
+        const selection = window.getSelection();
+        const selectedText = selection.toString().trim();
+        const tooltip = document.getElementById('selection-tooltip');
+        
+        if (!selectedText || selectedText.length < 5 || selectedText.length > 200) {
+          tooltip.classList.add('hidden');
+          return;
+        }
+        
+        // Check if selection is within article (more robust check)
+        let node = selection.anchorNode;
+        let isInArticle = false;
+        
+        while (node && node !== document.body) {
+          if (node.tagName === 'ARTICLE') {
+            isInArticle = true;
+            break;
+          }
+          node = node.parentElement || node.parentNode;
+        }
+        
+        if (isInArticle) {
+          const range = selection.getRangeAt(0);
+          const rect = range.getBoundingClientRect();
+          
+          // Position tooltip below selection (Grammarly-style)
+          const tooltipWidth = 350; // max-w-sm
+          const left = Math.max(10, Math.min(window.innerWidth - tooltipWidth - 10, rect.left + (rect.width / 2) - (tooltipWidth / 2)));
+          const top = rect.bottom + window.scrollY + 10;
+          
+          tooltip.style.left = left + 'px';
+          tooltip.style.top = top + 'px';
+          tooltip.classList.remove('hidden');
+          
+          // Update selected text in tooltip
+          document.getElementById('selected-text-tooltip').textContent = selectedText;
+          
+          lucide.createIcons();
+        } else {
+          tooltip.classList.add('hidden');
+        }
+      }, 200);
+    });
+    
+    // Hide tooltip on click outside
+    document.addEventListener('mousedown', (e) => {
+      const tooltip = document.getElementById('selection-tooltip');
+      if (tooltip && !e.target.closest('#selection-tooltip')) {
+        tooltip.classList.add('hidden');
+      }
+    });
+    
+    // User Dropdown Menu
+    document.getElementById('user-menu-btn')?.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const dropdown = document.getElementById('user-dropdown');
+      dropdown?.classList.toggle('hidden');
+      lucide.createIcons();
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      const dropdown = document.getElementById('user-dropdown');
+      const button = document.getElementById('user-menu-btn');
+      if (dropdown && !dropdown.contains(e.target) && !button?.contains(e.target)) {
+        dropdown.classList.add('hidden');
+      }
+    });
+    
+    // Show Explain Code Modal
+    document.querySelectorAll('button').forEach(btn => {
+      if (btn.textContent.includes('Explain this code')) {
+        btn.addEventListener('click', () => {
+          document.getElementById('explain-code-modal').classList.remove('hidden');
+          lucide.createIcons();
+        });
+      }
+    });
+    
+    // Close modals on backdrop click
+    document.querySelectorAll('[id$="-modal"]').forEach(modal => {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.add('hidden');
+        }
+      });
+    });
+    
+    // Glossary Toggle Button
+    document.getElementById('glossary-toggle')?.addEventListener('click', () => {
+      IGXDocs.toggleGlossary();
+    });
+    
+    // Glossary Term Hover Events
+    document.querySelectorAll('.glossary-term').forEach(term => {
+      term.addEventListener('mouseenter', function() {
+        const termName = this.dataset.term;
+        const definition = this.dataset.definition;
+        IGXDocs.showGlossaryTooltip(this, termName, definition);
+      });
+      
+      term.addEventListener('mouseleave', function() {
+        // Small delay before hiding to allow moving to tooltip
+        setTimeout(() => {
+          IGXDocs.hideGlossaryTooltip();
+        }, 100);
+      });
+    });
+  </script>
+  
+  <!-- Initialize Lucide Icons -->
+  <script>
+    lucide.createIcons();
+  </script>
+
+</body>
+</html>
+
