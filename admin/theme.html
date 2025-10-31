@@ -487,8 +487,8 @@
         .bg-purple-500 { background-color: ${primaryScale[8]} !important; }
         .bg-purple-600, .hover\\:bg-purple-600:hover { background-color: ${primaryScale[9]} !important; }
         .bg-purple-700, .hover\\:bg-purple-700:hover { background-color: ${primaryScale[10]} !important; }
-        .bg-purple-800 { background-color: ${primaryScale[10]} !important; }
-        .bg-purple-900 { background-color: ${primaryScale[11]} !important; }
+        .bg-purple-800, .hover\\:bg-purple-800:hover { background-color: ${primaryScale[10]} !important; }
+        .bg-purple-900, .hover\\:bg-purple-900:hover { background-color: ${primaryScale[11]} !important; }
         
         /* Primary Color - Dark Mode Backgrounds */
         .dark\\:bg-purple-900\\/20 { background-color: ${primaryScale[3]}80 !important; }
@@ -496,10 +496,11 @@
         .dark\\:bg-purple-800 { background-color: ${primaryScale[4]} !important; }
         
         /* Primary Color - Text */
+        .text-purple-200, .dark\\:text-purple-200 { color: ${primaryScale[10]} !important; }
         .text-purple-300, .dark\\:text-purple-300 { color: ${primaryScale[11]} !important; }
         .text-purple-400, .dark\\:text-purple-400, .hover\\:text-purple-400:hover, .dark\\:hover\\:text-purple-400:hover { color: ${primaryScale[10]} !important; }
         .text-purple-500 { color: ${primaryScale[9]} !important; }
-        .text-purple-600, .hover\\:text-purple-600:hover { color: ${primaryScale[11]} !important; }
+        .text-purple-600, .hover\\:text-purple-600:hover, .dark\\:hover\\:text-purple-600:hover { color: ${primaryScale[11]} !important; }
         .text-purple-700, .dark\\:text-purple-300 { color: ${primaryScale[11]} !important; }
         
         /* Primary Color - Borders */
@@ -513,10 +514,18 @@
         .from-purple-100 { --tw-gradient-from: ${primaryScale[3]} !important; }
         .from-purple-500 { --tw-gradient-from: ${primaryScale[8]} !important; }
         .from-purple-600 { --tw-gradient-from: ${primaryScale[9]} !important; }
+        .from-purple-700 { --tw-gradient-from: ${primaryScale[10]} !important; }
+        .from-purple-800 { --tw-gradient-from: ${primaryScale[10]} !important; }
+        .from-purple-900 { --tw-gradient-from: ${primaryScale[11]} !important; }
         .from-purple-900\\/20 { --tw-gradient-from: ${primaryScale[3]}33 !important; }
         
         .to-purple-50 { --tw-gradient-to: ${primaryScale[2]} !important; }
         .to-purple-100 { --tw-gradient-to: ${primaryScale[3]} !important; }
+        .to-purple-500 { --tw-gradient-to: ${primaryScale[8]} !important; }
+        .to-purple-600 { --tw-gradient-to: ${primaryScale[9]} !important; }
+        .to-purple-700 { --tw-gradient-to: ${primaryScale[10]} !important; }
+        .to-purple-800 { --tw-gradient-to: ${primaryScale[10]} !important; }
+        .to-purple-900 { --tw-gradient-to: ${primaryScale[11]} !important; }
         .to-blue-50 { --tw-gradient-to: ${accentScale[2]} !important; }
         .to-blue-100 { --tw-gradient-to: ${accentScale[3]} !important; }
         .to-blue-900\\/20 { --tw-gradient-to: ${accentScale[3]}33 !important; }
@@ -526,10 +535,13 @@
         .bg-indigo-100 { background-color: ${accentScale[3]} !important; }
         .bg-indigo-600 { background-color: ${accentScale[9]} !important; }
         .bg-indigo-700 { background-color: ${accentScale[10]} !important; }
+        .bg-indigo-800, .hover\\:bg-indigo-800:hover { background-color: ${accentScale[10]} !important; }
+        .bg-indigo-900, .hover\\:bg-indigo-900:hover { background-color: ${accentScale[11]} !important; }
         .dark\\:bg-indigo-900\\/20 { background-color: ${accentScale[3]}33 !important; }
         .dark\\:bg-indigo-900\\/30 { background-color: ${accentScale[3]}cc !important; }
         
         /* Accent Color (Indigo) - Text */
+        .text-indigo-200, .dark\\:text-indigo-200 { color: ${accentScale[10]} !important; }
         .text-indigo-300, .dark\\:text-indigo-300 { color: ${accentScale[11]} !important; }
         .text-indigo-400, .dark\\:text-indigo-400 { color: ${accentScale[10]} !important; }
         .text-indigo-600, .hover\\:text-indigo-600:hover, .dark\\:hover\\:text-indigo-400:hover { color: ${accentScale[11]} !important; }
@@ -544,12 +556,21 @@
         .from-indigo-100 { --tw-gradient-from: ${accentScale[3]} !important; }
         .from-indigo-500 { --tw-gradient-from: ${accentScale[8]} !important; }
         .from-indigo-600 { --tw-gradient-from: ${accentScale[9]} !important; }
+        .from-indigo-700 { --tw-gradient-from: ${accentScale[10]} !important; }
+        .from-indigo-800 { --tw-gradient-from: ${accentScale[10]} !important; }
+        .from-indigo-900 { --tw-gradient-from: ${accentScale[11]} !important; }
         .from-indigo-900\\/20 { --tw-gradient-from: ${accentScale[3]}33 !important; }
         
         .to-indigo-50 { --tw-gradient-to: ${accentScale[2]} !important; }
         .to-indigo-100 { --tw-gradient-to: ${accentScale[3]} !important; }
         .to-indigo-600 { --tw-gradient-to: ${accentScale[9]} !important; }
+        .to-indigo-700 { --tw-gradient-to: ${accentScale[10]} !important; }
+        .to-indigo-800 { --tw-gradient-to: ${accentScale[10]} !important; }
+        .to-indigo-900 { --tw-gradient-to: ${accentScale[11]} !important; }
         .to-indigo-900\\/20 { --tw-gradient-to: ${accentScale[3]}33 !important; }
+        
+        /* Secondary Color (Pink/Rose) - for accents like avatar */
+        .to-pink-600 { --tw-gradient-to: ${accentScale[9]} !important; }
         
         /* Logo and Brand Gradients */
         .from-purple-600.to-indigo-600 { 
