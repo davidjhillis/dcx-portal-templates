@@ -144,9 +144,12 @@
         
         <!-- Theme Presets -->
         <div class="section mb-4">
-          <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center justify-between mb-2">
             <span class="text-[11px] font-semibold text-white/50 uppercase tracking-wider">Theme Presets</span>
             <button id="custom-theme-btn" class="text-[11px] text-purple-400 hover:text-purple-300 font-medium">+ Custom</button>
+          </div>
+          <div class="text-[11px] text-white/50 mb-3 leading-relaxed">
+            Quick-start themes with pre-matched colors. Select one, then customize Primary/Accent below if needed.
           </div>
           <div class="space-y-2" id="theme-presets">
             <!-- Generated dynamically -->
@@ -212,11 +215,14 @@
           <button class="section-header w-full flex items-center justify-between py-2 px-2 -mx-2 rounded-md">
             <div class="flex items-center gap-2">
               <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-white/40 transition-transform"></i>
-              <span class="text-[13px] font-medium text-white/90">Primary</span>
+              <span class="text-[13px] font-medium text-white/90">Primary Color</span>
             </div>
             <span id="primary-name" class="text-[11px] text-white/40 font-medium">Indigo</span>
           </button>
           <div class="section-content pl-5 pr-2 pt-3" style="max-height: 300px;">
+            <div class="text-[11px] text-white/50 mb-3 leading-relaxed">
+              Main brand color for buttons, links, and product cards. Override the theme preset or choose your own.
+            </div>
             <div class="grid grid-cols-4 gap-1.5 mb-3" id="primary-swatches">
               <!-- Generated dynamically -->
             </div>
@@ -243,11 +249,14 @@
           <button class="section-header w-full flex items-center justify-between py-2 px-2 -mx-2 rounded-md">
             <div class="flex items-center gap-2">
               <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-white/40 transition-transform"></i>
-              <span class="text-[13px] font-medium text-white/90">Accent</span>
+              <span class="text-[13px] font-medium text-white/90">Accent Color</span>
             </div>
             <span id="accent-name" class="text-[11px] text-white/40 font-medium">Purple</span>
           </button>
           <div class="section-content pl-5 pr-2 pt-3" style="max-height: 300px;">
+            <div class="text-[11px] text-white/50 mb-3 leading-relaxed">
+              Secondary color for highlights, icons, and gradients. Complements the primary color.
+            </div>
             <div class="grid grid-cols-4 gap-1.5 mb-3" id="accent-swatches">
               <!-- Generated dynamically -->
             </div>
