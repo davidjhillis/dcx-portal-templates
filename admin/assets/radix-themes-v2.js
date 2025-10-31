@@ -1,17 +1,59 @@
 /**
- * Radix Themes Database
- * Complete color scales for all Radix colors in light and dark modes
+ * Radix Themes Database - Organized like Relume
+ * Complete color scales categorized by purpose and usage
  * Source: https://www.radix-ui.com/colors
+ * Inspired by: https://www.relume.io/color-palettes
  */
 
 export const radixThemes = {
-  // Pre-built theme combinations
+  
+  // ========================================
+  // COLOR CATEGORIES
+  // ========================================
+  
+  categories: {
+    neutrals: {
+      title: 'Neutrals',
+      description: 'Foundation of the color system. Almost everything in UI design — text, form fields, backgrounds, dividers — use Neutral colors.',
+      colors: ['gray', 'mauve', 'slate', 'sage', 'olive', 'sand']
+    },
+    
+    chromatic: {
+      title: 'Primary, Secondary & Accent',
+      description: 'Main colors that make up the majority of the design system. Use sparingly in components such as pills, alerts and labels.',
+      colors: [
+        'tomato', 'red', 'ruby', 'crimson',
+        'pink', 'plum', 'purple', 'violet',
+        'iris', 'indigo', 'blue', 'sky', 'cyan',
+        'teal', 'jade', 'green', 'grass',
+        'lime', 'mint', 'yellow', 'amber', 'orange',
+        'brown', 'bronze', 'gold'
+      ]
+    },
+    
+    semantic: {
+      title: 'Semantic Colors',
+      description: 'Communicate standard value states (such as error, success, or warning).',
+      mappings: {
+        success: 'green',
+        warning: 'yellow',
+        error: 'red',
+        info: 'blue'
+      }
+    }
+  },
+
+  // ========================================
+  // THEME PRESETS
+  // ========================================
+  
   presets: {
     indigo: {
       name: 'Indigo',
       primary: 'indigo',
       accent: 'purple',
       neutral: 'slate',
+      semantic: { success: 'green', warning: 'amber', error: 'red', info: 'blue' },
       description: 'Professional and modern'
     },
     blue: {
@@ -19,6 +61,7 @@ export const radixThemes = {
       primary: 'blue',
       accent: 'cyan',
       neutral: 'slate',
+      semantic: { success: 'teal', warning: 'amber', error: 'red', info: 'sky' },
       description: 'Trust and reliability'
     },
     emerald: {
@@ -26,6 +69,7 @@ export const radixThemes = {
       primary: 'green',
       accent: 'teal',
       neutral: 'sage',
+      semantic: { success: 'jade', warning: 'lime', error: 'ruby', info: 'cyan' },
       description: 'Fresh and natural'
     },
     ruby: {
@@ -33,6 +77,7 @@ export const radixThemes = {
       primary: 'red',
       accent: 'crimson',
       neutral: 'mauve',
+      semantic: { success: 'green', warning: 'amber', error: 'tomato', info: 'plum' },
       description: 'Bold and energetic'
     },
     amber: {
@@ -40,6 +85,7 @@ export const radixThemes = {
       primary: 'amber',
       accent: 'orange',
       neutral: 'sand',
+      semantic: { success: 'lime', warning: 'yellow', error: 'red', info: 'gold' },
       description: 'Warm and inviting'
     },
     violet: {
@@ -47,11 +93,31 @@ export const radixThemes = {
       primary: 'violet',
       accent: 'iris',
       neutral: 'slate',
+      semantic: { success: 'green', warning: 'amber', error: 'pink', info: 'blue' },
       description: 'Creative and elegant'
+    },
+    mint: {
+      name: 'Mint Fresh',
+      primary: 'mint',
+      accent: 'jade',
+      neutral: 'sage',
+      semantic: { success: 'grass', warning: 'yellow', error: 'tomato', info: 'sky' },
+      description: 'Clean and refreshing'
+    },
+    sunset: {
+      name: 'Sunset',
+      primary: 'orange',
+      accent: 'tomato',
+      neutral: 'bronze',
+      semantic: { success: 'green', warning: 'yellow', error: 'red', info: 'amber' },
+      description: 'Vibrant and warm'
     }
   },
 
-  // Dark mode color scales
+  // ========================================
+  // DARK MODE COLOR SCALES
+  // ========================================
+  
   dark: {
     // Grays (Neutrals)
     gray: {1:"#111111",2:"#191919",3:"#222222",4:"#2a2a2a",5:"#313131",6:"#3a3a3a",7:"#484848",8:"#606060",9:"#6e6e6e",10:"#7c7c7c",11:"#b5b5b5",12:"#eeeeee"},
@@ -82,7 +148,7 @@ export const radixThemes = {
     
     // Greens
     teal: {1:"#0d1514",2:"#111c1b",3:"#0d2d2a",4:"#023b37",5:"#084843",6:"#145750",7:"#1c6961",8:"#207e73",9:"#12a594",10:"#19b5a4",11:"#0ac5b3",12:"#adf0dd"},
-    jade: {1:"#0d1512",2:"#121c18",3:"#0f2e22",4:"#0b3b2c",5:"#114837",6:"#1b5745",6:"#246854",8:"#2a7e68",9:"#29a383",10:"#27b08b",11:"#1fd8a4",12:"#adf0d4"},
+    jade: {1:"#0d1512",2:"#121c18",3:"#0f2e22",4:"#0b3b2c",5:"#114837",6:"#1b5745",7:"#246854",8:"#2a7e68",9:"#29a383",10:"#27b08b",11:"#1fd8a4",12:"#adf0d4"},
     green: {1:"#0e1512",2:"#121b17",3:"#132d21",4:"#113b29",5:"#174933",6:"#20573e",7:"#28684a",8:"#2f7c57",9:"#30a46c",10:"#3cb179",11:"#4cc38a",12:"#b4f1c9"},
     grass: {1:"#0e1511",2:"#141a15",3:"#1b2a1e",4:"#1d3a24",5:"#25482d",6:"#2d5736",7:"#366740",8:"#3e7949",9:"#46a758",10:"#53b365",11:"#71d083",12:"#c2f0c2"},
     
@@ -103,33 +169,10 @@ export const radixThemes = {
     white: {1:"#ffffff",2:"#fcfcfc",3:"#f9f9f9",4:"#f0f0f0",5:"#e8e8e8",6:"#e0e0e0",7:"#d9d9d9",8:"#cecece",9:"#bbbbbb",10:"#6e6e6e",11:"#646464",12:"#202020"}
   },
 
-  // Light mode color scales
-  light: {
-    indigo: {1:"#fdfdfe",2:"#f7f9ff",3:"#edf2fe",4:"#e1e9ff",5:"#d2deff",6:"#c1d0ff",7:"#abbdf9",8:"#8da4ef",9:"#3e63dd",10:"#3358d4",11:"#3a5bc7",12:"#1f2d5c"},
-    blue: {1:"#fbfdff",2:"#f4faff",3:"#e6f4fe",4:"#d5efff",5:"#c2e5ff",6:"#acd8fc",7:"#8ec8f6",8:"#5eb1ef",9:"#0090ff",10:"#0588f0",11:"#0d74ce",12:"#113264"},
-    cyan: {1:"#fafdfe",2:"#f2fcfd",3:"#e7f9fb",4:"#d8f3f6",5:"#c4eaef",6:"#aadee6",7:"#84cdda",8:"#3db9cf",9:"#00a2c7",10:"#0797b9",11:"#107d98",12:"#0d3c48"},
-    teal: {1:"#fafefd",2:"#f3fbf9",3:"#e0f8f3",4:"#ccf3ea",5:"#b8eae0",6:"#a1ded2",7:"#83cdc1",8:"#53b9ab",9:"#12a594",10:"#0d9b8a",11:"#008573",12:"#0d3d38"},
-    green: {1:"#fbfefc",2:"#f4fbf6",3:"#e6f6eb",4:"#d6f1df",5:"#c4e8ca",6:"#addcb8",7:"#8ecea2",8:"#5bb98b",9:"#30a46c",10:"#2b9a66",11:"#218358",12:"#193b2d"},
-    lime: {1:"#fcfdfa",2:"#f8faf3",3:"#eef6d6",4:"#e2f0bd",5:"#d3e7a6",6:"#c2da91",7:"#abc978",8:"#8db654",9:"#99d52a",10:"#8cc51e",11:"#71a012",12:"#35460c"},
-    amber: {1:"#fefdfb",2:"#fefbe9",3:"#fff7c2",4:"#ffee9c",5:"#fbe27f",6:"#f3d768",7:"#e9c748",8:"#e2b72f",9:"#ffb224",10:"#ffa01c",11:"#ad5700",12:"#4e2009"},
-    orange: {1:"#fefcfb",2:"#fff7ed",3:"#ffefd6",4:"#ffdfb5",5:"#ffd19a",6:"#ffc182",7:"#f5ae73",8:"#ec9455",9:"#f76b15",10:"#ef5f00",11:"#cc4e00",12:"#582d1d"},
-    red: {1:"#fffcfc",2:"#fff7f7",3:"#feebec",4:"#ffdbdc",5:"#ffcdce",6:"#fdbdbe",7:"#f4a9aa",8:"#eb8e90",9:"#e5484d",10:"#dc3e42",11:"#ce2c31",12:"#641723"},
-    crimson: {1:"#fffcfd",2:"#fef7f9",3:"#ffe0e9",4:"#fdd3e8",5:"#f9c6db",6:"#f3b8d0",7:"#eca5bf",8:"#e38daa",9:"#e5484d",10:"#dc3e42",11:"#ce2c31",12:"#632531"},
-    purple: {1:"#fefcfe",2:"#fdfaff",3:"#f9f1fe",4:"#f3e7fc",5:"#eddc",6:"#e4d4f4",7:"#d9c8ec",8:"#c9b5e3",9:"#8e4ec6",10:"#8347b9",11:"#8145b5",12:"#402060"},
-    violet: {1:"#fdfcfe",2:"#faf8ff",3:"#f4f0fe",4:"#ebe4ff",5:"#e1d9ff",6:"#d4cafe",7:"#c2b5f5",8:"#aa99ec",9:"#6e56cf",10:"#654dc4",11:"#6550b9",12:"#2f265f"},
-    pink: {1:"#fffcfe",2:"#fef7fb",3:"#fee9f5",4:"#fbdcef",5:"#f6cee7",6:"#efbfdd",7:"#e7acd0",8:"#dd93c2",9:"#d6409f",10:"#cf3897",11:"#c2298a",12:"#651249"},
-    plum: {1:"#fefdff",2:"#fff8ff",3:"#fceffc",4:"#f9e5f9",5:"#f3d9f4",6:"#ebc8ed",7:"#dfb1e6",8:"#cf91d8",9:"#ab4aba",10:"#a144af",11:"#953ea3",12:"#53195d"},
-    iris: {1:"#fdfdff",2:"#f8f8ff",3:"#f0f1fe",4:"#e6e7ff",5:"#dadcff",6:"#cbcdff",7:"#b8baf8",8:"#9b9ef0",9:"#5b5bd6",10:"#5151cd",11:"#5753c6",12:"#272962"},
-    ruby: {1:"#fffcfd",2:"#fff7f8",3:"#feeaed",4:"#ffdce1",5:"#ffced6",6:"#f8bfc8",7:"#efacb8",8:"#e592a3",9:"#e54666",10:"#dc3b5d",11:"#ca244d",12:"#64172b"},
-    slate: {1:"#111113",2:"#18181b",3:"#212225",4:"#272a2e",5:"#2e3135",6:"#363a3f",7:"#43484e",8:"#5a6169",9:"#696e77",10:"#777b84",11:"#b0b4ba",12:"#edeef0"},
-    gray: {1:"#111111",2:"#191919",3:"#222222",4:"#2a2a2a",5:"#313131",6:"#3a3a3a",7:"#484848",8:"#606060",9:"#6e6e6e",10:"#7c7c7c",11:"#b5b5b5",12:"#eeeeee"},
-    mauve: {1:"#121113",2:"#1a181b",3:"#232225",4:"#2b292e",5:"#323035",6:"#3c393f",7:"#49474e",8:"#625f69",9:"#6f6d78",10:"#7d7b86",11:"#b2b0bc",12:"#eeeef0"},
-    sage: {1:"#101211",2:"#171918",3:"#202221",4:"#272a29",5:"#2e3130",6:"#373b39",7:"#444947",8:"#5b625f",9:"#68766e",10:"#7a867c",11:"#afbcb6",12:"#e5edeb"},
-    olive: {1:"#111210",2:"#181917",3:"#212220",4:"#282a28",5:"#2f312e",6:"#383a36",7:"#454843",8:"#5c625b",9:"#6a746a",10:"#788278",11:"#b2bcb1",12:"#e6ebe5"},
-    sand: {1:"#111110",2:"#191918",3:"#222221",4:"#2a2a28",5:"#31312e",6:"#3b3a37",7:"#494844",8:"#62605b",9:"#71706b",10:"#7f7e79",11:"#b0afa9",12:"#ecebe9"}
-  },
-
-  // Light mode color scales
+  // ========================================
+  // LIGHT MODE COLOR SCALES
+  // ========================================
+  
   light: {
     // Grays (Neutrals)
     gray: {1:"#fcfcfc",2:"#f9f9f9",3:"#f0f0f0",4:"#e8e8e8",5:"#e0e0e0",6:"#d9d9d9",7:"#cecece",8:"#bbbbbb",9:"#6e6e6e",10:"#646464",11:"#202020",12:"#1c1c1c"},
@@ -148,7 +191,7 @@ export const radixThemes = {
     // Pinks & Purples
     pink: {1:"#fffcfe",2:"#fef7fb",3:"#fee9f5",4:"#fbdcef",5:"#f6cee7",6:"#efbfdd",7:"#e7acd0",8:"#dd93c2",9:"#d6409f",10:"#cf3897",11:"#c2298a",12:"#651249"},
     plum: {1:"#fefdff",2:"#fff8ff",3:"#fceffc",4:"#f9e5f9",5:"#f3d9f4",6:"#ebc8ed",7:"#dfb1e6",8:"#cf91d8",9:"#ab4aba",10:"#a144af",11:"#953ea3",12:"#53195d"},
-    purple: {1:"#fefcfe",2:"#fdfaff",3:"#f9f1fe",4:"#f3e7fc",5:"#eddc",6:"#e4d4f4",7:"#d9c8ec",8:"#c9b5e3",9:"#8e4ec6",10:"#8347b9",11:"#8145b5",12:"#402060"},
+    purple: {1:"#fefcfe",2:"#fdfaff",3:"#f9f1fe",4:"#f3e7fc",5:"#eedcfe",6:"#e4d4f4",7:"#d9c8ec",8:"#c9b5e3",9:"#8e4ec6",10:"#8347b9",11:"#8145b5",12:"#402060"},
     violet: {1:"#fdfcfe",2:"#faf8ff",3:"#f4f0fe",4:"#ebe4ff",5:"#e1d9ff",6:"#d4cafe",7:"#c2b5f5",8:"#aa99ec",9:"#6e56cf",10:"#654dc4",11:"#6550b9",12:"#2f265f"},
     
     // Blues
@@ -179,6 +222,43 @@ export const radixThemes = {
     // Overlays
     black: {1:"#000000",2:"#111111",3:"#191919",4:"#222222",5:"#2a2a2a",6:"#313131",7:"#3a3a3a",8:"#484848",9:"#606060",10:"#6e6e6e",11:"#7c7c7c",12:"#b5b5b5"},
     white: {1:"#ffffff",2:"#fcfcfc",3:"#f9f9f9",4:"#f0f0f0",5:"#e8e8e8",6:"#e0e0e0",7:"#d9d9d9",8:"#cecece",9:"#bbbbbb",10:"#6e6e6e",11:"#646464",12:"#202020"}
+  },
+
+  // ========================================
+  // USAGE GUIDELINES (Radix Scale Purpose)
+  // ========================================
+  
+  usage: {
+    backgrounds: {
+      title: 'Background Colors',
+      description: 'Optimized for use as backgrounds',
+      steps: {
+        1: 'App background',
+        2: 'Subtle background',
+        3: 'UI element background',
+        4: 'Hovered UI element background',
+        5: 'Active / Selected UI element background'
+      }
+    },
+    interactive: {
+      title: 'Interactive Components',
+      description: 'For buttons, links, and interactive elements',
+      steps: {
+        6: 'Subtle borders and separators',
+        7: 'UI element border and focus ring',
+        8: 'Hovered UI element border',
+        9: 'Solid backgrounds',
+        10: 'Hovered solid backgrounds'
+      }
+    },
+    text: {
+      title: 'Text Colors',
+      description: 'Accessible text with guaranteed contrast',
+      steps: {
+        11: 'Low-contrast text',
+        12: 'High-contrast text'
+      }
+    }
   }
 };
 
@@ -197,24 +277,79 @@ export function getThemePreset(presetName) {
 }
 
 /**
+ * Get semantic color for a purpose
+ */
+export function getSemanticColor(purpose, mode = 'dark') {
+  const mapping = {
+    success: 'green',
+    error: 'red',
+    warning: 'amber',
+    info: 'blue'
+  };
+  return getColorScale(mapping[purpose] || 'gray', mode);
+}
+
+/**
+ * Get color for specific usage context
+ */
+export function getColorByUsage(colorName, usage, mode = 'dark') {
+  const scale = getColorScale(colorName, mode);
+  
+  const usageMap = {
+    'bg-app': scale[1],
+    'bg-subtle': scale[2],
+    'bg-ui': scale[3],
+    'bg-hover': scale[4],
+    'bg-active': scale[5],
+    'border-subtle': scale[6],
+    'border': scale[7],
+    'border-hover': scale[8],
+    'solid': scale[9],
+    'solid-hover': scale[10],
+    'text-low': scale[11],
+    'text-high': scale[12]
+  };
+  
+  return usageMap[usage] || scale[9];
+}
+
+/**
  * Apply theme to CSS variables
  */
 export function applyThemeToElement(element, theme, mode = 'dark') {
   const primary = getColorScale(theme.primary, mode);
   const accent = getColorScale(theme.accent, mode);
   const neutral = getColorScale(theme.neutral, mode);
+  const semantic = theme.semantic || {};
 
-  // Apply CSS variables
+  // Apply primary colors
   Object.entries(primary).forEach(([step, color]) => {
-    element.style.setProperty(`--primary-${step}`, color);
+    element.style.setProperty(`--color-primary-${step}`, color);
   });
   
+  // Apply accent colors
   Object.entries(accent).forEach(([step, color]) => {
-    element.style.setProperty(`--accent-${step}`, color);
+    element.style.setProperty(`--color-accent-${step}`, color);
   });
   
+  // Apply neutral colors
   Object.entries(neutral).forEach(([step, color]) => {
-    element.style.setProperty(`--neutral-${step}`, color);
+    element.style.setProperty(`--color-neutral-${step}`, color);
   });
+  
+  // Apply semantic colors
+  Object.entries(semantic).forEach(([purpose, colorName]) => {
+    const scale = getColorScale(colorName, mode);
+    Object.entries(scale).forEach(([step, color]) => {
+      element.style.setProperty(`--color-${purpose}-${step}`, color);
+    });
+  });
+}
+
+/**
+ * Get colors by category
+ */
+export function getColorsByCategory(category) {
+  return radixThemes.categories[category]?.colors || [];
 }
 
