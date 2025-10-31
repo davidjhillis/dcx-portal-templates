@@ -155,8 +155,8 @@
   <div class="max-w-screen-2xl mx-auto px-6 py-8">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
       
-      <!-- Left Sidebar - Filters -->
-      <aside class="lg:col-span-3">
+      <!-- Left Sidebar - Filters (Order 1 on mobile, 1 on desktop) -->
+      <aside class="lg:col-span-3 order-1">
         <div class="sticky top-24 bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
           <h2 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Refine results</h2>
           
@@ -179,15 +179,15 @@
           
           <!-- Action Buttons -->
           <div class="flex items-center gap-3 mb-4 pb-4 border-b border-gray-200 dark:border-gray-700">
-            <button class="p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300" title="Expand all">
+            <button id="expand-all-btn" class="p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300" title="Expand all">
               <i data-lucide="chevron-down" class="w-4 h-4"></i>
             </button>
             <div class="w-px h-4 bg-gray-300 dark:bg-gray-600"></div>
-            <button class="p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300" title="Collapse all">
+            <button id="collapse-all-btn" class="p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300" title="Collapse all">
               <i data-lucide="chevron-up" class="w-4 h-4"></i>
             </button>
             <div class="w-px h-4 bg-gray-300 dark:bg-gray-600"></div>
-            <button class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 font-medium">
+            <button id="clear-filters-btn" class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 font-medium">
               <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
               <span>Clear all filters</span>
             </button>
@@ -251,8 +251,8 @@
         </div>
       </aside>
       
-      <!-- Center - Search Results -->
-      <main class="lg:col-span-6">
+      <!-- Center - Search Results (Order 3 on mobile, appears after AI answer) -->
+      <main class="lg:col-span-6 order-3 lg:order-2">
         <div class="mb-6">
           <h1 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Results for "component schemas"</h1>
           <p class="text-sm text-gray-600 dark:text-gray-400">1 - 8 of 8 results found</p>
@@ -438,8 +438,8 @@
         </div>
       </main>
       
-      <!-- Right Sidebar - AI Response -->
-      <aside class="lg:col-span-3">
+      <!-- Right Sidebar - AI Response (Order 2 on mobile, appears before results) -->
+      <aside class="lg:col-span-3 order-2 lg:order-3">
         <div class="sticky top-24 bg-gradient-to-br from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 rounded-lg border border-purple-200 dark:border-purple-700 p-6">
           
         <!-- Feedback -->
@@ -663,6 +663,68 @@
       if (themeButtons.auto) themeButtons.auto.addEventListener('click', () => setTheme('auto'));
       if (themeButtons.light) themeButtons.light.addEventListener('click', () => setTheme('light'));
       if (themeButtons.dark) themeButtons.dark.addEventListener('click', () => setTheme('dark'));
+      
+      // Expand All button
+      const expandAllBtn = document.getElementById('expand-all-btn');
+      if (expandAllBtn) {
+        expandAllBtn.addEventListener('click', function() {
+          const filterToggles = document.querySelectorAll('.filter-toggle');
+          filterToggles.forEach(button => {
+            const content = button.nextElementSibling;
+            const chevronContainer = button.querySelector('i, svg');
+            
+            if (content && content.classList.contains('hidden')) {
+              content.classList.remove('hidden');
+              button.setAttribute('data-chevron-state', 'up');
+              
+              if (chevronContainer) {
+                const newIcon = document.createElement('i');
+                newIcon.setAttribute('data-lucide', 'chevron-up');
+                newIcon.className = 'w-4 h-4';
+                chevronContainer.replaceWith(newIcon);
+              }
+            }
+          });
+          lucide.createIcons();
+        });
+      }
+      
+      // Collapse All button
+      const collapseAllBtn = document.getElementById('collapse-all-btn');
+      if (collapseAllBtn) {
+        collapseAllBtn.addEventListener('click', function() {
+          const filterToggles = document.querySelectorAll('.filter-toggle');
+          filterToggles.forEach(button => {
+            const content = button.nextElementSibling;
+            const chevronContainer = button.querySelector('i, svg');
+            
+            if (content && !content.classList.contains('hidden')) {
+              content.classList.add('hidden');
+              button.setAttribute('data-chevron-state', 'down');
+              
+              if (chevronContainer) {
+                const newIcon = document.createElement('i');
+                newIcon.setAttribute('data-lucide', 'chevron-down');
+                newIcon.className = 'w-4 h-4';
+                chevronContainer.replaceWith(newIcon);
+              }
+            }
+          });
+          lucide.createIcons();
+        });
+      }
+      
+      // Clear All Filters button
+      const clearFiltersBtn = document.getElementById('clear-filters-btn');
+      if (clearFiltersBtn) {
+        clearFiltersBtn.addEventListener('click', function() {
+          // Uncheck all checkboxes
+          const checkboxes = document.querySelectorAll('.filter-content input[type="checkbox"]');
+          checkboxes.forEach(checkbox => {
+            checkbox.checked = false;
+          });
+        });
+      }
     });
   </script>
 
