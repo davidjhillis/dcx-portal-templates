@@ -4,9 +4,6 @@
  * Source: https://www.radix-ui.com/colors
  */
 
-// Import Tailwind Purple exact colors
-import { tailwindPurpleTheme } from './tailwind-purple-theme.js';
-
 export const radixThemes = {
   // Pre-built theme combinations using official Radix color names
   presets: {
