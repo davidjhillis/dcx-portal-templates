@@ -310,6 +310,11 @@
       <main class="flex-1 lg:ml-64 lg:mr-64">
         <div class="max-w-4xl mx-auto px-6 py-12">
           
+          <!-- Show TOC Button (appears when TOC is hidden) -->
+          <button id="show-toc-btn" class="hidden mb-6 p-2 border-2 border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded transition-colors" title="Show table of contents">
+            <i data-lucide="panel-left-open" class="w-5 h-5 text-blue-600 dark:text-blue-400"></i>
+          </button>
+          
           <!-- Article Toolbar -->
           <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-200 dark:border-gray-700">
             <div class="flex items-center gap-2">
@@ -1640,40 +1645,54 @@
       
       // Hide/Show Table of Contents
       const hideTocBtn = document.getElementById('hide-toc-btn');
+      const showTocBtn = document.getElementById('show-toc-btn');
       const leftSidebar = document.querySelector('aside.fixed.left-0');
       const mainContent = document.querySelector('main.flex-1');
       
-      if (hideTocBtn && leftSidebar && mainContent) {
-        hideTocBtn.addEventListener('click', function() {
-          // Toggle lg:block to lg:hidden
-          const isCurrentlyVisible = leftSidebar.classList.contains('lg:block');
+      function toggleToc() {
+        const isCurrentlyVisible = leftSidebar.classList.contains('lg:block');
+        
+        if (isCurrentlyVisible) {
+          // Hide TOC
+          leftSidebar.classList.remove('lg:block');
+          leftSidebar.classList.add('lg:hidden');
+          mainContent.classList.remove('lg:ml-64');
+          showTocBtn.classList.remove('hidden');
+          showTocBtn.classList.add('block');
           
-          if (isCurrentlyVisible) {
-            leftSidebar.classList.remove('lg:block');
-            leftSidebar.classList.add('lg:hidden');
-            mainContent.classList.remove('lg:ml-64');
-            this.setAttribute('title', 'Show table of contents');
-            
-            // Change icon to panel-left-open
-            const icon = this.querySelector('i');
+          if (hideTocBtn) {
+            hideTocBtn.setAttribute('title', 'Show table of contents');
+            const icon = hideTocBtn.querySelector('i');
             if (icon) {
               icon.setAttribute('data-lucide', 'panel-left-open');
               lucide.createIcons();
             }
-          } else {
-            leftSidebar.classList.remove('lg:hidden');
-            leftSidebar.classList.add('lg:block');
-            mainContent.classList.add('lg:ml-64');
-            this.setAttribute('title', 'Hide table of contents');
-            
-            // Change icon back to panel-left-close
-            const icon = this.querySelector('i');
+          }
+        } else {
+          // Show TOC
+          leftSidebar.classList.remove('lg:hidden');
+          leftSidebar.classList.add('lg:block');
+          mainContent.classList.add('lg:ml-64');
+          showTocBtn.classList.remove('block');
+          showTocBtn.classList.add('hidden');
+          
+          if (hideTocBtn) {
+            hideTocBtn.setAttribute('title', 'Hide table of contents');
+            const icon = hideTocBtn.querySelector('i');
             if (icon) {
               icon.setAttribute('data-lucide', 'panel-left-close');
               lucide.createIcons();
             }
           }
-        });
+        }
+      }
+      
+      if (hideTocBtn && leftSidebar && mainContent) {
+        hideTocBtn.addEventListener('click', toggleToc);
+      }
+      
+      if (showTocBtn && leftSidebar && mainContent) {
+        showTocBtn.addEventListener('click', toggleToc);
       }
       
       // Expand All Sections
