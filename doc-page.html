@@ -306,9 +306,9 @@
       </nav>
     </aside>
 
-      <!-- Show TOC Button (fixed to left edge when TOC is hidden) -->
-      <button id="show-toc-btn" class="hidden fixed left-0 top-32 z-40 p-3 bg-white dark:bg-gray-900 border-2 border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-r-lg shadow-lg transition-colors" title="Show table of contents">
-        <i data-lucide="panel-right" class="w-5 h-5 text-blue-600 dark:text-blue-400"></i>
+      <!-- Show TOC Button (appears where TOC normally is) -->
+      <button id="show-toc-btn" class="hidden fixed top-24 z-40 p-2 bg-white dark:bg-gray-900 border-2 border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded shadow-md transition-colors" style="left: max(24px, calc(50% - 768px))" title="Show table of contents">
+        <i data-lucide="chevron-right" class="w-4 h-4 text-blue-600 dark:text-blue-400"></i>
       </button>
 
       <!-- Main Content -->
