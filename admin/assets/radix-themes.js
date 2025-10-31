@@ -78,7 +78,7 @@ export const radixThemes = {
     pink: {1:"#1f121b",2:"#271421",3:"#3a182f",4:"#4a1939",5:"#581d42",6:"#69224e",7:"#7e2b5f",8:"#a23776",9:"#d6409f",10:"#de51ab",11:"#ec6cb9",12:"#faddf4"},
     plum: {1:"#181118",2:"#21131e",3:"#351631",4:"#451841",5:"#53214e",6:"#642b5f",7:"#7e3973",8:"#a84d90",9:"#ab4aba",10:"#b658c4",11:"#e796f3",12:"#f4d4f4"},
     purple: {1:"#1b141d",2:"#221527",3:"#301a3a",4:"#3a1e48",5:"#432155",6:"#4e2667",7:"#5f2d84",8:"#7938b2",9:"#8e4ec6",10:"#9d5bd2",11:"#d19dff",12:"#ecd9fa"},
-    "tailwind-purple": tailwindPurpleTheme.dark,  // Exact Tailwind CSS purple (dark mode)
+    "tailwind-purple": {1:"#18111c",2:"#231825",3:"#3b0764",4:"#581c87",5:"#6b21a8",6:"#7e22ce",7:"#9333ea",8:"#a855f7",9:"#c084fc",10:"#d8b4fe",11:"#e9d5ff",12:"#f3e8ff"},  // Tailwind CSS purple (SAME in both modes)
     violet: {1:"#14121f",2:"#1b1525",3:"#291f43",4:"#33255b",5:"#3c2e69",6:"#473876",7:"#56468b",8:"#6958ad",9:"#6e56cf",10:"#7c66dc",11:"#9e8cfc",12:"#dcd1ff"},
     
     // Blues
@@ -124,7 +124,7 @@ export const radixThemes = {
     red: {1:"#fffcfc",2:"#fff7f7",3:"#feebec",4:"#ffdbdc",5:"#ffcdce",6:"#fdbdbe",7:"#f4a9aa",8:"#eb8e90",9:"#e5484d",10:"#dc3e42",11:"#ce2c31",12:"#641723"},
     crimson: {1:"#fffcfd",2:"#fef7f9",3:"#ffe0e9",4:"#fdd3e8",5:"#f9c6db",6:"#f3b8d0",7:"#eca5bf",8:"#e38daa",9:"#e5484d",10:"#dc3e42",11:"#ce2c31",12:"#632531"},
     purple: {1:"#fefcfe",2:"#fdfaff",3:"#f9f1fe",4:"#f3e7fc",5:"#eddc",6:"#e4d4f4",7:"#d9c8ec",8:"#c9b5e3",9:"#8e4ec6",10:"#8347b9",11:"#8145b5",12:"#402060"},
-    "tailwind-purple": tailwindPurpleTheme.light,  // Exact Tailwind CSS purple (light mode)
+    "tailwind-purple": {1:"#18111c",2:"#231825",3:"#3b0764",4:"#581c87",5:"#6b21a8",6:"#7e22ce",7:"#9333ea",8:"#a855f7",9:"#c084fc",10:"#d8b4fe",11:"#e9d5ff",12:"#f3e8ff"},  // Tailwind CSS purple (SAME in both modes)
     violet: {1:"#fdfcfe",2:"#faf8ff",3:"#f4f0fe",4:"#ebe4ff",5:"#e1d9ff",6:"#d4cafe",7:"#c2b5f5",8:"#aa99ec",9:"#6e56cf",10:"#654dc4",11:"#6550b9",12:"#2f265f"},
     pink: {1:"#fffcfe",2:"#fef7fb",3:"#fee9f5",4:"#fbdcef",5:"#f6cee7",6:"#efbfdd",7:"#e7acd0",8:"#dd93c2",9:"#d6409f",10:"#cf3897",11:"#c2298a",12:"#651249"},
     plum: {1:"#fefdff",2:"#fff8ff",3:"#fceffc",4:"#f9e5f9",5:"#f3d9f4",6:"#ebc8ed",7:"#dfb1e6",8:"#cf91d8",9:"#ab4aba",10:"#a144af",11:"#953ea3",12:"#53195d"},
