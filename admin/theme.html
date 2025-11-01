@@ -747,7 +747,21 @@
       
       count.textContent = `${savedVersions.length} saved`;
       
-      container.innerHTML = savedVersions.slice().reverse().map(version => {
+      // Action buttons at the top
+      const actionButtons = `
+        <div class="mb-3 flex gap-2">
+          <button id="save-version-btn" class="flex-1 px-3 py-2 bg-white/[0.05] hover:bg-white/[0.08] rounded-lg text-[11px] font-medium text-white/90 transition-colors flex items-center justify-center gap-1.5">
+            <i data-lucide="bookmark" class="w-3.5 h-3.5"></i>
+            Save Version
+          </button>
+          <button id="export-css-btn" class="flex-1 px-3 py-2 bg-white/[0.05] hover:bg-white/[0.08] rounded-lg text-[11px] font-medium text-white/90 transition-colors flex items-center justify-center gap-1.5">
+            <i data-lucide="code" class="w-3.5 h-3.5"></i>
+            Export CSS
+          </button>
+        </div>
+      `;
+      
+      const versionItems = savedVersions.slice().reverse().map(version => {
         const date = new Date(version.timestamp);
         const timeStr = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
         const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
@@ -766,7 +780,13 @@
         `;
       }).join('');
       
+      container.innerHTML = actionButtons + versionItems;
+      
       lucide.createIcons();
+      
+      // Reattach event listeners for action buttons
+      document.getElementById('save-version-btn')?.addEventListener('click', saveVersion);
+      document.getElementById('export-css-btn')?.addEventListener('click', exportCSS);
     }
 
     // ========================================
