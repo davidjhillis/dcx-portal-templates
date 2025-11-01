@@ -1657,6 +1657,50 @@
     }
     
     // ========================================
+    // TAILWIND COLOR DROPDOWN LISTENERS
+    // ========================================
+    
+    // Load all shades from a Tailwind color into the modal
+    function loadTailwindColorScale(colorType, colorName) {
+      const shades = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
+      const mode = modalState.currentMode;
+      
+      shades.forEach(shade => {
+        const hex = tailwindColors.getColor(colorName, shade);
+        const input = document.getElementById(`${colorType}-${shade}`);
+        if (input && hex) {
+          input.value = hex;
+          modalState[mode][colorType][shade] = hex;
+        }
+      });
+      
+      // Update top-level color picker and hex input
+      const baseHex = tailwindColors.getColor(colorName, 600);
+      if (baseHex) {
+        document.getElementById(`modal-${colorType}-color`).value = baseHex;
+        document.getElementById(`modal-${colorType}-hex`).value = baseHex.toUpperCase();
+      }
+      
+      // Update preview
+      updateModalPreviewFromInputs();
+    }
+    
+    // Primary color dropdown
+    document.getElementById('primary-color-select').addEventListener('change', (e) => {
+      loadTailwindColorScale('primary', e.target.value);
+    });
+    
+    // Accent color dropdown
+    document.getElementById('accent-color-select').addEventListener('change', (e) => {
+      loadTailwindColorScale('accent', e.target.value);
+    });
+    
+    // Neutral color dropdown
+    document.getElementById('neutral-color-select').addEventListener('change', (e) => {
+      loadTailwindColorScale('neutral', e.target.value);
+    });
+    
+    // ========================================
     // INDIVIDUAL COLOR STEP LISTENERS
     // ========================================
     
@@ -2077,8 +2121,29 @@
             <!-- Color Inputs -->
             <div class="grid grid-cols-3 gap-3">
               <!-- Primary Color -->
-              <div>
-                <label class="text-xs font-semibold text-white/90 mb-1.5 block">Primary</label>
+              <div class="grid grid-cols-[120px_1fr] gap-3 items-end">
+                <div>
+                  <label class="text-xs font-semibold text-white/90 mb-1.5 block">Primary</label>
+                  <select id="primary-color-select" class="w-full px-2 py-1.5 bg-white/[0.03] border border-white/10 rounded text-white text-xs">
+                    <option value="purple">Purple</option>
+                    <option value="violet">Violet</option>
+                    <option value="indigo">Indigo</option>
+                    <option value="blue">Blue</option>
+                    <option value="sky">Sky</option>
+                    <option value="cyan">Cyan</option>
+                    <option value="teal">Teal</option>
+                    <option value="emerald">Emerald</option>
+                    <option value="green">Green</option>
+                    <option value="lime">Lime</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="amber">Amber</option>
+                    <option value="orange">Orange</option>
+                    <option value="red">Red</option>
+                    <option value="rose">Rose</option>
+                    <option value="pink">Pink</option>
+                    <option value="fuchsia">Fuchsia</option>
+                  </select>
+                </div>
                 <div class="flex items-center gap-2">
                   <input 
                     type="color" 
@@ -2098,8 +2163,29 @@
               </div>
 
               <!-- Accent Color -->
-              <div>
-                <label class="text-xs font-semibold text-white/90 mb-1.5 block">Accent</label>
+              <div class="grid grid-cols-[120px_1fr] gap-3 items-end">
+                <div>
+                  <label class="text-xs font-semibold text-white/90 mb-1.5 block">Accent</label>
+                  <select id="accent-color-select" class="w-full px-2 py-1.5 bg-white/[0.03] border border-white/10 rounded text-white text-xs">
+                    <option value="purple">Purple</option>
+                    <option value="violet">Violet</option>
+                    <option value="indigo">Indigo</option>
+                    <option value="blue">Blue</option>
+                    <option value="sky">Sky</option>
+                    <option value="cyan">Cyan</option>
+                    <option value="teal">Teal</option>
+                    <option value="emerald">Emerald</option>
+                    <option value="green">Green</option>
+                    <option value="lime">Lime</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="amber">Amber</option>
+                    <option value="orange">Orange</option>
+                    <option value="red">Red</option>
+                    <option value="rose">Rose</option>
+                    <option value="pink">Pink</option>
+                    <option value="fuchsia">Fuchsia</option>
+                  </select>
+                </div>
                 <div class="flex items-center gap-2">
                   <input 
                     type="color" 
@@ -2119,8 +2205,19 @@
               </div>
 
               <!-- Neutral Color -->
-              <div>
-                <label class="text-xs font-semibold text-white/90 mb-1.5 block">Neutral</label>
+              <div class="grid grid-cols-[120px_1fr] gap-3 items-end">
+                <div>
+                  <label class="text-xs font-semibold text-white/90 mb-1.5 block">Neutral</label>
+                  <select id="neutral-color-select" class="w-full px-2 py-1.5 bg-white/[0.03] border border-white/10 rounded text-white text-xs">
+                    <option value="gray">Gray</option>
+                    <option value="coolGray">Cool Gray</option>
+                    <option value="warmGray">Warm Gray</option>
+                    <option value="slate">Slate</option>
+                    <option value="zinc">Zinc</option>
+                    <option value="neutral">Neutral</option>
+                    <option value="stone">Stone</option>
+                  </select>
+                </div>
                 <div class="flex items-center gap-2">
                   <input 
                     type="color" 
