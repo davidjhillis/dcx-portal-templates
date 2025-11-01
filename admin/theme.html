@@ -1362,31 +1362,6 @@
       });
     }
     
-    // Wait for iframe to load
-    const iframe = document.getElementById('preview-iframe');
-    iframe.onload = () => {
-      // Load custom themes from storage first
-      loadCustomThemesFromStorage();
-      
-      // Initialize
-      saveToHistory(currentState);
-      generateThemePresets();
-      generateColorSwatches();
-      updateUI();
-      applyTheme();
-      
-      // Create initial saved versions
-      savedVersions = [
-        {
-          id: 1,
-          timestamp: new Date(Date.now() - 86400000).toISOString(),
-          state: JSON.parse(JSON.stringify(currentState)),
-          name: 'Initial Design'
-        }
-      ];
-      updateVersionList();
-    };
-    
     // ========================================
     // CUSTOMIZE MODAL - Enterprise Features
     // ========================================
@@ -2189,21 +2164,29 @@
     
     // Wait for Tailwind colors to load
     if (typeof tailwindColors !== 'undefined') {
-      // Generate UI elements
-      loadCustomThemesFromStorage();  // Load custom themes first (adds to tailwindColors)
-      generateThemePresets();          // Then generate UI with all themes
+      // Load custom themes from storage first (adds to tailwindColors)
+      loadCustomThemesFromStorage();
+      
+      // Generate UI elements (can run immediately, don't need iframe)
+      generateThemePresets();
       generateColorSwatches();
       
-      // Apply current theme from state
-      applyTheme();
-      updateUI();
-      
-      // Initialize Lucide icons
+      // Initialize Lucide icons for sidebar
       lucide.createIcons();
       
-      console.log('Theme editor initialized successfully');
+      console.log('Theme editor sidebar initialized');
     } else {
       console.error('Failed to load tailwindColors');
+    }
+    
+    // Wait for iframe to load before applying theme
+    const previewIframe = document.getElementById('preview-iframe');
+    if (previewIframe) {
+      previewIframe.addEventListener('load', () => {
+        console.log('Preview iframe loaded - applying theme');
+        applyTheme();
+        updateUI();
+      });
     }
   </script>
 
