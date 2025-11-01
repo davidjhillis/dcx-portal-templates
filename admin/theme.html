@@ -1110,25 +1110,7 @@
         `;
       }).join('');
       
-      // Add "Custom" theme button at the end
-      const customButton = `
-        <button 
-          id="custom-theme-btn-preset"
-          class="theme-preset w-full flex items-center gap-3 p-3 rounded-lg border-2 border-dashed border-white/10 hover:border-indigo-400/30"
-        >
-          <div class="flex gap-1">
-            <div class="w-6 h-6 rounded-md bg-gradient-to-br from-indigo-500 to-indigo-600"></div>
-            <div class="w-6 h-6 rounded-md bg-gradient-to-br from-violet-500 to-violet-600"></div>
-          </div>
-          <div class="flex-1 text-left">
-            <div class="text-[12px] font-semibold text-white/90">Custom</div>
-            <div class="text-[10px] text-white/40">Build your own theme</div>
-          </div>
-          <i data-lucide="plus-circle" class="w-4 h-4 text-indigo-400"></i>
-        </button>
-      `;
-      
-      container.innerHTML = presetsHTML + customButton;
+      container.innerHTML = presetsHTML;
       
       lucide.createIcons();
       
