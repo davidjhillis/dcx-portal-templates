@@ -245,13 +245,13 @@
     }
     
     /* ========================================
-       REVERSE COLOR SCALES IN DARK MODE
+       COLOR SCALE VISUAL ORDER
        ======================================== */
     
-    /* In dark mode, reverse the visual order so background (900) appears first */
-    #customize-modal.dark .flex.rounded.overflow-hidden {
-      flex-direction: row-reverse;
-    }
+    /* Keep visual order consistent (50→900) in both light and dark modes
+       Light mode: background=50 (left), text=900 (right)
+       Dark mode: background=900 (right), text=50 (left)
+       CSS variables handle the semantic mapping */
   </style>
 </head>
 <body class="bg-[#252525] text-white">
