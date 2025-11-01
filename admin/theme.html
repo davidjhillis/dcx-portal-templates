@@ -2160,9 +2160,9 @@
     // Wait for Tailwind colors to load
     if (typeof tailwindColors !== 'undefined') {
       // Generate UI elements
-      generateThemePresets();
+      loadCustomThemesFromStorage();  // Load custom themes first (adds to tailwindColors)
+      generateThemePresets();          // Then generate UI with all themes
       generateColorSwatches();
-      loadCustomThemes();
       
       // Apply current theme from state
       applyTheme();
