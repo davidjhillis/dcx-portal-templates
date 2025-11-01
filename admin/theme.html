@@ -969,28 +969,38 @@
            NEUTRAL COLORS (Gray - for backgrounds)
            ======================================== */
         
-        /* Gray backgrounds */
-        .bg-gray-50 { background-color: var(--color-neutral-50) !important; }
-        .bg-gray-100 { background-color: var(--color-neutral-100) !important; }
-        .bg-gray-800 { background-color: var(--color-neutral-800) !important; }
-        .bg-gray-900 { background-color: var(--color-neutral-900) !important; }
+        /* Light mode neutral backgrounds */
+        html:not(.dark) .bg-white { background-color: var(--color-neutral-50) !important; }
+        html:not(.dark) .bg-gray-50 { background-color: var(--color-neutral-100) !important; }
+        html:not(.dark) .bg-gray-100 { background-color: var(--color-neutral-100) !important; }
+        html:not(.dark) .bg-gray-800 { background-color: var(--color-neutral-800) !important; }
+        html:not(.dark) .bg-gray-900 { background-color: var(--color-neutral-900) !important; }
         
-        /* Dark mode gray backgrounds */
-        .dark\\:bg-gray-800 { background-color: var(--color-neutral-800) !important; }
-        .dark\\:bg-gray-900 { background-color: var(--color-neutral-900) !important; }
+        /* Hover states for light mode */
+        html:not(.dark) .hover\\:bg-gray-100:hover { background-color: var(--color-neutral-100) !important; }
+        
+        /* Dark mode gray backgrounds (using dark: prefix) */
+        html.dark .dark\\:bg-gray-700 { background-color: var(--color-neutral-700) !important; }
+        html.dark .dark\\:bg-gray-800 { background-color: var(--color-neutral-800) !important; }
+        html.dark .dark\\:bg-gray-900 { background-color: var(--color-neutral-900) !important; }
+        html.dark .dark\\:bg-black { background-color: var(--color-neutral-950) !important; }
+        
+        /* Hover states for dark mode */
+        html.dark .dark\\:hover\\:bg-gray-700:hover { background-color: var(--color-neutral-700) !important; }
+        html.dark .dark\\:hover\\:bg-gray-800:hover { background-color: var(--color-neutral-800) !important; }
         
         /* Dark mode gray gradients */
-        .dark\\:from-gray-800 { --tw-gradient-from: var(--color-neutral-800) !important; }
-        .dark\\:to-gray-900 { --tw-gradient-to: var(--color-neutral-900) !important; }
+        html.dark .dark\\:from-gray-800 { --tw-gradient-from: var(--color-neutral-800) !important; }
+        html.dark .dark\\:to-gray-900 { --tw-gradient-to: var(--color-neutral-900) !important; }
         
         /* Gray borders */
-        .border-gray-200 { border-color: var(--color-neutral-200) !important; }
-        .dark\\:border-gray-700 { border-color: var(--color-neutral-700) !important; }
+        html:not(.dark) .border-gray-200 { border-color: var(--color-neutral-200) !important; }
+        html.dark .dark\\:border-gray-700 { border-color: var(--color-neutral-700) !important; }
         
         /* Gray text */
-        .text-gray-500 { color: var(--color-neutral-500) !important; }
-        .text-gray-600 { color: var(--color-neutral-600) !important; }
-        .text-gray-900 { color: var(--color-neutral-900) !important; }
+        html:not(.dark) .text-gray-500 { color: var(--color-neutral-500) !important; }
+        html:not(.dark) .text-gray-600 { color: var(--color-neutral-600) !important; }
+        html:not(.dark) .text-gray-900 { color: var(--color-neutral-900) !important; }
         .dark\\:text-gray-300 { color: var(--color-neutral-300) !important; }
         .dark\\:text-gray-400 { color: var(--color-neutral-400) !important; }
         .dark\\:text-white { color: white !important; }
