@@ -621,6 +621,18 @@
       }
       
       updateUndoRedoButtons();
+      
+      // Save active theme to localStorage for cross-page sync
+      saveActiveTheme(state);
+    }
+    
+    function saveActiveTheme(state) {
+      try {
+        localStorage.setItem('themeEditorState', JSON.stringify(state));
+        console.log('✅ Active theme saved to localStorage:', state.preset || 'custom');
+      } catch (error) {
+        console.error('Failed to save theme to localStorage:', error);
+      }
     }
 
     function undo() {
