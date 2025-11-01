@@ -1785,6 +1785,59 @@
     });
     
     // ========================================
+    // NOTIFICATION DIALOG FUNCTIONS
+    // ========================================
+    
+    function showDialog(type, title, message) {
+      const dialog = document.getElementById('notification-dialog');
+      const icon = document.getElementById('dialog-icon');
+      const iconLucide = document.getElementById('dialog-icon-lucide');
+      const titleEl = document.getElementById('dialog-title');
+      const messageEl = document.getElementById('dialog-message');
+      
+      // Set content
+      titleEl.textContent = title;
+      messageEl.textContent = message;
+      
+      // Set icon and colors based on type
+      if (type === 'success') {
+        icon.className = 'w-12 h-12 mx-auto mb-4 rounded-full flex items-center justify-center bg-green-500/20';
+        iconLucide.setAttribute('data-lucide', 'check-circle');
+        iconLucide.className = 'w-6 h-6 text-green-400';
+      } else if (type === 'error') {
+        icon.className = 'w-12 h-12 mx-auto mb-4 rounded-full flex items-center justify-center bg-red-500/20';
+        iconLucide.setAttribute('data-lucide', 'alert-circle');
+        iconLucide.className = 'w-6 h-6 text-red-400';
+      } else if (type === 'info') {
+        icon.className = 'w-12 h-12 mx-auto mb-4 rounded-full flex items-center justify-center bg-blue-500/20';
+        iconLucide.setAttribute('data-lucide', 'info');
+        iconLucide.className = 'w-6 h-6 text-blue-400';
+      }
+      
+      // Show dialog
+      dialog.classList.remove('hidden');
+      
+      // Re-initialize lucide icons for the new icon
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      }
+    }
+    
+    function closeDialog() {
+      document.getElementById('notification-dialog').classList.add('hidden');
+    }
+    
+    // Close dialog on button click
+    document.getElementById('dialog-close-btn').addEventListener('click', closeDialog);
+    
+    // Close dialog on backdrop click
+    document.getElementById('notification-dialog').addEventListener('click', (e) => {
+      if (e.target.id === 'notification-dialog') {
+        closeDialog();
+      }
+    });
+    
+    // ========================================
     // SAVE THEME FUNCTIONALITY
     // ========================================
     
@@ -1794,7 +1847,7 @@
       
       // Validation
       if (!themeName) {
-        alert('Please enter a theme name');
+        showDialog('error', 'Theme Name Required', 'Please enter a name for your theme before saving.');
         document.getElementById('modal-theme-name').focus();
         return;
       }
@@ -1871,7 +1924,7 @@
       
       // Success message
       setTimeout(() => {
-        alert(`✓ Theme "${themeName}" saved successfully!\n\nYou can now select it from the theme preset list.`);
+        showDialog('success', 'Theme Saved Successfully', `"${themeName}" has been saved and is now available in your theme preset list.`);
       }, 100);
     });
     
@@ -2461,6 +2514,29 @@
           </button>
         </div>
 
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================
+       NOTIFICATION DIALOG - Centered & Styled
+       ======================================== -->
+  <div id="notification-dialog" class="hidden fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm flex items-center justify-center p-6">
+    <div class="bg-[#1a1a1a] rounded-xl border border-white/10 shadow-2xl max-w-md w-full overflow-hidden animate-in">
+      <!-- Dialog Icon & Message -->
+      <div class="p-6 text-center">
+        <div id="dialog-icon" class="w-12 h-12 mx-auto mb-4 rounded-full flex items-center justify-center">
+          <i id="dialog-icon-lucide" class="w-6 h-6"></i>
+        </div>
+        <h3 id="dialog-title" class="text-lg font-semibold text-white mb-2"></h3>
+        <p id="dialog-message" class="text-sm text-white/70"></p>
+      </div>
+      
+      <!-- Dialog Footer -->
+      <div class="px-6 py-4 border-t border-white/10 flex justify-center">
+        <button id="dialog-close-btn" class="px-6 py-2.5 bg-purple-600 hover:bg-purple-700 rounded-lg text-sm font-semibold text-white transition-colors">
+          OK
+        </button>
       </div>
     </div>
   </div>
