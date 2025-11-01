@@ -531,7 +531,7 @@
         <div id="preview-wrapper" class="transition-all duration-300" style="width: 100%; height: 100%;">
           <iframe 
             id="preview-iframe" 
-            src="preview-templates/index.html" 
+            src="preview-templates/index.html?v=3" 
             class="w-full h-full bg-white dark:bg-gray-900 rounded-lg shadow-2xl border border-white/[0.08]"
             style="transform-origin: center center;"
           ></iframe>
@@ -1283,7 +1283,7 @@
     // Page selector
     document.getElementById('page-select').addEventListener('change', function() {
       const iframe = document.getElementById('preview-iframe');
-      iframe.src = `preview-templates/${this.value}`;
+      iframe.src = `preview-templates/${this.value}?v=3`;
       
       // Reapply theme after iframe loads
       iframe.onload = () => {
