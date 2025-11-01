@@ -243,6 +243,15 @@
     #modal-component-preview.dark .dark\\:bg-gray-800 {
       background-color: var(--preview-neutral-800) !important;
     }
+    
+    /* ========================================
+       REVERSE COLOR SCALES IN DARK MODE
+       ======================================== */
+    
+    /* In dark mode, reverse the visual order so background (900) appears first */
+    #customize-modal.dark .flex.rounded.overflow-hidden {
+      flex-direction: row-reverse;
+    }
   </style>
 </head>
 <body class="bg-[#252525] text-white">
@@ -1454,6 +1463,7 @@
       const lightBtn = document.getElementById('modal-light-mode');
       const darkBtn = document.getElementById('modal-dark-mode');
       const preview = document.getElementById('modal-component-preview');
+      const modal = document.getElementById('customize-modal');
       
       if (modalState.currentMode === 'light') {
         lightBtn.classList.add('text-purple-400', 'bg-purple-500/20');
@@ -1461,6 +1471,7 @@
         darkBtn.classList.remove('text-purple-400', 'bg-purple-500/20');
         darkBtn.classList.add('text-white/60');
         preview.classList.remove('dark');
+        modal.classList.remove('dark');
         // Set light mode background (neutral-50)
         preview.style.backgroundColor = 'var(--preview-neutral-50)';
       } else {
@@ -1469,6 +1480,7 @@
         lightBtn.classList.remove('text-purple-400', 'bg-purple-500/20');
         lightBtn.classList.add('text-white/60');
         preview.classList.add('dark');
+        modal.classList.add('dark');
         // Set dark mode background (neutral-900)
         preview.style.backgroundColor = 'var(--preview-neutral-900)';
       }
