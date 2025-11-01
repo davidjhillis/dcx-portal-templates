@@ -292,6 +292,24 @@
       <!-- Scrollable Content -->
       <div class="flex-1 overflow-y-auto px-4 py-4">
         
+        <!-- Theme / AI Options Toggle -->
+        <div class="section mb-4">
+          <div class="flex gap-1.5 p-0.5 bg-white/[0.03] rounded-lg mb-3">
+            <button id="theme-mode" class="flex-1 px-3 py-1.5 rounded-md text-[12px] font-medium transition-all bg-white/[0.08] text-white/90">
+              <div class="flex items-center justify-center gap-1.5">
+                <i data-lucide="palette" class="w-3.5 h-3.5"></i>
+                <span>Theme</span>
+              </div>
+            </button>
+            <button id="ai-options-mode" class="flex-1 px-3 py-1.5 rounded-md text-[12px] font-medium transition-all text-white/50 hover:text-white/70">
+              <div class="flex items-center justify-center gap-1.5">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                <span>AI Options</span>
+              </div>
+            </button>
+          </div>
+        </div>
+        
         <!-- Gradients Toggle -->
         <div class="section mb-4">
           <div class="flex items-center justify-between gap-3 px-1">
@@ -1216,6 +1234,37 @@
       currentState.useGradients = e.target.checked;
       saveToHistory(currentState);
       applyTheme();
+    });
+    
+    // Theme / AI Options Toggle
+    document.getElementById('theme-mode').addEventListener('click', () => {
+      const themeBtn = document.getElementById('theme-mode');
+      const aiBtn = document.getElementById('ai-options-mode');
+      
+      // Update button states
+      themeBtn.classList.add('bg-white/[0.08]', 'text-white/90');
+      themeBtn.classList.remove('text-white/50', 'hover:text-white/70');
+      aiBtn.classList.remove('bg-white/[0.08]', 'text-white/90');
+      aiBtn.classList.add('text-white/50', 'hover:text-white/70');
+      
+      // Show theme configuration (this is the default view)
+      // Future: Hide AI-specific options when implemented
+      showNotification('Theme configuration active', 'info');
+    });
+    
+    document.getElementById('ai-options-mode').addEventListener('click', () => {
+      const themeBtn = document.getElementById('theme-mode');
+      const aiBtn = document.getElementById('ai-options-mode');
+      
+      // Update button states
+      aiBtn.classList.add('bg-white/[0.08]', 'text-white/90');
+      aiBtn.classList.remove('text-white/50', 'hover:text-white/70');
+      themeBtn.classList.remove('bg-white/[0.08]', 'text-white/90');
+      themeBtn.classList.add('text-white/50', 'hover:text-white/70');
+      
+      // Show AI configuration options
+      // Future: Show AI-specific toggles/options
+      showNotification('AI Options coming soon - toggle AI features on/off in preview', 'info');
     });
 
     // Undo/Redo/Reset
