@@ -1788,16 +1788,24 @@
     // NOTIFICATION DIALOG FUNCTIONS
     // ========================================
     
+    let dialogResolve = null;
+    
     function showDialog(type, title, message) {
       const dialog = document.getElementById('notification-dialog');
       const icon = document.getElementById('dialog-icon');
       const iconLucide = document.getElementById('dialog-icon-lucide');
       const titleEl = document.getElementById('dialog-title');
       const messageEl = document.getElementById('dialog-message');
+      const singleFooter = document.getElementById('dialog-footer-single');
+      const doubleFooter = document.getElementById('dialog-footer-double');
       
       // Set content
       titleEl.textContent = title;
       messageEl.textContent = message;
+      
+      // Show single button footer (notification mode)
+      singleFooter.classList.remove('hidden');
+      doubleFooter.classList.add('hidden');
       
       // Set icon and colors based on type
       if (type === 'success') {
@@ -1823,12 +1831,70 @@
       }
     }
     
-    function closeDialog() {
-      document.getElementById('notification-dialog').classList.add('hidden');
+    function showConfirm(title, message) {
+      return new Promise((resolve) => {
+        const dialog = document.getElementById('notification-dialog');
+        const icon = document.getElementById('dialog-icon');
+        const iconLucide = document.getElementById('dialog-icon-lucide');
+        const titleEl = document.getElementById('dialog-title');
+        const messageEl = document.getElementById('dialog-message');
+        const singleFooter = document.getElementById('dialog-footer-single');
+        const doubleFooter = document.getElementById('dialog-footer-double');
+        
+        // Store resolve function
+        dialogResolve = resolve;
+        
+        // Set content
+        titleEl.textContent = title;
+        messageEl.textContent = message;
+        
+        // Show double button footer (confirmation mode)
+        singleFooter.classList.add('hidden');
+        doubleFooter.classList.remove('hidden');
+        
+        // Set warning icon
+        icon.className = 'w-12 h-12 mx-auto mb-4 rounded-full flex items-center justify-center bg-yellow-500/20';
+        iconLucide.setAttribute('data-lucide', 'alert-triangle');
+        iconLucide.className = 'w-6 h-6 text-yellow-400';
+        
+        // Show dialog
+        dialog.classList.remove('hidden');
+        
+        // Re-initialize lucide icons
+        if (typeof lucide !== 'undefined') {
+          lucide.createIcons();
+        }
+      });
     }
     
-    // Close dialog on button click
+    function closeDialog() {
+      document.getElementById('notification-dialog').classList.add('hidden');
+      if (dialogResolve) {
+        dialogResolve(false);
+        dialogResolve = null;
+      }
+    }
+    
+    // Close dialog on OK button click (notification mode)
     document.getElementById('dialog-close-btn').addEventListener('click', closeDialog);
+    
+    // Cancel button (confirmation mode)
+    document.getElementById('dialog-cancel-btn').addEventListener('click', () => {
+      document.getElementById('notification-dialog').classList.add('hidden');
+      if (dialogResolve) {
+        dialogResolve(false);
+        dialogResolve = null;
+      }
+    });
+    
+    // Confirm button (confirmation mode)
+    document.getElementById('dialog-confirm-btn').addEventListener('click', () => {
+      document.getElementById('notification-dialog').classList.add('hidden');
+      if (dialogResolve) {
+        dialogResolve(true);
+        dialogResolve = null;
+      }
+    });
     
     // Close dialog on backdrop click
     document.getElementById('notification-dialog').addEventListener('click', (e) => {
@@ -1842,7 +1908,7 @@
     // ========================================
     
     // Save Theme - Add to preset list permanently
-    document.getElementById('modal-save-theme-btn').addEventListener('click', () => {
+    document.getElementById('modal-save-theme-btn').addEventListener('click', async () => {
       const themeName = document.getElementById('modal-theme-name').value.trim();
       
       // Validation
@@ -1857,7 +1923,7 @@
       
       // Check if theme already exists
       if (tailwindColors.presets[themeKey]) {
-        const overwrite = confirm(`Theme "${themeName}" already exists. Overwrite?`);
+        const overwrite = await showConfirm('Theme Already Exists', `A theme named "${themeName}" already exists. Do you want to overwrite it?`);
         if (!overwrite) return;
       }
       
@@ -2532,10 +2598,20 @@
         <p id="dialog-message" class="text-sm text-white/70"></p>
       </div>
       
-      <!-- Dialog Footer -->
-      <div class="px-6 py-4 border-t border-white/10 flex justify-center">
+      <!-- Dialog Footer (Single Button) -->
+      <div id="dialog-footer-single" class="px-6 py-4 border-t border-white/10 flex justify-center">
         <button id="dialog-close-btn" class="px-6 py-2.5 bg-purple-600 hover:bg-purple-700 rounded-lg text-sm font-semibold text-white transition-colors">
           OK
+        </button>
+      </div>
+      
+      <!-- Dialog Footer (Two Buttons - for confirmations) -->
+      <div id="dialog-footer-double" class="hidden px-6 py-4 border-t border-white/10 flex items-center justify-between">
+        <button id="dialog-cancel-btn" class="px-6 py-2.5 hover:bg-white/[0.05] rounded-lg text-sm font-semibold text-white/70 hover:text-white transition-colors">
+          Cancel
+        </button>
+        <button id="dialog-confirm-btn" class="px-6 py-2.5 bg-purple-600 hover:bg-purple-700 rounded-lg text-sm font-semibold text-white transition-colors">
+          Confirm
         </button>
       </div>
     </div>
