@@ -260,7 +260,7 @@
   <div class="flex h-screen">
     
     <!-- LEFT PANEL: Properties (360px) -->
-    <div class="w-[360px] bg-[#1a1a1a] border-r border-white/[0.08] flex flex-col">
+    <div class="w-[360px] bg-[#252525] border-r border-white/[0.08] flex flex-col">
       
       <!-- Header -->
       <div class="px-4 py-3 border-b border-white/[0.08] flex items-center justify-between flex-shrink-0">
@@ -292,74 +292,43 @@
       <!-- Scrollable Content -->
       <div class="flex-1 overflow-y-auto px-4 py-4">
         
-        <!-- Theme Presets -->
+        <!-- Light/Dark Mode Toggle -->
         <div class="section mb-4">
-          <div class="flex items-center justify-between mb-2">
-            <span class="text-[11px] font-semibold text-white/50 uppercase tracking-wider">Select Theme</span>
-            <button id="custom-theme-btn" class="text-[11px] text-indigo-400 hover:text-indigo-300 font-medium transition-colors">
-              <span class="flex items-center gap-1">
-                <i data-lucide="sliders" class="w-3 h-3"></i>
-                Customize
-              </span>
+          <div class="flex gap-1.5 p-0.5 bg-white/[0.03] rounded-lg mb-3">
+            <button id="light-mode" class="flex-1 px-3 py-1.5 rounded-md text-[12px] font-medium transition-all text-white/50 hover:text-white/70">
+              <div class="flex items-center justify-center gap-1.5">
+                <i data-lucide="sun" class="w-3.5 h-3.5"></i>
+                <span>Light</span>
+              </div>
+            </button>
+            <button id="dark-mode" class="flex-1 px-3 py-1.5 rounded-md text-[12px] font-medium transition-all bg-white/[0.08] text-white/90">
+              <div class="flex items-center justify-center gap-1.5">
+                <i data-lucide="moon" class="w-3.5 h-3.5"></i>
+                <span>Dark</span>
+              </div>
             </button>
           </div>
-          <div class="text-[11px] text-white/50 mb-3 leading-relaxed">
-            Pre-designed themes with professionally matched colors. Click <strong>Customize</strong> to create your own.
+          
+          <!-- Gradients Toggle -->
+          <div class="flex items-center justify-between gap-3 px-1">
+            <div class="flex-1">
+              <div class="text-[12px] font-medium text-white/90 mb-0.5">Use Gradients</div>
+              <div class="text-[10px] text-white/50">Apply gradient backgrounds to product cards</div>
+            </div>
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input type="checkbox" id="gradient-toggle" class="sr-only peer" checked>
+              <div class="w-9 h-5 bg-white/[0.08] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white/60 after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600 peer-checked:after:bg-white"></div>
+            </label>
           </div>
+        </div>
+
+        <div class="divider"></div>
+        
+        <!-- Theme Presets -->
+        <div class="section mb-4">
+          <span class="text-[11px] font-semibold text-white/50 uppercase tracking-wider block mb-3">Select Theme</span>
           <div class="space-y-2" id="theme-presets">
             <!-- Generated dynamically -->
-          </div>
-        </div>
-
-        <div class="divider"></div>
-
-        <!-- Color Mode -->
-        <div class="section mb-4">
-          <button class="section-header w-full flex items-center justify-between py-2 px-2 -mx-2 rounded-md">
-            <div class="flex items-center gap-2">
-              <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-white/40 transition-transform"></i>
-              <span class="text-[13px] font-medium text-white/90">Appearance</span>
-            </div>
-          </button>
-          <div class="section-content pl-5 pr-2 pt-3" style="max-height: 200px;">
-            <div class="flex gap-1.5 p-0.5 bg-white/[0.03] rounded-lg">
-              <button id="light-mode" class="flex-1 px-3 py-1.5 rounded-md text-[12px] font-medium transition-all text-white/50 hover:text-white/70">
-                <div class="flex items-center justify-center gap-1.5">
-                  <i data-lucide="sun" class="w-3.5 h-3.5"></i>
-                  <span>Light</span>
-                </div>
-              </button>
-              <button id="dark-mode" class="flex-1 px-3 py-1.5 rounded-md text-[12px] font-medium transition-all bg-white/[0.08] text-white/90">
-                <div class="flex items-center justify-center gap-1.5">
-                  <i data-lucide="moon" class="w-3.5 h-3.5"></i>
-                  <span>Dark</span>
-                </div>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="divider"></div>
-
-        <!-- Gradients -->
-        <div class="section mb-4">
-          <button class="section-header w-full flex items-center justify-between py-2 px-2 -mx-2 rounded-md">
-            <div class="flex items-center gap-2">
-              <i data-lucide="sparkles" class="w-4 h-4 text-white/60"></i>
-              <span class="text-[13px] font-medium text-white/90">Gradients</span>
-            </div>
-          </button>
-          <div class="section-content pl-5 pr-2 pt-3" style="max-height: 200px;">
-            <div class="flex items-center justify-between gap-3">
-              <div class="flex-1">
-                <div class="text-[12px] font-medium text-white/90 mb-0.5">Use Gradients</div>
-                <div class="text-[10px] text-white/50">Apply gradient backgrounds to product cards</div>
-              </div>
-              <label class="relative inline-flex items-center cursor-pointer">
-                <input type="checkbox" id="gradient-toggle" class="sr-only peer" checked>
-                <div class="w-9 h-5 bg-white/[0.08] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white/60 after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600 peer-checked:after:bg-white"></div>
-              </label>
-            </div>
           </div>
         </div>
 
@@ -463,12 +432,6 @@
           <i data-lucide="check" class="w-4 h-4"></i>
           <span>Apply & Save</span>
         </button>
-        <button id="export-css-btn" class="px-3 py-2.5 hover:bg-white/[0.05] rounded-lg transition-colors" title="Export CSS Variables">
-          <i data-lucide="code" class="w-4 h-4 text-white/60"></i>
-        </button>
-        <button id="save-version-btn" class="px-3 py-2.5 hover:bg-white/[0.05] rounded-lg transition-colors" title="Save version">
-          <i data-lucide="bookmark" class="w-4 h-4 text-white/60"></i>
-        </button>
       </div>
     </div>
 
@@ -496,8 +459,8 @@
 
         <!-- Page Selector -->
         <div class="flex items-center gap-2">
-          <span class="text-[11px] text-white/30 font-medium">Page:</span>
-          <select id="page-select" class="elegant-input text-[12px] py-1 px-2 bg-white/[0.03] border border-white/[0.08] rounded-md text-white/70">
+          <span class="text-[11px] text-white/60 font-semibold">Page:</span>
+          <select id="page-select" class="elegant-input text-[12px] py-1.5 px-3 bg-white/[0.05] border border-white/[0.12] rounded-md text-white/90 font-medium">
             <option value="index.html">Home</option>
             <option value="doc-page.html">Documentation</option>
             <option value="search-results.html">Search Results</option>
@@ -1085,7 +1048,7 @@
     function generateThemePresets() {
       const container = document.getElementById('theme-presets');
       
-      container.innerHTML = Object.entries(tailwindColors.presets).map(([key, theme]) => {
+      const presetsHTML = Object.entries(tailwindColors.presets).map(([key, theme]) => {
         const primaryColor = tailwindColors.getColor(theme.primary, 600);  // Use 600 as primary shade
         const accentColor = tailwindColors.getColor(theme.accent, 600);
         
@@ -1107,10 +1070,30 @@
         `;
       }).join('');
       
+      // Add "Custom" theme button at the end
+      const customButton = `
+        <button 
+          id="custom-theme-btn-preset"
+          class="theme-preset w-full flex items-center gap-3 p-3 rounded-lg border-2 border-dashed border-white/10 hover:border-indigo-400/30"
+        >
+          <div class="flex gap-1">
+            <div class="w-6 h-6 rounded-md bg-gradient-to-br from-indigo-500 to-indigo-600"></div>
+            <div class="w-6 h-6 rounded-md bg-gradient-to-br from-violet-500 to-violet-600"></div>
+          </div>
+          <div class="flex-1 text-left">
+            <div class="text-[12px] font-semibold text-white/90">Custom</div>
+            <div class="text-[10px] text-white/40">Build your own theme</div>
+          </div>
+          <i data-lucide="plus-circle" class="w-4 h-4 text-indigo-400"></i>
+        </button>
+      `;
+      
+      container.innerHTML = presetsHTML + customButton;
+      
       lucide.createIcons();
       
-      // Attach click handlers
-      document.querySelectorAll('.theme-preset').forEach(btn => {
+      // Attach click handlers to preset themes
+      document.querySelectorAll('.theme-preset[data-preset]').forEach(btn => {
         btn.addEventListener('click', function() {
           const presetKey = this.dataset.preset;
           const preset = tailwindColors.presets[presetKey];
@@ -1126,6 +1109,11 @@
           generateColorSwatches();
           generateThemePresets();
         });
+      });
+      
+      // Attach click handler to Custom button
+      document.getElementById('custom-theme-btn-preset').addEventListener('click', () => {
+        openModal();
       });
     }
 
@@ -1255,11 +1243,6 @@
       }
     });
 
-    // Save version
-    document.getElementById('save-version-btn').addEventListener('click', saveVersion);
-    
-    // Export CSS
-    document.getElementById('export-css-btn').addEventListener('click', exportCSS);
 
     // Page selector
     document.getElementById('page-select').addEventListener('change', function() {
@@ -1408,7 +1391,7 @@
     }; // Temporary state while modal is open
     
     // Open modal
-    document.getElementById('custom-theme-btn').addEventListener('click', () => {
+    function openModal() {
       const modal = document.getElementById('customize-modal');
       
       // Initialize modal state from current theme
@@ -1448,7 +1431,7 @@
       // Show modal
       modal.classList.remove('hidden');
       lucide.createIcons();
-    });
+    }
     
     // Close modal (cancel)
     function closeModal() {
