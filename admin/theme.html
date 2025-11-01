@@ -527,8 +527,31 @@
     
     lucide.createIcons();
     
-    // Helper function to get color scale (Tailwind doesn't need mode parameter)
+    // Helper function to get color scale (handles both Tailwind and custom colors)
     function getColorScale(colorName, mode) {
+      // Check if this is a custom color (starts with "custom-")
+      if (colorName && colorName.startsWith('custom-')) {
+        // Extract theme key from custom color ID: "custom-mytheme-primary" → "mytheme"
+        const match = colorName.match(/^custom-([^-]+)-/);
+        if (match) {
+          const themeKey = match[1];
+          const customThemes = JSON.parse(localStorage.getItem('customThemes') || '{}');
+          const theme = customThemes[themeKey];
+          
+          if (theme) {
+            // Determine which property (primary, accent, or neutral)
+            const colorType = colorName.endsWith('-primary') ? 'primary' 
+                           : colorName.endsWith('-accent') ? 'accent' 
+                           : 'neutral';
+            
+            // Return the appropriate mode's colors
+            const modeColors = mode === 'dark' ? theme.dark : theme.light;
+            return modeColors[colorType] || {};
+          }
+        }
+      }
+      
+      // Fall back to standard Tailwind colors
       return tailwindColors.getScale(colorName);
     }
 
@@ -888,6 +911,44 @@
            Tailwind config maps them to CSS variables.
            No CSS overrides needed! ✨
            ======================================== */
+        
+        /* ========================================
+           FORM PRIMITIVES - Theme-aware
+           ======================================== */
+        
+        /* Checkboxes and Radio Buttons */
+        input[type="checkbox"]:checked,
+        input[type="radio"]:checked {
+          background-color: rgb(var(--color-primary-600)) !important;
+          border-color: rgb(var(--color-primary-600)) !important;
+        }
+        
+        input[type="checkbox"]:focus,
+        input[type="radio"]:focus {
+          ring-color: rgb(var(--color-primary-500)) !important;
+          border-color: rgb(var(--color-primary-500)) !important;
+        }
+        
+        /* Text Inputs, Selects, Textareas */
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="search"]:focus,
+        input[type="password"]:focus,
+        select:focus,
+        textarea:focus {
+          border-color: rgb(var(--color-primary-500)) !important;
+          ring-color: rgb(var(--color-primary-500)) !important;
+          outline-color: rgb(var(--color-primary-500)) !important;
+        }
+        
+        /* Toggle Switches (if using Tailwind's peer pattern) */
+        .peer:checked ~ div {
+          background-color: rgb(var(--color-primary-600)) !important;
+        }
+        
+        .peer:focus ~ div {
+          ring-color: rgb(var(--color-primary-500)) !important;
+        }
       `;
     }
 
