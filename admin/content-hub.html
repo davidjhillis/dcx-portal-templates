@@ -88,6 +88,34 @@
       border-color: #8b5cf6;
       background: rgba(139, 92, 246, 0.1);
     }
+    
+    /* Filter sidebar */
+    .filter-group {
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .filter-checkbox:checked + label {
+      color: white;
+    }
+    
+    /* Document row */
+    .doc-row {
+      border: 1.5px solid rgba(255,255,255,0.08);
+      transition: all 0.15s ease;
+    }
+    .doc-row:hover {
+      background: rgba(255,255,255,0.02);
+      border-color: rgba(255,255,255,0.15);
+    }
+    .doc-row.selected {
+      background: rgba(139, 92, 246, 0.08);
+      border-color: rgba(139, 92, 246, 0.3);
+    }
+    
+    /* View toggle */
+    .view-btn.active {
+      background: rgba(139, 92, 246, 0.15);
+      color: #a78bfa;
+    }
   </style>
 </head>
 <body class="bg-[#252525] text-white">
@@ -128,6 +156,12 @@
           Sources
         </div>
       </button>
+      <button class="tab-btn px-1 py-3 text-sm font-medium" data-tab="library">
+        <div class="flex items-center gap-2">
+          <i data-lucide="library" class="w-4 h-4"></i>
+          Library
+        </div>
+      </button>
       <button class="tab-btn px-1 py-3 text-sm font-medium" data-tab="publishing">
         <div class="flex items-center gap-2">
           <i data-lucide="upload-cloud" class="w-4 h-4"></i>
@@ -146,6 +180,502 @@
           Search Config
         </div>
       </button>
+    </div>
+
+    <!-- Library Tab Content -->
+    <div id="library-content" class="tab-content hidden">
+      
+      <div class="flex gap-6">
+        
+        <!-- Left Sidebar - Filters -->
+        <div class="w-64 flex-shrink-0">
+          
+          <!-- Search in Library -->
+          <div class="mb-6">
+            <input type="text" placeholder="Search documents..." class="w-full px-3 py-2 bg-white/[0.03] border border-white/[0.08] text-white rounded-md text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20">
+          </div>
+
+          <!-- Filter Groups -->
+          <div class="space-y-1">
+            
+            <!-- Product Filter -->
+            <div class="filter-group py-3">
+              <button class="w-full flex items-center justify-between text-sm font-medium text-white/90 mb-3 hover:text-white transition-colors">
+                <span>Product</span>
+                <i data-lucide="chevron-down" class="w-4 h-4"></i>
+              </button>
+              <div class="space-y-2">
+                <label class="flex items-center gap-2 text-[13px] text-white/60 hover:text-white/80 cursor-pointer">
+                  <input type="checkbox" class="filter-checkbox w-3.5 h-3.5 rounded border-white/20 bg-white/5 checked:bg-indigo-500">
+                  <span>Portal v10</span>
+                  <span class="ml-auto text-[11px]">1,247</span>
+                </label>
+                <label class="flex items-center gap-2 text-[13px] text-white/60 hover:text-white/80 cursor-pointer">
+                  <input type="checkbox" class="filter-checkbox w-3.5 h-3.5 rounded border-white/20 bg-white/5 checked:bg-indigo-500">
+                  <span>Portal v9</span>
+                  <span class="ml-auto text-[11px]">892</span>
+                </label>
+                <label class="flex items-center gap-2 text-[13px] text-white/60 hover:text-white/80 cursor-pointer">
+                  <input type="checkbox" class="filter-checkbox w-3.5 h-3.5 rounded border-white/20 bg-white/5 checked:bg-indigo-500">
+                  <span>API Docs</span>
+                  <span class="ml-auto text-[11px]">543</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Content Type Filter -->
+            <div class="filter-group py-3">
+              <button class="w-full flex items-center justify-between text-sm font-medium text-white/90 mb-3 hover:text-white transition-colors">
+                <span>Content Type</span>
+                <i data-lucide="chevron-down" class="w-4 h-4"></i>
+              </button>
+              <div class="space-y-2">
+                <label class="flex items-center gap-2 text-[13px] text-white/60 hover:text-white/80 cursor-pointer">
+                  <input type="checkbox" class="filter-checkbox w-3.5 h-3.5 rounded border-white/20 bg-white/5 checked:bg-indigo-500">
+                  <span>Documentation</span>
+                  <span class="ml-auto text-[11px]">1,892</span>
+                </label>
+                <label class="flex items-center gap-2 text-[13px] text-white/60 hover:text-white/80 cursor-pointer">
+                  <input type="checkbox" class="filter-checkbox w-3.5 h-3.5 rounded border-white/20 bg-white/5 checked:bg-indigo-500">
+                  <span>API Reference</span>
+                  <span class="ml-auto text-[11px]">324</span>
+                </label>
+                <label class="flex items-center gap-2 text-[13px] text-white/60 hover:text-white/80 cursor-pointer">
+                  <input type="checkbox" class="filter-checkbox w-3.5 h-3.5 rounded border-white/20 bg-white/5 checked:bg-indigo-500">
+                  <span>Tutorial</span>
+                  <span class="ml-auto text-[11px]">156</span>
+                </label>
+                <label class="flex items-center gap-2 text-[13px] text-white/60 hover:text-white/80 cursor-pointer">
+                  <input type="checkbox" class="filter-checkbox w-3.5 h-3.5 rounded border-white/20 bg-white/5 checked:bg-indigo-500">
+                  <span>Release Notes</span>
+                  <span class="ml-auto text-[11px]">89</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Status Filter -->
+            <div class="filter-group py-3">
+              <button class="w-full flex items-center justify-between text-sm font-medium text-white/90 mb-3 hover:text-white transition-colors">
+                <span>Status</span>
+                <i data-lucide="chevron-down" class="w-4 h-4"></i>
+              </button>
+              <div class="space-y-2">
+                <label class="flex items-center gap-2 text-[13px] text-white/60 hover:text-white/80 cursor-pointer">
+                  <input type="checkbox" class="filter-checkbox w-3.5 h-3.5 rounded border-white/20 bg-white/5 checked:bg-indigo-500" checked>
+                  <span>Published</span>
+                  <span class="ml-auto text-[11px]">2,461</span>
+                </label>
+                <label class="flex items-center gap-2 text-[13px] text-white/60 hover:text-white/80 cursor-pointer">
+                  <input type="checkbox" class="filter-checkbox w-3.5 h-3.5 rounded border-white/20 bg-white/5 checked:bg-indigo-500">
+                  <span>Draft</span>
+                  <span class="ml-auto text-[11px]">127</span>
+                </label>
+                <label class="flex items-center gap-2 text-[13px] text-white/60 hover:text-white/80 cursor-pointer">
+                  <input type="checkbox" class="filter-checkbox w-3.5 h-3.5 rounded border-white/20 bg-white/5 checked:bg-indigo-500">
+                  <span>Archived</span>
+                  <span class="ml-auto text-[11px]">543</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Language Filter -->
+            <div class="filter-group py-3">
+              <button class="w-full flex items-center justify-between text-sm font-medium text-white/90 mb-3 hover:text-white transition-colors">
+                <span>Language</span>
+                <i data-lucide="chevron-down" class="w-4 h-4"></i>
+              </button>
+              <div class="space-y-2">
+                <label class="flex items-center gap-2 text-[13px] text-white/60 hover:text-white/80 cursor-pointer">
+                  <input type="checkbox" class="filter-checkbox w-3.5 h-3.5 rounded border-white/20 bg-white/5 checked:bg-indigo-500" checked>
+                  <span>English</span>
+                  <span class="ml-auto text-[11px]">2,461</span>
+                </label>
+                <label class="flex items-center gap-2 text-[13px] text-white/60 hover:text-white/80 cursor-pointer">
+                  <input type="checkbox" class="filter-checkbox w-3.5 h-3.5 rounded border-white/20 bg-white/5 checked:bg-indigo-500">
+                  <span>Spanish</span>
+                  <span class="ml-auto text-[11px]">543</span>
+                </label>
+                <label class="flex items-center gap-2 text-[13px] text-white/60 hover:text-white/80 cursor-pointer">
+                  <input type="checkbox" class="filter-checkbox w-3.5 h-3.5 rounded border-white/20 bg-white/5 checked:bg-indigo-500">
+                  <span>French</span>
+                  <span class="ml-auto text-[11px]">421</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Tags Filter -->
+            <div class="filter-group py-3 pb-0">
+              <button class="w-full flex items-center justify-between text-sm font-medium text-white/90 mb-3 hover:text-white transition-colors">
+                <span>Tags</span>
+                <i data-lucide="chevron-down" class="w-4 h-4"></i>
+              </button>
+              <div class="space-y-2">
+                <label class="flex items-center gap-2 text-[13px] text-white/60 hover:text-white/80 cursor-pointer">
+                  <input type="checkbox" class="filter-checkbox w-3.5 h-3.5 rounded border-white/20 bg-white/5 checked:bg-indigo-500">
+                  <span>Getting Started</span>
+                  <span class="ml-auto text-[11px]">234</span>
+                </label>
+                <label class="flex items-center gap-2 text-[13px] text-white/60 hover:text-white/80 cursor-pointer">
+                  <input type="checkbox" class="filter-checkbox w-3.5 h-3.5 rounded border-white/20 bg-white/5 checked:bg-indigo-500">
+                  <span>Advanced</span>
+                  <span class="ml-auto text-[11px]">567</span>
+                </label>
+                <label class="flex items-center gap-2 text-[13px] text-white/60 hover:text-white/80 cursor-pointer">
+                  <input type="checkbox" class="filter-checkbox w-3.5 h-3.5 rounded border-white/20 bg-white/5 checked:bg-indigo-500">
+                  <span>Admin</span>
+                  <span class="ml-auto text-[11px]">189</span>
+                </label>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Clear Filters -->
+          <button class="w-full mt-4 flex items-center justify-center gap-2 px-3 py-2 bg-white/[0.05] hover:bg-white/[0.08] border border-white/[0.08] text-white/70 hover:text-white rounded-md transition-colors text-sm">
+            <i data-lucide="x" class="w-3.5 h-3.5"></i>
+            Clear All Filters
+          </button>
+
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="flex-1">
+          
+          <!-- Toolbar -->
+          <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center gap-3">
+              <span class="text-sm text-white/60">2,461 documents</span>
+              
+              <!-- View Toggle -->
+              <div class="flex items-center gap-1 p-0.5 bg-white/[0.03] border border-white/[0.08] rounded-md">
+                <button class="view-btn active px-2 py-1 rounded text-[11px] text-white/60 hover:text-white/80 transition-colors" data-view="list">
+                  <i data-lucide="list" class="w-3.5 h-3.5"></i>
+                </button>
+                <button class="view-btn px-2 py-1 rounded text-[11px] text-white/60 hover:text-white/80 transition-colors" data-view="grid">
+                  <i data-lucide="grid" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+
+              <!-- Bulk Actions (shown when items selected) -->
+              <div id="bulk-actions" class="hidden flex items-center gap-2 pl-3 border-l border-white/[0.08]">
+                <span class="text-[13px] text-white/60"><span id="selected-count">0</span> selected</span>
+                <button class="flex items-center gap-1.5 px-3 py-1.5 bg-white/[0.05] hover:bg-white/[0.08] border border-white/[0.08] text-white/80 hover:text-white rounded-md transition-colors text-[12px]">
+                  <i data-lucide="folder-plus" class="w-3 h-3"></i>
+                  Add to Collection
+                </button>
+                <button class="flex items-center gap-1.5 px-3 py-1.5 bg-white/[0.05] hover:bg-white/[0.08] border border-white/[0.08] text-white/80 hover:text-white rounded-md transition-colors text-[12px]">
+                  <i data-lucide="archive" class="w-3 h-3"></i>
+                  Archive
+                </button>
+              </div>
+            </div>
+
+            <!-- Sort & Actions -->
+            <div class="flex items-center gap-2">
+              <select class="px-3 py-1.5 bg-white/[0.03] border border-white/[0.08] text-white/80 rounded-md text-[13px] focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20">
+                <option>Recently Updated</option>
+                <option>Title A-Z</option>
+                <option>Title Z-A</option>
+                <option>Oldest First</option>
+              </select>
+              
+              <button class="flex items-center gap-2 px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md transition-colors text-[13px]">
+                <i data-lucide="folder-plus" class="w-3.5 h-3.5"></i>
+                Create Collection
+              </button>
+            </div>
+          </div>
+
+          <!-- Document List -->
+          <div class="space-y-2 mb-6">
+            
+            <!-- Document 1 -->
+            <div class="doc-row bg-white/[0.02] rounded-lg p-4">
+              <div class="flex items-start gap-4">
+                <input type="checkbox" class="doc-checkbox mt-1 w-4 h-4 rounded border-white/20 bg-white/5 checked:bg-indigo-500 cursor-pointer">
+                
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-start justify-between gap-4 mb-2">
+                    <div class="flex-1">
+                      <h3 class="text-sm font-medium text-white mb-1 hover:text-indigo-400 cursor-pointer">Getting Started with Discover CX Portal</h3>
+                      <p class="text-[12px] text-white/50 line-clamp-2">Learn how to set up and configure your first documentation portal. This guide covers installation, basic configuration, and publishing your first content...</p>
+                    </div>
+                    <span class="status-badge status-active flex-shrink-0">Published</span>
+                  </div>
+                  
+                  <div class="flex items-center gap-4 text-[11px] text-white/40">
+                    <span class="flex items-center gap-1">
+                      <i data-lucide="folder" class="w-3 h-3"></i>
+                      Portal v10
+                    </span>
+                    <span class="flex items-center gap-1">
+                      <i data-lucide="file-text" class="w-3 h-3"></i>
+                      Documentation
+                    </span>
+                    <span class="flex items-center gap-1">
+                      <i data-lucide="globe" class="w-3 h-3"></i>
+                      English
+                    </span>
+                    <span class="flex items-center gap-1">
+                      <i data-lucide="calendar" class="w-3 h-3"></i>
+                      Updated 2 hours ago
+                    </span>
+                    <span class="flex items-center gap-1">
+                      <i data-lucide="tag" class="w-3 h-3"></i>
+                      Getting Started
+                    </span>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-1">
+                  <button class="w-8 h-8 hover:bg-white/[0.05] rounded-md flex items-center justify-center transition-colors">
+                    <i data-lucide="eye" class="w-4 h-4 text-white/60"></i>
+                  </button>
+                  <button class="w-8 h-8 hover:bg-white/[0.05] rounded-md flex items-center justify-center transition-colors">
+                    <i data-lucide="edit" class="w-4 h-4 text-white/60"></i>
+                  </button>
+                  <button class="w-8 h-8 hover:bg-white/[0.05] rounded-md flex items-center justify-center transition-colors">
+                    <i data-lucide="more-vertical" class="w-4 h-4 text-white/60"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Document 2 -->
+            <div class="doc-row bg-white/[0.02] rounded-lg p-4">
+              <div class="flex items-start gap-4">
+                <input type="checkbox" class="doc-checkbox mt-1 w-4 h-4 rounded border-white/20 bg-white/5 checked:bg-indigo-500 cursor-pointer">
+                
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-start justify-between gap-4 mb-2">
+                    <div class="flex-1">
+                      <h3 class="text-sm font-medium text-white mb-1 hover:text-indigo-400 cursor-pointer">API Reference Guide v2.3</h3>
+                      <p class="text-[12px] text-white/50 line-clamp-2">Complete reference documentation for the Discover CX API including authentication, endpoints, request/response formats, and code examples...</p>
+                    </div>
+                    <span class="status-badge status-active flex-shrink-0">Published</span>
+                  </div>
+                  
+                  <div class="flex items-center gap-4 text-[11px] text-white/40">
+                    <span class="flex items-center gap-1">
+                      <i data-lucide="folder" class="w-3 h-3"></i>
+                      API Docs
+                    </span>
+                    <span class="flex items-center gap-1">
+                      <i data-lucide="file-text" class="w-3 h-3"></i>
+                      API Reference
+                    </span>
+                    <span class="flex items-center gap-1">
+                      <i data-lucide="globe" class="w-3 h-3"></i>
+                      English
+                    </span>
+                    <span class="flex items-center gap-1">
+                      <i data-lucide="calendar" class="w-3 h-3"></i>
+                      Updated 5 hours ago
+                    </span>
+                    <span class="flex items-center gap-1">
+                      <i data-lucide="tag" class="w-3 h-3"></i>
+                      Advanced
+                    </span>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-1">
+                  <button class="w-8 h-8 hover:bg-white/[0.05] rounded-md flex items-center justify-center transition-colors">
+                    <i data-lucide="eye" class="w-4 h-4 text-white/60"></i>
+                  </button>
+                  <button class="w-8 h-8 hover:bg-white/[0.05] rounded-md flex items-center justify-center transition-colors">
+                    <i data-lucide="edit" class="w-4 h-4 text-white/60"></i>
+                  </button>
+                  <button class="w-8 h-8 hover:bg-white/[0.05] rounded-md flex items-center justify-center transition-colors">
+                    <i data-lucide="more-vertical" class="w-4 h-4 text-white/60"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Document 3 -->
+            <div class="doc-row bg-white/[0.02] rounded-lg p-4">
+              <div class="flex items-start gap-4">
+                <input type="checkbox" class="doc-checkbox mt-1 w-4 h-4 rounded border-white/20 bg-white/5 checked:bg-indigo-500 cursor-pointer">
+                
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-start justify-between gap-4 mb-2">
+                    <div class="flex-1">
+                      <h3 class="text-sm font-medium text-white mb-1 hover:text-indigo-400 cursor-pointer">Advanced Content Management Strategies</h3>
+                      <p class="text-[12px] text-white/50 line-clamp-2">Explore advanced techniques for managing large-scale documentation including versioning, metadata strategies, and content reuse patterns...</p>
+                    </div>
+                    <span class="status-badge status-pending flex-shrink-0">Draft</span>
+                  </div>
+                  
+                  <div class="flex items-center gap-4 text-[11px] text-white/40">
+                    <span class="flex items-center gap-1">
+                      <i data-lucide="folder" class="w-3 h-3"></i>
+                      Portal v10
+                    </span>
+                    <span class="flex items-center gap-1">
+                      <i data-lucide="file-text" class="w-3 h-3"></i>
+                      Tutorial
+                    </span>
+                    <span class="flex items-center gap-1">
+                      <i data-lucide="globe" class="w-3 h-3"></i>
+                      English
+                    </span>
+                    <span class="flex items-center gap-1">
+                      <i data-lucide="calendar" class="w-3 h-3"></i>
+                      Updated yesterday
+                    </span>
+                    <span class="flex items-center gap-1">
+                      <i data-lucide="tag" class="w-3 h-3"></i>
+                      Advanced, Admin
+                    </span>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-1">
+                  <button class="w-8 h-8 hover:bg-white/[0.05] rounded-md flex items-center justify-center transition-colors">
+                    <i data-lucide="eye" class="w-4 h-4 text-white/60"></i>
+                  </button>
+                  <button class="w-8 h-8 hover:bg-white/[0.05] rounded-md flex items-center justify-center transition-colors">
+                    <i data-lucide="edit" class="w-4 h-4 text-white/60"></i>
+                  </button>
+                  <button class="w-8 h-8 hover:bg-white/[0.05] rounded-md flex items-center justify-center transition-colors">
+                    <i data-lucide="more-vertical" class="w-4 h-4 text-white/60"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Document 4 -->
+            <div class="doc-row bg-white/[0.02] rounded-lg p-4">
+              <div class="flex items-start gap-4">
+                <input type="checkbox" class="doc-checkbox mt-1 w-4 h-4 rounded border-white/20 bg-white/5 checked:bg-indigo-500 cursor-pointer">
+                
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-start justify-between gap-4 mb-2">
+                    <div class="flex-1">
+                      <h3 class="text-sm font-medium text-white mb-1 hover:text-indigo-400 cursor-pointer">Release Notes - October 2025</h3>
+                      <p class="text-[12px] text-white/50 line-clamp-2">New features, improvements, and bug fixes in this month's release including enhanced search capabilities, improved metadata management...</p>
+                    </div>
+                    <span class="status-badge status-active flex-shrink-0">Published</span>
+                  </div>
+                  
+                  <div class="flex items-center gap-4 text-[11px] text-white/40">
+                    <span class="flex items-center gap-1">
+                      <i data-lucide="folder" class="w-3 h-3"></i>
+                      Portal v10
+                    </span>
+                    <span class="flex items-center gap-1">
+                      <i data-lucide="file-text" class="w-3 h-3"></i>
+                      Release Notes
+                    </span>
+                    <span class="flex items-center gap-1">
+                      <i data-lucide="globe" class="w-3 h-3"></i>
+                      English
+                    </span>
+                    <span class="flex items-center gap-1">
+                      <i data-lucide="calendar" class="w-3 h-3"></i>
+                      Updated 3 days ago
+                    </span>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-1">
+                  <button class="w-8 h-8 hover:bg-white/[0.05] rounded-md flex items-center justify-center transition-colors">
+                    <i data-lucide="eye" class="w-4 h-4 text-white/60"></i>
+                  </button>
+                  <button class="w-8 h-8 hover:bg-white/[0.05] rounded-md flex items-center justify-center transition-colors">
+                    <i data-lucide="edit" class="w-4 h-4 text-white/60"></i>
+                  </button>
+                  <button class="w-8 h-8 hover:bg-white/[0.05] rounded-md flex items-center justify-center transition-colors">
+                    <i data-lucide="more-vertical" class="w-4 h-4 text-white/60"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Document 5 -->
+            <div class="doc-row bg-white/[0.02] rounded-lg p-4">
+              <div class="flex items-start gap-4">
+                <input type="checkbox" class="doc-checkbox mt-1 w-4 h-4 rounded border-white/20 bg-white/5 checked:bg-indigo-500 cursor-pointer">
+                
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-start justify-between gap-4 mb-2">
+                    <div class="flex-1">
+                      <h3 class="text-sm font-medium text-white mb-1 hover:text-indigo-400 cursor-pointer">Migrating from Portal v9 to v10</h3>
+                      <p class="text-[12px] text-white/50 line-clamp-2">Step-by-step migration guide covering prerequisites, data migration, configuration updates, and post-migration validation...</p>
+                    </div>
+                    <span class="status-badge status-active flex-shrink-0">Published</span>
+                  </div>
+                  
+                  <div class="flex items-center gap-4 text-[11px] text-white/40">
+                    <span class="flex items-center gap-1">
+                      <i data-lucide="folder" class="w-3 h-3"></i>
+                      Portal v10
+                    </span>
+                    <span class="flex items-center gap-1">
+                      <i data-lucide="file-text" class="w-3 h-3"></i>
+                      Documentation
+                    </span>
+                    <span class="flex items-center gap-1">
+                      <i data-lucide="globe" class="w-3 h-3"></i>
+                      English
+                    </span>
+                    <span class="flex items-center gap-1">
+                      <i data-lucide="calendar" class="w-3 h-3"></i>
+                      Updated 1 week ago
+                    </span>
+                    <span class="flex items-center gap-1">
+                      <i data-lucide="tag" class="w-3 h-3"></i>
+                      Admin
+                    </span>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-1">
+                  <button class="w-8 h-8 hover:bg-white/[0.05] rounded-md flex items-center justify-center transition-colors">
+                    <i data-lucide="eye" class="w-4 h-4 text-white/60"></i>
+                  </button>
+                  <button class="w-8 h-8 hover:bg-white/[0.05] rounded-md flex items-center justify-center transition-colors">
+                    <i data-lucide="edit" class="w-4 h-4 text-white/60"></i>
+                  </button>
+                  <button class="w-8 h-8 hover:bg-white/[0.05] rounded-md flex items-center justify-center transition-colors">
+                    <i data-lucide="more-vertical" class="w-4 h-4 text-white/60"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Pagination -->
+          <div class="flex items-center justify-between pt-4 border-t border-white/[0.08]">
+            <div class="text-sm text-white/60">
+              Showing 1-5 of 2,461 documents
+            </div>
+            
+            <div class="flex items-center gap-2">
+              <button class="px-3 py-1.5 bg-white/[0.05] hover:bg-white/[0.08] border border-white/[0.08] text-white/80 hover:text-white rounded-md transition-colors text-sm disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                <i data-lucide="chevron-left" class="w-4 h-4"></i>
+              </button>
+              
+              <div class="flex items-center gap-1">
+                <button class="px-3 py-1.5 bg-indigo-600 text-white rounded-md text-sm">1</button>
+                <button class="px-3 py-1.5 bg-white/[0.05] hover:bg-white/[0.08] border border-white/[0.08] text-white/80 hover:text-white rounded-md transition-colors text-sm">2</button>
+                <button class="px-3 py-1.5 bg-white/[0.05] hover:bg-white/[0.08] border border-white/[0.08] text-white/80 hover:text-white rounded-md transition-colors text-sm">3</button>
+                <span class="px-2 text-white/40">...</span>
+                <button class="px-3 py-1.5 bg-white/[0.05] hover:bg-white/[0.08] border border-white/[0.08] text-white/80 hover:text-white rounded-md transition-colors text-sm">493</button>
+              </div>
+              
+              <button class="px-3 py-1.5 bg-white/[0.05] hover:bg-white/[0.08] border border-white/[0.08] text-white/80 hover:text-white rounded-md transition-colors text-sm">
+                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
 
     <!-- Sources Tab Content -->
@@ -757,6 +1287,50 @@
       };
       
       input.click();
+    });
+
+    // Library functionality
+    const docCheckboxes = document.querySelectorAll('.doc-checkbox');
+    const bulkActions = document.getElementById('bulk-actions');
+    const selectedCount = document.getElementById('selected-count');
+    
+    function updateBulkActions() {
+      const checkedBoxes = document.querySelectorAll('.doc-checkbox:checked');
+      const count = checkedBoxes.length;
+      
+      if (count > 0) {
+        bulkActions.classList.remove('hidden');
+        selectedCount.textContent = count;
+        
+        // Add selected class to parent rows
+        docCheckboxes.forEach(checkbox => {
+          const row = checkbox.closest('.doc-row');
+          if (checkbox.checked) {
+            row.classList.add('selected');
+          } else {
+            row.classList.remove('selected');
+          }
+        });
+      } else {
+        bulkActions.classList.add('hidden');
+        document.querySelectorAll('.doc-row').forEach(row => row.classList.remove('selected'));
+      }
+    }
+    
+    docCheckboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', updateBulkActions);
+    });
+
+    // View toggle
+    const viewBtns = document.querySelectorAll('.view-btn');
+    viewBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        viewBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        // TODO: Switch between list/grid view
+        console.log('View changed to:', btn.dataset.view);
+      });
     });
 
     console.log('✅ Content Hub initialized');
