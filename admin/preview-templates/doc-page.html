@@ -86,17 +86,17 @@
       transition: all 0.2s;
     }
     .glossary-active .glossary-term {
-      border-bottom: 2px dashed #9333ea;
-      border-bottom-color: #9333ea;
+      border-bottom: 2px dashed rgb(var(--color-primary-600));
+      border-bottom-color: rgb(var(--color-primary-600));
     }
     .dark .glossary-active .glossary-term {
-      border-bottom-color: #a855f7;
+      border-bottom-color: rgb(var(--color-primary-500));
     }
     .glossary-term:hover {
-      color: #9333ea;
+      color: rgb(var(--color-primary-600));
     }
     .dark .glossary-term:hover {
-      color: #a855f7;
+      color: rgb(var(--color-primary-500));
     }
   </style>
 </head>
@@ -109,7 +109,7 @@
         
         <!-- Logo (Always visible) -->
         <a href="index.html" class="flex items-center gap-3 hover:opacity-80 flex-shrink-0">
-          <svg class="w-8 h-8 text-purple-600 dark:text-purple-400" viewBox="0 0 32 32" fill="currentColor">
+          <svg class="w-8 h-8 text-primary-600 dark:text-primary-400" viewBox="0 0 32 32" fill="currentColor">
             <path d="M16 2L3 9v14l13 7 13-7V9L16 2zm0 3.24L25.08 9 16 13.76 6.92 9 16 5.24zM5 10.92l10 5.38v10.46l-10-5.38V10.92zm12 15.84V16.3l10-5.38v10.46l-10 5.38z"/>
           </svg>
           <div class="flex items-baseline gap-2">
@@ -119,8 +119,8 @@
         </a>
         
         <!-- Command K Search Trigger (Big search bar - desktop only) -->
-        <button id="cmd-k-trigger" class="flex-1 max-w-2xl mx-auto hidden lg:flex items-center gap-3 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-left hover:border-purple-500 dark:hover:border-purple-400 transition-colors group">
-          <i data-lucide="search" class="w-5 h-5 text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-400"></i>
+        <button id="cmd-k-trigger" class="flex-1 max-w-2xl mx-auto hidden lg:flex items-center gap-3 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-left hover:border-primary-500 dark:hover:border-primary-400 transition-colors group">
+          <i data-lucide="search" class="w-5 h-5 text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-400"></i>
           <span class="flex-1 text-sm text-gray-500 dark:text-gray-400">Search documentation...</span>
           <kbd class="hidden lg:inline-flex items-center gap-1 px-2 py-1 text-xs font-semibold text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded">
             <span class="text-xs">⌘</span>K
@@ -161,7 +161,7 @@
           <!-- User Avatar Dropdown -->
         <div class="relative">
           <button id="user-menu-btn" class="flex items-center gap-2 p-1.5 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors">
-            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center text-white font-semibold text-sm">
+            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-primary-600 to-pink-600 flex items-center justify-center text-white font-semibold text-sm">
               JD
             </div>
             <i data-lucide="chevron-down" class="w-4 h-4 text-gray-600 dark:text-gray-400 hidden sm:block"></i>
@@ -242,17 +242,17 @@
             
             <!-- Hide TOC Icon Button -->
             <button id="hide-toc-btn" class="group p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors" title="Hide table of contents">
-              <i data-lucide="panel-left-close" class="w-4 h-4 text-gray-600 dark:text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-400"></i>
+              <i data-lucide="panel-left-close" class="w-4 h-4 text-gray-600 dark:text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-400"></i>
             </button>
           </div>
           
           <!-- Expand/Collapse All -->
           <div class="flex items-center gap-3 mt-3">
-            <button id="expand-all-btn" class="flex items-center gap-1 text-xs text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400">
+            <button id="expand-all-btn" class="flex items-center gap-1 text-xs text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400">
               <i data-lucide="chevron-down" class="w-3 h-3"></i>
               <span>Expand</span>
             </button>
-            <button id="collapse-all-btn" class="flex items-center gap-1 text-xs text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400">
+            <button id="collapse-all-btn" class="flex items-center gap-1 text-xs text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400">
               <i data-lucide="chevron-up" class="w-3 h-3"></i>
               <span>Collapse</span>
             </button>
@@ -261,7 +261,7 @@
         
         <!-- Section: Getting Started -->
         <div class="mb-6">
-          <button class="nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3 hover:text-purple-600 dark:hover:text-purple-400" data-chevron-state="down">
+          <button class="nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3 hover:text-primary-600 dark:hover:text-primary-400" data-chevron-state="down">
             <span>Getting Started</span>
             <i data-lucide="chevron-down" class="w-4 h-4"></i>
           </button>
@@ -274,12 +274,12 @@
         
         <!-- Section: Authoring Basics -->
         <div class="mb-6">
-          <button class="nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3 hover:text-purple-600 dark:hover:text-purple-400" data-chevron-state="up">
+          <button class="nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3 hover:text-primary-600 dark:hover:text-primary-400" data-chevron-state="up">
             <span>Authoring Basics</span>
             <i data-lucide="chevron-up" class="w-4 h-4"></i>
           </button>
           <ul class="space-y-2 text-sm nav-section-content">
-            <li><a href="#" class="text-purple-600 dark:text-purple-400 font-semibold">Creating Pages</a></li>
+            <li><a href="#" class="text-primary-600 dark:text-primary-400 font-semibold">Creating Pages</a></li>
             <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Checking Pages In/Out</a></li>
             <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Saving Pages</a></li>
             <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Deleting & Restoring</a></li>
@@ -289,7 +289,7 @@
         
         <!-- Section: Editing Basics -->
         <div class="mb-6">
-          <button class="nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3 hover:text-purple-600 dark:hover:text-purple-400" data-chevron-state="down">
+          <button class="nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3 hover:text-primary-600 dark:hover:text-primary-400" data-chevron-state="down">
             <span>Editing Basics</span>
             <i data-lucide="chevron-down" class="w-4 h-4"></i>
           </button>
@@ -304,7 +304,7 @@
         
         <!-- Section: Assets Manager -->
         <div class="mb-6">
-          <button class="nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3 hover:text-purple-600 dark:hover:text-purple-400" data-chevron-state="down">
+          <button class="nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3 hover:text-primary-600 dark:hover:text-primary-400" data-chevron-state="down">
             <span>Assets Manager</span>
             <i data-lucide="chevron-down" class="w-4 h-4"></i>
           </button>
@@ -318,7 +318,7 @@
         
         <!-- Section: Administration -->
         <div class="mb-6">
-          <button class="nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3 hover:text-purple-600 dark:hover:text-purple-400" data-chevron-state="down">
+          <button class="nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3 hover:text-primary-600 dark:hover:text-primary-400" data-chevron-state="down">
             <span>Administration</span>
             <i data-lucide="chevron-down" class="w-4 h-4"></i>
           </button>
@@ -346,19 +346,19 @@
           <nav class="hidden sm:block mb-6" aria-label="Breadcrumb">
             <ol class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
               <li>
-                <a href="index.html" class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Home</a>
+                <a href="index.html" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Home</a>
               </li>
               <li>
                 <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400"></i>
               </li>
               <li>
-                <a href="index.html#products" class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">CMS 10</a>
+                <a href="index.html#products" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">CMS 10</a>
               </li>
               <li>
                 <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400"></i>
               </li>
               <li>
-                <a href="#" class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Authoring Basics</a>
+                <a href="#" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Authoring Basics</a>
               </li>
               <li>
                 <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400"></i>
@@ -395,15 +395,15 @@
           <div class="flex flex-wrap items-center gap-3 mb-6 pb-4 border-b border-gray-200 dark:border-gray-700">
             <div class="flex items-center gap-2 relative">
               <span class="text-sm text-gray-600 dark:text-gray-400">Version:</span>
-              <button id="version-dropdown-btn" class="group inline-flex items-center gap-2 border-b-2 border-purple-600 dark:border-purple-400 pb-1 hover:border-purple-700 dark:hover:border-purple-300 transition-colors">
-                <span class="text-purple-600 dark:text-purple-400 font-medium group-hover:text-purple-700 dark:group-hover:text-purple-300">CMS 10.6</span>
+              <button id="version-dropdown-btn" class="group inline-flex items-center gap-2 border-b-2 border-primary-600 dark:border-primary-400 pb-1 hover:border-primary-700 dark:hover:border-primary-300 transition-colors">
+                <span class="text-primary-600 dark:text-primary-400 font-medium group-hover:text-primary-700 dark:group-hover:text-primary-300">CMS 10.6</span>
                 <i data-lucide="chevron-down" class="w-4 h-4 text-gray-600 dark:text-gray-400"></i>
               </button>
               
               <!-- Version Dropdown Menu -->
               <div id="version-dropdown" class="hidden absolute top-full left-0 mt-2 w-48 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg z-50">
                 <div class="py-2">
-                  <a href="#" class="block px-4 py-2 text-sm text-purple-600 dark:text-purple-400 font-medium bg-purple-50 dark:bg-purple-900/20">CMS 10.6 (Latest)</a>
+                  <a href="#" class="block px-4 py-2 text-sm text-primary-600 dark:text-primary-400 font-medium bg-primary-50 dark:bg-primary-900/20">CMS 10.6 (Latest)</a>
                   <a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">CMS 10.5</a>
                   <a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">CMS 10.3</a>
                   <a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">CMS 10.2</a>
@@ -419,17 +419,17 @@
             <span class="text-gray-400">|</span>
             <span class="text-sm text-gray-600 dark:text-gray-400">Documentation</span>
             <div class="flex items-center gap-2 ml-auto">
-              <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 text-xs font-semibold rounded-full">Ingeniux CMS</span>
+              <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300 text-xs font-semibold rounded-full">Ingeniux CMS</span>
               <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 text-xs font-semibold rounded-full">Authoring</span>
               <span class="px-3 py-1 bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-300 text-xs font-semibold rounded-full">Getting Started</span>
             </div>
           </div>
           
           <!-- Section Label -->
-          <p class="text-sm font-semibold text-purple-600 dark:text-purple-400 mb-4">Authoring Basics</p>
+          <p class="text-sm font-semibold text-primary-600 dark:text-primary-400 mb-4">Authoring Basics</p>
           
           <!-- Mobile TOC Button (At top of article on mobile) -->
-          <button id="mobile-toc-btn" class="lg:hidden w-full flex items-center justify-between gap-3 px-4 py-3 mb-6 border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 rounded-lg hover:border-purple-500 dark:hover:border-purple-400 transition-colors">
+          <button id="mobile-toc-btn" class="lg:hidden w-full flex items-center justify-between gap-3 px-4 py-3 mb-6 border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 rounded-lg hover:border-primary-500 dark:hover:border-primary-400 transition-colors">
             <div class="flex items-center gap-2">
               <i data-lucide="list" class="w-5 h-5 text-gray-600 dark:text-gray-400"></i>
               <span class="font-medium text-gray-900 dark:text-white">Table of Contents</span>
@@ -448,15 +448,15 @@
 
           <!-- AI Tools (Inline at top) -->
           <div class="flex flex-wrap gap-3" style="margin-bottom: 2rem;">
-            <button class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg text-sm font-semibold hover:from-purple-700 hover:to-blue-700 transition-all">
+            <button class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary-600 to-blue-600 text-white rounded-lg text-sm font-semibold hover:from-primary-700 hover:to-blue-700 transition-all">
               <i data-lucide="sparkles" class="w-4 h-4"></i>
               Summarize
             </button>
-            <button class="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 border-2 border-purple-600 text-purple-600 dark:text-purple-400 rounded-lg text-sm font-semibold hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-all">
+            <button class="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 border-2 border-primary-600 text-primary-600 dark:text-primary-400 rounded-lg text-sm font-semibold hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all">
               <i data-lucide="headphones" class="w-4 h-4"></i>
               Listen
             </button>
-            <button class="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 border-2 border-purple-600 text-purple-600 dark:text-purple-400 rounded-lg text-sm font-semibold hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-all">
+            <button class="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 border-2 border-primary-600 text-primary-600 dark:text-primary-400 rounded-lg text-sm font-semibold hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all">
               <i data-lucide="message-circle" class="w-4 h-4"></i>
               Ask AI
             </button>
@@ -496,7 +496,7 @@
           <!-- Code Block with AI -->
           <div class="not-prose mb-6">
             <div class="flex items-center justify-between mb-2">
-              <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-md text-xs font-semibold hover:from-purple-700 hover:to-blue-700">
+              <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-primary-600 to-blue-600 text-white rounded-md text-xs font-semibold hover:from-primary-700 hover:to-blue-700">
                 <i data-lucide="sparkles" class="w-3 h-3"></i>
                 Explain this code
               </button>
@@ -566,7 +566,7 @@
           <!-- Code Block with AI -->
           <div class="not-prose mb-6">
             <div class="flex items-center justify-between mb-2">
-              <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-md text-xs font-semibold hover:from-purple-700 hover:to-blue-700">
+              <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-primary-600 to-blue-600 text-white rounded-md text-xs font-semibold hover:from-primary-700 hover:to-blue-700">
                 <i data-lucide="sparkles" class="w-3 h-3"></i>
                 Explain this code
               </button>
@@ -599,7 +599,7 @@
           <!-- Code Block with AI -->
           <div class="not-prose mb-6">
             <div class="flex items-center justify-between mb-2">
-              <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-md text-xs font-semibold hover:from-purple-700 hover:to-blue-700">
+              <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-primary-600 to-blue-600 text-white rounded-md text-xs font-semibold hover:from-primary-700 hover:to-blue-700">
                 <i data-lucide="sparkles" class="w-3 h-3"></i>
                 Explain this code
               </button>
@@ -646,19 +646,19 @@
         
         <!-- Next/Previous Navigation (Centered) -->
         <nav class="flex items-center justify-between">
-          <a href="index.html" class="flex items-start gap-3 text-sm hover:text-purple-600 dark:hover:text-purple-400 transition-colors group">
-            <i data-lucide="arrow-left" class="w-5 h-5 text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-400 mt-1"></i>
+          <a href="index.html" class="flex items-start gap-3 text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors group">
+            <i data-lucide="arrow-left" class="w-5 h-5 text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-400 mt-1"></i>
             <div>
               <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Previous</p>
               <p class="font-semibold text-gray-900 dark:text-white">Home</p>
             </div>
           </a>
-          <a href="doc-page-checking-in-out.html" class="flex items-start gap-3 text-sm hover:text-purple-600 dark:hover:text-purple-400 transition-colors group text-right">
+          <a href="doc-page-checking-in-out.html" class="flex items-start gap-3 text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors group text-right">
             <div>
               <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Next</p>
               <p class="font-semibold text-gray-900 dark:text-white">Checking Pages In or Out</p>
             </div>
-            <i data-lucide="arrow-right" class="w-5 h-5 text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-400 mt-1"></i>
+            <i data-lucide="arrow-right" class="w-5 h-5 text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-400 mt-1"></i>
           </a>
         </nav>
 
@@ -763,7 +763,7 @@
         <div class="flex items-center gap-2 px-4 py-3 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
           <span class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">Filter:</span>
           <div class="flex gap-2">
-            <button class="filter-btn active px-3 py-1.5 rounded-lg text-xs font-semibold bg-purple-600 text-white">
+            <button class="filter-btn active px-3 py-1.5 rounded-lg text-xs font-semibold bg-primary-600 text-white">
               All Results
             </button>
             <button class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600">
@@ -800,15 +800,15 @@
           <!-- Search Results (when searching) -->
           <div id="search-results" class="hidden">
             <!-- AI Answers (Top Priority) -->
-            <div class="p-4 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/10 dark:to-blue-900/10">
+            <div class="p-4 bg-gradient-to-r from-primary-50 to-blue-50 dark:from-primary-900/10 dark:to-blue-900/10">
               <p class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3 flex items-center gap-2">
-                <i data-lucide="sparkles" class="w-4 h-4 text-purple-600 dark:text-purple-400"></i>
+                <i data-lucide="sparkles" class="w-4 h-4 text-primary-600 dark:text-primary-400"></i>
                 AI Answer
               </p>
               <div class="space-y-4">
-                <div class="p-4 rounded-lg bg-white dark:bg-gray-800 border border-purple-200 dark:border-purple-700">
+                <div class="p-4 rounded-lg bg-white dark:bg-gray-800 border border-primary-200 dark:border-primary-700">
                   <p class="text-base font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
-                    <i data-lucide="zap" class="w-5 h-5 text-purple-600 dark:text-purple-400"></i>
+                    <i data-lucide="zap" class="w-5 h-5 text-primary-600 dark:text-primary-400"></i>
                     Quick Answer
                   </p>
                   <p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
@@ -827,15 +827,15 @@
                   </div>
                   
                   <div class="flex flex-wrap gap-2">
-                    <a href="doc-page.html" class="inline-flex items-center gap-1 text-xs text-purple-600 dark:text-purple-400 font-semibold hover:underline">
+                    <a href="doc-page.html" class="inline-flex items-center gap-1 text-xs text-primary-600 dark:text-primary-400 font-semibold hover:underline">
                       <i data-lucide="book-open" class="w-3 h-3"></i>
                       Read full guide
                     </a>
-                    <a href="#" class="inline-flex items-center gap-1 text-xs text-purple-600 dark:text-purple-400 font-semibold hover:underline">
+                    <a href="#" class="inline-flex items-center gap-1 text-xs text-primary-600 dark:text-primary-400 font-semibold hover:underline">
                       <i data-lucide="code" class="w-3 h-3"></i>
                       View examples
                     </a>
-                    <a href="#" class="inline-flex items-center gap-1 text-xs text-purple-600 dark:text-purple-400 font-semibold hover:underline">
+                    <a href="#" class="inline-flex items-center gap-1 text-xs text-primary-600 dark:text-primary-400 font-semibold hover:underline">
                       <i data-lucide="play-circle" class="w-3 h-3"></i>
                       Watch tutorial
                     </a>
@@ -855,7 +855,7 @@
                 <a href="doc-page.html" class="flex items-start gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group">
                   <i data-lucide="file-text" class="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5"></i>
                   <div class="flex-1 min-w-0">
-                    <p class="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400">Component Schemas Overview</p>
+                    <p class="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400">Component Schemas Overview</p>
                     <p class="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">Learn how to define reusable content structures with custom fields, validation rules, and relationships between content types.</p>
                     <div class="flex items-center gap-3 mt-2">
                       <span class="text-xs text-gray-500 dark:text-gray-400">Core Concepts</span>
@@ -868,9 +868,9 @@
                 
                 <!-- Result 2 -->
                 <a href="#" class="flex items-start gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group">
-                  <i data-lucide="code" class="w-5 h-5 text-purple-600 dark:text-purple-400 flex-shrink-0 mt-0.5"></i>
+                  <i data-lucide="code" class="w-5 h-5 text-primary-600 dark:text-primary-400 flex-shrink-0 mt-0.5"></i>
                   <div class="flex-1 min-w-0">
-                    <p class="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400">Schema API Reference</p>
+                    <p class="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400">Schema API Reference</p>
                     <p class="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">Complete API documentation for creating, updating, and managing component schemas programmatically.</p>
                     <div class="flex items-center gap-3 mt-2">
                       <span class="text-xs text-gray-500 dark:text-gray-400">API Reference</span>
@@ -878,14 +878,14 @@
                       <span class="text-xs text-gray-500 dark:text-gray-400">Reference</span>
                     </div>
                   </div>
-                  <span class="text-xs px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded font-semibold flex-shrink-0">API</span>
+                  <span class="text-xs px-2 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded font-semibold flex-shrink-0">API</span>
                 </a>
                 
                 <!-- Result 3 -->
                 <a href="#" class="flex items-start gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group">
                   <i data-lucide="play-circle" class="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5"></i>
                   <div class="flex-1 min-w-0">
-                    <p class="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400">Building Your First Schema</p>
+                    <p class="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400">Building Your First Schema</p>
                     <p class="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">Step-by-step tutorial with code examples showing how to create a blog post schema with title, content, and author fields.</p>
                     <div class="flex items-center gap-3 mt-2">
                       <span class="text-xs text-gray-500 dark:text-gray-400">Tutorials</span>
@@ -900,7 +900,7 @@
                 <a href="#" class="flex items-start gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group">
                   <i data-lucide="file-code" class="w-5 h-5 text-orange-600 dark:text-orange-400 flex-shrink-0 mt-0.5"></i>
                   <div class="flex-1 min-w-0">
-                    <p class="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400">Schema Field Types</p>
+                    <p class="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400">Schema Field Types</p>
                     <p class="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">Reference for all available field types including text, rich text, media, relationships, and custom validators.</p>
                     <div class="flex items-center gap-3 mt-2">
                       <span class="text-xs text-gray-500 dark:text-gray-400">Reference</span>
@@ -915,7 +915,7 @@
                 <a href="#" class="flex items-start gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group">
                   <i data-lucide="lightbulb" class="w-5 h-5 text-yellow-600 dark:text-yellow-400 flex-shrink-0 mt-0.5"></i>
                   <div class="flex-1 min-w-0">
-                    <p class="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400">Schema Best Practices</p>
+                    <p class="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400">Schema Best Practices</p>
                     <p class="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">Design patterns and recommendations for building maintainable, scalable content schemas.</p>
                     <div class="flex items-center gap-3 mt-2">
                       <span class="text-xs text-gray-500 dark:text-gray-400">Best Practices</span>
@@ -927,7 +927,7 @@
                 </a>
                 
                 <!-- View all results -->
-                <a href="search-results.html" class="block w-full text-center py-3 text-sm text-purple-600 dark:text-purple-400 font-semibold hover:bg-purple-50 dark:hover:bg-purple-900/20 rounded-lg transition-colors">
+                <a href="search-results.html" class="block w-full text-center py-3 text-sm text-primary-600 dark:text-primary-400 font-semibold hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-colors">
                   View all 8 results →
                 </a>
               </div>
@@ -937,16 +937,16 @@
             <div class="p-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
               <p class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3">Related Topics</p>
               <div class="flex flex-wrap gap-2">
-                <a href="#" class="px-3 py-1.5 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-full text-xs font-medium text-gray-700 dark:text-gray-300 hover:border-purple-500 dark:hover:border-purple-400 transition-colors">
+                <a href="#" class="px-3 py-1.5 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-full text-xs font-medium text-gray-700 dark:text-gray-300 hover:border-primary-500 dark:hover:border-primary-400 transition-colors">
                   Content Types
                 </a>
-                <a href="#" class="px-3 py-1.5 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-full text-xs font-medium text-gray-700 dark:text-gray-300 hover:border-purple-500 dark:hover:border-purple-400 transition-colors">
+                <a href="#" class="px-3 py-1.5 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-full text-xs font-medium text-gray-700 dark:text-gray-300 hover:border-primary-500 dark:hover:border-primary-400 transition-colors">
                   Field Validation
                 </a>
-                <a href="#" class="px-3 py-1.5 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-full text-xs font-medium text-gray-700 dark:text-gray-300 hover:border-purple-500 dark:hover:border-purple-400 transition-colors">
+                <a href="#" class="px-3 py-1.5 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-full text-xs font-medium text-gray-700 dark:text-gray-300 hover:border-primary-500 dark:hover:border-primary-400 transition-colors">
                   Relationships
                 </a>
-                <a href="#" class="px-3 py-1.5 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-full text-xs font-medium text-gray-700 dark:text-gray-300 hover:border-purple-500 dark:hover:border-purple-400 transition-colors">
+                <a href="#" class="px-3 py-1.5 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-full text-xs font-medium text-gray-700 dark:text-gray-300 hover:border-primary-500 dark:hover:border-primary-400 transition-colors">
                   Migration
                 </a>
               </div>
@@ -983,7 +983,7 @@
   <div id="summarize-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white dark:bg-gray-800 rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-hidden shadow-2xl">
       <!-- Header -->
-      <div class="bg-gradient-to-r from-purple-600 to-blue-600 px-6 py-4 flex items-center justify-between">
+      <div class="bg-gradient-to-r from-primary-600 to-blue-600 px-6 py-4 flex items-center justify-between">
         <div class="flex items-center gap-3">
           <i data-lucide="sparkles" class="w-6 h-6 text-white"></i>
           <h3 class="text-xl font-bold text-white">AI Summary</h3>
@@ -1000,16 +1000,16 @@
         <div class="flex items-center gap-2 mb-6">
           <span class="text-sm text-gray-600 dark:text-gray-400">Summary length:</span>
           <div class="flex gap-2">
-            <button class="px-3 py-1.5 bg-purple-600 text-white rounded-lg text-xs font-semibold">Short</button>
+            <button class="px-3 py-1.5 bg-primary-600 text-white rounded-lg text-xs font-semibold">Short</button>
             <button class="px-3 py-1.5 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg text-xs font-semibold hover:bg-gray-300 dark:hover:bg-gray-600">Medium</button>
             <button class="px-3 py-1.5 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg text-xs font-semibold hover:bg-gray-300 dark:hover:bg-gray-600">Detailed</button>
           </div>
         </div>
         
         <!-- AI Generated Summary (Prose) -->
-        <div class="bg-gradient-to-br from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 border-2 border-purple-200 dark:border-purple-800 rounded-xl p-6 mb-6">
+        <div class="bg-gradient-to-br from-primary-50 to-blue-50 dark:from-primary-900/20 dark:to-blue-900/20 border-2 border-primary-200 dark:border-primary-800 rounded-xl p-6 mb-6">
           <div class="flex items-start gap-3 mb-4">
-            <i data-lucide="sparkles" class="w-5 h-5 text-purple-600 flex-shrink-0 mt-1"></i>
+            <i data-lucide="sparkles" class="w-5 h-5 text-primary-600 flex-shrink-0 mt-1"></i>
             <div class="flex-1">
               <h4 class="font-bold text-gray-900 dark:text-white mb-3">AI-Generated Summary</h4>
               <div class="prose prose-sm dark:prose-invert max-w-none">
@@ -1017,7 +1017,7 @@
                   This comprehensive guide introduces CacheAdvance, a predictive caching library designed to optimize application performance by preemptively caching resources before users need them. The article walks through the complete setup process, from initial installation via npm to advanced configuration options.
                 </p>
                 <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-3">
-                  You'll learn how to install the <code class="text-xs bg-purple-100 dark:bg-purple-900 px-1.5 py-0.5 rounded text-purple-700 dark:text-purple-300">@tailwindlabs/cache-advance</code> package, configure the caching strategy in your config file, and implement basic caching patterns in your application. The guide covers essential concepts like predictive strategies, CPU allocation for cache operations, and backup storage configuration.
+                  You'll learn how to install the <code class="text-xs bg-primary-100 dark:bg-primary-900 px-1.5 py-0.5 rounded text-primary-700 dark:text-primary-300">@tailwindlabs/cache-advance</code> package, configure the caching strategy in your config file, and implement basic caching patterns in your application. The guide covers essential concepts like predictive strategies, CPU allocation for cache operations, and backup storage configuration.
                 </p>
                 <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
                   Advanced topics include middleware integration, cache clearing mechanisms, and troubleshooting common issues. Whether you're new to caching or looking to implement advanced patterns, this guide provides practical examples and best practices to get you started in under 30 minutes.
@@ -1029,10 +1029,10 @@
         
         <!-- Key Points (Optional expansion) -->
         <details class="mb-6">
-          <summary class="cursor-pointer font-semibold text-gray-900 dark:text-white mb-3 hover:text-purple-600 dark:hover:text-purple-400">
+          <summary class="cursor-pointer font-semibold text-gray-900 dark:text-white mb-3 hover:text-primary-600 dark:hover:text-primary-400">
             Key Points (expand for details)
           </summary>
-          <div class="space-y-2 pl-4 border-l-2 border-purple-200 dark:border-purple-800">
+          <div class="space-y-2 pl-4 border-l-2 border-primary-200 dark:border-primary-800">
             <div class="text-sm text-gray-700 dark:text-gray-300">
               <strong class="text-gray-900 dark:text-white">Installation:</strong> Quick setup using npm package manager
             </div>
@@ -1070,16 +1070,16 @@
       <!-- Footer -->
       <div class="border-t border-gray-200 dark:border-gray-700 px-6 py-4 bg-gray-50 dark:bg-gray-900 flex items-center justify-between">
         <div class="flex gap-3">
-          <button class="text-purple-600 dark:text-purple-400 hover:text-purple-700 text-sm font-semibold flex items-center gap-2">
+          <button class="text-primary-600 dark:text-primary-400 hover:text-primary-700 text-sm font-semibold flex items-center gap-2">
             <i data-lucide="copy" class="w-4 h-4"></i>
             Copy Summary
           </button>
-          <button class="text-purple-600 dark:text-purple-400 hover:text-purple-700 text-sm font-semibold flex items-center gap-2">
+          <button class="text-primary-600 dark:text-primary-400 hover:text-primary-700 text-sm font-semibold flex items-center gap-2">
             <i data-lucide="refresh-cw" class="w-4 h-4"></i>
             Regenerate
           </button>
         </div>
-        <button onclick="document.getElementById('summarize-modal').classList.add('hidden')" class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-semibold text-sm">
+        <button onclick="document.getElementById('summarize-modal').classList.add('hidden')" class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors font-semibold text-sm">
           Close
         </button>
       </div>
@@ -1174,7 +1174,7 @@
   <!-- Glossary Tooltip (appears on hover) -->
   <div id="glossary-tooltip" class="fixed hidden z-50 max-w-xs pointer-events-none">
     <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-      <div class="bg-purple-600 px-3 py-1.5">
+      <div class="bg-primary-600 px-3 py-1.5">
         <h4 id="glossary-term-title" class="text-xs font-semibold text-white uppercase tracking-wide">
           <!-- Term name here -->
         </h4>
@@ -1185,7 +1185,7 @@
         </p>
       </div>
       <!-- Tooltip Arrow -->
-      <div class="absolute -top-1.5 left-4 w-3 h-3 bg-purple-600 rotate-45"></div>
+      <div class="absolute -top-1.5 left-4 w-3 h-3 bg-primary-600 rotate-45"></div>
     </div>
   </div>
   
@@ -1193,7 +1193,7 @@
   <div id="selection-tooltip" class="fixed hidden z-50 max-w-sm" style="pointer-events: auto;">
     <div class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden">
       <!-- Tooltip Header -->
-      <div class="bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-2 flex items-center justify-between">
+      <div class="bg-gradient-to-r from-primary-600 to-pink-600 px-4 py-2 flex items-center justify-between">
         <div class="flex items-center gap-2">
           <i data-lucide="sparkles" class="w-4 h-4 text-white"></i>
           <span class="text-sm font-semibold text-white">AI Explain</span>
@@ -1207,7 +1207,7 @@
       <div class="p-4 max-h-72 overflow-y-auto">
         <!-- Selected Text (smaller) -->
         <div class="mb-3">
-          <p id="selected-text-tooltip" class="text-xs text-gray-900 dark:text-white font-medium bg-purple-50 dark:bg-purple-900/30 px-2 py-1 rounded italic border-l-2 border-purple-600">
+          <p id="selected-text-tooltip" class="text-xs text-gray-900 dark:text-white font-medium bg-primary-50 dark:bg-primary-900/30 px-2 py-1 rounded italic border-l-2 border-primary-600">
             <!-- Selected text here -->
           </p>
         </div>
@@ -1221,15 +1221,15 @@
         
         <!-- Quick Actions (compact) -->
         <div class="flex flex-wrap gap-1.5 pt-3 border-t border-gray-200 dark:border-gray-700">
-          <button class="inline-flex items-center gap-1 px-2 py-1 bg-purple-50 dark:bg-purple-900/20 border border-purple-300 dark:border-purple-700 rounded-full hover:bg-purple-100 dark:hover:bg-purple-900/40 transition-colors text-xs text-purple-700 dark:text-purple-300 font-medium">
+          <button class="inline-flex items-center gap-1 px-2 py-1 bg-primary-50 dark:bg-primary-900/20 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/40 transition-colors text-xs text-primary-700 dark:text-primary-300 font-medium">
             <i data-lucide="book-open" class="w-3 h-3"></i>
             <span>Learn more</span>
           </button>
-          <button class="inline-flex items-center gap-1 px-2 py-1 bg-purple-50 dark:bg-purple-900/20 border border-purple-300 dark:border-purple-700 rounded-full hover:bg-purple-100 dark:hover:bg-purple-900/40 transition-colors text-xs text-purple-700 dark:text-purple-300 font-medium">
+          <button class="inline-flex items-center gap-1 px-2 py-1 bg-primary-50 dark:bg-primary-900/20 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/40 transition-colors text-xs text-primary-700 dark:text-primary-300 font-medium">
             <i data-lucide="code" class="w-3 h-3"></i>
             <span>See example</span>
           </button>
-          <button class="inline-flex items-center gap-1 px-2 py-1 bg-purple-50 dark:bg-purple-900/20 border border-purple-300 dark:border-purple-700 rounded-full hover:bg-purple-100 dark:hover:bg-purple-900/40 transition-colors text-xs text-purple-700 dark:text-purple-300 font-medium">
+          <button class="inline-flex items-center gap-1 px-2 py-1 bg-primary-50 dark:bg-primary-900/20 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/40 transition-colors text-xs text-primary-700 dark:text-primary-300 font-medium">
             <i data-lucide="link" class="w-3 h-3"></i>
             <span>Related docs</span>
           </button>
@@ -1237,7 +1237,7 @@
       </div>
       
       <!-- Tooltip Arrow (pointing to selection) -->
-      <div class="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gradient-to-br from-purple-600 to-pink-600 rotate-45"></div>
+      <div class="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gradient-to-br from-primary-600 to-pink-600 rotate-45"></div>
     </div>
   </div>
 
@@ -1290,7 +1290,7 @@
                 <span class="text-xs font-bold text-yellow-700 dark:text-yellow-300">1</span>
               </div>
               <div class="flex-1">
-                <p class="text-sm font-mono text-purple-600 dark:text-purple-400">strategy: 'predictive'</p>
+                <p class="text-sm font-mono text-primary-600 dark:text-primary-400">strategy: 'predictive'</p>
                 <p class="text-sm text-gray-700 dark:text-gray-300 mt-1">
                   Sets the caching strategy to <strong>predictive</strong>, which anticipates user behavior to pre-load content.
                 </p>
@@ -1302,7 +1302,7 @@
                 <span class="text-xs font-bold text-yellow-700 dark:text-yellow-300">2</span>
               </div>
               <div class="flex-1">
-                <p class="text-sm font-mono text-purple-600 dark:text-purple-400">cpus: 12</p>
+                <p class="text-sm font-mono text-primary-600 dark:text-primary-400">cpus: 12</p>
                 <p class="text-sm text-gray-700 dark:text-gray-300 mt-1">
                   Allocates <strong>12 CPU cores</strong> for cache operations to maximize performance.
                 </p>
@@ -1314,7 +1314,7 @@
                 <span class="text-xs font-bold text-yellow-700 dark:text-yellow-300">3</span>
               </div>
               <div class="flex-1">
-                <p class="text-sm font-mono text-purple-600 dark:text-purple-400">backups: ['./storage/cache.wtf']</p>
+                <p class="text-sm font-mono text-primary-600 dark:text-primary-400">backups: ['./storage/cache.wtf']</p>
                 <p class="text-sm text-gray-700 dark:text-gray-300 mt-1">
                   Specifies the backup location for persistent cache storage.
                 </p>
@@ -1500,12 +1500,12 @@
     document.querySelectorAll('.filter-btn').forEach(btn => {
       btn.addEventListener('click', function() {
         document.querySelectorAll('.filter-btn').forEach(b => {
-          b.classList.remove('bg-purple-600', 'text-white');
+          b.classList.remove('bg-primary-600', 'text-white');
           b.classList.add('bg-white', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300', 'border', 'border-gray-300', 'dark:border-gray-600');
         });
         
         this.classList.remove('bg-white', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300', 'border', 'border-gray-300', 'dark:border-gray-600');
-        this.classList.add('bg-purple-600', 'text-white');
+        this.classList.add('bg-primary-600', 'text-white');
       });
     });
   </script>
@@ -1531,13 +1531,13 @@
         article?.classList.add('glossary-active');
         if (toggleBtn) {
           toggleBtn.classList.remove('border-gray-300', 'dark:border-gray-600', 'text-gray-700', 'dark:text-gray-300');
-          toggleBtn.classList.add('border-purple-600', 'text-purple-600', 'dark:text-purple-400', 'bg-purple-50', 'dark:bg-purple-900/20');
+          toggleBtn.classList.add('border-primary-600', 'text-primary-600', 'dark:text-primary-400', 'bg-primary-50', 'dark:bg-primary-900/20');
         }
         if (statusText) statusText.textContent = 'On';
       } else {
         article?.classList.remove('glossary-active');
         if (toggleBtn) {
-          toggleBtn.classList.remove('border-purple-600', 'text-purple-600', 'dark:text-purple-400', 'bg-purple-50', 'dark:bg-purple-900/20');
+          toggleBtn.classList.remove('border-primary-600', 'text-primary-600', 'dark:text-primary-400', 'bg-primary-50', 'dark:bg-primary-900/20');
           toggleBtn.classList.add('border-gray-300', 'dark:border-gray-600', 'text-gray-700', 'dark:text-gray-300');
         }
         if (statusText) statusText.textContent = 'Off';
@@ -1595,9 +1595,9 @@
           
           const buttonContainer = btn.parentElement;
           const chatHTML = `
-            <div id="inline-chat-area" class="mt-6 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 border-2 border-purple-200 dark:border-purple-800 rounded-xl p-5 animate-fadeIn">
+            <div id="inline-chat-area" class="mt-6 bg-gradient-to-br from-primary-50 to-pink-50 dark:from-primary-900/20 dark:to-pink-900/20 border-2 border-primary-200 dark:border-primary-800 rounded-xl p-5 animate-fadeIn">
               <div class="flex items-start gap-3 mb-4">
-                <i data-lucide="message-circle" class="w-5 h-5 text-purple-600 flex-shrink-0 mt-1"></i>
+                <i data-lucide="message-circle" class="w-5 h-5 text-primary-600 flex-shrink-0 mt-1"></i>
                 <div class="flex-1">
                   <h4 class="font-bold text-gray-900 dark:text-white mb-1">Ask about this article</h4>
                   <p class="text-xs text-gray-600 dark:text-gray-400">Click a common question or ask your own</p>
@@ -1609,35 +1609,35 @@
               
               <!-- Common Questions (Bubble style) -->
               <div class="flex flex-wrap gap-2 mb-4">
-                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-gray-800 border border-purple-300 dark:border-purple-700 rounded-full hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors text-xs text-gray-900 dark:text-white font-medium">
+                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-gray-800 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors text-xs text-gray-900 dark:text-white font-medium">
                   <span>How to get started?</span>
                 </button>
-                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-gray-800 border border-purple-300 dark:border-purple-700 rounded-full hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors text-xs text-gray-900 dark:text-white font-medium">
+                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-gray-800 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors text-xs text-gray-900 dark:text-white font-medium">
                   <span>Strategy differences?</span>
                 </button>
-                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-gray-800 border border-purple-300 dark:border-purple-700 rounded-full hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors text-xs text-gray-900 dark:text-white font-medium">
+                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-gray-800 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors text-xs text-gray-900 dark:text-white font-medium">
                   <span>Why predictive?</span>
                 </button>
-                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-gray-800 border border-purple-300 dark:border-purple-700 rounded-full hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors text-xs text-gray-900 dark:text-white font-medium">
+                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-gray-800 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors text-xs text-gray-900 dark:text-white font-medium">
                   <span>Common mistakes?</span>
                 </button>
-                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-gray-800 border border-purple-300 dark:border-purple-700 rounded-full hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors text-xs text-gray-900 dark:text-white font-medium">
+                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-gray-800 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors text-xs text-gray-900 dark:text-white font-medium">
                   <span>Best practices?</span>
                 </button>
-                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-gray-800 border border-purple-300 dark:border-purple-700 rounded-full hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors text-xs text-gray-900 dark:text-white font-medium">
+                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-gray-800 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors text-xs text-gray-900 dark:text-white font-medium">
                   <span>Configuration options?</span>
                 </button>
               </div>
               
               <!-- Custom Question -->
-              <div class="border-t border-purple-200 dark:border-purple-800 pt-4">
+              <div class="border-t border-primary-200 dark:border-primary-800 pt-4">
                 <div class="flex gap-2">
                   <input 
                     type="text" 
                     placeholder="Or ask your own question..." 
                     class="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm"
                   />
-                  <button class="px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:from-purple-700 hover:to-pink-700 transition-colors">
+                  <button class="px-4 py-2 bg-gradient-to-r from-primary-600 to-pink-600 text-white rounded-lg hover:from-primary-700 hover:to-pink-700 transition-colors">
                     <i data-lucide="send" class="w-4 h-4"></i>
                   </button>
                 </div>
@@ -1794,7 +1794,7 @@
               autofocus
             />
             <button id="mobile-search-submit" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
-              <i data-lucide="arrow-right" class="w-5 h-5 text-purple-600 dark:text-purple-400"></i>
+              <i data-lucide="arrow-right" class="w-5 h-5 text-primary-600 dark:text-primary-400"></i>
             </button>
           </div>
         </div>
@@ -1836,11 +1836,11 @@
       
       <!-- Expand/Collapse All -->
       <div class="flex items-center gap-3">
-        <button id="mobile-expand-all-btn" class="flex items-center gap-1 text-xs text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400">
+        <button id="mobile-expand-all-btn" class="flex items-center gap-1 text-xs text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400">
           <i data-lucide="chevron-down" class="w-3 h-3"></i>
           <span>Expand</span>
         </button>
-        <button id="mobile-collapse-all-btn" class="flex items-center gap-1 text-xs text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400">
+        <button id="mobile-collapse-all-btn" class="flex items-center gap-1 text-xs text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400">
           <i data-lucide="chevron-up" class="w-3 h-3"></i>
           <span>Collapse</span>
         </button>
@@ -1851,7 +1851,7 @@
     <nav class="overflow-y-auto p-6" style="height: calc(100vh - 100px);">
       <!-- Section: Getting Started -->
       <div class="mb-6">
-        <button class="mobile-nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3 hover:text-purple-600 dark:hover:text-purple-400" data-chevron-state="down">
+        <button class="mobile-nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3 hover:text-primary-600 dark:hover:text-primary-400" data-chevron-state="down">
           <span>Getting Started</span>
           <i data-lucide="chevron-down" class="w-4 h-4"></i>
         </button>
@@ -1864,12 +1864,12 @@
       
       <!-- Section: Authoring Basics -->
       <div class="mb-6">
-        <button class="mobile-nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3 hover:text-purple-600 dark:hover:text-purple-400" data-chevron-state="up">
+        <button class="mobile-nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3 hover:text-primary-600 dark:hover:text-primary-400" data-chevron-state="up">
           <span>Authoring Basics</span>
           <i data-lucide="chevron-up" class="w-4 h-4"></i>
         </button>
         <ul class="space-y-2 text-sm mobile-nav-section-content">
-          <li><a href="doc-page.html" class="text-purple-600 dark:text-purple-400 font-semibold">Creating Pages</a></li>
+          <li><a href="doc-page.html" class="text-primary-600 dark:text-primary-400 font-semibold">Creating Pages</a></li>
           <li><a href="doc-page-checking-in-out.html" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Checking Pages In/Out</a></li>
           <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Saving Pages</a></li>
           <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Deleting & Restoring</a></li>
@@ -1879,7 +1879,7 @@
       
       <!-- Section: Editing Basics -->
       <div class="mb-6">
-        <button class="mobile-nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3 hover:text-purple-600 dark:hover:text-purple-400" data-chevron-state="down">
+        <button class="mobile-nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3 hover:text-primary-600 dark:hover:text-primary-400" data-chevron-state="down">
           <span>Editing Basics</span>
           <i data-lucide="chevron-down" class="w-4 h-4"></i>
         </button>
@@ -1894,7 +1894,7 @@
       
       <!-- Section: Assets Manager -->
       <div class="mb-6">
-        <button class="mobile-nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3 hover:text-purple-600 dark:hover:text-purple-400" data-chevron-state="down">
+        <button class="mobile-nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3 hover:text-primary-600 dark:hover:text-primary-400" data-chevron-state="down">
           <span>Assets Manager</span>
           <i data-lucide="chevron-down" class="w-4 h-4"></i>
         </button>
@@ -1908,7 +1908,7 @@
       
       <!-- Section: Administration -->
       <div class="mb-6">
-        <button class="mobile-nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3 hover:text-purple-600 dark:hover:text-purple-400" data-chevron-state="down">
+        <button class="mobile-nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3 hover:text-primary-600 dark:hover:text-primary-400" data-chevron-state="down">
           <span>Administration</span>
           <i data-lucide="chevron-down" class="w-4 h-4"></i>
         </button>
