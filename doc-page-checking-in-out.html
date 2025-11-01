@@ -8,7 +8,53 @@
   <script>
     // Configure Tailwind for dark mode
     tailwind.config = {
-      darkMode: 'class'
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            // Semantic color tokens mapped to CSS variables
+            primary: {
+              50: 'rgb(var(--color-primary-50))',
+              100: 'rgb(var(--color-primary-100))',
+              200: 'rgb(var(--color-primary-200))',
+              300: 'rgb(var(--color-primary-300))',
+              400: 'rgb(var(--color-primary-400))',
+              500: 'rgb(var(--color-primary-500))',
+              600: 'rgb(var(--color-primary-600))',
+              700: 'rgb(var(--color-primary-700))',
+              800: 'rgb(var(--color-primary-800))',
+              900: 'rgb(var(--color-primary-900))',
+              950: 'rgb(var(--color-primary-950))',
+            },
+            accent: {
+              50: 'rgb(var(--color-accent-50))',
+              100: 'rgb(var(--color-accent-100))',
+              200: 'rgb(var(--color-accent-200))',
+              300: 'rgb(var(--color-accent-300))',
+              400: 'rgb(var(--color-accent-400))',
+              500: 'rgb(var(--color-accent-500))',
+              600: 'rgb(var(--color-accent-600))',
+              700: 'rgb(var(--color-accent-700))',
+              800: 'rgb(var(--color-accent-800))',
+              900: 'rgb(var(--color-accent-900))',
+              950: 'rgb(var(--color-accent-950))',
+            },
+            neutral: {
+              50: 'rgb(var(--color-neutral-50))',
+              100: 'rgb(var(--color-neutral-100))',
+              200: 'rgb(var(--color-neutral-200))',
+              300: 'rgb(var(--color-neutral-300))',
+              400: 'rgb(var(--color-neutral-400))',
+              500: 'rgb(var(--color-neutral-500))',
+              600: 'rgb(var(--color-neutral-600))',
+              700: 'rgb(var(--color-neutral-700))',
+              800: 'rgb(var(--color-neutral-800))',
+              900: 'rgb(var(--color-neutral-900))',
+              950: 'rgb(var(--color-neutral-950))',
+            }
+          }
+        }
+      }
     }
   </script>
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -100,29 +146,29 @@
     }
   </style>
 </head>
-<body class="bg-white dark:bg-gray-950 text-gray-900 dark:text-white">
+<body class="bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white">
 
   <!-- Header -->
-  <header class="sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+  <header class="sticky top-0 z-50 bg-neutral-50 dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-700">
     <div class="max-w-screen-2xl mx-auto px-6">
       <div class="flex items-center justify-between h-16 gap-4">
         
         <!-- Logo (Always visible) -->
         <a href="index.html" class="flex items-center gap-3 hover:opacity-80 flex-shrink-0">
-          <svg class="w-8 h-8 text-purple-600 dark:text-purple-400" viewBox="0 0 32 32" fill="currentColor">
+          <svg class="w-8 h-8 text-primary-600 dark:text-primary-400" viewBox="0 0 32 32" fill="currentColor">
             <path d="M16 2L3 9v14l13 7 13-7V9L16 2zm0 3.24L25.08 9 16 13.76 6.92 9 16 5.24zM5 10.92l10 5.38v10.46l-10-5.38V10.92zm12 15.84V16.3l10-5.38v10.46l-10 5.38z"/>
           </svg>
           <div class="flex items-baseline gap-2">
-            <span class="font-bold text-lg text-gray-900 dark:text-white">Discover CX</span>
-            <span class="hidden sm:inline font-normal text-lg text-gray-600 dark:text-gray-400">Product Documentation</span>
+            <span class="font-bold text-lg text-neutral-900 dark:text-white">Discover CX</span>
+            <span class="hidden sm:inline font-normal text-lg text-neutral-600 dark:text-neutral-400">Product Documentation</span>
           </div>
         </a>
         
         <!-- Command K Search Trigger (Big search bar - desktop only) -->
-        <button id="cmd-k-trigger" class="flex-1 max-w-2xl mx-auto hidden lg:flex items-center gap-3 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-left hover:border-purple-500 dark:hover:border-purple-400 transition-colors group">
-          <i data-lucide="search" class="w-5 h-5 text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-400"></i>
-          <span class="flex-1 text-sm text-gray-500 dark:text-gray-400">Search documentation...</span>
-          <kbd class="hidden lg:inline-flex items-center gap-1 px-2 py-1 text-xs font-semibold text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded">
+        <button id="cmd-k-trigger" class="flex-1 max-w-2xl mx-auto hidden lg:flex items-center gap-3 px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-neutral-50 dark:bg-neutral-800 text-left hover:border-primary-500 dark:hover:border-primary-400 transition-colors group">
+          <i data-lucide="search" class="w-5 h-5 text-neutral-400 group-hover:text-primary-600 dark:group-hover:text-primary-400"></i>
+          <span class="flex-1 text-sm text-neutral-500 dark:text-neutral-400">Search documentation...</span>
+          <kbd class="hidden lg:inline-flex items-center gap-1 px-2 py-1 text-xs font-semibold text-neutral-600 dark:text-neutral-400 bg-neutral-100 dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-600 rounded">
             <span class="text-xs">⌘</span>K
           </kbd>
         </button>
@@ -130,29 +176,29 @@
         <!-- Right Actions -->
         <div class="flex items-center gap-3">
           <!-- Mobile/Tablet Search Icon Button -->
-          <button id="mobile-search-btn" class="lg:hidden p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg">
-            <i data-lucide="search" class="w-6 h-6 text-gray-600 dark:text-gray-400"></i>
+          <button id="mobile-search-btn" class="lg:hidden p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg">
+            <i data-lucide="search" class="w-6 h-6 text-neutral-600 dark:text-neutral-400"></i>
           </button>
           <!-- Menu Button with Dropdown -->
           <div class="relative">
-            <button id="mobile-menu-btn" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg flex-shrink-0">
-              <i data-lucide="menu" class="w-6 h-6 text-gray-600 dark:text-gray-400"></i>
+            <button id="mobile-menu-btn" class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg flex-shrink-0">
+              <i data-lucide="menu" class="w-6 h-6 text-neutral-600 dark:text-neutral-400"></i>
             </button>
             
             <!-- Mobile Menu Dropdown -->
-            <div id="mobile-menu" class="hidden absolute right-0 top-full mt-2 w-64 bg-white dark:bg-gray-900 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 z-50 py-2">
+            <div id="mobile-menu" class="hidden absolute right-0 top-full mt-2 w-64 bg-neutral-50 dark:bg-neutral-900 rounded-xl shadow-2xl border border-neutral-200 dark:border-neutral-700 z-50 py-2">
               <nav class="py-2">
-                <a href="index.html#products" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                  <i data-lucide="package" class="w-4 h-4 text-gray-600 dark:text-gray-400"></i>
-                  <span class="text-sm font-medium text-gray-900 dark:text-white">Products</span>
+                <a href="index.html#products" class="flex items-center gap-3 px-4 py-3 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+                  <i data-lucide="package" class="w-4 h-4 text-neutral-600 dark:text-neutral-400"></i>
+                  <span class="text-sm font-medium text-neutral-900 dark:text-white">Products</span>
                 </a>
-                <a href="doc-page.html" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                  <i data-lucide="book-open" class="w-4 h-4 text-gray-600 dark:text-gray-400"></i>
-                  <span class="text-sm font-medium text-gray-900 dark:text-white">Documentation</span>
+                <a href="doc-page.html" class="flex items-center gap-3 px-4 py-3 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+                  <i data-lucide="book-open" class="w-4 h-4 text-neutral-600 dark:text-neutral-400"></i>
+                  <span class="text-sm font-medium text-neutral-900 dark:text-white">Documentation</span>
                 </a>
-                <a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                  <i data-lucide="life-buoy" class="w-4 h-4 text-gray-600 dark:text-gray-400"></i>
-                  <span class="text-sm font-medium text-gray-900 dark:text-white">Support</span>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+                  <i data-lucide="life-buoy" class="w-4 h-4 text-neutral-600 dark:text-neutral-400"></i>
+                  <span class="text-sm font-medium text-neutral-900 dark:text-white">Support</span>
                 </a>
               </nav>
             </div>
@@ -160,58 +206,58 @@
           
           <!-- User Avatar Dropdown -->
         <div class="relative">
-          <button id="user-menu-btn" class="flex items-center gap-2 p-1.5 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors">
-            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center text-white font-semibold text-sm">
+          <button id="user-menu-btn" class="flex items-center gap-2 p-1.5 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors">
+            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-primary-600 to-pink-600 flex items-center justify-center text-white font-semibold text-sm">
               JD
             </div>
-            <i data-lucide="chevron-down" class="w-4 h-4 text-gray-600 dark:text-gray-400 hidden sm:block"></i>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-neutral-600 dark:text-neutral-400 hidden sm:block"></i>
           </button>
           
           <!-- Dropdown Menu -->
-          <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-56 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 py-2 z-50">
+          <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-56 bg-neutral-50 dark:bg-neutral-800 rounded-xl shadow-2xl border border-neutral-200 dark:border-neutral-700 py-2 z-50">
             <!-- User Info -->
-            <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
-              <p class="text-sm font-semibold text-gray-900 dark:text-white">Jane Doe</p>
-              <p class="text-xs text-gray-600 dark:text-gray-400">jane.doe@company.com</p>
+            <div class="px-4 py-3 border-b border-neutral-200 dark:border-neutral-700">
+              <p class="text-sm font-semibold text-neutral-900 dark:text-white">Jane Doe</p>
+              <p class="text-xs text-neutral-600 dark:text-neutral-400">jane.doe@company.com</p>
             </div>
             
             <!-- Theme Selector -->
-            <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+            <div class="px-4 py-3 border-b border-neutral-200 dark:border-neutral-700">
               <div class="flex items-center justify-between gap-2">
-                <button id="theme-auto" class="flex-1 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" title="Auto">
-                  <i data-lucide="monitor" class="w-4 h-4 mx-auto text-gray-600 dark:text-gray-400"></i>
+                <button id="theme-auto" class="flex-1 p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors" title="Auto">
+                  <i data-lucide="monitor" class="w-4 h-4 mx-auto text-neutral-600 dark:text-neutral-400"></i>
                 </button>
                 <button id="theme-light" class="flex-1 p-2 rounded-lg bg-yellow-100 dark:bg-yellow-900/30 transition-colors" title="Light">
                   <i data-lucide="sun" class="w-4 h-4 mx-auto text-yellow-600 dark:text-yellow-400"></i>
                 </button>
-                <button id="theme-dark" class="flex-1 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" title="Dark">
-                  <i data-lucide="moon" class="w-4 h-4 mx-auto text-gray-600 dark:text-gray-400"></i>
+                <button id="theme-dark" class="flex-1 p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors" title="Dark">
+                  <i data-lucide="moon" class="w-4 h-4 mx-auto text-neutral-600 dark:text-neutral-400"></i>
                 </button>
               </div>
             </div>
             
             <!-- Menu Items -->
             <div class="py-2">
-              <a href="user-profile.html" class="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-                <i data-lucide="user" class="w-4 h-4 text-gray-600 dark:text-gray-400"></i>
-                <span class="text-sm text-gray-900 dark:text-white">My Profile</span>
+              <a href="user-profile.html" class="flex items-center gap-3 px-4 py-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors">
+                <i data-lucide="user" class="w-4 h-4 text-neutral-600 dark:text-neutral-400"></i>
+                <span class="text-sm text-neutral-900 dark:text-white">My Profile</span>
               </a>
-              <a href="#" class="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-                <i data-lucide="bookmark" class="w-4 h-4 text-gray-600 dark:text-gray-400"></i>
-                <span class="text-sm text-gray-900 dark:text-white">Bookmarks</span>
+              <a href="#" class="flex items-center gap-3 px-4 py-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors">
+                <i data-lucide="bookmark" class="w-4 h-4 text-neutral-600 dark:text-neutral-400"></i>
+                <span class="text-sm text-neutral-900 dark:text-white">Bookmarks</span>
               </a>
-              <a href="#" class="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-                <i data-lucide="clock" class="w-4 h-4 text-gray-600 dark:text-gray-400"></i>
-                <span class="text-sm text-gray-900 dark:text-white">Reading History</span>
+              <a href="#" class="flex items-center gap-3 px-4 py-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors">
+                <i data-lucide="clock" class="w-4 h-4 text-neutral-600 dark:text-neutral-400"></i>
+                <span class="text-sm text-neutral-900 dark:text-white">Reading History</span>
               </a>
-              <a href="#" class="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-                <i data-lucide="settings" class="w-4 h-4 text-gray-600 dark:text-gray-400"></i>
-                <span class="text-sm text-gray-900 dark:text-white">Settings</span>
+              <a href="#" class="flex items-center gap-3 px-4 py-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors">
+                <i data-lucide="settings" class="w-4 h-4 text-neutral-600 dark:text-neutral-400"></i>
+                <span class="text-sm text-neutral-900 dark:text-white">Settings</span>
               </a>
             </div>
             
             <!-- Divider -->
-            <div class="border-t border-gray-200 dark:border-gray-700 my-2"></div>
+            <div class="border-t border-neutral-200 dark:border-neutral-700 my-2"></div>
             
             <!-- Logout -->
             <div class="py-2">
@@ -232,27 +278,27 @@
     <div class="flex">
       
       <!-- Left Sidebar - Syntax-style Navigation (Desktop) -->
-      <aside id="desktop-toc" class="hidden lg:block fixed left-0 top-16 bottom-0 w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 overflow-y-auto" style="left: max(0px, calc(50% - 768px))">
+      <aside id="desktop-toc" class="hidden lg:block fixed left-0 top-16 bottom-0 w-64 bg-neutral-50 dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-700 overflow-y-auto" style="left: max(0px, calc(50% - 768px))">
       <nav class="p-6">
         
         <!-- Table of Contents Header -->
-        <div class="mb-4 pb-4 border-b border-gray-200 dark:border-gray-700">
+        <div class="mb-4 pb-4 border-b border-neutral-200 dark:border-neutral-700">
           <div class="flex items-center justify-between">
-            <h2 class="text-sm font-bold text-gray-900 dark:text-white">Table of Contents</h2>
+            <h2 class="text-sm font-bold text-neutral-900 dark:text-white">Table of Contents</h2>
             
             <!-- Hide TOC Icon Button -->
-            <button id="hide-toc-btn" class="group p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors" title="Hide table of contents">
-              <i data-lucide="panel-left-close" class="w-4 h-4 text-gray-600 dark:text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-400"></i>
+            <button id="hide-toc-btn" class="group p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors" title="Hide table of contents">
+              <i data-lucide="panel-left-close" class="w-4 h-4 text-neutral-600 dark:text-neutral-400 group-hover:text-primary-600 dark:group-hover:text-primary-400"></i>
             </button>
           </div>
           
           <!-- Expand/Collapse All -->
           <div class="flex items-center gap-3 mt-3">
-            <button id="expand-all-btn" class="flex items-center gap-1 text-xs text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400">
+            <button id="expand-all-btn" class="flex items-center gap-1 text-xs text-neutral-600 dark:text-neutral-400 hover:text-primary-600 dark:hover:text-primary-400">
               <i data-lucide="chevron-down" class="w-3 h-3"></i>
               <span>Expand</span>
             </button>
-            <button id="collapse-all-btn" class="flex items-center gap-1 text-xs text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400">
+            <button id="collapse-all-btn" class="flex items-center gap-1 text-xs text-neutral-600 dark:text-neutral-400 hover:text-primary-600 dark:hover:text-primary-400">
               <i data-lucide="chevron-up" class="w-3 h-3"></i>
               <span>Collapse</span>
             </button>
@@ -261,72 +307,72 @@
         
         <!-- Section: Getting Started -->
         <div class="mb-6">
-          <button class="nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3 hover:text-purple-600 dark:hover:text-purple-400" data-chevron-state="down">
+          <button class="nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-neutral-900 dark:text-white uppercase tracking-wide mb-3 hover:text-primary-600 dark:hover:text-primary-400" data-chevron-state="down">
             <span>Getting Started</span>
             <i data-lucide="chevron-down" class="w-4 h-4"></i>
           </button>
           <ul class="space-y-2 text-sm nav-section-content hidden">
-            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Logging In</a></li>
-            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Navigation Bar</a></li>
-            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Dashboard</a></li>
+            <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Logging In</a></li>
+            <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Navigation Bar</a></li>
+            <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Dashboard</a></li>
           </ul>
         </div>
         
         <!-- Section: Authoring Basics -->
         <div class="mb-6">
-          <button class="nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3 hover:text-purple-600 dark:hover:text-purple-400" data-chevron-state="up">
+          <button class="nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-neutral-900 dark:text-white uppercase tracking-wide mb-3 hover:text-primary-600 dark:hover:text-primary-400" data-chevron-state="up">
             <span>Authoring Basics</span>
             <i data-lucide="chevron-up" class="w-4 h-4"></i>
           </button>
           <ul class="space-y-2 text-sm nav-section-content">
-            <li><a href="doc-page.html" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Creating Pages</a></li>
-            <li><a href="#" class="text-purple-600 dark:text-purple-400 font-semibold">Checking Pages In/Out</a></li>
-            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Saving Pages</a></li>
-            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Deleting & Restoring</a></li>
-            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Publishing Content</a></li>
+            <li><a href="doc-page.html" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Creating Pages</a></li>
+            <li><a href="#" class="text-primary-600 dark:text-primary-400 font-semibold">Checking Pages In/Out</a></li>
+            <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Saving Pages</a></li>
+            <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Deleting & Restoring</a></li>
+            <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Publishing Content</a></li>
           </ul>
         </div>
         
         <!-- Section: Editing Basics -->
         <div class="mb-6">
-          <button class="nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3 hover:text-purple-600 dark:hover:text-purple-400" data-chevron-state="down">
+          <button class="nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-neutral-900 dark:text-white uppercase tracking-wide mb-3 hover:text-primary-600 dark:hover:text-primary-400" data-chevron-state="down">
             <span>Editing Basics</span>
             <i data-lucide="chevron-down" class="w-4 h-4"></i>
           </button>
           <ul class="space-y-2 text-sm nav-section-content hidden">
-            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">In-Context Editing</a></li>
-            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Page Builder</a></li>
-            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Using History</a></li>
-            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Managing Pages</a></li>
-            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">XHTML Editor</a></li>
+            <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">In-Context Editing</a></li>
+            <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Page Builder</a></li>
+            <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Using History</a></li>
+            <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Managing Pages</a></li>
+            <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">XHTML Editor</a></li>
           </ul>
         </div>
         
         <!-- Section: Assets Manager -->
         <div class="mb-6">
-          <button class="nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3 hover:text-purple-600 dark:hover:text-purple-400" data-chevron-state="down">
+          <button class="nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-neutral-900 dark:text-white uppercase tracking-wide mb-3 hover:text-primary-600 dark:hover:text-primary-400" data-chevron-state="down">
             <span>Assets Manager</span>
             <i data-lucide="chevron-down" class="w-4 h-4"></i>
           </button>
           <ul class="space-y-2 text-sm nav-section-content hidden">
-            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Uploading Assets</a></li>
-            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Managing Assets</a></li>
-            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Asset Metadata</a></li>
-            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Asset History</a></li>
+            <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Uploading Assets</a></li>
+            <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Managing Assets</a></li>
+            <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Asset Metadata</a></li>
+            <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Asset History</a></li>
           </ul>
         </div>
         
         <!-- Section: Administration -->
         <div class="mb-6">
-          <button class="nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3 hover:text-purple-600 dark:hover:text-purple-400" data-chevron-state="down">
+          <button class="nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-neutral-900 dark:text-white uppercase tracking-wide mb-3 hover:text-primary-600 dark:hover:text-primary-400" data-chevron-state="down">
             <span>Administration</span>
             <i data-lucide="chevron-down" class="w-4 h-4"></i>
           </button>
           <ul class="space-y-2 text-sm nav-section-content hidden">
-            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Schema Designer</a></li>
-            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Publishing System</a></li>
-            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Users & Groups</a></li>
-            <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Workflows</a></li>
+            <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Schema Designer</a></li>
+            <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Publishing System</a></li>
+            <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Users & Groups</a></li>
+            <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Workflows</a></li>
           </ul>
         </div>
         
@@ -334,7 +380,7 @@
     </aside>
 
       <!-- Show TOC Button (appears where TOC normally is) -->
-      <button id="show-toc-btn" class="hidden fixed top-24 z-40 p-2 bg-white dark:bg-gray-900 border-2 border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded shadow-md transition-colors" style="left: max(24px, calc(50% - 768px))" title="Show table of contents">
+      <button id="show-toc-btn" class="hidden fixed top-24 z-40 p-2 bg-neutral-50 dark:bg-neutral-900 border-2 border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded shadow-md transition-colors" style="left: max(24px, calc(50% - 768px))" title="Show table of contents">
         <i data-lucide="chevron-right" class="w-4 h-4 text-blue-600 dark:text-blue-400"></i>
       </button>
 
@@ -344,97 +390,97 @@
           
           <!-- Breadcrumb Navigation (Hidden on mobile) -->
           <nav class="hidden sm:block mb-6" aria-label="Breadcrumb">
-            <ol class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+            <ol class="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400">
               <li>
-                <a href="index.html" class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Home</a>
+                <a href="index.html" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Home</a>
               </li>
               <li>
-                <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400"></i>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-neutral-400"></i>
               </li>
               <li>
-                <a href="index.html#products" class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">CMS 10</a>
+                <a href="index.html#products" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">CMS 10</a>
               </li>
               <li>
-                <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400"></i>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-neutral-400"></i>
               </li>
               <li>
-                <a href="#" class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Authoring Basics</a>
+                <a href="#" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Authoring Basics</a>
               </li>
               <li>
-                <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400"></i>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-neutral-400"></i>
               </li>
-              <li class="text-gray-900 dark:text-gray-100 font-medium" aria-current="page">Checking Pages In or Out</li>
+              <li class="text-neutral-900 dark:text-neutral-100 font-medium" aria-current="page">Checking Pages In or Out</li>
             </ol>
           </nav>
           
           <!-- Article Toolbar -->
-          <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-200 dark:border-gray-700">
+          <div class="flex items-center justify-between mb-6 pb-4 border-b border-neutral-200 dark:border-neutral-700">
             <div class="flex items-center gap-2">
-              <a href="doc-page.html" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors" title="Previous article">
-                <i data-lucide="chevron-left" class="w-5 h-5 text-gray-600 dark:text-gray-400"></i>
+              <a href="doc-page.html" class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors" title="Previous article">
+                <i data-lucide="chevron-left" class="w-5 h-5 text-neutral-600 dark:text-neutral-400"></i>
               </a>
-              <a href="#" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors" title="Next article">
-                <i data-lucide="chevron-right" class="w-5 h-5 text-gray-600 dark:text-gray-400"></i>
+              <a href="#" class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors" title="Next article">
+                <i data-lucide="chevron-right" class="w-5 h-5 text-neutral-600 dark:text-neutral-400"></i>
               </a>
             </div>
             
             <div class="flex items-center gap-2">
-              <button class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors" title="Download PDF">
-                <i data-lucide="download" class="w-5 h-5 text-gray-600 dark:text-gray-400"></i>
+              <button class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors" title="Download PDF">
+                <i data-lucide="download" class="w-5 h-5 text-neutral-600 dark:text-neutral-400"></i>
               </button>
-              <button class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors" title="Share">
-                <i data-lucide="share-2" class="w-5 h-5 text-gray-600 dark:text-gray-400"></i>
+              <button class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors" title="Share">
+                <i data-lucide="share-2" class="w-5 h-5 text-neutral-600 dark:text-neutral-400"></i>
               </button>
-              <button class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors" title="Feedback">
-                <i data-lucide="message-square" class="w-5 h-5 text-gray-600 dark:text-gray-400"></i>
+              <button class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors" title="Feedback">
+                <i data-lucide="message-square" class="w-5 h-5 text-neutral-600 dark:text-neutral-400"></i>
               </button>
             </div>
           </div>
           
           <!-- Version & Tags -->
-          <div class="flex flex-wrap items-center gap-3 mb-6 pb-4 border-b border-gray-200 dark:border-gray-700">
+          <div class="flex flex-wrap items-center gap-3 mb-6 pb-4 border-b border-neutral-200 dark:border-neutral-700">
             <div class="flex items-center gap-2 relative">
-              <span class="text-sm text-gray-600 dark:text-gray-400">Version:</span>
-              <button id="version-dropdown-btn" class="group inline-flex items-center gap-2 border-b-2 border-purple-600 dark:border-purple-400 pb-1 hover:border-purple-700 dark:hover:border-purple-300 transition-colors">
-                <span class="text-purple-600 dark:text-purple-400 font-medium group-hover:text-purple-700 dark:group-hover:text-purple-300">CMS 10.6</span>
-                <i data-lucide="chevron-down" class="w-4 h-4 text-gray-600 dark:text-gray-400"></i>
+              <span class="text-sm text-neutral-600 dark:text-neutral-400">Version:</span>
+              <button id="version-dropdown-btn" class="group inline-flex items-center gap-2 border-b-2 border-primary-600 dark:border-primary-400 pb-1 hover:border-primary-700 dark:hover:border-primary-300 transition-colors">
+                <span class="text-primary-600 dark:text-primary-400 font-medium group-hover:text-primary-700 dark:group-hover:text-primary-300">CMS 10.6</span>
+                <i data-lucide="chevron-down" class="w-4 h-4 text-neutral-600 dark:text-neutral-400"></i>
               </button>
               
               <!-- Version Dropdown Menu -->
-              <div id="version-dropdown" class="hidden absolute top-full left-0 mt-2 w-48 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg z-50">
+              <div id="version-dropdown" class="hidden absolute top-full left-0 mt-2 w-48 bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg shadow-lg z-50">
                 <div class="py-2">
-                  <a href="#" class="block px-4 py-2 text-sm text-purple-600 dark:text-purple-400 font-medium bg-purple-50 dark:bg-purple-900/20">CMS 10.6 (Latest)</a>
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">CMS 10.5</a>
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">CMS 10.3</a>
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">CMS 10.2</a>
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">CMS 10.1</a>
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">CMS 10.0</a>
-                  <div class="border-t border-gray-200 dark:border-gray-700 my-2"></div>
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">CMS 9</a>
+                  <a href="#" class="block px-4 py-2 text-sm text-primary-600 dark:text-primary-400 font-medium bg-primary-50 dark:bg-primary-900/20">CMS 10.6 (Latest)</a>
+                  <a href="#" class="block px-4 py-2 text-sm text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700">CMS 10.5</a>
+                  <a href="#" class="block px-4 py-2 text-sm text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700">CMS 10.3</a>
+                  <a href="#" class="block px-4 py-2 text-sm text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700">CMS 10.2</a>
+                  <a href="#" class="block px-4 py-2 text-sm text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700">CMS 10.1</a>
+                  <a href="#" class="block px-4 py-2 text-sm text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700">CMS 10.0</a>
+                  <div class="border-t border-neutral-200 dark:border-neutral-700 my-2"></div>
+                  <a href="#" class="block px-4 py-2 text-sm text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700">CMS 9</a>
                 </div>
               </div>
             </div>
-            <span class="text-gray-400">|</span>
-            <span class="text-sm text-gray-600 dark:text-gray-400">Last updated Feb 1, 2025</span>
-            <span class="text-gray-400">|</span>
-            <span class="text-sm text-gray-600 dark:text-gray-400">Documentation</span>
+            <span class="text-neutral-400">|</span>
+            <span class="text-sm text-neutral-600 dark:text-neutral-400">Last updated Feb 1, 2025</span>
+            <span class="text-neutral-400">|</span>
+            <span class="text-sm text-neutral-600 dark:text-neutral-400">Documentation</span>
             <div class="flex items-center gap-2 ml-auto">
-              <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 text-xs font-semibold rounded-full">Ingeniux CMS</span>
+              <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300 text-xs font-semibold rounded-full">Ingeniux CMS</span>
               <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 text-xs font-semibold rounded-full">Authoring</span>
               <span class="px-3 py-1 bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-300 text-xs font-semibold rounded-full">Getting Started</span>
             </div>
           </div>
           
           <!-- Section Label -->
-          <p class="text-sm font-semibold text-purple-600 dark:text-purple-400 mb-4">Authoring Basics</p>
+          <p class="text-sm font-semibold text-primary-600 dark:text-primary-400 mb-4">Authoring Basics</p>
           
           <!-- Mobile TOC Button (At top of article on mobile) -->
-          <button id="mobile-toc-btn" class="lg:hidden w-full flex items-center justify-between gap-3 px-4 py-3 mb-6 border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 rounded-lg hover:border-purple-500 dark:hover:border-purple-400 transition-colors">
+          <button id="mobile-toc-btn" class="lg:hidden w-full flex items-center justify-between gap-3 px-4 py-3 mb-6 border-2 border-neutral-300 dark:border-neutral-600 bg-neutral-50 dark:bg-neutral-800 rounded-lg hover:border-primary-500 dark:hover:border-primary-400 transition-colors">
             <div class="flex items-center gap-2">
-              <i data-lucide="list" class="w-5 h-5 text-gray-600 dark:text-gray-400"></i>
-              <span class="font-medium text-gray-900 dark:text-white">Table of Contents</span>
+              <i data-lucide="list" class="w-5 h-5 text-neutral-600 dark:text-neutral-400"></i>
+              <span class="font-medium text-neutral-900 dark:text-white">Table of Contents</span>
             </div>
-            <i data-lucide="chevron-right" class="w-5 h-5 text-gray-400"></i>
+            <i data-lucide="chevron-right" class="w-5 h-5 text-neutral-400"></i>
           </button>
         
         <!-- Article -->
@@ -448,19 +494,19 @@
 
           <!-- AI Tools (Inline at top) -->
           <div class="flex flex-wrap gap-3" style="margin-bottom: 2rem;">
-            <button class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg text-sm font-semibold hover:from-purple-700 hover:to-blue-700 transition-all">
+            <button class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary-600 to-blue-600 text-white rounded-lg text-sm font-semibold hover:from-primary-700 hover:to-blue-700 transition-all">
               <i data-lucide="sparkles" class="w-4 h-4"></i>
               Summarize
             </button>
-            <button class="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 border-2 border-purple-600 text-purple-600 dark:text-purple-400 rounded-lg text-sm font-semibold hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-all">
+            <button class="inline-flex items-center gap-2 px-4 py-2 bg-neutral-50 dark:bg-neutral-800 border-2 border-primary-600 text-primary-600 dark:text-primary-400 rounded-lg text-sm font-semibold hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all">
               <i data-lucide="headphones" class="w-4 h-4"></i>
               Listen
             </button>
-            <button class="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 border-2 border-purple-600 text-purple-600 dark:text-purple-400 rounded-lg text-sm font-semibold hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-all">
+            <button class="inline-flex items-center gap-2 px-4 py-2 bg-neutral-50 dark:bg-neutral-800 border-2 border-primary-600 text-primary-600 dark:text-primary-400 rounded-lg text-sm font-semibold hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all">
               <i data-lucide="message-circle" class="w-4 h-4"></i>
               Ask AI
             </button>
-            <button id="glossary-toggle" class="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg text-sm font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition-all">
+            <button id="glossary-toggle" class="inline-flex items-center gap-2 px-4 py-2 bg-neutral-50 dark:bg-neutral-800 border-2 border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 rounded-lg text-sm font-semibold hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-all">
               <i data-lucide="book-open" class="w-4 h-4"></i>
               <span>Glossary</span>
               <span class="text-xs opacity-60">Off</span>
@@ -495,16 +541,16 @@
           <!-- Code Block with AI -->
           <div class="not-prose mb-6">
             <div class="flex items-center justify-between mb-2">
-              <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-md text-xs font-semibold hover:from-purple-700 hover:to-blue-700">
+              <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-primary-600 to-blue-600 text-white rounded-md text-xs font-semibold hover:from-primary-700 hover:to-blue-700">
                 <i data-lucide="sparkles" class="w-3 h-3"></i>
                 Explain this code
               </button>
-              <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-700 dark:bg-gray-800 text-white rounded-md text-xs font-semibold hover:bg-gray-600">
+              <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-neutral-700 dark:bg-neutral-800 text-white rounded-md text-xs font-semibold hover:bg-neutral-600">
                 <i data-lucide="copy" class="w-3 h-3"></i>
                 Copy
               </button>
             </div>
-            <pre class="bg-black rounded-lg p-4 overflow-x-auto" style="margin: 0;"><code style="font-size: 14px; color: #e5e7eb; line-height: 1.7;"><span style="color: #9ca3af;">// Check out a page for editing</span>
+            <pre class="bg-neutral-950 rounded-lg p-4 overflow-x-auto" style="margin: 0;"><code style="font-size: 14px; color: #e5e7eb; line-height: 1.7;"><span style="color: #9ca3af;">// Check out a page for editing</span>
 <span style="color: #f472b6;">const</span> <span style="color: #fbbf24;">checkout</span> = <span style="color: #f472b6;">await</span> <span style="color: #60a5fa;">cmsAPI</span>.<span style="color: #34d399;">checkoutPage</span>({
   <span style="color: #fbbf24;">pageId</span>: <span style="color: #34d399;">'x456'</span>,
   <span style="color: #fbbf24;">userId</span>: <span style="color: #34d399;">'currentUser'</span>
@@ -559,16 +605,16 @@
           <!-- Code Block with AI -->
           <div class="not-prose mb-6">
             <div class="flex items-center justify-between mb-2">
-              <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-md text-xs font-semibold hover:from-purple-700 hover:to-blue-700">
+              <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-primary-600 to-blue-600 text-white rounded-md text-xs font-semibold hover:from-primary-700 hover:to-blue-700">
                 <i data-lucide="sparkles" class="w-3 h-3"></i>
                 Explain this code
               </button>
-              <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-700 dark:bg-gray-800 text-white rounded-md text-xs font-semibold hover:bg-gray-600">
+              <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-neutral-700 dark:bg-neutral-800 text-white rounded-md text-xs font-semibold hover:bg-neutral-600">
                 <i data-lucide="copy" class="w-3 h-3"></i>
                 Copy
               </button>
             </div>
-            <pre class="bg-black rounded-lg p-4 overflow-x-auto" style="margin: 0;"><code style="font-size: 14px; color: #e5e7eb; line-height: 1.7;"><span style="color: #9ca3af;">// Get available schemas for a parent page</span>
+            <pre class="bg-neutral-950 rounded-lg p-4 overflow-x-auto" style="margin: 0;"><code style="font-size: 14px; color: #e5e7eb; line-height: 1.7;"><span style="color: #9ca3af;">// Get available schemas for a parent page</span>
 <span style="color: #f472b6;">const</span> <span style="color: #fbbf24;">schemas</span> = <span style="color: #f472b6;">await</span> <span style="color: #60a5fa;">cmsAPI</span>.<span style="color: #34d399;">getAvailableSchemas</span>({
   <span style="color: #fbbf24;">parentId</span>: <span style="color: #34d399;">'x123'</span>,
   <span style="color: #fbbf24;">filterBy</span>: <span style="color: #34d399;">'pageCreationRules'</span>
@@ -585,10 +631,10 @@
           <p>Now that you understand how to check pages in and out, explore these related topics to enhance your content management workflow:</p>
           
           <ul style="padding-left: 1.5rem; margin-bottom: 1.5rem; list-style-type: disc;">
-            <li style="margin-bottom: 0.5rem;"><a href="doc-page.html" class="text-purple-600 dark:text-purple-400 hover:underline">Creating Pages</a> - Learn how to create new pages in the Site Tree</li>
-            <li style="margin-bottom: 0.5rem;"><a href="#" class="text-purple-600 dark:text-purple-400 hover:underline">Saving Pages</a> - Save your work while editing</li>
-            <li style="margin-bottom: 0.5rem;"><a href="#" class="text-purple-600 dark:text-purple-400 hover:underline">Using History</a> - Review and revert to previous page versions</li>
-            <li style="margin-bottom: 0.5rem;"><a href="#" class="text-purple-600 dark:text-purple-400 hover:underline">Publishing Content</a> - Publish your completed pages</li>
+            <li style="margin-bottom: 0.5rem;"><a href="doc-page.html" class="text-primary-600 dark:text-primary-400 hover:underline">Creating Pages</a> - Learn how to create new pages in the Site Tree</li>
+            <li style="margin-bottom: 0.5rem;"><a href="#" class="text-primary-600 dark:text-primary-400 hover:underline">Saving Pages</a> - Save your work while editing</li>
+            <li style="margin-bottom: 0.5rem;"><a href="#" class="text-primary-600 dark:text-primary-400 hover:underline">Using History</a> - Review and revert to previous page versions</li>
+            <li style="margin-bottom: 0.5rem;"><a href="#" class="text-primary-600 dark:text-primary-400 hover:underline">Publishing Content</a> - Publish your completed pages</li>
           </ul>
           
           <h3 id="workflow-integration">Workflow Integration</h3>
@@ -599,16 +645,16 @@
           <!-- Code Block with AI -->
           <div class="not-prose mb-6">
             <div class="flex items-center justify-between mb-2">
-              <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-md text-xs font-semibold hover:from-purple-700 hover:to-blue-700">
+              <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-primary-600 to-blue-600 text-white rounded-md text-xs font-semibold hover:from-primary-700 hover:to-blue-700">
                 <i data-lucide="sparkles" class="w-3 h-3"></i>
                 Explain this code
               </button>
-              <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-700 dark:bg-gray-800 text-white rounded-md text-xs font-semibold hover:bg-gray-600">
+              <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-neutral-700 dark:bg-neutral-800 text-white rounded-md text-xs font-semibold hover:bg-neutral-600">
                 <i data-lucide="copy" class="w-3 h-3"></i>
                 Copy
               </button>
             </div>
-            <pre class="bg-black rounded-lg p-4 overflow-x-auto" style="margin: 0;"><code style="font-size: 14px; color: #e5e7eb; line-height: 1.7;"><span style="color: #9ca3af;">// Check out a page for editing</span>
+            <pre class="bg-neutral-950 rounded-lg p-4 overflow-x-auto" style="margin: 0;"><code style="font-size: 14px; color: #e5e7eb; line-height: 1.7;"><span style="color: #9ca3af;">// Check out a page for editing</span>
 <span style="color: #f472b6;">const</span> <span style="color: #fbbf24;">checkout</span> = <span style="color: #f472b6;">await</span> <span style="color: #60a5fa;">cmsAPI</span>.<span style="color: #34d399;">checkoutPage</span>({
   <span style="color: #fbbf24;">pageId</span>: <span style="color: #34d399;">'x456'</span>,
   <span style="color: #fbbf24;">userId</span>: <span style="color: #34d399;">'user123'</span>
@@ -630,14 +676,14 @@
         </article>
 
         <!-- Feedback Section -->
-        <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-          <p class="text-sm font-semibold text-gray-900 dark:text-white mb-4 text-center">Was this article helpful?</p>
+        <div class="mt-12 pt-8 border-t border-neutral-200 dark:border-neutral-700">
+          <p class="text-sm font-semibold text-neutral-900 dark:text-white mb-4 text-center">Was this article helpful?</p>
           <div class="flex items-center justify-center gap-4 mb-12">
-            <button class="flex items-center gap-2 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:border-green-500 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-900/20 transition-colors">
+            <button class="flex items-center gap-2 px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg text-sm font-medium text-neutral-700 dark:text-neutral-300 hover:border-green-500 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-900/20 transition-colors">
               <i data-lucide="thumbs-up" class="w-4 h-4"></i>
               <span>Yes</span>
             </button>
-            <button class="flex items-center gap-2 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:border-red-500 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors">
+            <button class="flex items-center gap-2 px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg text-sm font-medium text-neutral-700 dark:text-neutral-300 hover:border-red-500 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors">
               <i data-lucide="thumbs-down" class="w-4 h-4"></i>
               <span>No</span>
             </button>
@@ -646,19 +692,19 @@
         
         <!-- Next/Previous Navigation (Centered) -->
         <nav class="flex items-center justify-between">
-          <a href="doc-page.html" class="flex items-start gap-3 text-sm hover:text-purple-600 dark:hover:text-purple-400 transition-colors group">
-            <i data-lucide="arrow-left" class="w-5 h-5 text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-400 mt-1"></i>
+          <a href="doc-page.html" class="flex items-start gap-3 text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors group">
+            <i data-lucide="arrow-left" class="w-5 h-5 text-neutral-400 group-hover:text-primary-600 dark:group-hover:text-primary-400 mt-1"></i>
             <div>
-              <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Previous</p>
-              <p class="font-semibold text-gray-900 dark:text-white">Creating Pages</p>
+              <p class="text-xs text-neutral-500 dark:text-neutral-400 mb-1">Previous</p>
+              <p class="font-semibold text-neutral-900 dark:text-white">Creating Pages</p>
             </div>
           </a>
-          <a href="#" class="flex items-start gap-3 text-sm hover:text-purple-600 dark:hover:text-purple-400 transition-colors group text-right">
+          <a href="#" class="flex items-start gap-3 text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors group text-right">
             <div>
-              <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Next</p>
-              <p class="font-semibold text-gray-900 dark:text-white">Saving Pages</p>
+              <p class="text-xs text-neutral-500 dark:text-neutral-400 mb-1">Next</p>
+              <p class="font-semibold text-neutral-900 dark:text-white">Saving Pages</p>
             </div>
-            <i data-lucide="arrow-right" class="w-5 h-5 text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-400 mt-1"></i>
+            <i data-lucide="arrow-right" class="w-5 h-5 text-neutral-400 group-hover:text-primary-600 dark:group-hover:text-primary-400 mt-1"></i>
           </a>
         </nav>
 
@@ -666,25 +712,25 @@
     </main>
 
       <!-- Right Sidebar - "On this page" TOC (Syntax-style) -->
-      <aside class="hidden lg:block fixed right-0 top-16 bottom-0 w-64 bg-white dark:bg-gray-900 border-l border-gray-200 dark:border-gray-700 overflow-y-auto" style="right: max(0px, calc(50% - 768px))">
+      <aside class="hidden lg:block fixed right-0 top-16 bottom-0 w-64 bg-neutral-50 dark:bg-neutral-900 border-l border-neutral-200 dark:border-neutral-700 overflow-y-auto" style="right: max(0px, calc(50% - 768px))">
         <nav class="p-6">
-        <h2 class="text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-4">On this page</h2>
+        <h2 class="text-xs font-semibold text-neutral-900 dark:text-white uppercase tracking-wide mb-4">On this page</h2>
         <ul class="space-y-3 text-sm">
-          <li><a href="#overview" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white block">Overview</a>
+          <li><a href="#overview" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white block">Overview</a>
             <ul class="ml-4 mt-2 space-y-2 text-xs">
-              <li><a href="#checking-out" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white block">Checking Out Pages</a></li>
-              <li><a href="#checking-in" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white block">Checking In Pages</a></li>
-              <li><a href="#undoing-checkout" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white block">Undoing Checkouts</a></li>
+              <li><a href="#checking-out" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white block">Checking Out Pages</a></li>
+              <li><a href="#checking-in" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white block">Checking In Pages</a></li>
+              <li><a href="#undoing-checkout" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white block">Undoing Checkouts</a></li>
             </ul>
           </li>
-          <li><a href="#best-practices" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white block">Best Practices</a>
+          <li><a href="#best-practices" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white block">Best Practices</a>
             <ul class="ml-4 mt-2 space-y-2 text-xs">
-              <li><a href="#page-status" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white block">Page Status Indicators</a></li>
-              <li><a href="#version-control" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white block">Version Control</a></li>
-              <li><a href="#api-integration" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white block">API Integration</a></li>
+              <li><a href="#page-status" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white block">Page Status Indicators</a></li>
+              <li><a href="#version-control" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white block">Version Control</a></li>
+              <li><a href="#api-integration" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white block">API Integration</a></li>
             </ul>
           </li>
-          <li><a href="#related-topics" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white block">Related Topics</a></li>
+          <li><a href="#related-topics" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white block">Related Topics</a></li>
         </ul>
         </nav>
       </aside>
@@ -693,12 +739,12 @@
   </div>
   
 <!-- Footer (outside flex container for full width) -->
-<footer class="bg-gray-900 dark:bg-black text-white py-12" style="width: 100vw; position: relative; left: 0; right: 0;">
+<footer class="bg-neutral-900 dark:bg-neutral-950 text-white py-12" style="width: 100vw; position: relative; left: 0; right: 0;">
     <div class="max-w-screen-2xl mx-auto px-6">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
         <div class="col-span-1">
           <div class="flex items-center space-x-2 mb-4">
-            <svg class="w-8 h-8 text-indigo-400" viewBox="0 0 32 32" fill="currentColor">
+            <svg class="w-8 h-8 text-accent-400" viewBox="0 0 32 32" fill="currentColor">
               <path d="M16 2L3 9v14l13 7 13-7V9L16 2zm0 3.24L25.08 9 16 13.76 6.92 9 16 5.24zM5 10.92l10 5.38v10.46l-10-5.38V10.92zm12 15.84V16.3l10-5.38v10.46l-10 5.38z"/>
             </svg>
             <span class="font-bold text-lg">Discover CX</span>
@@ -706,7 +752,7 @@
         </div>
         <div>
           <h3 class="font-bold mb-4">Products</h3>
-          <div class="space-y-2 text-sm text-gray-400">
+          <div class="space-y-2 text-sm text-neutral-400">
             <a href="#" class="block hover:text-white">Discover CX Platform</a>
             <a href="#" class="block hover:text-white">Discover CX</a>
             <a href="#" class="block hover:text-white">AI Assists</a>
@@ -715,7 +761,7 @@
         </div>
         <div>
           <h3 class="font-bold mb-4">Resources</h3>
-          <div class="space-y-2 text-sm text-gray-400">
+          <div class="space-y-2 text-sm text-neutral-400">
             <a href="#" class="block hover:text-white">Documentation</a>
             <a href="#" class="block hover:text-white">API Reference</a>
             <a href="#" class="block hover:text-white">Knowledge Base</a>
@@ -724,7 +770,7 @@
         </div>
         <div>
           <h3 class="font-bold mb-4">Company</h3>
-          <div class="space-y-2 text-sm text-gray-400">
+          <div class="space-y-2 text-sm text-neutral-400">
             <a href="#" class="block hover:text-white">About Us</a>
             <a href="#" class="block hover:text-white">Careers</a>
             <a href="#" class="block hover:text-white">Contact Sales</a>
@@ -732,44 +778,44 @@
           </div>
         </div>
       </div>
-      <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-500">
+      <div class="border-t border-neutral-700 mt-8 pt-8 text-center text-sm text-neutral-500">
         © 2025 Discover CX by Ingeniux. All rights reserved.
       </div>
     </div>
   </footer>
 
   <!-- Command K Search Modal -->
-  <div id="cmd-k-modal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 p-4 md:p-8">
+  <div id="cmd-k-modal" class="hidden fixed inset-0 bg-neutral-950/50 backdrop-blur-sm z-50 p-4 md:p-8">
     <div class="max-w-3xl mx-auto mt-20">
       <!-- Search Container -->
-      <div class="bg-white dark:bg-gray-900 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+      <div class="bg-neutral-50 dark:bg-neutral-900 rounded-xl shadow-2xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
         
         <!-- Search Input -->
-        <div class="flex items-center gap-3 px-4 py-4 border-b border-gray-200 dark:border-gray-700">
-          <i data-lucide="search" class="w-5 h-5 text-gray-400"></i>
+        <div class="flex items-center gap-3 px-4 py-4 border-b border-neutral-200 dark:border-neutral-700">
+          <i data-lucide="search" class="w-5 h-5 text-neutral-400"></i>
           <input 
             id="cmd-k-input"
             type="text" 
             placeholder="Search documentation or ask AI..." 
-            class="flex-1 bg-transparent text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none text-lg"
+            class="flex-1 bg-transparent text-neutral-900 dark:text-white placeholder-gray-400 focus:outline-none text-lg"
             autocomplete="off"
           />
-          <button id="cmd-k-close" class="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-800 rounded">
-            <i data-lucide="x" class="w-5 h-5 text-gray-400"></i>
+          <button id="cmd-k-close" class="p-1.5 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded">
+            <i data-lucide="x" class="w-5 h-5 text-neutral-400"></i>
           </button>
         </div>
         
         <!-- Filters -->
-        <div class="flex items-center gap-2 px-4 py-3 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
-          <span class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">Filter:</span>
+        <div class="flex items-center gap-2 px-4 py-3 border-b border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800">
+          <span class="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wide">Filter:</span>
           <div class="flex gap-2">
-            <button class="filter-btn active px-3 py-1.5 rounded-lg text-xs font-semibold bg-purple-600 text-white">
+            <button class="filter-btn active px-3 py-1.5 rounded-lg text-xs font-semibold bg-primary-600 text-white">
               All Results
             </button>
-            <button class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600">
+            <button class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-neutral-50 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 border border-neutral-300 dark:border-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-600">
               Documentation
             </button>
-            <button class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600">
+            <button class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-neutral-50 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 border border-neutral-300 dark:border-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-600">
               AI Answers
             </button>
           </div>
@@ -780,19 +826,19 @@
           
           <!-- Recent Searches (when empty) -->
           <div id="recent-searches" class="p-4">
-            <p class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3">Recent Searches</p>
+            <p class="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wide mb-3">Recent Searches</p>
             <div class="space-y-1">
-              <button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-left">
-                <i data-lucide="clock" class="w-4 h-4 text-gray-400"></i>
-                <span class="text-sm text-gray-700 dark:text-gray-300">Getting started with component schemas</span>
+              <button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors text-left">
+                <i data-lucide="clock" class="w-4 h-4 text-neutral-400"></i>
+                <span class="text-sm text-neutral-700 dark:text-neutral-300">Getting started with component schemas</span>
               </button>
-              <button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-left">
-                <i data-lucide="clock" class="w-4 h-4 text-gray-400"></i>
-                <span class="text-sm text-gray-700 dark:text-gray-300">API authentication methods</span>
+              <button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors text-left">
+                <i data-lucide="clock" class="w-4 h-4 text-neutral-400"></i>
+                <span class="text-sm text-neutral-700 dark:text-neutral-300">API authentication methods</span>
               </button>
-              <button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-left">
-                <i data-lucide="clock" class="w-4 h-4 text-gray-400"></i>
-                <span class="text-sm text-gray-700 dark:text-gray-300">Workflow automation examples</span>
+              <button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors text-left">
+                <i data-lucide="clock" class="w-4 h-4 text-neutral-400"></i>
+                <span class="text-sm text-neutral-700 dark:text-neutral-300">Workflow automation examples</span>
               </button>
             </div>
           </div>
@@ -800,25 +846,25 @@
           <!-- Search Results (when searching) -->
           <div id="search-results" class="hidden">
             <!-- AI Answers (Top Priority) -->
-            <div class="p-4 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/10 dark:to-blue-900/10">
-              <p class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3 flex items-center gap-2">
-                <i data-lucide="sparkles" class="w-4 h-4 text-purple-600 dark:text-purple-400"></i>
+            <div class="p-4 bg-gradient-to-r from-primary-50 to-blue-50 dark:from-primary-900/10 dark:to-blue-900/10">
+              <p class="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wide mb-3 flex items-center gap-2">
+                <i data-lucide="sparkles" class="w-4 h-4 text-primary-600 dark:text-primary-400"></i>
                 AI Answer
               </p>
               <div class="space-y-4">
-                <div class="p-4 rounded-lg bg-white dark:bg-gray-800 border border-purple-200 dark:border-purple-700">
-                  <p class="text-base font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
-                    <i data-lucide="zap" class="w-5 h-5 text-purple-600 dark:text-purple-400"></i>
+                <div class="p-4 rounded-lg bg-neutral-50 dark:bg-neutral-800 border border-primary-200 dark:border-primary-700">
+                  <p class="text-base font-semibold text-neutral-900 dark:text-white mb-3 flex items-center gap-2">
+                    <i data-lucide="zap" class="w-5 h-5 text-primary-600 dark:text-primary-400"></i>
                     Quick Answer
                   </p>
-                  <p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                  <p class="text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed mb-4">
                     Component schemas in Discover CX allow you to define reusable content structures with custom fields, validation rules, and relationships. They act as templates for your content, ensuring consistency and enabling powerful content modeling capabilities across your entire system.
                   </p>
                   
                   <!-- Key Points -->
-                  <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-3 mb-3">
-                    <p class="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-2">Key Features:</p>
-                    <ul class="text-xs text-gray-600 dark:text-gray-400 space-y-1 ml-4 list-disc">
+                  <div class="bg-neutral-50 dark:bg-neutral-900 rounded-lg p-3 mb-3">
+                    <p class="text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-2">Key Features:</p>
+                    <ul class="text-xs text-neutral-600 dark:text-neutral-400 space-y-1 ml-4 list-disc">
                       <li>Define custom fields with validation</li>
                       <li>Create relationships between content types</li>
                       <li>Reusable across multiple projects</li>
@@ -827,15 +873,15 @@
                   </div>
                   
                   <div class="flex flex-wrap gap-2">
-                    <a href="doc-page.html" class="inline-flex items-center gap-1 text-xs text-purple-600 dark:text-purple-400 font-semibold hover:underline">
+                    <a href="doc-page.html" class="inline-flex items-center gap-1 text-xs text-primary-600 dark:text-primary-400 font-semibold hover:underline">
                       <i data-lucide="book-open" class="w-3 h-3"></i>
                       Read full guide
                     </a>
-                    <a href="#" class="inline-flex items-center gap-1 text-xs text-purple-600 dark:text-purple-400 font-semibold hover:underline">
+                    <a href="#" class="inline-flex items-center gap-1 text-xs text-primary-600 dark:text-primary-400 font-semibold hover:underline">
                       <i data-lucide="code" class="w-3 h-3"></i>
                       View examples
                     </a>
-                    <a href="#" class="inline-flex items-center gap-1 text-xs text-purple-600 dark:text-purple-400 font-semibold hover:underline">
+                    <a href="#" class="inline-flex items-center gap-1 text-xs text-primary-600 dark:text-primary-400 font-semibold hover:underline">
                       <i data-lucide="play-circle" class="w-3 h-3"></i>
                       Watch tutorial
                     </a>
@@ -846,107 +892,107 @@
             
             <!-- Documentation Results -->
             <div class="p-4">
-              <p class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3 flex items-center justify-between">
+              <p class="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wide mb-3 flex items-center justify-between">
                 <span>Documentation</span>
-                <span class="text-gray-400">8 results</span>
+                <span class="text-neutral-400">8 results</span>
               </p>
               <div class="space-y-1">
                 <!-- Result 1 -->
-                <a href="doc-page.html" class="flex items-start gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group">
+                <a href="doc-page.html" class="flex items-start gap-3 px-3 py-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors group">
                   <i data-lucide="file-text" class="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5"></i>
                   <div class="flex-1 min-w-0">
-                    <p class="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400">Component Schemas Overview</p>
-                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">Learn how to define reusable content structures with custom fields, validation rules, and relationships between content types.</p>
+                    <p class="text-sm font-semibold text-neutral-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400">Component Schemas Overview</p>
+                    <p class="text-xs text-neutral-600 dark:text-neutral-400 mt-1 line-clamp-2">Learn how to define reusable content structures with custom fields, validation rules, and relationships between content types.</p>
                     <div class="flex items-center gap-3 mt-2">
-                      <span class="text-xs text-gray-500 dark:text-gray-400">Core Concepts</span>
-                      <span class="text-xs text-gray-400">•</span>
-                      <span class="text-xs text-gray-500 dark:text-gray-400">5 min read</span>
+                      <span class="text-xs text-neutral-500 dark:text-neutral-400">Core Concepts</span>
+                      <span class="text-xs text-neutral-400">•</span>
+                      <span class="text-xs text-neutral-500 dark:text-neutral-400">5 min read</span>
                     </div>
                   </div>
                   <span class="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded font-semibold flex-shrink-0">Guide</span>
                 </a>
                 
                 <!-- Result 2 -->
-                <a href="#" class="flex items-start gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group">
-                  <i data-lucide="code" class="w-5 h-5 text-purple-600 dark:text-purple-400 flex-shrink-0 mt-0.5"></i>
+                <a href="#" class="flex items-start gap-3 px-3 py-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors group">
+                  <i data-lucide="code" class="w-5 h-5 text-primary-600 dark:text-primary-400 flex-shrink-0 mt-0.5"></i>
                   <div class="flex-1 min-w-0">
-                    <p class="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400">Schema API Reference</p>
-                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">Complete API documentation for creating, updating, and managing component schemas programmatically.</p>
+                    <p class="text-sm font-semibold text-neutral-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400">Schema API Reference</p>
+                    <p class="text-xs text-neutral-600 dark:text-neutral-400 mt-1 line-clamp-2">Complete API documentation for creating, updating, and managing component schemas programmatically.</p>
                     <div class="flex items-center gap-3 mt-2">
-                      <span class="text-xs text-gray-500 dark:text-gray-400">API Reference</span>
-                      <span class="text-xs text-gray-400">•</span>
-                      <span class="text-xs text-gray-500 dark:text-gray-400">Reference</span>
+                      <span class="text-xs text-neutral-500 dark:text-neutral-400">API Reference</span>
+                      <span class="text-xs text-neutral-400">•</span>
+                      <span class="text-xs text-neutral-500 dark:text-neutral-400">Reference</span>
                     </div>
                   </div>
-                  <span class="text-xs px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded font-semibold flex-shrink-0">API</span>
+                  <span class="text-xs px-2 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded font-semibold flex-shrink-0">API</span>
                 </a>
                 
                 <!-- Result 3 -->
-                <a href="#" class="flex items-start gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group">
+                <a href="#" class="flex items-start gap-3 px-3 py-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors group">
                   <i data-lucide="play-circle" class="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5"></i>
                   <div class="flex-1 min-w-0">
-                    <p class="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400">Building Your First Schema</p>
-                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">Step-by-step tutorial with code examples showing how to create a blog post schema with title, content, and author fields.</p>
+                    <p class="text-sm font-semibold text-neutral-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400">Building Your First Schema</p>
+                    <p class="text-xs text-neutral-600 dark:text-neutral-400 mt-1 line-clamp-2">Step-by-step tutorial with code examples showing how to create a blog post schema with title, content, and author fields.</p>
                     <div class="flex items-center gap-3 mt-2">
-                      <span class="text-xs text-gray-500 dark:text-gray-400">Tutorials</span>
-                      <span class="text-xs text-gray-400">•</span>
-                      <span class="text-xs text-gray-500 dark:text-gray-400">12 min</span>
+                      <span class="text-xs text-neutral-500 dark:text-neutral-400">Tutorials</span>
+                      <span class="text-xs text-neutral-400">•</span>
+                      <span class="text-xs text-neutral-500 dark:text-neutral-400">12 min</span>
                     </div>
                   </div>
                   <span class="text-xs px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded font-semibold flex-shrink-0">Tutorial</span>
                 </a>
                 
                 <!-- Result 4 -->
-                <a href="#" class="flex items-start gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group">
+                <a href="#" class="flex items-start gap-3 px-3 py-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors group">
                   <i data-lucide="file-code" class="w-5 h-5 text-orange-600 dark:text-orange-400 flex-shrink-0 mt-0.5"></i>
                   <div class="flex-1 min-w-0">
-                    <p class="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400">Schema Field Types</p>
-                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">Reference for all available field types including text, rich text, media, relationships, and custom validators.</p>
+                    <p class="text-sm font-semibold text-neutral-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400">Schema Field Types</p>
+                    <p class="text-xs text-neutral-600 dark:text-neutral-400 mt-1 line-clamp-2">Reference for all available field types including text, rich text, media, relationships, and custom validators.</p>
                     <div class="flex items-center gap-3 mt-2">
-                      <span class="text-xs text-gray-500 dark:text-gray-400">Reference</span>
-                      <span class="text-xs text-gray-400">•</span>
-                      <span class="text-xs text-gray-500 dark:text-gray-400">Updated 2 days ago</span>
+                      <span class="text-xs text-neutral-500 dark:text-neutral-400">Reference</span>
+                      <span class="text-xs text-neutral-400">•</span>
+                      <span class="text-xs text-neutral-500 dark:text-neutral-400">Updated 2 days ago</span>
                     </div>
                   </div>
                   <span class="text-xs px-2 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded font-semibold flex-shrink-0">Reference</span>
                 </a>
                 
                 <!-- Result 5 -->
-                <a href="#" class="flex items-start gap-3 px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group">
+                <a href="#" class="flex items-start gap-3 px-3 py-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors group">
                   <i data-lucide="lightbulb" class="w-5 h-5 text-yellow-600 dark:text-yellow-400 flex-shrink-0 mt-0.5"></i>
                   <div class="flex-1 min-w-0">
-                    <p class="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400">Schema Best Practices</p>
-                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">Design patterns and recommendations for building maintainable, scalable content schemas.</p>
+                    <p class="text-sm font-semibold text-neutral-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400">Schema Best Practices</p>
+                    <p class="text-xs text-neutral-600 dark:text-neutral-400 mt-1 line-clamp-2">Design patterns and recommendations for building maintainable, scalable content schemas.</p>
                     <div class="flex items-center gap-3 mt-2">
-                      <span class="text-xs text-gray-500 dark:text-gray-400">Best Practices</span>
-                      <span class="text-xs text-gray-400">•</span>
-                      <span class="text-xs text-gray-500 dark:text-gray-400">8 min read</span>
+                      <span class="text-xs text-neutral-500 dark:text-neutral-400">Best Practices</span>
+                      <span class="text-xs text-neutral-400">•</span>
+                      <span class="text-xs text-neutral-500 dark:text-neutral-400">8 min read</span>
                     </div>
                   </div>
                   <span class="text-xs px-2 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 rounded font-semibold flex-shrink-0">Guide</span>
                 </a>
                 
                 <!-- View all results -->
-                <a href="search-results.html" class="block w-full text-center py-3 text-sm text-purple-600 dark:text-purple-400 font-semibold hover:bg-purple-50 dark:hover:bg-purple-900/20 rounded-lg transition-colors">
+                <a href="search-results.html" class="block w-full text-center py-3 text-sm text-primary-600 dark:text-primary-400 font-semibold hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-colors">
                   View all 8 results →
                 </a>
               </div>
             </div>
             
             <!-- Related Topics -->
-            <div class="p-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
-              <p class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3">Related Topics</p>
+            <div class="p-4 border-t border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800">
+              <p class="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wide mb-3">Related Topics</p>
               <div class="flex flex-wrap gap-2">
-                <a href="#" class="px-3 py-1.5 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-full text-xs font-medium text-gray-700 dark:text-gray-300 hover:border-purple-500 dark:hover:border-purple-400 transition-colors">
+                <a href="#" class="px-3 py-1.5 bg-neutral-50 dark:bg-neutral-700 border border-neutral-200 dark:border-neutral-600 rounded-full text-xs font-medium text-neutral-700 dark:text-neutral-300 hover:border-primary-500 dark:hover:border-primary-400 transition-colors">
                   Content Types
                 </a>
-                <a href="#" class="px-3 py-1.5 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-full text-xs font-medium text-gray-700 dark:text-gray-300 hover:border-purple-500 dark:hover:border-purple-400 transition-colors">
+                <a href="#" class="px-3 py-1.5 bg-neutral-50 dark:bg-neutral-700 border border-neutral-200 dark:border-neutral-600 rounded-full text-xs font-medium text-neutral-700 dark:text-neutral-300 hover:border-primary-500 dark:hover:border-primary-400 transition-colors">
                   Field Validation
                 </a>
-                <a href="#" class="px-3 py-1.5 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-full text-xs font-medium text-gray-700 dark:text-gray-300 hover:border-purple-500 dark:hover:border-purple-400 transition-colors">
+                <a href="#" class="px-3 py-1.5 bg-neutral-50 dark:bg-neutral-700 border border-neutral-200 dark:border-neutral-600 rounded-full text-xs font-medium text-neutral-700 dark:text-neutral-300 hover:border-primary-500 dark:hover:border-primary-400 transition-colors">
                   Relationships
                 </a>
-                <a href="#" class="px-3 py-1.5 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-full text-xs font-medium text-gray-700 dark:text-gray-300 hover:border-purple-500 dark:hover:border-purple-400 transition-colors">
+                <a href="#" class="px-3 py-1.5 bg-neutral-50 dark:bg-neutral-700 border border-neutral-200 dark:border-neutral-600 rounded-full text-xs font-medium text-neutral-700 dark:text-neutral-300 hover:border-primary-500 dark:hover:border-primary-400 transition-colors">
                   Migration
                 </a>
               </div>
@@ -956,18 +1002,18 @@
         </div>
         
         <!-- Footer hint -->
-        <div class="flex items-center justify-between px-4 py-3 bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
-          <div class="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400">
+        <div class="flex items-center justify-between px-4 py-3 bg-neutral-50 dark:bg-neutral-800 border-t border-neutral-200 dark:border-neutral-700">
+          <div class="flex items-center gap-4 text-xs text-neutral-500 dark:text-neutral-400">
             <span class="flex items-center gap-1.5">
-              <kbd class="px-1.5 py-0.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded text-xs">↑↓</kbd>
+              <kbd class="px-1.5 py-0.5 bg-neutral-50 dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-600 rounded text-xs">↑↓</kbd>
               Navigate
             </span>
             <span class="flex items-center gap-1.5">
-              <kbd class="px-1.5 py-0.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded text-xs">↵</kbd>
+              <kbd class="px-1.5 py-0.5 bg-neutral-50 dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-600 rounded text-xs">↵</kbd>
               Select
             </span>
             <span class="flex items-center gap-1.5">
-              <kbd class="px-1.5 py-0.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded text-xs">esc</kbd>
+              <kbd class="px-1.5 py-0.5 bg-neutral-50 dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-600 rounded text-xs">esc</kbd>
               Close
             </span>
           </div>
@@ -980,15 +1026,15 @@
   <!-- AI Modals & Panels -->
   
   <!-- Summarize Modal -->
-  <div id="summarize-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white dark:bg-gray-800 rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-hidden shadow-2xl">
+  <div id="summarize-modal" class="fixed inset-0 bg-neutral-950 bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-neutral-50 dark:bg-neutral-800 rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-hidden shadow-2xl">
       <!-- Header -->
-      <div class="bg-gradient-to-r from-purple-600 to-blue-600 px-6 py-4 flex items-center justify-between">
+      <div class="bg-gradient-to-r from-primary-600 to-blue-600 px-6 py-4 flex items-center justify-between">
         <div class="flex items-center gap-3">
           <i data-lucide="sparkles" class="w-6 h-6 text-white"></i>
           <h3 class="text-xl font-bold text-white">AI Summary</h3>
         </div>
-        <button onclick="document.getElementById('summarize-modal').classList.add('hidden')" class="text-white hover:bg-white/20 p-2 rounded-lg transition-colors">
+        <button onclick="document.getElementById('summarize-modal').classList.add('hidden')" class="text-white hover:bg-neutral-50/20 p-2 rounded-lg transition-colors">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
@@ -998,28 +1044,28 @@
         
         <!-- Summary Length Selector -->
         <div class="flex items-center gap-2 mb-6">
-          <span class="text-sm text-gray-600 dark:text-gray-400">Summary length:</span>
+          <span class="text-sm text-neutral-600 dark:text-neutral-400">Summary length:</span>
           <div class="flex gap-2">
-            <button class="px-3 py-1.5 bg-purple-600 text-white rounded-lg text-xs font-semibold">Short</button>
-            <button class="px-3 py-1.5 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg text-xs font-semibold hover:bg-gray-300 dark:hover:bg-gray-600">Medium</button>
-            <button class="px-3 py-1.5 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg text-xs font-semibold hover:bg-gray-300 dark:hover:bg-gray-600">Detailed</button>
+            <button class="px-3 py-1.5 bg-primary-600 text-white rounded-lg text-xs font-semibold">Short</button>
+            <button class="px-3 py-1.5 bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 rounded-lg text-xs font-semibold hover:bg-neutral-300 dark:hover:bg-neutral-600">Medium</button>
+            <button class="px-3 py-1.5 bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 rounded-lg text-xs font-semibold hover:bg-neutral-300 dark:hover:bg-neutral-600">Detailed</button>
           </div>
         </div>
         
         <!-- AI Generated Summary (Prose) -->
-        <div class="bg-gradient-to-br from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 border-2 border-purple-200 dark:border-purple-800 rounded-xl p-6 mb-6">
+        <div class="bg-gradient-to-br from-primary-50 to-blue-50 dark:from-primary-900/20 dark:to-blue-900/20 border-2 border-primary-200 dark:border-primary-800 rounded-xl p-6 mb-6">
           <div class="flex items-start gap-3 mb-4">
-            <i data-lucide="sparkles" class="w-5 h-5 text-purple-600 flex-shrink-0 mt-1"></i>
+            <i data-lucide="sparkles" class="w-5 h-5 text-primary-600 flex-shrink-0 mt-1"></i>
             <div class="flex-1">
-              <h4 class="font-bold text-gray-900 dark:text-white mb-3">AI-Generated Summary</h4>
+              <h4 class="font-bold text-neutral-900 dark:text-white mb-3">AI-Generated Summary</h4>
               <div class="prose prose-sm dark:prose-invert max-w-none">
-                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-3">
+                <p class="text-neutral-700 dark:text-neutral-300 leading-relaxed mb-3">
                   This comprehensive guide introduces CacheAdvance, a predictive caching library designed to optimize application performance by preemptively caching resources before users need them. The article walks through the complete setup process, from initial installation via npm to advanced configuration options.
                 </p>
-                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-3">
-                  You'll learn how to install the <code class="text-xs bg-purple-100 dark:bg-purple-900 px-1.5 py-0.5 rounded text-purple-700 dark:text-purple-300">@tailwindlabs/cache-advance</code> package, configure the caching strategy in your config file, and implement basic caching patterns in your application. The guide covers essential concepts like predictive strategies, CPU allocation for cache operations, and backup storage configuration.
+                <p class="text-neutral-700 dark:text-neutral-300 leading-relaxed mb-3">
+                  You'll learn how to install the <code class="text-xs bg-primary-100 dark:bg-primary-900 px-1.5 py-0.5 rounded text-primary-700 dark:text-primary-300">@tailwindlabs/cache-advance</code> package, configure the caching strategy in your config file, and implement basic caching patterns in your application. The guide covers essential concepts like predictive strategies, CPU allocation for cache operations, and backup storage configuration.
                 </p>
-                <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                <p class="text-neutral-700 dark:text-neutral-300 leading-relaxed">
                   Advanced topics include middleware integration, cache clearing mechanisms, and troubleshooting common issues. Whether you're new to caching or looking to implement advanced patterns, this guide provides practical examples and best practices to get you started in under 30 minutes.
                 </p>
               </div>
@@ -1029,57 +1075,57 @@
         
         <!-- Key Points (Optional expansion) -->
         <details class="mb-6">
-          <summary class="cursor-pointer font-semibold text-gray-900 dark:text-white mb-3 hover:text-purple-600 dark:hover:text-purple-400">
+          <summary class="cursor-pointer font-semibold text-neutral-900 dark:text-white mb-3 hover:text-primary-600 dark:hover:text-primary-400">
             Key Points (expand for details)
           </summary>
-          <div class="space-y-2 pl-4 border-l-2 border-purple-200 dark:border-purple-800">
-            <div class="text-sm text-gray-700 dark:text-gray-300">
-              <strong class="text-gray-900 dark:text-white">Installation:</strong> Quick setup using npm package manager
+          <div class="space-y-2 pl-4 border-l-2 border-primary-200 dark:border-primary-800">
+            <div class="text-sm text-neutral-700 dark:text-neutral-300">
+              <strong class="text-neutral-900 dark:text-white">Installation:</strong> Quick setup using npm package manager
             </div>
-            <div class="text-sm text-gray-700 dark:text-gray-300">
-              <strong class="text-gray-900 dark:text-white">Configuration:</strong> Flexible strategy options including predictive caching
+            <div class="text-sm text-neutral-700 dark:text-neutral-300">
+              <strong class="text-neutral-900 dark:text-white">Configuration:</strong> Flexible strategy options including predictive caching
             </div>
-            <div class="text-sm text-gray-700 dark:text-gray-300">
-              <strong class="text-gray-900 dark:text-white">Performance:</strong> CPU allocation controls for optimal cache operations
+            <div class="text-sm text-neutral-700 dark:text-neutral-300">
+              <strong class="text-neutral-900 dark:text-white">Performance:</strong> CPU allocation controls for optimal cache operations
             </div>
-            <div class="text-sm text-gray-700 dark:text-gray-300">
-              <strong class="text-gray-900 dark:text-white">Storage:</strong> Customizable backup locations for persistent caching
+            <div class="text-sm text-neutral-700 dark:text-neutral-300">
+              <strong class="text-neutral-900 dark:text-white">Storage:</strong> Customizable backup locations for persistent caching
             </div>
           </div>
         </details>
         
         <!-- Reading Stats -->
         <div class="grid grid-cols-2 gap-4 mb-6">
-          <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
-            <div class="flex items-center gap-2 text-gray-600 dark:text-gray-400 mb-1">
+          <div class="bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg p-4">
+            <div class="flex items-center gap-2 text-neutral-600 dark:text-neutral-400 mb-1">
               <i data-lucide="clock" class="w-4 h-4"></i>
               <span class="text-xs uppercase tracking-wide">Reading Time</span>
             </div>
-            <p class="text-2xl font-bold text-gray-900 dark:text-white">8 min</p>
+            <p class="text-2xl font-bold text-neutral-900 dark:text-white">8 min</p>
           </div>
-          <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
-            <div class="flex items-center gap-2 text-gray-600 dark:text-gray-400 mb-1">
+          <div class="bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg p-4">
+            <div class="flex items-center gap-2 text-neutral-600 dark:text-neutral-400 mb-1">
               <i data-lucide="layers" class="w-4 h-4"></i>
               <span class="text-xs uppercase tracking-wide">Sections</span>
             </div>
-            <p class="text-2xl font-bold text-gray-900 dark:text-white">5</p>
+            <p class="text-2xl font-bold text-neutral-900 dark:text-white">5</p>
           </div>
         </div>
       </div>
       
       <!-- Footer -->
-      <div class="border-t border-gray-200 dark:border-gray-700 px-6 py-4 bg-gray-50 dark:bg-gray-900 flex items-center justify-between">
+      <div class="border-t border-neutral-200 dark:border-neutral-700 px-6 py-4 bg-neutral-50 dark:bg-neutral-900 flex items-center justify-between">
         <div class="flex gap-3">
-          <button class="text-purple-600 dark:text-purple-400 hover:text-purple-700 text-sm font-semibold flex items-center gap-2">
+          <button class="text-primary-600 dark:text-primary-400 hover:text-primary-700 text-sm font-semibold flex items-center gap-2">
             <i data-lucide="copy" class="w-4 h-4"></i>
             Copy Summary
           </button>
-          <button class="text-purple-600 dark:text-purple-400 hover:text-purple-700 text-sm font-semibold flex items-center gap-2">
+          <button class="text-primary-600 dark:text-primary-400 hover:text-primary-700 text-sm font-semibold flex items-center gap-2">
             <i data-lucide="refresh-cw" class="w-4 h-4"></i>
             Regenerate
           </button>
         </div>
-        <button onclick="document.getElementById('summarize-modal').classList.add('hidden')" class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-semibold text-sm">
+        <button onclick="document.getElementById('summarize-modal').classList.add('hidden')" class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors font-semibold text-sm">
           Close
         </button>
       </div>
@@ -1087,15 +1133,15 @@
   </div>
 
   <!-- Listen Player Modal -->
-  <div id="listen-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white dark:bg-gray-800 rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl">
+  <div id="listen-modal" class="fixed inset-0 bg-neutral-950 bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-neutral-50 dark:bg-neutral-800 rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl">
       <!-- Header -->
       <div class="bg-gradient-to-r from-blue-600 to-cyan-600 px-6 py-4 flex items-center justify-between">
         <div class="flex items-center gap-3">
           <i data-lucide="headphones" class="w-6 h-6 text-white"></i>
           <h3 class="text-xl font-bold text-white">Listen to Article</h3>
         </div>
-        <button onclick="document.getElementById('listen-modal').classList.add('hidden')" class="text-white hover:bg-white/20 p-2 rounded-lg transition-colors">
+        <button onclick="document.getElementById('listen-modal').classList.add('hidden')" class="text-white hover:bg-neutral-50/20 p-2 rounded-lg transition-colors">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
@@ -1120,33 +1166,33 @@
         
         <!-- Progress Bar -->
         <div class="mb-4">
-          <div class="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400 mb-2">
+          <div class="flex items-center justify-between text-sm text-neutral-600 dark:text-neutral-400 mb-2">
             <span>2:34</span>
             <span>8:15</span>
           </div>
-          <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+          <div class="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2">
             <div class="bg-gradient-to-r from-blue-600 to-cyan-600 h-2 rounded-full" style="width: 31%"></div>
           </div>
         </div>
         
         <!-- Controls -->
         <div class="flex items-center justify-center gap-4 mb-6">
-          <button class="p-3 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-            <i data-lucide="skip-back" class="w-5 h-5 text-gray-700 dark:text-gray-300"></i>
+          <button class="p-3 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors">
+            <i data-lucide="skip-back" class="w-5 h-5 text-neutral-700 dark:text-neutral-300"></i>
           </button>
           <button class="p-4 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 transition-colors shadow-lg">
             <i data-lucide="pause" class="w-6 h-6 text-white"></i>
           </button>
-          <button class="p-3 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-            <i data-lucide="skip-forward" class="w-5 h-5 text-gray-700 dark:text-gray-300"></i>
+          <button class="p-3 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors">
+            <i data-lucide="skip-forward" class="w-5 h-5 text-neutral-700 dark:text-neutral-300"></i>
           </button>
         </div>
         
         <!-- Speed & Voice Settings -->
-        <div class="flex items-center justify-between pt-6 border-t border-gray-200 dark:border-gray-700">
+        <div class="flex items-center justify-between pt-6 border-t border-neutral-200 dark:border-neutral-700">
           <div class="flex items-center gap-2">
-            <i data-lucide="gauge" class="w-4 h-4 text-gray-600 dark:text-gray-400"></i>
-            <select class="text-sm bg-gray-100 dark:bg-gray-700 rounded-lg px-3 py-1.5 border-0 text-gray-900 dark:text-white">
+            <i data-lucide="gauge" class="w-4 h-4 text-neutral-600 dark:text-neutral-400"></i>
+            <select class="text-sm bg-neutral-100 dark:bg-neutral-700 rounded-lg px-3 py-1.5 border-0 text-neutral-900 dark:text-white">
               <option>1x</option>
               <option>1.25x</option>
               <option>1.5x</option>
@@ -1154,8 +1200,8 @@
             </select>
           </div>
           <div class="flex items-center gap-2">
-            <i data-lucide="mic" class="w-4 h-4 text-gray-600 dark:text-gray-400"></i>
-            <select class="text-sm bg-gray-100 dark:bg-gray-700 rounded-lg px-3 py-1.5 border-0 text-gray-900 dark:text-white">
+            <i data-lucide="mic" class="w-4 h-4 text-neutral-600 dark:text-neutral-400"></i>
+            <select class="text-sm bg-neutral-100 dark:bg-neutral-700 rounded-lg px-3 py-1.5 border-0 text-neutral-900 dark:text-white">
               <option>Natural Voice</option>
               <option>Professional Voice</option>
               <option>Casual Voice</option>
@@ -1173,32 +1219,32 @@
   
   <!-- Glossary Tooltip (appears on hover) -->
   <div id="glossary-tooltip" class="fixed hidden z-50 max-w-xs pointer-events-none">
-    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-      <div class="bg-purple-600 px-3 py-1.5">
+    <div class="bg-neutral-50 dark:bg-neutral-800 rounded-lg shadow-xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
+      <div class="bg-primary-600 px-3 py-1.5">
         <h4 id="glossary-term-title" class="text-xs font-semibold text-white uppercase tracking-wide">
           <!-- Term name here -->
         </h4>
       </div>
       <div class="p-3">
-        <p id="glossary-definition" class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+        <p id="glossary-definition" class="text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed">
           <!-- Definition here -->
         </p>
       </div>
       <!-- Tooltip Arrow -->
-      <div class="absolute -top-1.5 left-4 w-3 h-3 bg-purple-600 rotate-45"></div>
+      <div class="absolute -top-1.5 left-4 w-3 h-3 bg-primary-600 rotate-45"></div>
     </div>
   </div>
   
   <!-- Text Selection AI Tooltip (Grammarly-style) -->
   <div id="selection-tooltip" class="fixed hidden z-50 max-w-sm" style="pointer-events: auto;">
-    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <div class="bg-neutral-50 dark:bg-neutral-800 rounded-xl shadow-2xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
       <!-- Tooltip Header -->
-      <div class="bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-2 flex items-center justify-between">
+      <div class="bg-gradient-to-r from-primary-600 to-pink-600 px-4 py-2 flex items-center justify-between">
         <div class="flex items-center gap-2">
           <i data-lucide="sparkles" class="w-4 h-4 text-white"></i>
           <span class="text-sm font-semibold text-white">AI Explain</span>
         </div>
-        <button onclick="document.getElementById('selection-tooltip').classList.add('hidden')" class="text-white hover:bg-white/20 p-1 rounded transition-colors">
+        <button onclick="document.getElementById('selection-tooltip').classList.add('hidden')" class="text-white hover:bg-neutral-50/20 p-1 rounded transition-colors">
           <i data-lucide="x" class="w-3 h-3"></i>
         </button>
       </div>
@@ -1207,29 +1253,29 @@
       <div class="p-4 max-h-72 overflow-y-auto">
         <!-- Selected Text (smaller) -->
         <div class="mb-3">
-          <p id="selected-text-tooltip" class="text-xs text-gray-900 dark:text-white font-medium bg-purple-50 dark:bg-purple-900/30 px-2 py-1 rounded italic border-l-2 border-purple-600">
+          <p id="selected-text-tooltip" class="text-xs text-neutral-900 dark:text-white font-medium bg-primary-50 dark:bg-primary-900/30 px-2 py-1 rounded italic border-l-2 border-primary-600">
             <!-- Selected text here -->
           </p>
         </div>
         
         <!-- Quick Explanation -->
         <div class="mb-3">
-          <p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+          <p class="text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed">
             This concept refers to a caching strategy that anticipates future user actions and preloads content before it's requested.
           </p>
         </div>
         
         <!-- Quick Actions (compact) -->
-        <div class="flex flex-wrap gap-1.5 pt-3 border-t border-gray-200 dark:border-gray-700">
-          <button class="inline-flex items-center gap-1 px-2 py-1 bg-purple-50 dark:bg-purple-900/20 border border-purple-300 dark:border-purple-700 rounded-full hover:bg-purple-100 dark:hover:bg-purple-900/40 transition-colors text-xs text-purple-700 dark:text-purple-300 font-medium">
+        <div class="flex flex-wrap gap-1.5 pt-3 border-t border-neutral-200 dark:border-neutral-700">
+          <button class="inline-flex items-center gap-1 px-2 py-1 bg-primary-50 dark:bg-primary-900/20 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/40 transition-colors text-xs text-primary-700 dark:text-primary-300 font-medium">
             <i data-lucide="book-open" class="w-3 h-3"></i>
             <span>Learn more</span>
           </button>
-          <button class="inline-flex items-center gap-1 px-2 py-1 bg-purple-50 dark:bg-purple-900/20 border border-purple-300 dark:border-purple-700 rounded-full hover:bg-purple-100 dark:hover:bg-purple-900/40 transition-colors text-xs text-purple-700 dark:text-purple-300 font-medium">
+          <button class="inline-flex items-center gap-1 px-2 py-1 bg-primary-50 dark:bg-primary-900/20 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/40 transition-colors text-xs text-primary-700 dark:text-primary-300 font-medium">
             <i data-lucide="code" class="w-3 h-3"></i>
             <span>See example</span>
           </button>
-          <button class="inline-flex items-center gap-1 px-2 py-1 bg-purple-50 dark:bg-purple-900/20 border border-purple-300 dark:border-purple-700 rounded-full hover:bg-purple-100 dark:hover:bg-purple-900/40 transition-colors text-xs text-purple-700 dark:text-purple-300 font-medium">
+          <button class="inline-flex items-center gap-1 px-2 py-1 bg-primary-50 dark:bg-primary-900/20 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/40 transition-colors text-xs text-primary-700 dark:text-primary-300 font-medium">
             <i data-lucide="link" class="w-3 h-3"></i>
             <span>Related docs</span>
           </button>
@@ -1237,20 +1283,20 @@
       </div>
       
       <!-- Tooltip Arrow (pointing to selection) -->
-      <div class="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gradient-to-br from-purple-600 to-pink-600 rotate-45"></div>
+      <div class="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gradient-to-br from-primary-600 to-pink-600 rotate-45"></div>
     </div>
   </div>
 
   <!-- Explain Code Modal -->
-  <div id="explain-code-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white dark:bg-gray-800 rounded-2xl max-w-3xl w-full max-h-[80vh] overflow-hidden shadow-2xl">
+  <div id="explain-code-modal" class="fixed inset-0 bg-neutral-950 bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-neutral-50 dark:bg-neutral-800 rounded-2xl max-w-3xl w-full max-h-[80vh] overflow-hidden shadow-2xl">
       <!-- Header -->
       <div class="bg-gradient-to-r from-emerald-600 to-teal-600 px-6 py-4 flex items-center justify-between">
         <div class="flex items-center gap-3">
           <i data-lucide="code-2" class="w-6 h-6 text-white"></i>
           <h3 class="text-xl font-bold text-white">Code Explanation</h3>
         </div>
-        <button onclick="document.getElementById('explain-code-modal').classList.add('hidden')" class="text-white hover:bg-white/20 p-2 rounded-lg transition-colors">
+        <button onclick="document.getElementById('explain-code-modal').classList.add('hidden')" class="text-white hover:bg-neutral-50/20 p-2 rounded-lg transition-colors">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
@@ -1258,8 +1304,8 @@
       <!-- Content -->
       <div class="p-6 overflow-y-auto max-h-[calc(80vh-180px)]">
         <!-- Code Block -->
-        <div class="bg-gray-900 rounded-xl p-4 mb-6 font-mono text-sm">
-          <pre class="text-gray-300"><code><span class="text-gray-500">// cache-advance.config.js</span>
+        <div class="bg-neutral-900 rounded-xl p-4 mb-6 font-mono text-sm">
+          <pre class="text-neutral-300"><code><span class="text-neutral-500">// cache-advance.config.js</span>
 <span class="text-pink-400">export default</span> {
   <span class="text-yellow-400">strategy</span>: <span class="text-emerald-400">'predictive'</span>,
   <span class="text-yellow-400">engine</span>: {
@@ -1276,22 +1322,22 @@
               <i data-lucide="lightbulb" class="w-5 h-5"></i>
               What This Code Does
             </h4>
-            <p class="text-gray-700 dark:text-gray-300 text-sm">
+            <p class="text-neutral-700 dark:text-neutral-300 text-sm">
               This configuration file exports a default object that sets up your CacheAdvance instance with specific performance and storage options.
             </p>
           </div>
           
           <!-- Line by Line -->
           <div class="space-y-3">
-            <h4 class="font-semibold text-gray-900 dark:text-white">Line-by-line breakdown:</h4>
+            <h4 class="font-semibold text-neutral-900 dark:text-white">Line-by-line breakdown:</h4>
             
             <div class="flex gap-3">
               <div class="w-8 h-8 rounded-full bg-yellow-100 dark:bg-yellow-900/30 flex items-center justify-center flex-shrink-0">
                 <span class="text-xs font-bold text-yellow-700 dark:text-yellow-300">1</span>
               </div>
               <div class="flex-1">
-                <p class="text-sm font-mono text-purple-600 dark:text-purple-400">strategy: 'predictive'</p>
-                <p class="text-sm text-gray-700 dark:text-gray-300 mt-1">
+                <p class="text-sm font-mono text-primary-600 dark:text-primary-400">strategy: 'predictive'</p>
+                <p class="text-sm text-neutral-700 dark:text-neutral-300 mt-1">
                   Sets the caching strategy to <strong>predictive</strong>, which anticipates user behavior to pre-load content.
                 </p>
               </div>
@@ -1302,8 +1348,8 @@
                 <span class="text-xs font-bold text-yellow-700 dark:text-yellow-300">2</span>
               </div>
               <div class="flex-1">
-                <p class="text-sm font-mono text-purple-600 dark:text-purple-400">cpus: 12</p>
-                <p class="text-sm text-gray-700 dark:text-gray-300 mt-1">
+                <p class="text-sm font-mono text-primary-600 dark:text-primary-400">cpus: 12</p>
+                <p class="text-sm text-neutral-700 dark:text-neutral-300 mt-1">
                   Allocates <strong>12 CPU cores</strong> for cache operations to maximize performance.
                 </p>
               </div>
@@ -1314,8 +1360,8 @@
                 <span class="text-xs font-bold text-yellow-700 dark:text-yellow-300">3</span>
               </div>
               <div class="flex-1">
-                <p class="text-sm font-mono text-purple-600 dark:text-purple-400">backups: ['./storage/cache.wtf']</p>
-                <p class="text-sm text-gray-700 dark:text-gray-300 mt-1">
+                <p class="text-sm font-mono text-primary-600 dark:text-primary-400">backups: ['./storage/cache.wtf']</p>
+                <p class="text-sm text-neutral-700 dark:text-neutral-300 mt-1">
                   Specifies the backup location for persistent cache storage.
                 </p>
               </div>
@@ -1323,8 +1369,8 @@
           </div>
           
           <!-- Related Links -->
-          <div class="border-t border-gray-200 dark:border-gray-700 pt-4 mt-6">
-            <h4 class="font-semibold text-gray-900 dark:text-white mb-3">Related documentation:</h4>
+          <div class="border-t border-neutral-200 dark:border-neutral-700 pt-4 mt-6">
+            <h4 class="font-semibold text-neutral-900 dark:text-white mb-3">Related documentation:</h4>
             <div class="space-y-2">
               <a href="#" class="flex items-center gap-2 text-sm text-emerald-600 dark:text-emerald-400 hover:underline">
                 <i data-lucide="book-open" class="w-4 h-4"></i>
@@ -1340,7 +1386,7 @@
       </div>
       
       <!-- Footer -->
-      <div class="border-t border-gray-200 dark:border-gray-700 px-6 py-4 bg-gray-50 dark:bg-gray-900 flex items-center justify-between">
+      <div class="border-t border-neutral-200 dark:border-neutral-700 px-6 py-4 bg-neutral-50 dark:bg-neutral-900 flex items-center justify-between">
         <button class="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 text-sm font-semibold flex items-center gap-2">
           <i data-lucide="copy" class="w-4 h-4"></i>
           Copy Code
@@ -1406,18 +1452,18 @@
       
       // Reset all
       Object.values(buttons).forEach(btn => {
-        btn?.classList.remove('bg-yellow-100', 'dark:bg-yellow-900/30', 'bg-gray-700', 'bg-gray-100');
-        btn?.classList.add('hover:bg-gray-100', 'dark:hover:bg-gray-700');
+        btn?.classList.remove('bg-yellow-100', 'dark:bg-yellow-900/30', 'bg-neutral-700', 'bg-neutral-100');
+        btn?.classList.add('hover:bg-neutral-100', 'dark:hover:bg-neutral-700');
       });
       
       // Highlight active
       if (activeTheme === 'light') {
         buttons.light?.classList.add('bg-yellow-100', 'dark:bg-yellow-900/30');
-        buttons.light?.classList.remove('hover:bg-gray-100', 'dark:hover:bg-gray-700');
+        buttons.light?.classList.remove('hover:bg-neutral-100', 'dark:hover:bg-neutral-700');
       } else if (activeTheme === 'dark') {
-        buttons.dark?.classList.add('bg-gray-100', 'dark:bg-gray-700');
+        buttons.dark?.classList.add('bg-neutral-100', 'dark:bg-neutral-700');
       } else {
-        buttons.auto?.classList.add('bg-gray-100', 'dark:bg-gray-700');
+        buttons.auto?.classList.add('bg-neutral-100', 'dark:bg-neutral-700');
       }
       
       lucide.createIcons();
@@ -1500,12 +1546,12 @@
     document.querySelectorAll('.filter-btn').forEach(btn => {
       btn.addEventListener('click', function() {
         document.querySelectorAll('.filter-btn').forEach(b => {
-          b.classList.remove('bg-purple-600', 'text-white');
-          b.classList.add('bg-white', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300', 'border', 'border-gray-300', 'dark:border-gray-600');
+          b.classList.remove('bg-primary-600', 'text-white');
+          b.classList.add('bg-neutral-50', 'dark:bg-neutral-700', 'text-neutral-700', 'dark:text-neutral-300', 'border', 'border-neutral-300', 'dark:border-neutral-600');
         });
         
-        this.classList.remove('bg-white', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300', 'border', 'border-gray-300', 'dark:border-gray-600');
-        this.classList.add('bg-purple-600', 'text-white');
+        this.classList.remove('bg-neutral-50', 'dark:bg-neutral-700', 'text-neutral-700', 'dark:text-neutral-300', 'border', 'border-neutral-300', 'dark:border-neutral-600');
+        this.classList.add('bg-primary-600', 'text-white');
       });
     });
   </script>
@@ -1530,15 +1576,15 @@
       if (this.glossaryActive) {
         article?.classList.add('glossary-active');
         if (toggleBtn) {
-          toggleBtn.classList.remove('border-gray-300', 'dark:border-gray-600', 'text-gray-700', 'dark:text-gray-300');
-          toggleBtn.classList.add('border-purple-600', 'text-purple-600', 'dark:text-purple-400', 'bg-purple-50', 'dark:bg-purple-900/20');
+          toggleBtn.classList.remove('border-neutral-300', 'dark:border-neutral-600', 'text-neutral-700', 'dark:text-neutral-300');
+          toggleBtn.classList.add('border-primary-600', 'text-primary-600', 'dark:text-primary-400', 'bg-primary-50', 'dark:bg-primary-900/20');
         }
         if (statusText) statusText.textContent = 'On';
       } else {
         article?.classList.remove('glossary-active');
         if (toggleBtn) {
-          toggleBtn.classList.remove('border-purple-600', 'text-purple-600', 'dark:text-purple-400', 'bg-purple-50', 'dark:bg-purple-900/20');
-          toggleBtn.classList.add('border-gray-300', 'dark:border-gray-600', 'text-gray-700', 'dark:text-gray-300');
+          toggleBtn.classList.remove('border-primary-600', 'text-primary-600', 'dark:text-primary-400', 'bg-primary-50', 'dark:bg-primary-900/20');
+          toggleBtn.classList.add('border-neutral-300', 'dark:border-neutral-600', 'text-neutral-700', 'dark:text-neutral-300');
         }
         if (statusText) statusText.textContent = 'Off';
       }
@@ -1595,49 +1641,49 @@
           
           const buttonContainer = btn.parentElement;
           const chatHTML = `
-            <div id="inline-chat-area" class="mt-6 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 border-2 border-purple-200 dark:border-purple-800 rounded-xl p-5 animate-fadeIn">
+            <div id="inline-chat-area" class="mt-6 bg-gradient-to-br from-primary-50 to-pink-50 dark:from-primary-900/20 dark:to-pink-900/20 border-2 border-primary-200 dark:border-primary-800 rounded-xl p-5 animate-fadeIn">
               <div class="flex items-start gap-3 mb-4">
-                <i data-lucide="message-circle" class="w-5 h-5 text-purple-600 flex-shrink-0 mt-1"></i>
+                <i data-lucide="message-circle" class="w-5 h-5 text-primary-600 flex-shrink-0 mt-1"></i>
                 <div class="flex-1">
-                  <h4 class="font-bold text-gray-900 dark:text-white mb-1">Ask about this article</h4>
-                  <p class="text-xs text-gray-600 dark:text-gray-400">Click a common question or ask your own</p>
+                  <h4 class="font-bold text-neutral-900 dark:text-white mb-1">Ask about this article</h4>
+                  <p class="text-xs text-neutral-600 dark:text-neutral-400">Click a common question or ask your own</p>
                 </div>
-                <button onclick="this.closest('#inline-chat-area').remove(); IGXDocs.inlineChatOpen = false;" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+                <button onclick="this.closest('#inline-chat-area').remove(); IGXDocs.inlineChatOpen = false;" class="text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300">
                   <i data-lucide="x" class="w-4 h-4"></i>
                 </button>
               </div>
               
               <!-- Common Questions (Bubble style) -->
               <div class="flex flex-wrap gap-2 mb-4">
-                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-gray-800 border border-purple-300 dark:border-purple-700 rounded-full hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors text-xs text-gray-900 dark:text-white font-medium">
+                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-neutral-50 dark:bg-neutral-800 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors text-xs text-neutral-900 dark:text-white font-medium">
                   <span>How to get started?</span>
                 </button>
-                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-gray-800 border border-purple-300 dark:border-purple-700 rounded-full hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors text-xs text-gray-900 dark:text-white font-medium">
+                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-neutral-50 dark:bg-neutral-800 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors text-xs text-neutral-900 dark:text-white font-medium">
                   <span>Strategy differences?</span>
                 </button>
-                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-gray-800 border border-purple-300 dark:border-purple-700 rounded-full hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors text-xs text-gray-900 dark:text-white font-medium">
+                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-neutral-50 dark:bg-neutral-800 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors text-xs text-neutral-900 dark:text-white font-medium">
                   <span>Why predictive?</span>
                 </button>
-                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-gray-800 border border-purple-300 dark:border-purple-700 rounded-full hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors text-xs text-gray-900 dark:text-white font-medium">
+                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-neutral-50 dark:bg-neutral-800 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors text-xs text-neutral-900 dark:text-white font-medium">
                   <span>Common mistakes?</span>
                 </button>
-                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-gray-800 border border-purple-300 dark:border-purple-700 rounded-full hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors text-xs text-gray-900 dark:text-white font-medium">
+                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-neutral-50 dark:bg-neutral-800 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors text-xs text-neutral-900 dark:text-white font-medium">
                   <span>Best practices?</span>
                 </button>
-                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-gray-800 border border-purple-300 dark:border-purple-700 rounded-full hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors text-xs text-gray-900 dark:text-white font-medium">
+                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-neutral-50 dark:bg-neutral-800 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors text-xs text-neutral-900 dark:text-white font-medium">
                   <span>Configuration options?</span>
                 </button>
               </div>
               
               <!-- Custom Question -->
-              <div class="border-t border-purple-200 dark:border-purple-800 pt-4">
+              <div class="border-t border-primary-200 dark:border-primary-800 pt-4">
                 <div class="flex gap-2">
                   <input 
                     type="text" 
                     placeholder="Or ask your own question..." 
-                    class="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm"
+                    class="flex-1 px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-neutral-50 dark:bg-neutral-900 text-neutral-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm"
                   />
-                  <button class="px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:from-purple-700 hover:to-pink-700 transition-colors">
+                  <button class="px-4 py-2 bg-gradient-to-r from-primary-600 to-pink-600 text-white rounded-lg hover:from-primary-700 hover:to-pink-700 transition-colors">
                     <i data-lucide="send" class="w-4 h-4"></i>
                   </button>
                 </div>
@@ -1931,52 +1977,52 @@
   </script>
   
   <!-- Mobile Search Modal -->
-  <div id="mobile-search-modal" class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm">
-    <div class="fixed inset-0 bg-white dark:bg-gray-900 p-4">
+  <div id="mobile-search-modal" class="hidden fixed inset-0 z-50 bg-neutral-950/50 backdrop-blur-sm">
+    <div class="fixed inset-0 bg-neutral-50 dark:bg-neutral-900 p-4">
       <div class="max-w-2xl mx-auto">
         <!-- Header -->
         <div class="flex items-center justify-between mb-6">
-          <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Search</h2>
-          <button id="mobile-search-close" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg">
-            <i data-lucide="x" class="w-6 h-6 text-gray-600 dark:text-gray-400"></i>
+          <h2 class="text-xl font-semibold text-neutral-900 dark:text-white">Search</h2>
+          <button id="mobile-search-close" class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg">
+            <i data-lucide="x" class="w-6 h-6 text-neutral-600 dark:text-neutral-400"></i>
           </button>
         </div>
         
         <!-- Search Input -->
         <div class="relative mb-6">
-          <div class="relative flex items-center gap-4 h-14 px-5 border-2 border-gray-300 dark:border-gray-700 rounded-xl bg-white dark:bg-gray-800">
-            <i data-lucide="search" class="w-6 h-6 text-gray-400"></i>
+          <div class="relative flex items-center gap-4 h-14 px-5 border-2 border-neutral-300 dark:border-neutral-700 rounded-xl bg-neutral-50 dark:bg-neutral-800">
+            <i data-lucide="search" class="w-6 h-6 text-neutral-400"></i>
             <input 
               type="text" 
               id="mobile-search-input"
               placeholder="Search documentation or ask AI..."
-              class="flex-1 text-lg text-gray-900 dark:text-white bg-transparent border-none outline-none placeholder-gray-500 dark:placeholder-gray-400"
+              class="flex-1 text-lg text-neutral-900 dark:text-white bg-transparent border-none outline-none placeholder-gray-500 dark:placeholder-gray-400"
               autofocus
             />
-            <button id="mobile-search-submit" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
-              <i data-lucide="arrow-right" class="w-5 h-5 text-purple-600 dark:text-purple-400"></i>
+            <button id="mobile-search-submit" class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg">
+              <i data-lucide="arrow-right" class="w-5 h-5 text-primary-600 dark:text-primary-400"></i>
             </button>
           </div>
         </div>
         
         <!-- Quick Links -->
         <div class="space-y-2">
-          <p class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">Popular searches:</p>
-          <a href="doc-page.html" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-            <i data-lucide="book-open" class="w-5 h-5 text-gray-400"></i>
-            <span class="text-gray-900 dark:text-white">Getting Started</span>
+          <p class="text-sm font-medium text-neutral-500 dark:text-neutral-400 mb-3">Popular searches:</p>
+          <a href="doc-page.html" class="flex items-center gap-3 p-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+            <i data-lucide="book-open" class="w-5 h-5 text-neutral-400"></i>
+            <span class="text-neutral-900 dark:text-white">Getting Started</span>
           </a>
-          <a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-            <i data-lucide="key" class="w-5 h-5 text-gray-400"></i>
-            <span class="text-gray-900 dark:text-white">API Authentication</span>
+          <a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+            <i data-lucide="key" class="w-5 h-5 text-neutral-400"></i>
+            <span class="text-neutral-900 dark:text-white">API Authentication</span>
           </a>
-          <a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-            <i data-lucide="alert-circle" class="w-5 h-5 text-gray-400"></i>
-            <span class="text-gray-900 dark:text-white">Error Codes</span>
+          <a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+            <i data-lucide="alert-circle" class="w-5 h-5 text-neutral-400"></i>
+            <span class="text-neutral-900 dark:text-white">Error Codes</span>
           </a>
-          <a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-            <i data-lucide="link" class="w-5 h-5 text-gray-400"></i>
-            <span class="text-gray-900 dark:text-white">Integration Guide</span>
+          <a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+            <i data-lucide="link" class="w-5 h-5 text-neutral-400"></i>
+            <span class="text-neutral-900 dark:text-white">Integration Guide</span>
           </a>
         </div>
       </div>
@@ -1984,23 +2030,23 @@
   </div>
 
   <!-- Mobile TOC Full-Screen Modal -->
-  <div id="mobile-toc-modal" class="hidden fixed inset-0 z-50 bg-white dark:bg-gray-900">
+  <div id="mobile-toc-modal" class="hidden fixed inset-0 z-50 bg-neutral-50 dark:bg-neutral-900">
     <!-- Modal Header -->
-    <div class="sticky top-0 z-10 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 px-6 py-4">
+    <div class="sticky top-0 z-10 bg-neutral-50 dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-700 px-6 py-4">
       <div class="flex items-center justify-between mb-4">
-        <h2 class="text-lg font-bold text-gray-900 dark:text-white">Table of Contents</h2>
-        <button id="close-mobile-toc" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors">
-          <i data-lucide="x" class="w-6 h-6 text-gray-600 dark:text-gray-400"></i>
+        <h2 class="text-lg font-bold text-neutral-900 dark:text-white">Table of Contents</h2>
+        <button id="close-mobile-toc" class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors">
+          <i data-lucide="x" class="w-6 h-6 text-neutral-600 dark:text-neutral-400"></i>
         </button>
       </div>
       
       <!-- Expand/Collapse All -->
       <div class="flex items-center gap-3">
-        <button id="mobile-expand-all-btn" class="flex items-center gap-1 text-xs text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400">
+        <button id="mobile-expand-all-btn" class="flex items-center gap-1 text-xs text-neutral-600 dark:text-neutral-400 hover:text-primary-600 dark:hover:text-primary-400">
           <i data-lucide="chevron-down" class="w-3 h-3"></i>
           <span>Expand</span>
         </button>
-        <button id="mobile-collapse-all-btn" class="flex items-center gap-1 text-xs text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400">
+        <button id="mobile-collapse-all-btn" class="flex items-center gap-1 text-xs text-neutral-600 dark:text-neutral-400 hover:text-primary-600 dark:hover:text-primary-400">
           <i data-lucide="chevron-up" class="w-3 h-3"></i>
           <span>Collapse</span>
         </button>
@@ -2011,72 +2057,72 @@
     <nav class="overflow-y-auto p-6" style="height: calc(100vh - 100px);">
       <!-- Section: Getting Started -->
       <div class="mb-6">
-        <button class="mobile-nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3 hover:text-purple-600 dark:hover:text-purple-400" data-chevron-state="down">
+        <button class="mobile-nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-neutral-900 dark:text-white uppercase tracking-wide mb-3 hover:text-primary-600 dark:hover:text-primary-400" data-chevron-state="down">
           <span>Getting Started</span>
           <i data-lucide="chevron-down" class="w-4 h-4"></i>
         </button>
         <ul class="space-y-2 text-sm mobile-nav-section-content hidden">
-          <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Logging In</a></li>
-          <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Navigation Bar</a></li>
-          <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Dashboard</a></li>
+          <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Logging In</a></li>
+          <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Navigation Bar</a></li>
+          <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Dashboard</a></li>
         </ul>
       </div>
       
       <!-- Section: Authoring Basics -->
       <div class="mb-6">
-        <button class="mobile-nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3 hover:text-purple-600 dark:hover:text-purple-400" data-chevron-state="up">
+        <button class="mobile-nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-neutral-900 dark:text-white uppercase tracking-wide mb-3 hover:text-primary-600 dark:hover:text-primary-400" data-chevron-state="up">
           <span>Authoring Basics</span>
           <i data-lucide="chevron-up" class="w-4 h-4"></i>
         </button>
         <ul class="space-y-2 text-sm mobile-nav-section-content">
-          <li><a href="doc-page.html" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Creating Pages</a></li>
-          <li><a href="doc-page-checking-in-out.html" class="text-purple-600 dark:text-purple-400 font-semibold">Checking Pages In/Out</a></li>
-          <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Saving Pages</a></li>
-          <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Deleting & Restoring</a></li>
-          <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Publishing Content</a></li>
+          <li><a href="doc-page.html" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Creating Pages</a></li>
+          <li><a href="doc-page-checking-in-out.html" class="text-primary-600 dark:text-primary-400 font-semibold">Checking Pages In/Out</a></li>
+          <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Saving Pages</a></li>
+          <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Deleting & Restoring</a></li>
+          <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Publishing Content</a></li>
         </ul>
       </div>
       
       <!-- Section: Editing Basics -->
       <div class="mb-6">
-        <button class="mobile-nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3 hover:text-purple-600 dark:hover:text-purple-400" data-chevron-state="down">
+        <button class="mobile-nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-neutral-900 dark:text-white uppercase tracking-wide mb-3 hover:text-primary-600 dark:hover:text-primary-400" data-chevron-state="down">
           <span>Editing Basics</span>
           <i data-lucide="chevron-down" class="w-4 h-4"></i>
         </button>
         <ul class="space-y-2 text-sm mobile-nav-section-content hidden">
-          <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">In-Context Editing</a></li>
-          <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Page Builder</a></li>
-          <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Using History</a></li>
-          <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Managing Pages</a></li>
-          <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">XHTML Editor</a></li>
+          <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">In-Context Editing</a></li>
+          <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Page Builder</a></li>
+          <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Using History</a></li>
+          <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Managing Pages</a></li>
+          <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">XHTML Editor</a></li>
         </ul>
       </div>
       
       <!-- Section: Assets Manager -->
       <div class="mb-6">
-        <button class="mobile-nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3 hover:text-purple-600 dark:hover:text-purple-400" data-chevron-state="down">
+        <button class="mobile-nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-neutral-900 dark:text-white uppercase tracking-wide mb-3 hover:text-primary-600 dark:hover:text-primary-400" data-chevron-state="down">
           <span>Assets Manager</span>
           <i data-lucide="chevron-down" class="w-4 h-4"></i>
         </button>
         <ul class="space-y-2 text-sm mobile-nav-section-content hidden">
-          <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Uploading Assets</a></li>
-          <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Managing Assets</a></li>
-          <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Asset Metadata</a></li>
-          <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Asset History</a></li>
+          <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Uploading Assets</a></li>
+          <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Managing Assets</a></li>
+          <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Asset Metadata</a></li>
+          <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Asset History</a></li>
         </ul>
       </div>
       
       <!-- Section: Administration -->
       <div class="mb-6">
-        <button class="mobile-nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3 hover:text-purple-600 dark:hover:text-purple-400" data-chevron-state="down">
+        <button class="mobile-nav-section-toggle flex items-center justify-between w-full text-xs font-semibold text-neutral-900 dark:text-white uppercase tracking-wide mb-3 hover:text-primary-600 dark:hover:text-primary-400" data-chevron-state="down">
           <span>Administration</span>
           <i data-lucide="chevron-down" class="w-4 h-4"></i>
         </button>
         <ul class="space-y-2 text-sm mobile-nav-section-content hidden">
-          <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">User Management</a></li>
-          <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Security & Permissions</a></li>
-          <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Workflows</a></li>
-          <li><a href="#" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">System Configuration</a></li>
+          <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">User Management</a></li>
+          <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Security & Permissions</a></li>
+          <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Workflows</a></li>
+          <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">System Configuration</a></li>
         </ul>
       </div>
     </nav>
