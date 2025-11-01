@@ -1916,11 +1916,17 @@
         
         <!-- Modal Header -->
         <div class="px-6 py-4 border-b border-white/10 flex items-center justify-between flex-shrink-0">
-          <div class="flex items-center gap-3">
-            <i data-lucide="palette" class="w-5 h-5 text-purple-400"></i>
-            <div>
-              <h2 class="text-lg font-bold text-white">Theme Editor</h2>
-              <p class="text-xs text-white/50">Build your enterprise brand theme</p>
+          <div class="flex items-center gap-3 flex-1 mr-4">
+            <i data-lucide="palette" class="w-5 h-5 text-purple-400 flex-shrink-0"></i>
+            <div class="flex-1">
+              <input 
+                type="text" 
+                id="modal-theme-name" 
+                class="w-full text-lg font-bold text-white bg-transparent border-0 outline-none focus:outline-none px-0 py-0 placeholder:text-white/40"
+                placeholder="Untitled Theme"
+                value=""
+              />
+              <p class="text-xs text-white/50">Click name to edit</p>
             </div>
           </div>
           
