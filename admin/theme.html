@@ -309,6 +309,39 @@
             </button>
           </div>
         </div>
+
+        <div class="divider"></div>
+        
+        <!-- Custom Theme -->
+        <div class="section mb-4">
+          <span class="text-[11px] font-semibold text-white/50 uppercase tracking-wider block mb-3">Custom Theme</span>
+          <button 
+            id="custom-theme-btn-preset"
+            class="theme-preset w-full flex items-center gap-3 p-3 rounded-lg border-2 border-dashed border-white/10 hover:border-indigo-400/30"
+          >
+            <div class="flex gap-1">
+              <div class="w-6 h-6 rounded-md bg-white"></div>
+              <div class="w-6 h-6 rounded-md bg-black"></div>
+            </div>
+            <div class="flex-1 text-left">
+              <div class="text-[12px] font-semibold text-white/90">Custom</div>
+              <div class="text-[10px] text-white/40">Build your own theme</div>
+            </div>
+            <i data-lucide="plus-circle" class="w-4 h-4 text-indigo-400"></i>
+          </button>
+        </div>
+
+        <div class="divider"></div>
+        
+        <!-- Theme Presets -->
+        <div class="section mb-4">
+          <span class="text-[11px] font-semibold text-white/50 uppercase tracking-wider block mb-3">Select Theme</span>
+          <div class="space-y-2" id="theme-presets">
+            <!-- Generated dynamically -->
+          </div>
+        </div>
+
+        <div class="divider"></div>
         
         <!-- Gradients Toggle -->
         <div class="section mb-4">
@@ -321,16 +354,6 @@
               <input type="checkbox" id="gradient-toggle" class="sr-only peer" checked>
               <div class="w-9 h-5 bg-white/[0.08] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white/60 after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600 peer-checked:after:bg-white"></div>
             </label>
-          </div>
-        </div>
-
-        <div class="divider"></div>
-        
-        <!-- Theme Presets -->
-        <div class="section mb-4">
-          <span class="text-[11px] font-semibold text-white/50 uppercase tracking-wider block mb-3">Select Theme</span>
-          <div class="space-y-2" id="theme-presets">
-            <!-- Generated dynamically -->
           </div>
         </div>
 
