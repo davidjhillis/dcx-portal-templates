@@ -170,6 +170,26 @@
       border-color: var(--preview-primary-500);
     }
     
+    /* Modal checkboxes and radios - use theme primary color */
+    #modal-component-preview .modal-checkbox:checked,
+    #modal-component-preview .modal-radio:checked {
+      accent-color: var(--preview-primary-600);
+    }
+    
+    #modal-component-preview .modal-checkbox:focus,
+    #modal-component-preview .modal-radio:focus {
+      outline-color: var(--preview-primary-500);
+    }
+    
+    /* Gradient toggle switch - use current theme color */
+    .gradient-toggle {
+      transition: background-color 0.2s;
+    }
+    
+    #gradient-toggle:checked ~ .gradient-toggle {
+      background-color: rgb(var(--color-primary-600)) !important;
+    }
+    
     /* ========================================
        MODAL PREVIEW TEXT COLORS (Dynamic Contrast)
        ======================================== */
@@ -352,7 +372,7 @@
             </div>
             <label class="relative inline-flex items-center cursor-pointer">
               <input type="checkbox" id="gradient-toggle" class="sr-only peer" checked>
-              <div class="w-9 h-5 bg-white/[0.08] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white/60 after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600 peer-checked:after:bg-white"></div>
+              <div class="w-9 h-5 bg-white/[0.08] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white/60 after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:bg-white gradient-toggle"></div>
             </label>
           </div>
         </div>
@@ -2519,11 +2539,11 @@
                       <h4 class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wider">Checkboxes</h4>
                       <div class="space-y-1.5">
                         <label class="flex items-center gap-2 cursor-pointer">
-                          <input type="checkbox" checked class="w-4 h-4 rounded modal-input accent-indigo-600" />
+                          <input type="checkbox" checked class="w-4 h-4 rounded modal-checkbox" />
                           <span class="text-xs text-gray-700 dark:text-gray-300">Enable feature</span>
                         </label>
                         <label class="flex items-center gap-2 cursor-pointer">
-                          <input type="checkbox" class="w-4 h-4 rounded modal-input accent-indigo-600" />
+                          <input type="checkbox" class="w-4 h-4 rounded modal-checkbox" />
                           <span class="text-xs text-gray-700 dark:text-gray-300">Disabled option</span>
                         </label>
                       </div>
@@ -2534,11 +2554,11 @@
                       <h4 class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wider">Radio Group</h4>
                       <div class="space-y-1.5">
                         <label class="flex items-center gap-2 cursor-pointer">
-                          <input type="radio" name="preview-radio" checked class="w-4 h-4 accent-indigo-600" />
+                          <input type="radio" name="preview-radio" checked class="w-4 h-4 modal-radio" />
                           <span class="text-xs text-gray-700 dark:text-gray-300">Option A</span>
                         </label>
                         <label class="flex items-center gap-2 cursor-pointer">
-                          <input type="radio" name="preview-radio" class="w-4 h-4 accent-indigo-600" />
+                          <input type="radio" name="preview-radio" class="w-4 h-4 modal-radio" />
                           <span class="text-xs text-gray-700 dark:text-gray-300">Option B</span>
                         </label>
                       </div>
