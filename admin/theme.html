@@ -292,24 +292,8 @@
       <!-- Scrollable Content -->
       <div class="flex-1 overflow-y-auto px-4 py-4">
         
-        <!-- Light/Dark Mode Toggle -->
+        <!-- Gradients Toggle -->
         <div class="section mb-4">
-          <div class="flex gap-1.5 p-0.5 bg-white/[0.03] rounded-lg mb-3">
-            <button id="light-mode" class="flex-1 px-3 py-1.5 rounded-md text-[12px] font-medium transition-all text-white/50 hover:text-white/70">
-              <div class="flex items-center justify-center gap-1.5">
-                <i data-lucide="sun" class="w-3.5 h-3.5"></i>
-                <span>Light</span>
-              </div>
-            </button>
-            <button id="dark-mode" class="flex-1 px-3 py-1.5 rounded-md text-[12px] font-medium transition-all bg-white/[0.08] text-white/90">
-              <div class="flex items-center justify-center gap-1.5">
-                <i data-lucide="moon" class="w-3.5 h-3.5"></i>
-                <span>Dark</span>
-              </div>
-            </button>
-          </div>
-          
-          <!-- Gradients Toggle -->
           <div class="flex items-center justify-between gap-3 px-1">
             <div class="flex-1">
               <div class="text-[12px] font-medium text-white/90 mb-0.5">Use Gradients</div>
@@ -445,6 +429,16 @@
       <div class="px-6 py-3 border-b border-white/[0.08] flex items-center justify-between flex-shrink-0">
         <div class="flex items-center gap-4">
           <span class="text-[13px] font-semibold text-white/90">Live Preview</span>
+          
+          <!-- Light/Dark Mode Toggle -->
+          <div class="flex gap-1.5 p-0.5 bg-white/[0.03] rounded-lg">
+            <button id="light-mode" class="px-2.5 py-1 rounded-md text-[11px] font-medium transition-all text-white/40 hover:text-white/60">
+              <i data-lucide="sun" class="w-3.5 h-3.5"></i>
+            </button>
+            <button id="dark-mode" class="px-2.5 py-1 rounded-md text-[11px] font-medium transition-all bg-white/[0.08] text-white/90">
+              <i data-lucide="moon" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
           
           <!-- Device Toggle -->
           <div class="flex items-center gap-0.5 bg-white/[0.03] rounded-lg p-0.5">
