@@ -1040,8 +1040,18 @@
       const container = document.getElementById('theme-presets');
       
       const presetsHTML = Object.entries(tailwindColors.presets).map(([key, theme]) => {
-        const primaryColor = tailwindColors.getColor(theme.primary, 600);  // Use 600 as primary shade
-        const accentColor = tailwindColors.getColor(theme.accent, 600);
+        // Get color from the scale - handle both regular and custom colors
+        let primaryColor, accentColor;
+        
+        if (theme.primary.startsWith('custom-')) {
+          // Custom theme: direct access to color scale
+          primaryColor = tailwindColors.colors[theme.primary]?.[600] || '#9333ea';
+          accentColor = tailwindColors.colors[theme.accent]?.[600] || '#7c3aed';
+        } else {
+          // Standard Tailwind color
+          primaryColor = tailwindColors.getColor(theme.primary, 600);
+          accentColor = tailwindColors.getColor(theme.accent, 600);
+        }
         
         return `
           <button 
