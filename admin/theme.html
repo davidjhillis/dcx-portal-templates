@@ -880,15 +880,23 @@
     
     function applyTheme() {
       const iframe = document.getElementById('preview-iframe');
-      if (!iframe || !iframe.contentDocument) return;
+      if (!iframe || !iframe.contentDocument) {
+        console.warn('⚠️ applyTheme() called but iframe not ready');
+        return;
+      }
       
       const doc = iframe.contentDocument;
       const html = doc.documentElement;
+      
+      console.log(`🎨 Applying theme: ${currentState.preset || 'custom'} (${currentState.mode}) to iframe`);
+      console.log(`   Primary: ${currentState.primary}, Accent: ${currentState.accent}, Neutral: ${currentState.neutral}`);
       
       // Get color scales
       const primaryScale = getColorScale(currentState.primary, currentState.mode);
       const accentScale = getColorScale(currentState.accent, currentState.mode);
       const neutralScale = getColorScale(currentState.neutral, currentState.mode);
+      
+      console.log(`   Scales loaded - Primary: ${Object.keys(primaryScale).length} shades, Accent: ${Object.keys(accentScale).length} shades, Neutral: ${Object.keys(neutralScale).length} shades`);
       
       // Apply CSS variables to iframe in RGB format (for Tailwind's rgb() usage)
       Object.entries(primaryScale).forEach(([shade, color]) => {
@@ -982,6 +990,8 @@
           ring-color: rgb(var(--color-primary-500)) !important;
         }
       `;
+      
+      console.log(`✅ Theme applied successfully to iframe at ${iframe.src}`);
     }
 
     // ========================================
