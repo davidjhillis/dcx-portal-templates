@@ -2002,19 +2002,12 @@
               </div>
             </div>
 
-            <!-- Individual Step Selection -->
-            <div class="space-y-3">
-              <!-- Primary Scale Steps -->
-              <div class="bg-white/[0.03] border border-white/10 rounded-lg p-3">
-                <div class="flex items-center justify-between mb-2">
-                  <span class="text-[10px] font-semibold text-white/60 uppercase tracking-wider">Primary Scale</span>
-                  <button id="primary-auto-generate" class="text-[9px] px-1.5 py-0.5 bg-purple-600/20 hover:bg-purple-600/30 text-purple-400 rounded transition-colors">
-                    <i data-lucide="wand-2" class="w-2.5 h-2.5 inline"></i> Auto
-                  </button>
-                </div>
-                
-                <!-- Category Labels (Radix-style) -->
-                <div class="grid grid-cols-10 gap-0 mb-0.5">
+            <!-- Color Scales (Unified) -->
+            <div class="bg-white/[0.03] border border-white/10 rounded-lg p-3">
+              <!-- Shared Category Labels -->
+              <div class="grid grid-cols-[80px_1fr] gap-2 mb-1">
+                <div></div>
+                <div class="grid grid-cols-10 gap-0">
                   <div class="col-span-2 text-center">
                     <div class="text-[8px] font-semibold text-purple-400 mb-0.5">Backgrounds</div>
                     <div class="h-px bg-purple-500/30"></div>
@@ -2035,72 +2028,13 @@
                     <div class="text-[8px] font-semibold text-green-400 mb-0.5">Text ✓</div>
                     <div class="h-px bg-green-500/30"></div>
                   </div>
-                </div>
-                
-                <!-- Shade Numbers -->
-                <div class="grid grid-cols-10 gap-0 mb-0.5">
-                  <div class="text-center text-[7px] text-white/40 font-mono">50</div>
-                  <div class="text-center text-[7px] text-white/40 font-mono">100</div>
-                  <div class="text-center text-[7px] text-white/40 font-mono">200</div>
-                  <div class="text-center text-[7px] text-white/40 font-mono">300</div>
-                  <div class="text-center text-[7px] text-white/40 font-mono">400</div>
-                  <div class="text-center text-[7px] text-white/40 font-mono">500</div>
-                  <div class="text-center text-[7px] text-purple-400 font-mono font-semibold">600★</div>
-                  <div class="text-center text-[7px] text-white/40 font-mono">700</div>
-                  <div class="text-center text-[7px] text-white/40 font-mono">800</div>
-                  <div class="text-center text-[7px] text-green-400 font-mono font-semibold">900✓</div>
-                </div>
-                
-                <!-- Color Swatches (square with rounded edges) -->
-                <div class="grid grid-cols-10 gap-0.5">
-                  <input type="color" id="primary-50" class="w-full h-6 cursor-pointer border-0 rounded" value="#faf5ff" title="Shade 50" />
-                  <input type="color" id="primary-100" class="w-full h-6 cursor-pointer border-0 rounded" value="#f3e8ff" title="Shade 100" />
-                  <input type="color" id="primary-200" class="w-full h-6 cursor-pointer border-0 rounded" value="#e9d5ff" title="Shade 200" />
-                  <input type="color" id="primary-300" class="w-full h-6 cursor-pointer border-0 rounded" value="#d8b4fe" title="Shade 300" />
-                  <input type="color" id="primary-400" class="w-full h-6 cursor-pointer border-0 rounded" value="#c084fc" title="Shade 400" />
-                  <input type="color" id="primary-500" class="w-full h-6 cursor-pointer border-0 rounded" value="#a855f7" title="Shade 500" />
-                  <input type="color" id="primary-600" class="w-full h-6 cursor-pointer border-0 rounded ring-1 ring-purple-500 ring-inset" value="#9333ea" title="Shade 600 - Base" />
-                  <input type="color" id="primary-700" class="w-full h-6 cursor-pointer border-0 rounded" value="#7e22ce" title="Shade 700" />
-                  <input type="color" id="primary-800" class="w-full h-6 cursor-pointer border-0 rounded" value="#6b21a8" title="Shade 800" />
-                  <input type="color" id="primary-900" class="w-full h-6 cursor-pointer border-0 rounded" value="#581c87" title="Shade 900 - Text" />
                 </div>
               </div>
 
-              <!-- Accent Scale Steps -->
-              <div class="bg-white/[0.03] border border-white/10 rounded-lg p-3">
-                <div class="flex items-center justify-between mb-2">
-                  <span class="text-[10px] font-semibold text-white/60 uppercase tracking-wider">Accent Scale</span>
-                  <button id="accent-auto-generate" class="text-[9px] px-1.5 py-0.5 bg-purple-600/20 hover:bg-purple-600/30 text-purple-400 rounded transition-colors">
-                    <i data-lucide="wand-2" class="w-2.5 h-2.5 inline"></i> Auto
-                  </button>
-                </div>
-                
-                <!-- Category Labels -->
-                <div class="grid grid-cols-10 gap-0 mb-0.5">
-                  <div class="col-span-2 text-center">
-                    <div class="text-[8px] font-semibold text-purple-400 mb-0.5">Backgrounds</div>
-                    <div class="h-px bg-purple-500/30"></div>
-                  </div>
-                  <div class="col-span-3 text-center">
-                    <div class="text-[8px] font-semibold text-purple-400 mb-0.5">Interactive</div>
-                    <div class="h-px bg-purple-500/30"></div>
-                  </div>
-                  <div class="col-span-2 text-center">
-                    <div class="text-[8px] font-semibold text-purple-400 mb-0.5">Borders</div>
-                    <div class="h-px bg-purple-500/30"></div>
-                  </div>
-                  <div class="col-span-2 text-center">
-                    <div class="text-[8px] font-semibold text-purple-400 mb-0.5">Solid</div>
-                    <div class="h-px bg-purple-500/30"></div>
-                  </div>
-                  <div class="col-span-1 text-center">
-                    <div class="text-[8px] font-semibold text-green-400 mb-0.5">Text ✓</div>
-                    <div class="h-px bg-green-500/30"></div>
-                  </div>
-                </div>
-                
-                <!-- Shade Numbers -->
-                <div class="grid grid-cols-10 gap-0 mb-0.5">
+              <!-- Shared Shade Numbers -->
+              <div class="grid grid-cols-[80px_1fr] gap-2 mb-2">
+                <div></div>
+                <div class="grid grid-cols-10 gap-0">
                   <div class="text-center text-[7px] text-white/40 font-mono">50</div>
                   <div class="text-center text-[7px] text-white/40 font-mono">100</div>
                   <div class="text-center text-[7px] text-white/40 font-mono">200</div>
@@ -2111,83 +2045,67 @@
                   <div class="text-center text-[7px] text-white/40 font-mono">700</div>
                   <div class="text-center text-[7px] text-white/40 font-mono">800</div>
                   <div class="text-center text-[7px] text-green-400 font-mono font-semibold">900✓</div>
-                </div>
-                
-                <!-- Color Swatches (square with rounded edges) -->
-                <div class="grid grid-cols-10 gap-0.5">
-                  <input type="color" id="accent-50" class="w-full h-6 cursor-pointer border-0 rounded" value="#faf5ff" title="Shade 50" />
-                  <input type="color" id="accent-100" class="w-full h-6 cursor-pointer border-0 rounded" value="#f3e8ff" title="Shade 100" />
-                  <input type="color" id="accent-200" class="w-full h-6 cursor-pointer border-0 rounded" value="#e9d5ff" title="Shade 200" />
-                  <input type="color" id="accent-300" class="w-full h-6 cursor-pointer border-0 rounded" value="#d8b4fe" title="Shade 300" />
-                  <input type="color" id="accent-400" class="w-full h-6 cursor-pointer border-0 rounded" value="#c084fc" title="Shade 400" />
-                  <input type="color" id="accent-500" class="w-full h-6 cursor-pointer border-0 rounded" value="#a855f7" title="Shade 500" />
-                  <input type="color" id="accent-600" class="w-full h-6 cursor-pointer border-0 rounded ring-1 ring-purple-500 ring-inset" value="#8b5cf6" title="Shade 600 - Base" />
-                  <input type="color" id="accent-700" class="w-full h-6 cursor-pointer border-0 rounded" value="#7c3aed" title="Shade 700" />
-                  <input type="color" id="accent-800" class="w-full h-6 cursor-pointer border-0 rounded" value="#6d28d9" title="Shade 800" />
-                  <input type="color" id="accent-900" class="w-full h-6 cursor-pointer border-0 rounded" value="#5b21b6" title="Shade 900 - Text" />
                 </div>
               </div>
 
-              <!-- Neutral Scale Steps -->
-              <div class="bg-white/[0.03] border border-white/10 rounded-lg p-3">
-                <div class="flex items-center justify-between mb-2">
-                  <span class="text-[10px] font-semibold text-white/60 uppercase tracking-wider">Neutral Scale</span>
-                  <button id="neutral-auto-generate" class="text-[9px] px-1.5 py-0.5 bg-purple-600/20 hover:bg-purple-600/30 text-purple-400 rounded transition-colors">
-                    <i data-lucide="wand-2" class="w-2.5 h-2.5 inline"></i> Auto
-                  </button>
-                </div>
-                
-                <!-- Category Labels -->
-                <div class="grid grid-cols-10 gap-0 mb-0.5">
-                  <div class="col-span-2 text-center">
-                    <div class="text-[8px] font-semibold text-purple-400 mb-0.5">Backgrounds</div>
-                    <div class="h-px bg-purple-500/30"></div>
-                  </div>
-                  <div class="col-span-3 text-center">
-                    <div class="text-[8px] font-semibold text-purple-400 mb-0.5">Interactive</div>
-                    <div class="h-px bg-purple-500/30"></div>
-                  </div>
-                  <div class="col-span-2 text-center">
-                    <div class="text-[8px] font-semibold text-purple-400 mb-0.5">Borders</div>
-                    <div class="h-px bg-purple-500/30"></div>
-                  </div>
-                  <div class="col-span-2 text-center">
-                    <div class="text-[8px] font-semibold text-purple-400 mb-0.5">Solid</div>
-                    <div class="h-px bg-purple-500/30"></div>
-                  </div>
-                  <div class="col-span-1 text-center">
-                    <div class="text-[8px] font-semibold text-green-400 mb-0.5">Text ✓</div>
-                    <div class="h-px bg-green-500/30"></div>
-                  </div>
-                </div>
-                
-                <!-- Shade Numbers -->
-                <div class="grid grid-cols-10 gap-0 mb-0.5">
-                  <div class="text-center text-[7px] text-white/40 font-mono">50</div>
-                  <div class="text-center text-[7px] text-white/40 font-mono">100</div>
-                  <div class="text-center text-[7px] text-white/40 font-mono">200</div>
-                  <div class="text-center text-[7px] text-white/40 font-mono">300</div>
-                  <div class="text-center text-[7px] text-white/40 font-mono">400</div>
-                  <div class="text-center text-[7px] text-white/40 font-mono">500</div>
-                  <div class="text-center text-[7px] text-purple-400 font-mono font-semibold">600★</div>
-                  <div class="text-center text-[7px] text-white/40 font-mono">700</div>
-                  <div class="text-center text-[7px] text-white/40 font-mono">800</div>
-                  <div class="text-center text-[7px] text-green-400 font-mono font-semibold">900✓</div>
-                </div>
-                
-                <!-- Color Swatches (square with rounded edges) -->
+              <!-- PRIMARY -->
+              <div class="grid grid-cols-[80px_1fr_auto] gap-2 items-center mb-1">
+                <div class="text-[10px] font-semibold text-white/70 uppercase tracking-wider">Primary</div>
                 <div class="grid grid-cols-10 gap-0.5">
-                  <input type="color" id="neutral-50" class="w-full h-6 cursor-pointer border-0 rounded" value="#fafafa" title="Shade 50" />
-                  <input type="color" id="neutral-100" class="w-full h-6 cursor-pointer border-0 rounded" value="#f4f4f5" title="Shade 100" />
-                  <input type="color" id="neutral-200" class="w-full h-6 cursor-pointer border-0 rounded" value="#e4e4e7" title="Shade 200" />
-                  <input type="color" id="neutral-300" class="w-full h-6 cursor-pointer border-0 rounded" value="#d4d4d8" title="Shade 300" />
-                  <input type="color" id="neutral-400" class="w-full h-6 cursor-pointer border-0 rounded" value="#a1a1aa" title="Shade 400" />
-                  <input type="color" id="neutral-500" class="w-full h-6 cursor-pointer border-0 rounded" value="#71717a" title="Shade 500" />
-                  <input type="color" id="neutral-600" class="w-full h-6 cursor-pointer border-0 rounded ring-1 ring-purple-500 ring-inset" value="#52525b" title="Shade 600 - Base" />
-                  <input type="color" id="neutral-700" class="w-full h-6 cursor-pointer border-0 rounded" value="#3f3f46" title="Shade 700" />
-                  <input type="color" id="neutral-800" class="w-full h-6 cursor-pointer border-0 rounded" value="#27272a" title="Shade 800" />
-                  <input type="color" id="neutral-900" class="w-full h-6 cursor-pointer border-0 rounded" value="#18181b" title="Shade 900 - Text" />
+                  <input type="color" id="primary-50" class="aspect-square cursor-pointer border-0 rounded" value="#faf5ff" title="Shade 50" />
+                  <input type="color" id="primary-100" class="aspect-square cursor-pointer border-0 rounded" value="#f3e8ff" title="Shade 100" />
+                  <input type="color" id="primary-200" class="aspect-square cursor-pointer border-0 rounded" value="#e9d5ff" title="Shade 200" />
+                  <input type="color" id="primary-300" class="aspect-square cursor-pointer border-0 rounded" value="#d8b4fe" title="Shade 300" />
+                  <input type="color" id="primary-400" class="aspect-square cursor-pointer border-0 rounded" value="#c084fc" title="Shade 400" />
+                  <input type="color" id="primary-500" class="aspect-square cursor-pointer border-0 rounded" value="#a855f7" title="Shade 500" />
+                  <input type="color" id="primary-600" class="aspect-square cursor-pointer border-0 rounded ring-1 ring-purple-500 ring-inset" value="#9333ea" title="Shade 600 - Base" />
+                  <input type="color" id="primary-700" class="aspect-square cursor-pointer border-0 rounded" value="#7e22ce" title="Shade 700" />
+                  <input type="color" id="primary-800" class="aspect-square cursor-pointer border-0 rounded" value="#6b21a8" title="Shade 800" />
+                  <input type="color" id="primary-900" class="aspect-square cursor-pointer border-0 rounded" value="#581c87" title="Shade 900 - Text" />
                 </div>
+                <button id="primary-auto-generate" class="text-[9px] px-1.5 py-0.5 bg-purple-600/20 hover:bg-purple-600/30 text-purple-400 rounded transition-colors whitespace-nowrap">
+                  <i data-lucide="wand-2" class="w-2.5 h-2.5 inline"></i> Auto
+                </button>
+              </div>
+
+              <!-- ACCENT -->
+              <div class="grid grid-cols-[80px_1fr_auto] gap-2 items-center mb-1">
+                <div class="text-[10px] font-semibold text-white/70 uppercase tracking-wider">Accent</div>
+                <div class="grid grid-cols-10 gap-0.5">
+                  <input type="color" id="accent-50" class="aspect-square cursor-pointer border-0 rounded" value="#faf5ff" title="Shade 50" />
+                  <input type="color" id="accent-100" class="aspect-square cursor-pointer border-0 rounded" value="#f3e8ff" title="Shade 100" />
+                  <input type="color" id="accent-200" class="aspect-square cursor-pointer border-0 rounded" value="#e9d5ff" title="Shade 200" />
+                  <input type="color" id="accent-300" class="aspect-square cursor-pointer border-0 rounded" value="#d8b4fe" title="Shade 300" />
+                  <input type="color" id="accent-400" class="aspect-square cursor-pointer border-0 rounded" value="#c084fc" title="Shade 400" />
+                  <input type="color" id="accent-500" class="aspect-square cursor-pointer border-0 rounded" value="#a855f7" title="Shade 500" />
+                  <input type="color" id="accent-600" class="aspect-square cursor-pointer border-0 rounded ring-1 ring-purple-500 ring-inset" value="#8b5cf6" title="Shade 600 - Base" />
+                  <input type="color" id="accent-700" class="aspect-square cursor-pointer border-0 rounded" value="#7c3aed" title="Shade 700" />
+                  <input type="color" id="accent-800" class="aspect-square cursor-pointer border-0 rounded" value="#6d28d9" title="Shade 800" />
+                  <input type="color" id="accent-900" class="aspect-square cursor-pointer border-0 rounded" value="#5b21b6" title="Shade 900 - Text" />
+                </div>
+                <button id="accent-auto-generate" class="text-[9px] px-1.5 py-0.5 bg-purple-600/20 hover:bg-purple-600/30 text-purple-400 rounded transition-colors whitespace-nowrap">
+                  <i data-lucide="wand-2" class="w-2.5 h-2.5 inline"></i> Auto
+                </button>
+              </div>
+
+              <!-- NEUTRAL -->
+              <div class="grid grid-cols-[80px_1fr_auto] gap-2 items-center">
+                <div class="text-[10px] font-semibold text-white/70 uppercase tracking-wider">Neutral</div>
+                <div class="grid grid-cols-10 gap-0.5">
+                  <input type="color" id="neutral-50" class="aspect-square cursor-pointer border-0 rounded" value="#fafafa" title="Shade 50" />
+                  <input type="color" id="neutral-100" class="aspect-square cursor-pointer border-0 rounded" value="#f4f4f5" title="Shade 100" />
+                  <input type="color" id="neutral-200" class="aspect-square cursor-pointer border-0 rounded" value="#e4e4e7" title="Shade 200" />
+                  <input type="color" id="neutral-300" class="aspect-square cursor-pointer border-0 rounded" value="#d4d4d8" title="Shade 300" />
+                  <input type="color" id="neutral-400" class="aspect-square cursor-pointer border-0 rounded" value="#a1a1aa" title="Shade 400" />
+                  <input type="color" id="neutral-500" class="aspect-square cursor-pointer border-0 rounded" value="#71717a" title="Shade 500" />
+                  <input type="color" id="neutral-600" class="aspect-square cursor-pointer border-0 rounded ring-1 ring-purple-500 ring-inset" value="#52525b" title="Shade 600 - Base" />
+                  <input type="color" id="neutral-700" class="aspect-square cursor-pointer border-0 rounded" value="#3f3f46" title="Shade 700" />
+                  <input type="color" id="neutral-800" class="aspect-square cursor-pointer border-0 rounded" value="#27272a" title="Shade 800" />
+                  <input type="color" id="neutral-900" class="aspect-square cursor-pointer border-0 rounded" value="#18181b" title="Shade 900 - Text" />
+                </div>
+                <button id="neutral-auto-generate" class="text-[9px] px-1.5 py-0.5 bg-purple-600/20 hover:bg-purple-600/30 text-purple-400 rounded transition-colors whitespace-nowrap">
+                  <i data-lucide="wand-2" class="w-2.5 h-2.5 inline"></i> Auto
+                </button>
               </div>
             </div>
 
