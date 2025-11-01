@@ -169,6 +169,80 @@
       outline: none;
       border-color: var(--preview-primary-500);
     }
+    
+    /* ========================================
+       MODAL PREVIEW TEXT COLORS (Dynamic Contrast)
+       ======================================== */
+    
+    /* Light mode: Dark text on light background */
+    #modal-component-preview:not(.dark) .text-gray-500,
+    #modal-component-preview:not(.dark) .text-gray-600,
+    #modal-component-preview:not(.dark) .text-gray-700,
+    #modal-component-preview:not(.dark) .text-gray-800,
+    #modal-component-preview:not(.dark) .text-gray-900 {
+      color: var(--preview-neutral-800) !important;
+    }
+    
+    #modal-component-preview:not(.dark) .text-gray-400 {
+      color: var(--preview-neutral-600) !important;
+    }
+    
+    #modal-component-preview:not(.dark) .dark\\:text-gray-300,
+    #modal-component-preview:not(.dark) .dark\\:text-gray-400 {
+      color: var(--preview-neutral-700) !important;
+    }
+    
+    #modal-component-preview:not(.dark) .dark\\:text-white {
+      color: var(--preview-neutral-900) !important;
+    }
+    
+    /* Dark mode: Light text on dark background */
+    #modal-component-preview.dark .text-gray-500,
+    #modal-component-preview.dark .text-gray-600,
+    #modal-component-preview.dark .text-gray-700,
+    #modal-component-preview.dark .text-gray-800,
+    #modal-component-preview.dark .text-gray-900 {
+      color: var(--preview-neutral-200) !important;
+    }
+    
+    #modal-component-preview.dark .text-gray-400 {
+      color: var(--preview-neutral-300) !important;
+    }
+    
+    #modal-component-preview.dark .dark\\:text-gray-300 {
+      color: var(--preview-neutral-300) !important;
+    }
+    
+    #modal-component-preview.dark .dark\\:text-gray-400 {
+      color: var(--preview-neutral-400) !important;
+    }
+    
+    #modal-component-preview.dark .dark\\:text-white {
+      color: var(--preview-neutral-50) !important;
+    }
+    
+    /* Modal preview background colors */
+    #modal-component-preview:not(.dark) .bg-gray-200,
+    #modal-component-preview:not(.dark) .dark\\:bg-gray-700 {
+      background-color: var(--preview-neutral-100) !important;
+    }
+    
+    #modal-component-preview:not(.dark) .bg-white,
+    #modal-component-preview:not(.dark) .dark\\:bg-gray-800 {
+      background-color: var(--preview-neutral-50) !important;
+    }
+    
+    #modal-component-preview.dark .bg-gray-200 {
+      background-color: var(--preview-neutral-700) !important;
+    }
+    
+    #modal-component-preview.dark .dark\\:bg-gray-700 {
+      background-color: var(--preview-neutral-700) !important;
+    }
+    
+    #modal-component-preview.dark .dark\\:bg-gray-800 {
+      background-color: var(--preview-neutral-800) !important;
+    }
   </style>
 </head>
 <body class="bg-[#252525] text-white">
