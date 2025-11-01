@@ -997,13 +997,22 @@
         html:not(.dark) .border-gray-200 { border-color: var(--color-neutral-200) !important; }
         html.dark .dark\\:border-gray-700 { border-color: var(--color-neutral-700) !important; }
         
-        /* Gray text */
-        html:not(.dark) .text-gray-500 { color: var(--color-neutral-500) !important; }
-        html:not(.dark) .text-gray-600 { color: var(--color-neutral-600) !important; }
+        /* Gray text - Light mode (darker text on light bg) */
+        html:not(.dark) .text-gray-500 { color: var(--color-neutral-600) !important; }
+        html:not(.dark) .text-gray-600 { color: var(--color-neutral-700) !important; }
+        html:not(.dark) .text-gray-700 { color: var(--color-neutral-800) !important; }
         html:not(.dark) .text-gray-900 { color: var(--color-neutral-900) !important; }
-        .dark\\:text-gray-300 { color: var(--color-neutral-300) !important; }
-        .dark\\:text-gray-400 { color: var(--color-neutral-400) !important; }
-        .dark\\:text-white { color: white !important; }
+        
+        /* Gray text - Hover states in light mode */
+        html:not(.dark) .hover\\:text-gray-900:hover { color: var(--color-neutral-900) !important; }
+        
+        /* Gray text - Dark mode (lighter text on dark bg) */
+        html.dark .dark\\:text-gray-300 { color: var(--color-neutral-300) !important; }
+        html.dark .dark\\:text-gray-400 { color: var(--color-neutral-400) !important; }
+        html.dark .dark\\:text-white { color: white !important; }
+        
+        /* Dark mode hover states */
+        html.dark .dark\\:hover\\:text-white:hover { color: white !important; }
         
         /* ========================================
            ACCENT COLOR (Indigo/Blue/Violet)
