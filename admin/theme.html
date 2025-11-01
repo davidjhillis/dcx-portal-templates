@@ -18,6 +18,28 @@
     
     body { overflow: hidden; }
     
+    /* Remove all borders from color inputs for flush design */
+    input[type="color"] {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background: none;
+      border: none !important;
+      outline: none !important;
+    }
+    
+    input[type="color"]::-webkit-color-swatch-wrapper {
+      padding: 0;
+    }
+    
+    input[type="color"]::-webkit-color-swatch {
+      border: none;
+    }
+    
+    input[type="color"]::-moz-color-swatch {
+      border: none;
+    }
+    
     /* Elegant scrollbar */
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
