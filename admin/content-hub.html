@@ -379,11 +379,27 @@
                 <option>Oldest First</option>
               </select>
               
-              <button class="flex items-center gap-2 px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md transition-colors text-[13px]">
+              <button onclick="openSmartCollectionModal()" class="flex items-center gap-2 px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md transition-colors text-[13px]">
                 <i data-lucide="folder-plus" class="w-3.5 h-3.5"></i>
-                Create Collection
+                Create Smart Collection
               </button>
             </div>
+          </div>
+          
+          <!-- Select All Matching Banner (appears when filters active) -->
+          <div id="select-all-banner" class="hidden mb-4 p-3 bg-indigo-500/10 border border-indigo-500/30 rounded-lg flex items-center justify-between">
+            <div class="flex items-center gap-2 text-sm">
+              <i data-lucide="info" class="w-4 h-4 text-indigo-400"></i>
+              <span class="text-white/90">
+                <span class="font-medium" id="page-selected-count">3</span> items on this page selected. 
+                <button onclick="selectAllMatching()" class="text-indigo-400 hover:text-indigo-300 underline ml-1">
+                  Select all <span id="total-matching-count">147</span> matching documents
+                </button>
+              </span>
+            </div>
+            <button onclick="clearSelection()" class="text-white/60 hover:text-white/90">
+              <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
           </div>
 
           <!-- Document List -->
@@ -424,17 +440,21 @@
                       <i data-lucide="tag" class="w-3 h-3"></i>
                       Getting Started
                     </span>
+                    <button onclick="openVersionHistory('doc-1')" class="flex items-center gap-1 hover:text-indigo-400 transition-colors">
+                      <i data-lucide="git-branch" class="w-3 h-3"></i>
+                      v3.2 (5 versions)
+                    </button>
                   </div>
                 </div>
 
                 <div class="flex items-center gap-1">
-                  <button class="w-8 h-8 hover:bg-white/[0.05] rounded-md flex items-center justify-center transition-colors">
+                  <button class="w-8 h-8 hover:bg-white/[0.05] rounded-md flex items-center justify-center transition-colors" title="Preview">
                     <i data-lucide="eye" class="w-4 h-4 text-white/60"></i>
                   </button>
-                  <button class="w-8 h-8 hover:bg-white/[0.05] rounded-md flex items-center justify-center transition-colors">
+                  <button class="w-8 h-8 hover:bg-white/[0.05] rounded-md flex items-center justify-center transition-colors" title="Edit">
                     <i data-lucide="edit" class="w-4 h-4 text-white/60"></i>
                   </button>
-                  <button class="w-8 h-8 hover:bg-white/[0.05] rounded-md flex items-center justify-center transition-colors">
+                  <button class="w-8 h-8 hover:bg-white/[0.05] rounded-md flex items-center justify-center transition-colors" title="More actions">
                     <i data-lucide="more-vertical" class="w-4 h-4 text-white/60"></i>
                   </button>
                 </div>
@@ -476,17 +496,21 @@
                       <i data-lucide="tag" class="w-3 h-3"></i>
                       Advanced
                     </span>
+                    <button onclick="openVersionHistory('doc-2')" class="flex items-center gap-1 hover:text-indigo-400 transition-colors">
+                      <i data-lucide="git-branch" class="w-3 h-3"></i>
+                      v2.3 (12 versions)
+                    </button>
                   </div>
                 </div>
 
                 <div class="flex items-center gap-1">
-                  <button class="w-8 h-8 hover:bg-white/[0.05] rounded-md flex items-center justify-center transition-colors">
+                  <button class="w-8 h-8 hover:bg-white/[0.05] rounded-md flex items-center justify-center transition-colors" title="Preview">
                     <i data-lucide="eye" class="w-4 h-4 text-white/60"></i>
                   </button>
-                  <button class="w-8 h-8 hover:bg-white/[0.05] rounded-md flex items-center justify-center transition-colors">
+                  <button class="w-8 h-8 hover:bg-white/[0.05] rounded-md flex items-center justify-center transition-colors" title="Edit">
                     <i data-lucide="edit" class="w-4 h-4 text-white/60"></i>
                   </button>
-                  <button class="w-8 h-8 hover:bg-white/[0.05] rounded-md flex items-center justify-center transition-colors">
+                  <button class="w-8 h-8 hover:bg-white/[0.05] rounded-md flex items-center justify-center transition-colors" title="More actions">
                     <i data-lucide="more-vertical" class="w-4 h-4 text-white/60"></i>
                   </button>
                 </div>
@@ -1334,8 +1358,480 @@
     });
 
     console.log('✅ Content Hub initialized');
+    
+    // Smart Collection Modal Functions
+    function openSmartCollectionModal() {
+      document.getElementById('smart-collection-modal').classList.remove('hidden');
+    }
+    
+    function closeSmartCollectionModal() {
+      document.getElementById('smart-collection-modal').classList.add('hidden');
+    }
+    
+    function addCollectionRule() {
+      const rulesContainer = document.getElementById('collection-rules');
+      const ruleHTML = `
+        <div class="collection-rule flex items-center gap-3 p-3 bg-white/[0.02] border border-white/[0.08] rounded-md">
+          <select class="flex-1 bg-white/[0.03] border border-white/[0.08] text-white text-sm rounded px-2 py-1.5 focus:outline-none focus:border-indigo-500">
+            <option>Product</option>
+            <option>Version</option>
+            <option>Content Type</option>
+            <option>Status</option>
+            <option>Language</option>
+            <option>Tag</option>
+            <option>Author</option>
+            <option>Date Created</option>
+          </select>
+          <select class="flex-1 bg-white/[0.03] border border-white/[0.08] text-white text-sm rounded px-2 py-1.5 focus:outline-none focus:border-indigo-500">
+            <option>equals</option>
+            <option>not equals</option>
+            <option>contains</option>
+            <option>starts with</option>
+            <option>greater than</option>
+            <option>less than</option>
+          </select>
+          <input type="text" placeholder="Value..." class="flex-1 bg-white/[0.03] border border-white/[0.08] text-white text-sm rounded px-3 py-1.5 focus:outline-none focus:border-indigo-500">
+          <button onclick="this.parentElement.remove()" class="text-red-400 hover:text-red-300 transition-colors">
+            <i data-lucide="x" class="w-4 h-4"></i>
+          </button>
+        </div>
+      `;
+      rulesContainer.insertAdjacentHTML('beforeend', ruleHTML);
+      lucide.createIcons();
+    }
+    
+    function saveSmartCollection() {
+      const name = document.getElementById('collection-name').value;
+      if (!name) {
+        alert('Please enter a collection name');
+        return;
+      }
+      alert(`Smart Collection "${name}" created!\n\nThis collection will auto-update as documents are published, archived, or metadata changes.`);
+      closeSmartCollectionModal();
+    }
+    
+    // Version History Functions
+    function openVersionHistory(docId) {
+      document.getElementById('version-history-modal').classList.remove('hidden');
+      // Populate with version data for docId
+    }
+    
+    function closeVersionHistoryModal() {
+      document.getElementById('version-history-modal').classList.add('hidden');
+    }
+    
+    function compareVersions(v1, v2) {
+      document.getElementById('version-compare-modal').classList.remove('hidden');
+      document.getElementById('version-history-modal').classList.add('hidden');
+    }
+    
+    function closeVersionCompareModal() {
+      document.getElementById('version-compare-modal').classList.add('hidden');
+    }
+    
+    // Bulk Selection Functions
+    function selectAllMatching() {
+      document.getElementById('select-all-banner').classList.add('hidden');
+      // Select all 147 matching documents logic
+      alert('All 147 matching documents selected!\n\nYou can now add them to a collection, archive, or perform other bulk actions.');
+    }
+    
+    function clearSelection() {
+      document.querySelectorAll('.doc-checkbox:checked').forEach(cb => cb.checked = false);
+      document.getElementById('select-all-banner').classList.add('hidden');
+      document.getElementById('bulk-actions').classList.add('hidden');
+    }
+    
+    // Show select-all banner when some checkboxes checked
+    document.addEventListener('change', (e) => {
+      if (e.target.classList.contains('doc-checkbox')) {
+        const checked = document.querySelectorAll('.doc-checkbox:checked').length;
+        const banner = document.getElementById('select-all-banner');
+        const bulkBar = document.getElementById('bulk-actions');
+        
+        if (checked > 0) {
+          banner.classList.remove('hidden');
+          bulkBar.classList.remove('hidden');
+          document.getElementById('page-selected-count').textContent = checked;
+        } else {
+          banner.classList.add('hidden');
+          bulkBar.classList.add('hidden');
+        }
+      }
+    });
   </script>
+  
+  <!-- Smart Collection Modal -->
+  <div id="smart-collection-modal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+    <div class="bg-[#2a2a2a] border border-white/[0.12] rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+      <!-- Header -->
+      <div class="px-6 py-4 border-b border-white/[0.08] flex items-center justify-between">
+        <div>
+          <h2 class="text-lg font-semibold text-white">Create Smart Collection</h2>
+          <p class="text-[12px] text-white/50 mt-0.5">Auto-populate collection based on rules. Updates automatically as content changes.</p>
+        </div>
+        <button onclick="closeSmartCollectionModal()" class="text-white/60 hover:text-white/90 transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      
+      <!-- Body -->
+      <div class="px-6 py-5 space-y-5">
+        
+        <!-- Collection Name -->
+        <div>
+          <label class="block text-sm font-medium text-white/90 mb-2">Collection Name</label>
+          <input id="collection-name" type="text" placeholder="e.g., Field Technician - Portal v10" class="w-full bg-white/[0.03] border border-white/[0.08] text-white rounded-md px-3 py-2 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20">
+        </div>
+        
+        <!-- Description -->
+        <div>
+          <label class="block text-sm font-medium text-white/90 mb-2">Description (Optional)</label>
+          <textarea placeholder="What is this collection for?" class="w-full bg-white/[0.03] border border-white/[0.08] text-white rounded-md px-3 py-2 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 h-20 resize-none"></textarea>
+        </div>
+        
+        <!-- Rules Section -->
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <label class="block text-sm font-medium text-white/90">Collection Rules</label>
+            <button onclick="addCollectionRule()" class="text-indigo-400 hover:text-indigo-300 text-[13px] font-medium flex items-center gap-1">
+              <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+              Add Rule
+            </button>
+          </div>
+          
+          <div id="collection-rules" class="space-y-2">
+            <!-- Initial Rule -->
+            <div class="collection-rule flex items-center gap-3 p-3 bg-white/[0.02] border border-white/[0.08] rounded-md">
+              <select class="flex-1 bg-white/[0.03] border border-white/[0.08] text-white text-sm rounded px-2 py-1.5 focus:outline-none focus:border-indigo-500">
+                <option>Product</option>
+                <option>Version</option>
+                <option>Content Type</option>
+                <option>Status</option>
+                <option>Language</option>
+                <option>Tag</option>
+                <option>Author</option>
+                <option>Date Created</option>
+              </select>
+              <select class="flex-1 bg-white/[0.03] border border-white/[0.08] text-white text-sm rounded px-2 py-1.5 focus:outline-none focus:border-indigo-500">
+                <option>equals</option>
+                <option>not equals</option>
+                <option>contains</option>
+                <option>starts with</option>
+                <option>greater than</option>
+                <option>less than</option>
+              </select>
+              <input type="text" placeholder="Value..." class="flex-1 bg-white/[0.03] border border-white/[0.08] text-white text-sm rounded px-3 py-1.5 focus:outline-none focus:border-indigo-500">
+              <button onclick="this.parentElement.remove()" class="text-red-400 hover:text-red-300 transition-colors">
+                <i data-lucide="x" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+          
+          <div class="mt-3 p-3 bg-blue-500/10 border border-blue-500/30 rounded-md">
+            <div class="flex gap-2 text-[12px] text-blue-300">
+              <i data-lucide="info" class="w-4 h-4 flex-shrink-0 mt-0.5"></i>
+              <div>
+                <strong>Smart Collections auto-update:</strong> Documents matching these rules will automatically be added or removed as they are published, archived, or their metadata changes. No manual management needed.
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Preview Count -->
+        <div class="p-4 bg-white/[0.02] border border-white/[0.08] rounded-md">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="text-sm font-medium text-white/90">Matching Documents</div>
+              <div class="text-[12px] text-white/50 mt-0.5">Based on current rules</div>
+            </div>
+            <div class="text-2xl font-bold text-indigo-400">147</div>
+          </div>
+        </div>
+        
+      </div>
+      
+      <!-- Footer -->
+      <div class="px-6 py-4 border-t border-white/[0.08] flex items-center justify-end gap-3">
+        <button onclick="closeSmartCollectionModal()" class="px-4 py-2 text-white/70 hover:text-white/90 text-sm font-medium transition-colors">
+          Cancel
+        </button>
+        <button onclick="saveSmartCollection()" class="px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm font-medium rounded-md hover:opacity-90 transition-opacity">
+          Create Collection
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Version History Modal -->
+  <div id="version-history-modal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+    <div class="bg-[#2a2a2a] border border-white/[0.12] rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+      <!-- Header -->
+      <div class="px-6 py-4 border-b border-white/[0.08] flex items-center justify-between">
+        <div>
+          <h2 class="text-lg font-semibold text-white">Version History</h2>
+          <p class="text-[12px] text-white/50 mt-0.5">Getting Started with Discover CX Portal</p>
+        </div>
+        <button onclick="closeVersionHistoryModal()" class="text-white/60 hover:text-white/90 transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      
+      <!-- Body -->
+      <div class="px-6 py-5">
+        
+        <div class="space-y-2">
+          <!-- Version 3.2 (Current) -->
+          <div class="p-4 bg-white/[0.02] border border-white/[0.08] rounded-md hover:border-white/[0.15] transition-colors">
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-[13px] font-semibold">
+                  v3.2
+                </div>
+                <div>
+                  <div class="text-sm font-medium text-white flex items-center gap-2">
+                    Version 3.2
+                    <span class="status-badge status-active">Current</span>
+                  </div>
+                  <div class="text-[12px] text-white/50">Updated 2 hours ago by Sarah Chen</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <button class="px-3 py-1.5 bg-white/[0.05] hover:bg-white/[0.08] text-white text-[13px] rounded-md transition-colors">
+                  Preview
+                </button>
+                <button onclick="compareVersions('3.2', '3.1')" class="px-3 py-1.5 bg-white/[0.05] hover:bg-white/[0.08] text-white text-[13px] rounded-md transition-colors">
+                  Compare
+                </button>
+              </div>
+            </div>
+            <div class="text-[12px] text-white/60 pl-13">
+              • Updated API endpoint examples<br>
+              • Fixed broken links in Getting Started section<br>
+              • Added troubleshooting steps for common errors
+            </div>
+          </div>
+          
+          <!-- Version 3.1 -->
+          <div class="p-4 bg-white/[0.02] border border-white/[0.08] rounded-md hover:border-white/[0.15] transition-colors">
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-white/[0.08] flex items-center justify-center text-white/70 text-[13px] font-semibold">
+                  v3.1
+                </div>
+                <div>
+                  <div class="text-sm font-medium text-white/80">Version 3.1</div>
+                  <div class="text-[12px] text-white/50">3 days ago by Michael Torres</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <button class="px-3 py-1.5 bg-white/[0.05] hover:bg-white/[0.08] text-white text-[13px] rounded-md transition-colors">
+                  Preview
+                </button>
+                <button onclick="compareVersions('3.1', '3.0')" class="px-3 py-1.5 bg-white/[0.05] hover:bg-white/[0.08] text-white text-[13px] rounded-md transition-colors">
+                  Compare
+                </button>
+                <button class="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-[13px] rounded-md transition-colors">
+                  Restore
+                </button>
+              </div>
+            </div>
+            <div class="text-[12px] text-white/60 pl-13">
+              • Updated screenshots for new UI<br>
+              • Clarified authentication process
+            </div>
+          </div>
+          
+          <!-- Version 3.0 -->
+          <div class="p-4 bg-white/[0.02] border border-white/[0.08] rounded-md hover:border-white/[0.15] transition-colors">
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-white/[0.08] flex items-center justify-center text-white/70 text-[13px] font-semibold">
+                  v3.0
+                </div>
+                <div>
+                  <div class="text-sm font-medium text-white/80">Version 3.0</div>
+                  <div class="text-[12px] text-white/50">1 week ago by Sarah Chen</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <button class="px-3 py-1.5 bg-white/[0.05] hover:bg-white/[0.08] text-white text-[13px] rounded-md transition-colors">
+                  Preview
+                </button>
+                <button onclick="compareVersions('3.0', '2.5')" class="px-3 py-1.5 bg-white/[0.05] hover:bg-white/[0.08] text-white text-[13px] rounded-md transition-colors">
+                  Compare
+                </button>
+                <button class="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-[13px] rounded-md transition-colors">
+                  Restore
+                </button>
+              </div>
+            </div>
+            <div class="text-[12px] text-white/60 pl-13">
+              • Major rewrite for v10 release<br>
+              • Added new configuration options
+            </div>
+          </div>
+          
+          <!-- More versions... -->
+          <div class="text-center py-3">
+            <button class="text-indigo-400 hover:text-indigo-300 text-[13px] font-medium">
+              Load 2 more versions...
+            </button>
+          </div>
+        </div>
+        
+      </div>
+      
+      <!-- Footer -->
+      <div class="px-6 py-4 border-t border-white/[0.08] flex items-center justify-end">
+        <button onclick="closeVersionHistoryModal()" class="px-4 py-2 bg-white/[0.05] hover:bg-white/[0.08] text-white text-sm font-medium rounded-md transition-colors">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Version Compare Modal -->
+  <div id="version-compare-modal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+    <div class="bg-[#2a2a2a] border border-white/[0.12] rounded-lg max-w-6xl w-full max-h-[90vh] overflow-y-auto">
+      <!-- Header -->
+      <div class="px-6 py-4 border-b border-white/[0.08] flex items-center justify-between">
+        <div>
+          <h2 class="text-lg font-semibold text-white">Compare Versions</h2>
+          <p class="text-[12px] text-white/50 mt-0.5">Getting Started with Discover CX Portal</p>
+        </div>
+        <button onclick="closeVersionCompareModal()" class="text-white/60 hover:text-white/90 transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      
+      <!-- Body -->
+      <div class="px-6 py-5">
+        
+        <!-- Version Selector -->
+        <div class="grid grid-cols-2 gap-4 mb-5">
+          <div>
+            <label class="block text-[12px] font-medium text-white/70 mb-2">Version 1</label>
+            <select class="w-full bg-white/[0.03] border border-white/[0.08] text-white rounded-md px-3 py-2 text-sm focus:outline-none focus:border-indigo-500">
+              <option>v3.2 (Current) - 2 hours ago</option>
+              <option selected>v3.1 - 3 days ago</option>
+              <option>v3.0 - 1 week ago</option>
+              <option>v2.5 - 2 weeks ago</option>
+              <option>v2.4 - 3 weeks ago</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-[12px] font-medium text-white/70 mb-2">Version 2</label>
+            <select class="w-full bg-white/[0.03] border border-white/[0.08] text-white rounded-md px-3 py-2 text-sm focus:outline-none focus:border-indigo-500">
+              <option>v3.2 (Current) - 2 hours ago</option>
+              <option>v3.1 - 3 days ago</option>
+              <option selected>v3.0 - 1 week ago</option>
+              <option>v2.5 - 2 weeks ago</option>
+              <option>v2.4 - 3 weeks ago</option>
+            </select>
+          </div>
+        </div>
+        
+        <!-- Comparison View -->
+        <div class="grid grid-cols-2 gap-4">
+          
+          <!-- Version 3.1 -->
+          <div class="bg-white/[0.02] border border-white/[0.08] rounded-md p-4">
+            <div class="flex items-center gap-2 mb-3 pb-3 border-b border-white/[0.06]">
+              <div class="w-8 h-8 rounded-full bg-white/[0.08] flex items-center justify-center text-white/70 text-[12px] font-semibold">
+                v3.1
+              </div>
+              <div>
+                <div class="text-sm font-medium text-white/90">Version 3.1</div>
+                <div class="text-[11px] text-white/50">3 days ago</div>
+              </div>
+            </div>
+            
+            <div class="space-y-2 text-[13px]">
+              <div class="text-white/90 font-medium">Getting Started</div>
+              <div class="text-white/70 leading-relaxed">
+                To get started with Discover CX Portal, first install the required dependencies...
+                <div class="mt-2 p-2 bg-red-500/10 border-l-2 border-red-500">
+                  <div class="text-red-300 text-[12px]">This section was removed in v3.2</div>
+                </div>
+              </div>
+              <div class="text-white/70 leading-relaxed mt-3">
+                Next, configure your portal settings in the admin dashboard...
+              </div>
+            </div>
+          </div>
+          
+          <!-- Version 3.2 -->
+          <div class="bg-white/[0.02] border border-indigo-500/30 rounded-md p-4">
+            <div class="flex items-center gap-2 mb-3 pb-3 border-b border-white/[0.06]">
+              <div class="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-[12px] font-semibold">
+                v3.2
+              </div>
+              <div>
+                <div class="text-sm font-medium text-white/90 flex items-center gap-2">
+                  Version 3.2
+                  <span class="status-badge status-active text-[10px]">Current</span>
+                </div>
+                <div class="text-[11px] text-white/50">2 hours ago</div>
+              </div>
+            </div>
+            
+            <div class="space-y-2 text-[13px]">
+              <div class="text-white/90 font-medium">Getting Started</div>
+              <div class="mt-2 p-2 bg-green-500/10 border-l-2 border-green-500">
+                <div class="text-green-300 text-[12px] mb-1">New section added in v3.2</div>
+                <div class="text-white/70 leading-relaxed">
+                  <strong>Prerequisites:</strong> Before starting, ensure you have admin access and Node.js 18+ installed...
+                </div>
+              </div>
+              <div class="text-white/70 leading-relaxed mt-3">
+                Next, configure your portal settings in the admin dashboard...
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+        <!-- Change Summary -->
+        <div class="mt-5 p-4 bg-white/[0.02] border border-white/[0.08] rounded-md">
+          <div class="text-sm font-medium text-white/90 mb-3">Change Summary</div>
+          <div class="space-y-2 text-[13px]">
+            <div class="flex items-start gap-2 text-green-400">
+              <i data-lucide="plus-circle" class="w-4 h-4 mt-0.5 flex-shrink-0"></i>
+              <span>Added Prerequisites section (127 words)</span>
+            </div>
+            <div class="flex items-start gap-2 text-red-400">
+              <i data-lucide="minus-circle" class="w-4 h-4 mt-0.5 flex-shrink-0"></i>
+              <span>Removed outdated installation instructions (243 words)</span>
+            </div>
+            <div class="flex items-start gap-2 text-blue-400">
+              <i data-lucide="edit" class="w-4 h-4 mt-0.5 flex-shrink-0"></i>
+              <span>Modified 3 API endpoint examples</span>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      
+      <!-- Footer -->
+      <div class="px-6 py-4 border-t border-white/[0.08] flex items-center justify-between">
+        <button onclick="closeVersionCompareModal()" class="text-white/60 hover:text-white/90 text-[13px] font-medium flex items-center gap-1.5">
+          <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+          Back to Version History
+        </button>
+        <div class="flex items-center gap-2">
+          <button class="px-4 py-2 bg-white/[0.05] hover:bg-white/[0.08] text-white text-sm font-medium rounded-md transition-colors">
+            Export Diff
+          </button>
+          <button class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-md transition-colors">
+            Restore v3.1
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
 </html>
+
 
