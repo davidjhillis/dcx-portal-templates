@@ -1828,6 +1828,7 @@
     // Show glossary tooltip on hover
     IGXDocs.showGlossaryTooltip = function(element, term, definition) {
       const tooltip = document.getElementById('glossary-tooltip');
+      const arrow = tooltip.querySelector('.absolute');
       const rect = element.getBoundingClientRect();
       
       // Update content
@@ -1836,11 +1837,21 @@
       
       // Position below term
       const tooltipWidth = 300; // max-w-xs
+      const termCenter = rect.left + (rect.width / 2);
       const left = Math.max(10, Math.min(window.innerWidth - tooltipWidth - 10, rect.left + (rect.width / 2) - (tooltipWidth / 2)));
       const top = rect.bottom + window.scrollY + 8;
       
+      // Calculate arrow position to point at term center
+      const arrowLeft = termCenter - left - 8; // 8px is half arrow width
+      
       tooltip.style.left = left + 'px';
       tooltip.style.top = top + 'px';
+      
+      // Position arrow to align with term
+      if (arrow) {
+        arrow.style.left = Math.max(12, Math.min(tooltipWidth - 20, arrowLeft)) + 'px';
+      }
+      
       tooltip.classList.remove('hidden');
     };
     
