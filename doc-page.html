@@ -1487,14 +1487,14 @@
     <div class="bg-white dark:bg-neutral-800 rounded-2xl max-w-xl w-full overflow-hidden shadow-2xl">
       <!-- Header -->
       <div class="px-6 py-4 border-b border-neutral-200 dark:border-neutral-700 flex items-center justify-between">
-        <h3 class="text-xl font-bold text-neutral-900 dark:text-white">Send feedback</h3>
+        <h3 id="feedback-modal-title" class="text-xl font-bold text-neutral-900 dark:text-white">Send feedback</h3>
         <button id="feedback-close-btn" class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors">
           <i data-lucide="x" class="w-5 h-5 text-neutral-600 dark:text-neutral-400"></i>
         </button>
       </div>
       
-      <!-- Content -->
-      <div class="p-6">
+      <!-- Form Content -->
+      <div id="feedback-form-content" class="p-6">
         <!-- Was this helpful? -->
         <div class="mb-6">
           <p class="text-sm font-semibold text-neutral-900 dark:text-white mb-3">Was this article helpful?</p>
@@ -1539,12 +1539,26 @@
       </div>
       
       <!-- Footer Actions -->
-      <div class="px-6 py-4 bg-neutral-50 dark:bg-neutral-900 border-t border-neutral-200 dark:border-neutral-700 flex items-center justify-end gap-3">
+      <div id="feedback-footer" class="px-6 py-4 bg-neutral-50 dark:bg-neutral-900 border-t border-neutral-200 dark:border-neutral-700 flex items-center justify-end gap-3">
         <button id="feedback-cancel-btn" class="px-4 py-2 border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors font-semibold text-sm">
           Cancel
         </button>
         <button id="feedback-submit-btn" class="px-6 py-2 bg-gradient-to-r from-primary-600 to-blue-600 text-white rounded-lg hover:from-primary-700 hover:to-blue-700 transition-all font-semibold text-sm shadow-lg shadow-primary-500/20">
           Send feedback
+        </button>
+      </div>
+      
+      <!-- Success Confirmation (Hidden by default) -->
+      <div id="feedback-success" class="hidden p-8 text-center">
+        <div class="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+          <i data-lucide="check-circle" class="w-8 h-8 text-green-600 dark:text-green-400"></i>
+        </div>
+        <h4 class="text-xl font-bold text-neutral-900 dark:text-white mb-2">Thank you for your feedback!</h4>
+        <p class="text-sm text-neutral-600 dark:text-neutral-400 mb-6">
+          Your input helps us improve our documentation and provide better content for everyone.
+        </p>
+        <button id="feedback-success-close" class="px-6 py-2 bg-gradient-to-r from-primary-600 to-blue-600 text-white rounded-lg hover:from-primary-700 hover:to-blue-700 transition-all font-semibold text-sm shadow-lg shadow-primary-500/20">
+          Close
         </button>
       </div>
     </div>
@@ -2088,6 +2102,11 @@
     // Close feedback modal
     function closeFeedbackModal() {
       feedbackModal?.classList.add('hidden');
+      // Reset to form view
+      document.getElementById('feedback-form-content')?.classList.remove('hidden');
+      document.getElementById('feedback-footer')?.classList.remove('hidden');
+      document.getElementById('feedback-success')?.classList.add('hidden');
+      document.getElementById('feedback-modal-title').textContent = 'Send feedback';
       // Reset form
       feedbackHelpful = null;
       document.getElementById('feedback-comments').value = '';
@@ -2128,10 +2147,15 @@
         email: document.getElementById('feedback-email').value
       });
       
-      // Show success message (you could make this fancier)
-      alert('Thank you for your feedback!');
-      closeFeedbackModal();
+      // Show success confirmation
+      document.getElementById('feedback-form-content')?.classList.add('hidden');
+      document.getElementById('feedback-footer')?.classList.add('hidden');
+      document.getElementById('feedback-success')?.classList.remove('hidden');
+      lucide.createIcons();
     });
+    
+    // Success close button
+    document.getElementById('feedback-success-close')?.addEventListener('click', closeFeedbackModal);
     
     // Glossary Toggle Button
     document.getElementById('glossary-toggle')?.addEventListener('click', () => {
