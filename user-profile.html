@@ -428,102 +428,71 @@
         
         <!-- Notifications Tab Content -->
         <div id="notifications-tab" class="tab-content hidden p-6">
-          <h3 class="text-lg font-semibold text-neutral-900 dark:text-white mb-2">Notification Center</h3>
-          <p class="text-sm text-neutral-600 dark:text-neutral-400 mb-6">View and manage all your notifications</p>
-          
-          <!-- Filter Buttons -->
-          <div class="flex gap-2 mb-6">
-            <button class="px-4 py-2 bg-primary-600 text-white rounded-lg text-sm font-semibold">All</button>
-            <button class="px-4 py-2 bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 rounded-lg text-sm font-semibold hover:bg-neutral-300 dark:hover:bg-neutral-600">Unread</button>
-            <button class="px-4 py-2 bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 rounded-lg text-sm font-semibold hover:bg-neutral-300 dark:hover:bg-neutral-600">Mentions</button>
+          <div class="flex items-center justify-between mb-6">
+            <div>
+              <h3 class="text-lg font-semibold text-neutral-900 dark:text-white">Notifications</h3>
+              <p class="text-sm text-neutral-600 dark:text-neutral-400 mt-1">Stay updated on documentation changes</p>
+            </div>
+            <button class="text-sm text-primary-600 dark:text-primary-400 hover:text-primary-700 font-semibold">
+              Mark all as read
+            </button>
           </div>
           
           <!-- Notifications List -->
           <div class="space-y-3">
             <!-- Notification 1 - Unread -->
-            <div class="flex gap-4 p-4 bg-primary-50 dark:bg-primary-900/20 border-l-4 border-primary-600 rounded-lg">
-              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary-600 flex items-center justify-center">
-                <i data-lucide="file-text" class="w-5 h-5 text-white"></i>
+            <div class="flex gap-4 p-4 bg-white dark:bg-neutral-800 border-2 border-primary-200 dark:border-primary-900/50 rounded-lg">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center">
+                <i data-lucide="file-text" class="w-5 h-5 text-primary-600 dark:text-primary-400"></i>
               </div>
               <div class="flex-1">
                 <p class="text-sm font-semibold text-neutral-900 dark:text-white">New Article Published</p>
-                <p class="text-sm text-neutral-700 dark:text-neutral-300 mt-1">"Advanced Caching Strategies" is now available in the Core Concepts section.</p>
-                <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-2">2 hours ago</p>
+                <p class="text-sm text-neutral-600 dark:text-neutral-400 mt-1">"Advanced Caching Strategies" is now available in Core Concepts</p>
+                <p class="text-xs text-neutral-500 dark:text-neutral-500 mt-2">2 hours ago</p>
               </div>
-              <button class="text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300">
+              <button class="text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors">
                 <i data-lucide="x" class="w-4 h-4"></i>
               </button>
             </div>
             
             <!-- Notification 2 - Read -->
-            <div class="flex gap-4 p-4 hover:bg-neutral-50 dark:hover:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg">
-              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center">
-                <i data-lucide="message-circle" class="w-5 h-5 text-white"></i>
+            <div class="flex gap-4 p-4 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg hover:border-neutral-300 dark:hover:border-neutral-600 transition-colors">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-neutral-100 dark:bg-neutral-700 flex items-center justify-center">
+                <i data-lucide="book-open" class="w-5 h-5 text-neutral-600 dark:text-neutral-400"></i>
               </div>
               <div class="flex-1">
-                <p class="text-sm font-semibold text-neutral-900 dark:text-white">Comment Reply</p>
-                <p class="text-sm text-neutral-700 dark:text-neutral-300 mt-1">John Smith replied to your comment on "Getting Started"</p>
-                <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-2">5 hours ago</p>
+                <p class="text-sm font-semibold text-neutral-900 dark:text-white">Documentation Updated</p>
+                <p class="text-sm text-neutral-600 dark:text-neutral-400 mt-1">"Getting Started Guide" was updated with new examples</p>
+                <p class="text-xs text-neutral-500 dark:text-neutral-500 mt-2">Yesterday</p>
               </div>
-              <button class="text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300">
+              <button class="text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors">
                 <i data-lucide="x" class="w-4 h-4"></i>
               </button>
             </div>
             
             <!-- Notification 3 - Read -->
-            <div class="flex gap-4 p-4 hover:bg-neutral-50 dark:hover:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg">
-              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-green-600 flex items-center justify-center">
-                <i data-lucide="check-circle" class="w-5 h-5 text-white"></i>
+            <div class="flex gap-4 p-4 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg hover:border-neutral-300 dark:hover:border-neutral-600 transition-colors">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-neutral-100 dark:bg-neutral-700 flex items-center justify-center">
+                <i data-lucide="star" class="w-5 h-5 text-neutral-600 dark:text-neutral-400"></i>
               </div>
               <div class="flex-1">
-                <p class="text-sm font-semibold text-neutral-900 dark:text-white">Profile Updated</p>
-                <p class="text-sm text-neutral-700 dark:text-neutral-300 mt-1">Your profile information was successfully updated.</p>
-                <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-2">1 day ago</p>
+                <p class="text-sm font-semibold text-neutral-900 dark:text-white">Product Release</p>
+                <p class="text-sm text-neutral-600 dark:text-neutral-400 mt-1">Ingeniux CMS v11.5 documentation is now available</p>
+                <p class="text-xs text-neutral-500 dark:text-neutral-500 mt-2">2 days ago</p>
               </div>
-              <button class="text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300">
-                <i data-lucide="x" class="w-4 h-4"></i>
-              </button>
-            </div>
-            
-            <!-- Notification 4 -->
-            <div class="flex gap-4 p-4 hover:bg-neutral-50 dark:hover:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg">
-              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-orange-600 flex items-center justify-center">
-                <i data-lucide="alert-triangle" class="w-5 h-5 text-white"></i>
-              </div>
-              <div class="flex-1">
-                <p class="text-sm font-semibold text-neutral-900 dark:text-white">Security Alert</p>
-                <p class="text-sm text-neutral-700 dark:text-neutral-300 mt-1">New login from Chrome on Windows detected.</p>
-                <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-2">2 days ago</p>
-              </div>
-              <button class="text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300">
-                <i data-lucide="x" class="w-4 h-4"></i>
-              </button>
-            </div>
-            
-            <!-- Notification 5 -->
-            <div class="flex gap-4 p-4 hover:bg-neutral-50 dark:hover:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg">
-              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-accent-600 flex items-center justify-center">
-                <i data-lucide="star" class="w-5 h-5 text-white"></i>
-              </div>
-              <div class="flex-1">
-                <p class="text-sm font-semibold text-neutral-900 dark:text-white">Product Update</p>
-                <p class="text-sm text-neutral-700 dark:text-neutral-300 mt-1">Discover CX v3.5 released with new AI features.</p>
-                <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-2">3 days ago</p>
-              </div>
-              <button class="text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300">
+              <button class="text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors">
                 <i data-lucide="x" class="w-4 h-4"></i>
               </button>
             </div>
           </div>
           
-          <!-- Mark All Read -->
-          <div class="flex items-center justify-between mt-6 pt-6 border-t border-neutral-200 dark:border-neutral-700">
-            <button class="text-sm text-primary-600 dark:text-primary-400 hover:text-primary-700 font-semibold">
-              Mark all as read
-            </button>
-            <button class="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white font-semibold">
-              Clear all notifications
-            </button>
+          <!-- Empty State (hidden when notifications exist) -->
+          <div class="hidden text-center py-12">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center">
+              <i data-lucide="bell-off" class="w-8 h-8 text-neutral-400"></i>
+            </div>
+            <p class="text-neutral-600 dark:text-neutral-400 font-medium mb-1">No notifications</p>
+            <p class="text-sm text-neutral-500">You're all caught up!</p>
           </div>
         </div>
 
