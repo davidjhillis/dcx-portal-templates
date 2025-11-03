@@ -94,9 +94,9 @@
       --color-neutral-500: 107 114 128;
       --color-neutral-600: 75 85 99;
       --color-neutral-700: 55 65 81;
-      --color-neutral-800: 31 41 55;
-      --color-neutral-900: 17 24 39;
-      --color-neutral-950: 3 7 18;
+      --color-neutral-800: 45 45 45;
+      --color-neutral-900: 37 37 37;
+      --color-neutral-950: 20 20 20;
     }
     
     /* Remove default margins */
@@ -201,7 +201,7 @@
         </a>
         
         <!-- Command K Search Trigger (Big search bar - desktop only) -->
-        <button id="cmd-k-trigger" class="flex-1 max-w-2xl mx-auto hidden lg:flex items-center gap-3 px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-900 text-left hover:border-primary-500 dark:hover:border-primary-400 transition-colors group">
+        <button id="cmd-k-trigger" class="flex-1 max-w-2xl mx-auto hidden lg:flex items-center gap-3 px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-800 text-left hover:border-primary-500 dark:hover:border-primary-400 transition-colors group">
           <i data-lucide="search" class="w-5 h-5 text-neutral-400 group-hover:text-primary-600 dark:group-hover:text-primary-400"></i>
           <span class="flex-1 text-sm text-neutral-500 dark:text-neutral-400">Search documentation...</span>
           <kbd class="hidden lg:inline-flex items-center gap-1 px-2 py-1 text-xs font-semibold text-neutral-600 dark:text-neutral-400 bg-neutral-100 dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-600 rounded">
@@ -212,27 +212,27 @@
         <!-- Right Actions -->
         <div class="flex items-center gap-3">
           <!-- Mobile/Tablet Search Icon Button -->
-          <button id="mobile-search-btn" class="lg:hidden p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg">
+          <button id="mobile-search-btn" class="lg:hidden p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg">
             <i data-lucide="search" class="w-6 h-6 text-neutral-600 dark:text-neutral-400"></i>
           </button>
           <!-- Menu Button with Dropdown -->
           <div class="relative">
-            <button id="mobile-menu-btn" class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg flex-shrink-0">
+            <button id="mobile-menu-btn" class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg flex-shrink-0">
               <i data-lucide="menu" class="w-6 h-6 text-neutral-600 dark:text-neutral-400"></i>
             </button>
             
             <!-- Mobile Menu Dropdown -->
             <div id="mobile-menu" class="hidden absolute right-0 top-full mt-2 w-64 bg-neutral-50 dark:bg-neutral-900 rounded-xl shadow-2xl border border-neutral-200 dark:border-neutral-700 z-50 py-2">
               <nav class="py-2">
-                <a href="index.html#products" class="flex items-center gap-3 px-4 py-3 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+                <a href="index.html#products" class="flex items-center gap-3 px-4 py-3 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors">
                   <i data-lucide="package" class="w-4 h-4 text-neutral-600 dark:text-neutral-400"></i>
                   <span class="text-sm font-medium text-neutral-900 dark:text-white">Products</span>
                 </a>
-                <a href="doc-page.html" class="flex items-center gap-3 px-4 py-3 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+                <a href="doc-page.html" class="flex items-center gap-3 px-4 py-3 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors">
                   <i data-lucide="book-open" class="w-4 h-4 text-neutral-600 dark:text-neutral-400"></i>
                   <span class="text-sm font-medium text-neutral-900 dark:text-white">Documentation</span>
                 </a>
-                <a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+                <a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors">
                   <i data-lucide="life-buoy" class="w-4 h-4 text-neutral-600 dark:text-neutral-400"></i>
                   <span class="text-sm font-medium text-neutral-900 dark:text-white">Support</span>
                 </a>
@@ -242,7 +242,7 @@
           
           <!-- User Avatar Dropdown -->
         <div class="relative">
-          <button id="user-menu-btn" class="flex items-center gap-2 p-1.5 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors">
+          <button id="user-menu-btn" class="flex items-center gap-2 p-1.5 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors">
             <div class="w-8 h-8 rounded-full bg-gradient-to-br from-neutral-600 to-neutral-700 flex items-center justify-center text-white font-semibold text-sm">
               JD
             </div>
@@ -250,7 +250,7 @@
           </button>
           
           <!-- Dropdown Menu -->
-          <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-56 bg-white dark:bg-neutral-900 rounded-xl shadow-2xl border border-neutral-200 dark:border-neutral-700 py-2 z-50">
+          <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-56 bg-white dark:bg-neutral-800 rounded-xl shadow-2xl border border-neutral-200 dark:border-neutral-700 py-2 z-50">
             <!-- User Info -->
             <div class="px-4 py-3 border-b border-neutral-200 dark:border-neutral-700">
               <p class="text-sm font-semibold text-neutral-900 dark:text-white">Jane Doe</p>
@@ -323,7 +323,7 @@
             <h2 class="text-sm font-bold text-neutral-900 dark:text-white">Table of Contents</h2>
             
             <!-- Hide TOC Icon Button -->
-            <button id="hide-toc-btn" class="group p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors" title="Hide table of contents">
+            <button id="hide-toc-btn" class="group p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors" title="Hide table of contents">
               <i data-lucide="panel-left-close" class="w-4 h-4 text-neutral-600 dark:text-neutral-400 group-hover:text-primary-600 dark:group-hover:text-primary-400"></i>
             </button>
           </div>
@@ -452,22 +452,22 @@
           <!-- Article Toolbar -->
           <div class="flex items-center justify-between mb-6 pb-4 border-b border-neutral-200 dark:border-neutral-700">
             <div class="flex items-center gap-2">
-              <a href="index.html" class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors" title="Previous article">
+              <a href="index.html" class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors" title="Previous article">
                 <i data-lucide="chevron-left" class="w-5 h-5 text-neutral-600 dark:text-neutral-400"></i>
               </a>
-              <a href="doc-page-checking-in-out.html" class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors" title="Next article: Checking Pages In/Out">
+              <a href="doc-page-checking-in-out.html" class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors" title="Next article: Checking Pages In/Out">
                 <i data-lucide="chevron-right" class="w-5 h-5 text-neutral-600 dark:text-neutral-400"></i>
               </a>
             </div>
             
             <div class="flex items-center gap-2">
-              <button class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors" title="Download PDF">
+              <button class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors" title="Download PDF">
                 <i data-lucide="download" class="w-5 h-5 text-neutral-600 dark:text-neutral-400"></i>
               </button>
-              <button class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors" title="Share">
+              <button class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors" title="Share">
                 <i data-lucide="share-2" class="w-5 h-5 text-neutral-600 dark:text-neutral-400"></i>
               </button>
-              <button class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors" title="Feedback">
+              <button class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors" title="Feedback">
                 <i data-lucide="message-square" class="w-5 h-5 text-neutral-600 dark:text-neutral-400"></i>
               </button>
             </div>
@@ -483,7 +483,7 @@
               </button>
               
               <!-- Version Dropdown Menu -->
-              <div id="version-dropdown" class="hidden absolute top-full left-0 mt-2 w-48 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg shadow-lg z-50">
+              <div id="version-dropdown" class="hidden absolute top-full left-0 mt-2 w-48 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg shadow-lg z-50">
                 <div class="py-2">
                   <a href="#" class="block px-4 py-2 text-sm text-primary-600 dark:text-primary-400 font-medium bg-primary-50 dark:bg-primary-900/20">CMS 10.6 (Latest)</a>
                   <a href="#" class="block px-4 py-2 text-sm text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700">CMS 10.5</a>
@@ -511,7 +511,7 @@
           <p class="text-sm font-semibold text-primary-600 dark:text-primary-400 mb-4">Authoring Basics</p>
           
           <!-- Mobile TOC Button (At top of article on mobile) -->
-          <button id="mobile-toc-btn" class="lg:hidden w-full flex items-center justify-between gap-3 px-4 py-3 mb-6 border-2 border-neutral-300 dark:border-neutral-600 bg-white dark:bg-neutral-900 rounded-lg hover:border-primary-500 dark:hover:border-primary-400 transition-colors">
+          <button id="mobile-toc-btn" class="lg:hidden w-full flex items-center justify-between gap-3 px-4 py-3 mb-6 border-2 border-neutral-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 rounded-lg hover:border-primary-500 dark:hover:border-primary-400 transition-colors">
             <div class="flex items-center gap-2">
               <i data-lucide="list" class="w-5 h-5 text-neutral-600 dark:text-neutral-400"></i>
               <span class="font-medium text-neutral-900 dark:text-white">Table of Contents</span>
@@ -530,19 +530,19 @@
 
           <!-- AI Tools (Inline at top) -->
           <div class="flex flex-wrap gap-3" style="margin-bottom: 2rem;">
-            <button class="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 rounded-lg text-sm font-semibold hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all">
+            <button class="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 rounded-lg text-sm font-semibold hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-all">
               <i data-lucide="sparkles" class="w-4 h-4"></i>
               Summarize
             </button>
-            <button class="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 rounded-lg text-sm font-semibold hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all">
+            <button class="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 rounded-lg text-sm font-semibold hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-all">
               <i data-lucide="headphones" class="w-4 h-4"></i>
               Listen
             </button>
-            <button class="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 rounded-lg text-sm font-semibold hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all">
+            <button class="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 rounded-lg text-sm font-semibold hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-all">
               <i data-lucide="message-circle" class="w-4 h-4"></i>
               Ask AI
             </button>
-            <button id="glossary-toggle" class="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-neutral-900 border-2 border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 rounded-lg text-sm font-semibold hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all">
+            <button id="glossary-toggle" class="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-neutral-800 border-2 border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 rounded-lg text-sm font-semibold hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-all">
               <i data-lucide="book-open" class="w-4 h-4"></i>
               <span>Glossary</span>
               <span class="text-xs opacity-60">Off</span>
@@ -836,13 +836,13 @@
             class="flex-1 bg-transparent text-neutral-900 dark:text-white placeholder-gray-400 focus:outline-none text-lg"
             autocomplete="off"
           />
-          <button id="cmd-k-close" class="p-1.5 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded">
+          <button id="cmd-k-close" class="p-1.5 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded">
             <i data-lucide="x" class="w-5 h-5 text-neutral-400"></i>
           </button>
         </div>
         
         <!-- Filters -->
-        <div class="flex items-center gap-2 px-4 py-3 border-b border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900">
+        <div class="flex items-center gap-2 px-4 py-3 border-b border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800">
           <span class="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wide">Filter:</span>
           <div class="flex gap-2">
             <button class="filter-btn active px-3 py-1.5 rounded-lg text-xs font-semibold bg-primary-600 text-white">
@@ -864,15 +864,15 @@
           <div id="recent-searches" class="p-4">
             <p class="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wide mb-3">Recent Searches</p>
             <div class="space-y-1">
-              <button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors text-left">
+              <button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors text-left">
                 <i data-lucide="clock" class="w-4 h-4 text-neutral-400"></i>
                 <span class="text-sm text-neutral-700 dark:text-neutral-300">Getting started with component schemas</span>
               </button>
-              <button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors text-left">
+              <button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors text-left">
                 <i data-lucide="clock" class="w-4 h-4 text-neutral-400"></i>
                 <span class="text-sm text-neutral-700 dark:text-neutral-300">API authentication methods</span>
               </button>
-              <button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors text-left">
+              <button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors text-left">
                 <i data-lucide="clock" class="w-4 h-4 text-neutral-400"></i>
                 <span class="text-sm text-neutral-700 dark:text-neutral-300">Workflow automation examples</span>
               </button>
@@ -888,7 +888,7 @@
                 AI Answer
               </p>
               <div class="space-y-4">
-                <div class="p-4 rounded-lg bg-white dark:bg-neutral-900 border border-primary-200 dark:border-primary-700">
+                <div class="p-4 rounded-lg bg-white dark:bg-neutral-800 border border-primary-200 dark:border-primary-700">
                   <p class="text-base font-semibold text-neutral-900 dark:text-white mb-3 flex items-center gap-2">
                     <i data-lucide="zap" class="w-5 h-5 text-primary-600 dark:text-primary-400"></i>
                     Quick Answer
@@ -934,7 +934,7 @@
               </p>
               <div class="space-y-1">
                 <!-- Result 1 -->
-                <a href="doc-page.html" class="flex items-start gap-3 px-3 py-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors group">
+                <a href="doc-page.html" class="flex items-start gap-3 px-3 py-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors group">
                   <i data-lucide="file-text" class="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5"></i>
                   <div class="flex-1 min-w-0">
                     <p class="text-sm font-semibold text-neutral-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400">Component Schemas Overview</p>
@@ -949,7 +949,7 @@
                 </a>
                 
                 <!-- Result 2 -->
-                <a href="#" class="flex items-start gap-3 px-3 py-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors group">
+                <a href="#" class="flex items-start gap-3 px-3 py-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors group">
                   <i data-lucide="code" class="w-5 h-5 text-primary-600 dark:text-primary-400 flex-shrink-0 mt-0.5"></i>
                   <div class="flex-1 min-w-0">
                     <p class="text-sm font-semibold text-neutral-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400">Schema API Reference</p>
@@ -964,7 +964,7 @@
                 </a>
                 
                 <!-- Result 3 -->
-                <a href="#" class="flex items-start gap-3 px-3 py-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors group">
+                <a href="#" class="flex items-start gap-3 px-3 py-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors group">
                   <i data-lucide="play-circle" class="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5"></i>
                   <div class="flex-1 min-w-0">
                     <p class="text-sm font-semibold text-neutral-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400">Building Your First Schema</p>
@@ -979,7 +979,7 @@
                 </a>
                 
                 <!-- Result 4 -->
-                <a href="#" class="flex items-start gap-3 px-3 py-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors group">
+                <a href="#" class="flex items-start gap-3 px-3 py-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors group">
                   <i data-lucide="file-code" class="w-5 h-5 text-orange-600 dark:text-orange-400 flex-shrink-0 mt-0.5"></i>
                   <div class="flex-1 min-w-0">
                     <p class="text-sm font-semibold text-neutral-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400">Schema Field Types</p>
@@ -994,7 +994,7 @@
                 </a>
                 
                 <!-- Result 5 -->
-                <a href="#" class="flex items-start gap-3 px-3 py-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors group">
+                <a href="#" class="flex items-start gap-3 px-3 py-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors group">
                   <i data-lucide="lightbulb" class="w-5 h-5 text-yellow-600 dark:text-yellow-400 flex-shrink-0 mt-0.5"></i>
                   <div class="flex-1 min-w-0">
                     <p class="text-sm font-semibold text-neutral-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400">Schema Best Practices</p>
@@ -1016,7 +1016,7 @@
             </div>
             
             <!-- Related Topics -->
-            <div class="p-4 border-t border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900">
+            <div class="p-4 border-t border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800">
               <p class="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wide mb-3">Related Topics</p>
               <div class="flex flex-wrap gap-2">
                 <a href="#" class="px-3 py-1.5 bg-neutral-50 dark:bg-neutral-700 border border-neutral-200 dark:border-neutral-600 rounded-full text-xs font-medium text-neutral-700 dark:text-neutral-300 hover:border-primary-500 dark:hover:border-primary-400 transition-colors">
@@ -1038,7 +1038,7 @@
         </div>
         
         <!-- Footer hint -->
-        <div class="flex items-center justify-between px-4 py-3 bg-white dark:bg-neutral-900 border-t border-neutral-200 dark:border-neutral-700">
+        <div class="flex items-center justify-between px-4 py-3 bg-white dark:bg-neutral-800 border-t border-neutral-200 dark:border-neutral-700">
           <div class="flex items-center gap-4 text-xs text-neutral-500 dark:text-neutral-400">
             <span class="flex items-center gap-1.5">
               <kbd class="px-1.5 py-0.5 bg-neutral-50 dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-600 rounded text-xs">↑↓</kbd>
@@ -1063,7 +1063,7 @@
   
   <!-- Summarize Modal -->
   <div id="summarize-modal" class="fixed inset-0 bg-neutral-950 bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white dark:bg-neutral-900 rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-hidden shadow-2xl">
+    <div class="bg-white dark:bg-neutral-800 rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-hidden shadow-2xl">
       <!-- Header -->
       <div class="bg-gradient-to-r from-primary-600 to-blue-600 px-6 py-4 flex items-center justify-between">
         <div class="flex items-center gap-3">
@@ -1170,7 +1170,7 @@
 
   <!-- Listen Player Modal -->
   <div id="listen-modal" class="fixed inset-0 bg-neutral-950 bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white dark:bg-neutral-900 rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl">
+    <div class="bg-white dark:bg-neutral-800 rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl">
       <!-- Header -->
       <div class="bg-gradient-to-r from-blue-600 to-cyan-600 px-6 py-4 flex items-center justify-between">
         <div class="flex items-center gap-3">
@@ -1255,7 +1255,7 @@
   
   <!-- Glossary Tooltip (appears on hover) -->
   <div id="glossary-tooltip" class="fixed hidden z-50 max-w-xs pointer-events-none">
-    <div class="bg-white dark:bg-neutral-900 rounded-lg shadow-xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
+    <div class="bg-white dark:bg-neutral-800 rounded-lg shadow-xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
       <div class="bg-primary-600 px-3 py-1.5">
         <h4 id="glossary-term-title" class="text-xs font-semibold text-white uppercase tracking-wide">
           <!-- Term name here -->
@@ -1273,7 +1273,7 @@
   
   <!-- Text Selection AI Tooltip (Grammarly-style) -->
   <div id="selection-tooltip" class="fixed hidden z-50 max-w-sm" style="pointer-events: auto;">
-    <div class="bg-white dark:bg-neutral-900 rounded-xl shadow-2xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
+    <div class="bg-white dark:bg-neutral-800 rounded-xl shadow-2xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
       <!-- Tooltip Header -->
       <div class="bg-gradient-to-r from-primary-600 to-pink-600 px-4 py-2 flex items-center justify-between">
         <div class="flex items-center gap-2">
@@ -1325,7 +1325,7 @@
 
   <!-- Explain Code Modal -->
   <div id="explain-code-modal" class="fixed inset-0 bg-neutral-950 bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white dark:bg-neutral-900 rounded-2xl max-w-3xl w-full max-h-[80vh] overflow-hidden shadow-2xl">
+    <div class="bg-white dark:bg-neutral-800 rounded-2xl max-w-3xl w-full max-h-[80vh] overflow-hidden shadow-2xl">
       <!-- Header -->
       <div class="bg-gradient-to-r from-emerald-600 to-teal-600 px-6 py-4 flex items-center justify-between">
         <div class="flex items-center gap-3">
@@ -1691,22 +1691,22 @@
               
               <!-- Common Questions (Bubble style) -->
               <div class="flex flex-wrap gap-2 mb-4">
-                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-neutral-900 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors text-xs text-neutral-900 dark:text-white font-medium">
+                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-neutral-800 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors text-xs text-neutral-900 dark:text-white font-medium">
                   <span>How to get started?</span>
                 </button>
-                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-neutral-900 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors text-xs text-neutral-900 dark:text-white font-medium">
+                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-neutral-800 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors text-xs text-neutral-900 dark:text-white font-medium">
                   <span>Strategy differences?</span>
                 </button>
-                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-neutral-900 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors text-xs text-neutral-900 dark:text-white font-medium">
+                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-neutral-800 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors text-xs text-neutral-900 dark:text-white font-medium">
                   <span>Why predictive?</span>
                 </button>
-                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-neutral-900 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors text-xs text-neutral-900 dark:text-white font-medium">
+                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-neutral-800 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors text-xs text-neutral-900 dark:text-white font-medium">
                   <span>Common mistakes?</span>
                 </button>
-                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-neutral-900 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors text-xs text-neutral-900 dark:text-white font-medium">
+                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-neutral-800 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors text-xs text-neutral-900 dark:text-white font-medium">
                   <span>Best practices?</span>
                 </button>
-                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-neutral-900 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors text-xs text-neutral-900 dark:text-white font-medium">
+                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-neutral-800 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors text-xs text-neutral-900 dark:text-white font-medium">
                   <span>Configuration options?</span>
                 </button>
               </div>
@@ -1859,14 +1859,14 @@
         <!-- Header -->
         <div class="flex items-center justify-between mb-6">
           <h2 class="text-xl font-semibold text-neutral-900 dark:text-white">Search</h2>
-          <button id="mobile-search-close" class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg">
+          <button id="mobile-search-close" class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg">
             <i data-lucide="x" class="w-6 h-6 text-neutral-600 dark:text-neutral-400"></i>
           </button>
         </div>
         
         <!-- Search Input -->
         <div class="relative mb-6">
-          <div class="relative flex items-center gap-4 h-14 px-5 border-2 border-neutral-300 dark:border-neutral-700 rounded-xl bg-white dark:bg-neutral-900">
+          <div class="relative flex items-center gap-4 h-14 px-5 border-2 border-neutral-300 dark:border-neutral-700 rounded-xl bg-white dark:bg-neutral-800">
             <i data-lucide="search" class="w-6 h-6 text-neutral-400"></i>
             <input 
               type="text" 
@@ -1884,19 +1884,19 @@
         <!-- Quick Links -->
         <div class="space-y-2">
           <p class="text-sm font-medium text-neutral-500 dark:text-neutral-400 mb-3">Popular searches:</p>
-          <a href="doc-page.html" class="flex items-center gap-3 p-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+          <a href="doc-page.html" class="flex items-center gap-3 p-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors">
             <i data-lucide="book-open" class="w-5 h-5 text-neutral-400"></i>
             <span class="text-neutral-900 dark:text-white">Getting Started</span>
           </a>
-          <a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+          <a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors">
             <i data-lucide="key" class="w-5 h-5 text-neutral-400"></i>
             <span class="text-neutral-900 dark:text-white">API Authentication</span>
           </a>
-          <a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+          <a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors">
             <i data-lucide="alert-circle" class="w-5 h-5 text-neutral-400"></i>
             <span class="text-neutral-900 dark:text-white">Error Codes</span>
           </a>
-          <a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+          <a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors">
             <i data-lucide="link" class="w-5 h-5 text-neutral-400"></i>
             <span class="text-neutral-900 dark:text-white">Integration Guide</span>
           </a>
@@ -1911,7 +1911,7 @@
     <div class="sticky top-0 z-10 bg-neutral-50 dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-700 px-6 py-4">
       <div class="flex items-center justify-between mb-4">
         <h2 class="text-lg font-bold text-neutral-900 dark:text-white">Table of Contents</h2>
-        <button id="close-mobile-toc" class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors">
+        <button id="close-mobile-toc" class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors">
           <i data-lucide="x" class="w-6 h-6 text-neutral-600 dark:text-neutral-400"></i>
         </button>
       </div>
