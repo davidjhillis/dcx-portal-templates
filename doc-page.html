@@ -2141,9 +2141,9 @@
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <!-- Play/Pause -->
-              <button class="flex items-center justify-center px-4 py-2.5 rounded-lg border border-neutral-300 dark:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-all group/btn">
+              <button class="play-pause-btn flex items-center justify-center px-4 py-2.5 rounded-lg border border-neutral-300 dark:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-all group/btn" data-playing="true">
                 <div class="w-7 h-7 rounded-full border border-neutral-300 dark:border-neutral-600 bg-neutral-100 dark:bg-neutral-700 flex items-center justify-center group-hover/btn:bg-blue-100 dark:group-hover/btn:bg-blue-900/30 group-hover/btn:border-blue-300 dark:group-hover/btn:border-blue-700 transition-all">
-                  <i data-lucide="pause" class="w-4 h-4 text-neutral-600 dark:text-neutral-300 group-hover/btn:text-blue-600 dark:group-hover/btn:text-blue-400"></i>
+                  <i data-lucide="pause" class="play-pause-icon w-4 h-4 text-neutral-600 dark:text-neutral-300 group-hover/btn:text-blue-600 dark:group-hover/btn:text-blue-400"></i>
                 </div>
               </button>
               
@@ -2179,6 +2179,25 @@
         playerContainer.querySelector('.close-listen-btn')?.addEventListener('click', () => {
           playerContainer.remove();
           listenPlayerOpen = false;
+        });
+        
+        // Play/Pause toggle
+        const playPauseBtn = playerContainer.querySelector('.play-pause-btn');
+        playPauseBtn?.addEventListener('click', function() {
+          const isPlaying = this.getAttribute('data-playing') === 'true';
+          const icon = this.querySelector('.play-pause-icon');
+          
+          if (isPlaying) {
+            // Pause -> Play
+            this.setAttribute('data-playing', 'false');
+            icon.setAttribute('data-lucide', 'play');
+          } else {
+            // Play -> Pause
+            this.setAttribute('data-playing', 'true');
+            icon.setAttribute('data-lucide', 'pause');
+          }
+          
+          lucide.createIcons();
         });
       }
     });
