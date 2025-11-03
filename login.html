@@ -77,54 +77,63 @@
     }
 
     /* Aurora background animation */
-    @keyframes aurora {
-      from {
-        background-position: 50% 50%, 50% 50%;
-      }
-      to {
-        background-position: 350% 50%, 350% 50%;
-      }
+    @keyframes aurora-1 {
+      0% { transform: translateX(-50%) translateY(-50%) rotate(0deg); }
+      100% { transform: translateX(-50%) translateY(-50%) rotate(360deg); }
+    }
+
+    @keyframes aurora-2 {
+      0% { transform: translateX(-50%) translateY(-50%) rotate(0deg); }
+      100% { transform: translateX(-50%) translateY(-50%) rotate(-360deg); }
     }
 
     .aurora-bg {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .aurora-bg::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 150%;
+      height: 150%;
       background: 
         linear-gradient(135deg, 
-          transparent 20%, 
-          rgb(var(--color-primary-600) / 0.3) 30%,
-          rgb(var(--color-primary-500) / 0.4) 40%,
-          transparent 50%),
+          transparent 35%, 
+          rgb(var(--color-primary-600) / 0.4) 42%,
+          rgb(var(--color-primary-500) / 0.5) 48%,
+          transparent 55%),
         linear-gradient(-135deg, 
-          transparent 20%, 
-          rgb(var(--color-primary-700) / 0.25) 30%,
-          rgb(var(--color-primary-600) / 0.35) 40%,
-          transparent 50%),
-        linear-gradient(90deg,
-          rgb(var(--color-primary-400) / 0.2) 0%,
-          transparent 30%,
-          transparent 70%,
-          rgb(var(--color-primary-500) / 0.15) 100%);
-      background-size: 200% 200%, 200% 200%, 100% 100%;
-      background-position: 0% 0%, 100% 100%, 0% 0%;
-      filter: blur(40px);
-      animation: aurora 60s linear infinite;
+          transparent 35%, 
+          rgb(var(--color-primary-700) / 0.3) 42%,
+          rgb(var(--color-primary-600) / 0.4) 48%,
+          transparent 55%);
+      filter: blur(60px);
+      animation: aurora-1 40s linear infinite;
+      transform-origin: center center;
     }
 
     .aurora-bg::after {
       content: "";
       position: absolute;
-      inset: 0;
+      top: 50%;
+      left: 50%;
+      width: 140%;
+      height: 140%;
       background: 
         linear-gradient(120deg, 
-          transparent 30%, 
-          rgb(var(--color-primary-400) / 0.2) 45%,
-          rgb(var(--color-primary-300) / 0.25) 55%,
-          transparent 70%);
-      background-size: 150% 150%;
-      background-position: 50% 50%;
-      filter: blur(30px);
-      animation: aurora 80s linear infinite reverse;
+          transparent 38%, 
+          rgb(var(--color-primary-400) / 0.3) 44%,
+          rgb(var(--color-primary-300) / 0.35) 50%,
+          transparent 58%);
+      filter: blur(50px);
+      animation: aurora-2 50s linear infinite;
       mix-blend-mode: screen;
       pointer-events: none;
+      transform-origin: center center;
     }
   </style>
 </head>
