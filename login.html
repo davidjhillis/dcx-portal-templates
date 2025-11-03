@@ -71,15 +71,9 @@
       --color-neutral-900: 37 37 37;
       --color-neutral-950: 20 20 20;
 
-      /* Aurora effect colors */
+      /* Aurora effect colors - using theme system */
       --white: rgba(255, 255, 255, 0.1);
-      --black: rgba(0, 0, 0, 0.1);
       --transparent: rgba(255, 255, 255, 0);
-      --blue-300: rgb(147, 197, 253);
-      --blue-400: rgb(96, 165, 250);
-      --blue-500: rgb(59, 130, 246);
-      --indigo-300: rgb(165, 180, 252);
-      --violet-200: rgb(221, 214, 254);
     }
 
     /* Aurora background animation */
@@ -95,7 +89,12 @@
     .aurora-bg {
       background-image: 
         repeating-linear-gradient(100deg, var(--white) 0%, var(--white) 7%, var(--transparent) 10%, var(--transparent) 12%, var(--white) 16%),
-        repeating-linear-gradient(100deg, var(--blue-500) 10%, var(--indigo-300) 15%, var(--blue-300) 20%, var(--violet-200) 25%, var(--blue-400) 30%);
+        repeating-linear-gradient(100deg, 
+          rgb(var(--color-primary-600)) 10%, 
+          rgb(var(--color-primary-400)) 15%, 
+          rgb(var(--color-primary-300)) 20%, 
+          rgb(var(--color-primary-200)) 25%, 
+          rgb(var(--color-primary-500)) 30%);
       background-size: 300%, 200%;
       background-position: 50% 50%, 50% 50%;
       filter: blur(10px);
@@ -108,7 +107,12 @@
       inset: -10px;
       background-image: 
         repeating-linear-gradient(100deg, var(--white) 0%, var(--white) 7%, var(--transparent) 10%, var(--transparent) 12%, var(--white) 16%),
-        repeating-linear-gradient(100deg, var(--blue-500) 10%, var(--indigo-300) 15%, var(--blue-300) 20%, var(--violet-200) 25%, var(--blue-400) 30%);
+        repeating-linear-gradient(100deg, 
+          rgb(var(--color-primary-600)) 10%, 
+          rgb(var(--color-primary-400)) 15%, 
+          rgb(var(--color-primary-300)) 20%, 
+          rgb(var(--color-primary-200)) 25%, 
+          rgb(var(--color-primary-500)) 30%);
       background-size: 200%, 100%;
       background-attachment: fixed;
       animation: aurora 60s linear infinite;
