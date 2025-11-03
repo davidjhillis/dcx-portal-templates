@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In - Discover CX</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="admin/assets/theme-loader.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              50: 'rgb(var(--color-primary-50))',
+              100: 'rgb(var(--color-primary-100))',
+              200: 'rgb(var(--color-primary-200))',
+              300: 'rgb(var(--color-primary-300))',
+              400: 'rgb(var(--color-primary-400))',
+              500: 'rgb(var(--color-primary-500))',
+              600: 'rgb(var(--color-primary-600))',
+              700: 'rgb(var(--color-primary-700))',
+              800: 'rgb(var(--color-primary-800))',
+              900: 'rgb(var(--color-primary-900))',
+              950: 'rgb(var(--color-primary-950))',
+            },
+            neutral: {
+              50: 'rgb(var(--color-neutral-50))',
+              100: 'rgb(var(--color-neutral-100))',
+              200: 'rgb(var(--color-neutral-200))',
+              300: 'rgb(var(--color-neutral-300))',
+              400: 'rgb(var(--color-neutral-400))',
+              500: 'rgb(var(--color-neutral-500))',
+              600: 'rgb(var(--color-neutral-600))',
+              700: 'rgb(var(--color-neutral-700))',
+              800: 'rgb(var(--color-neutral-800))',
+              900: 'rgb(var(--color-neutral-900))',
+              950: 'rgb(var(--color-neutral-950))',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* Default theme CSS variables (Indigo) */
+    :root {
+      --color-primary-50: 238 242 255;
+      --color-primary-100: 224 231 255;
+      --color-primary-200: 199 210 254;
+      --color-primary-300: 165 180 252;
+      --color-primary-400: 129 140 248;
+      --color-primary-500: 99 102 241;
+      --color-primary-600: 79 70 229;
+      --color-primary-700: 67 56 202;
+      --color-primary-800: 55 48 163;
+      --color-primary-900: 49 46 129;
+      --color-primary-950: 30 27 75;
+      
+      --color-neutral-50: 249 250 251;
+      --color-neutral-100: 243 244 246;
+      --color-neutral-200: 229 231 235;
+      --color-neutral-300: 209 213 219;
+      --color-neutral-400: 156 163 175;
+      --color-neutral-500: 107 114 128;
+      --color-neutral-600: 75 85 99;
+      --color-neutral-700: 65 65 65;
+      --color-neutral-800: 50 50 50;
+      --color-neutral-900: 37 37 37;
+      --color-neutral-950: 20 20 20;
+    }
+  </style>
+</head>
+<body class="h-full bg-neutral-50 dark:bg-neutral-900">
+
+  <div class="min-h-full flex">
+    
+    <!-- Left Side - Branding -->
+    <div class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-primary-600 to-blue-600 p-12 flex-col justify-between relative overflow-hidden">
+      <!-- Decorative Background Pattern -->
+      <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+      </div>
+      
+      <div class="relative z-10">
+        <!-- Logo -->
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center">
+            <span class="text-2xl font-bold bg-gradient-to-r from-primary-600 to-blue-600 bg-clip-text text-transparent">CX</span>
+          </div>
+          <span class="text-2xl font-semibold text-white">Discover CX</span>
+        </div>
+      </div>
+
+      <div class="relative z-10">
+        <h1 class="text-4xl font-bold text-white mb-6">
+          Welcome to<br />Product Documentation
+        </h1>
+        <p class="text-xl text-white/90 mb-8">
+          Access comprehensive documentation, guides, and resources for all Ingeniux products.
+        </p>
+        
+        <!-- Features List -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
+              <i data-lucide="search" class="w-5 h-5 text-white"></i>
+            </div>
+            <span class="text-white/90">AI-powered search</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
+              <i data-lucide="book-open" class="w-5 h-5 text-white"></i>
+            </div>
+            <span class="text-white/90">Comprehensive guides</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
+              <i data-lucide="message-circle" class="w-5 h-5 text-white"></i>
+            </div>
+            <span class="text-white/90">24/7 support assistant</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative z-10">
+        <p class="text-sm text-white/70">
+          © 2025 Discover CX. All rights reserved.
+        </p>
+      </div>
+    </div>
+
+    <!-- Right Side - Login Form -->
+    <div class="flex-1 flex items-center justify-center p-8 sm:p-12">
+      <div class="w-full max-w-md">
+        
+        <!-- Mobile Logo -->
+        <div class="lg:hidden mb-8 text-center">
+          <div class="inline-flex items-center gap-3 mb-2">
+            <div class="w-10 h-10 bg-gradient-to-r from-primary-600 to-blue-600 rounded-xl flex items-center justify-center">
+              <span class="text-xl font-bold text-white">CX</span>
+            </div>
+            <span class="text-2xl font-semibold text-neutral-900 dark:text-white">Discover CX</span>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="text-3xl font-bold text-neutral-900 dark:text-white mb-2">
+            Sign in to your account
+          </h2>
+          <p class="text-neutral-600 dark:text-neutral-400 mb-8">
+            Access your documentation portal
+          </p>
+        </div>
+
+        <!-- SSO Options -->
+        <div class="space-y-3 mb-6">
+          <button class="w-full flex items-center justify-center gap-3 px-4 py-3 border-2 border-neutral-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors font-medium">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032 s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2 C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z"/>
+            </svg>
+            Continue with Google
+          </button>
+          
+          <button class="w-full flex items-center justify-center gap-3 px-4 py-3 border-2 border-neutral-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors font-medium">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M11.4 24H0V8.6h11.4V24zm12.6 0H12.6V8.6H24V24zM11.4 7.2H0V0h11.4v7.2zm12.6 0H12.6V0H24v7.2z"/>
+            </svg>
+            Continue with Microsoft
+          </button>
+
+          <button class="w-full flex items-center justify-center gap-3 px-4 py-3 border-2 border-neutral-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors font-medium">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+              <circle cx="12" cy="12" r="10" fill="#007DC1"/>
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="white"/>
+            </svg>
+            Continue with Okta
+          </button>
+        </div>
+
+        <!-- Divider -->
+        <div class="relative mb-6">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t border-neutral-300 dark:border-neutral-700"></div>
+          </div>
+          <div class="relative flex justify-center text-sm">
+            <span class="px-4 bg-neutral-50 dark:bg-neutral-900 text-neutral-500 dark:text-neutral-400">Or continue with email</span>
+          </div>
+        </div>
+
+        <!-- Email/Password Form -->
+        <form class="space-y-4 mb-6">
+          <div>
+            <label for="email" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+              Email address
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+              class="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              placeholder="you@company.com"
+            />
+          </div>
+
+          <div>
+            <label for="password" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+              Password
+            </label>
+            <div class="relative">
+              <input
+                id="password"
+                name="password"
+                type="password"
+                autocomplete="current-password"
+                required
+                class="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                placeholder="••••••••"
+              />
+              <button
+                type="button"
+                id="toggle-password"
+                class="absolute right-3 top-1/2 -translate-y-1/2 p-1 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded transition-colors"
+              >
+                <i data-lucide="eye" class="w-5 h-5 text-neutral-500 dark:text-neutral-400"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between">
+            <label class="flex items-center">
+              <input
+                type="checkbox"
+                class="w-4 h-4 border-neutral-300 dark:border-neutral-600 rounded text-primary-600 focus:ring-primary-500 focus:ring-offset-0"
+              />
+              <span class="ml-2 text-sm text-neutral-700 dark:text-neutral-300">Remember me</span>
+            </label>
+            <a href="#" class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300">
+              Forgot password?
+            </a>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full px-6 py-3 bg-gradient-to-r from-primary-600 to-blue-600 hover:from-primary-700 hover:to-blue-700 text-white rounded-lg font-semibold transition-all shadow-lg shadow-primary-500/20"
+          >
+            Sign in
+          </button>
+        </form>
+
+        <!-- Sign Up Link -->
+        <p class="text-center text-sm text-neutral-600 dark:text-neutral-400">
+          Don't have an account?
+          <a href="#" class="font-medium text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300">
+            Request access
+          </a>
+        </p>
+
+        <!-- Help Links -->
+        <div class="mt-8 pt-8 border-t border-neutral-200 dark:border-neutral-700">
+          <div class="flex items-center justify-center gap-6 text-sm">
+            <a href="#" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white flex items-center gap-1">
+              <i data-lucide="help-circle" class="w-4 h-4"></i>
+              Help
+            </a>
+            <a href="#" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white flex items-center gap-1">
+              <i data-lucide="shield" class="w-4 h-4"></i>
+              Privacy
+            </a>
+            <a href="#" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white flex items-center gap-1">
+              <i data-lucide="file-text" class="w-4 h-4"></i>
+              Terms
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Password toggle
+    const passwordInput = document.getElementById('password');
+    const togglePasswordBtn = document.getElementById('toggle-password');
+    
+    togglePasswordBtn?.addEventListener('click', function() {
+      const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+      passwordInput.setAttribute('type', type);
+      
+      const icon = this.querySelector('i');
+      icon.setAttribute('data-lucide', type === 'password' ? 'eye' : 'eye-off');
+      lucide.createIcons();
+    });
+
+    // Form submission (example)
+    document.querySelector('form')?.addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Add your authentication logic here
+      console.log('Sign in attempted');
+      // Redirect to index.html after successful login
+      window.location.href = 'index.html';
+    });
+
+    // SSO buttons (example)
+    document.querySelectorAll('button[type="button"]').forEach(btn => {
+      if (btn.id !== 'toggle-password') {
+        btn.addEventListener('click', function() {
+          // Add your SSO logic here
+          const provider = this.textContent.includes('Google') ? 'Google' : 
+                          this.textContent.includes('Microsoft') ? 'Microsoft' : 'Okta';
+          console.log('SSO login with:', provider);
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>
+
