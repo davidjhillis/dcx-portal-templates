@@ -1786,6 +1786,18 @@
         summaryContainer.id = 'ai-summary-container';
         summaryContainer.className = 'mt-6 mb-8 p-6 border-2 border-neutral-200 dark:border-neutral-600 rounded-xl bg-white dark:bg-neutral-800';
         summaryContainer.innerHTML = `
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
+                <i data-lucide="sparkles" class="w-5 h-5 text-primary-600 dark:text-primary-400"></i>
+              </div>
+              <h4 class="text-sm font-semibold text-neutral-900 dark:text-white">AI Summary</h4>
+            </div>
+            <button class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors close-summary-btn">
+              <i data-lucide="x" class="w-5 h-5 text-neutral-600 dark:text-neutral-400"></i>
+            </button>
+          </div>
+          
           <!-- Thinking State -->
           <div id="ai-thinking" class="flex items-center gap-3 py-4">
             <div class="flex items-center gap-2">
@@ -1835,6 +1847,12 @@
         `;
         container.parentNode.insertBefore(summaryContainer, container.nextSibling);
         lucide.createIcons();
+        
+        // Close button handler
+        summaryContainer.querySelector('.close-summary-btn')?.addEventListener('click', () => {
+          summaryContainer.remove();
+          this.summaryGenerated = false;
+        });
       }
       
       const thinking = document.getElementById('ai-thinking');
