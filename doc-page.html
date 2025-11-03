@@ -1430,9 +1430,21 @@
         e.preventDefault();
         selectedResultIndex = Math.max(selectedResultIndex - 1, -1);
         updateSelectedResult();
-      } else if (e.key === 'Enter' && selectedResultIndex >= 0) {
-        e.preventDefault();
-        results[selectedResultIndex]?.click();
+      } else if (e.key === 'Enter') {
+        if (selectedResultIndex >= 0) {
+          // Add selected suggestion to search box
+          e.preventDefault();
+          const selectedResult = results[selectedResultIndex];
+          const resultText = selectedResult.textContent.trim();
+          cmdKInput.value = resultText;
+          selectedResultIndex = -1;
+          updateSelectedResult();
+          
+          // Show results for this search
+          recentSearches?.classList.add('hidden');
+          searchResults?.classList.remove('hidden');
+        }
+        // If no selection, Enter submits the search (default behavior)
       }
     });
     
