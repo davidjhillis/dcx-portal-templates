@@ -515,7 +515,7 @@
               <button class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors" title="Share">
                 <i data-lucide="share-2" class="w-5 h-5 text-neutral-600 dark:text-neutral-400"></i>
               </button>
-              <button class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors" title="Feedback">
+              <button id="feedback-btn" class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors" title="Feedback">
                 <i data-lucide="message-square" class="w-5 h-5 text-neutral-600 dark:text-neutral-400"></i>
               </button>
             </div>
@@ -1482,6 +1482,74 @@
     </div>
   </div>
 
+  <!-- Send Feedback Modal -->
+  <div id="feedback-modal" class="fixed inset-0 bg-neutral-950 bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-neutral-800 rounded-2xl max-w-xl w-full overflow-hidden shadow-2xl">
+      <!-- Header -->
+      <div class="px-6 py-4 border-b border-neutral-200 dark:border-neutral-700 flex items-center justify-between">
+        <h3 class="text-xl font-bold text-neutral-900 dark:text-white">Send feedback</h3>
+        <button id="feedback-close-btn" class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors">
+          <i data-lucide="x" class="w-5 h-5 text-neutral-600 dark:text-neutral-400"></i>
+        </button>
+      </div>
+      
+      <!-- Content -->
+      <div class="p-6">
+        <!-- Was this helpful? -->
+        <div class="mb-6">
+          <p class="text-sm font-semibold text-neutral-900 dark:text-white mb-3">Was this article helpful?</p>
+          <div class="flex items-center gap-3">
+            <button id="feedback-yes" class="flex items-center gap-2 px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg text-sm font-medium text-neutral-700 dark:text-neutral-300 hover:border-green-500 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-900/20 transition-colors">
+              <i data-lucide="thumbs-up" class="w-4 h-4"></i>
+              <span>Yes</span>
+            </button>
+            <button id="feedback-no" class="flex items-center gap-2 px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg text-sm font-medium text-neutral-700 dark:text-neutral-300 hover:border-red-500 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors">
+              <i data-lucide="thumbs-down" class="w-4 h-4"></i>
+              <span>No</span>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Comments/Details -->
+        <div class="mb-6">
+          <label class="block text-sm font-semibold text-neutral-900 dark:text-white mb-2">
+            Tell us more <span class="text-red-500">*</span>
+          </label>
+          <textarea 
+            id="feedback-comments"
+            rows="4" 
+            placeholder="What did you like, and what could we improve?"
+            class="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 resize-none"
+            required
+          ></textarea>
+        </div>
+        
+        <!-- Email (optional) -->
+        <div class="mb-6">
+          <label class="block text-sm font-semibold text-neutral-900 dark:text-white mb-2">
+            Your email
+          </label>
+          <input 
+            id="feedback-email"
+            type="email" 
+            placeholder="Provide your email if you'd like us to respond"
+            class="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+          />
+        </div>
+      </div>
+      
+      <!-- Footer Actions -->
+      <div class="px-6 py-4 bg-neutral-50 dark:bg-neutral-900 border-t border-neutral-200 dark:border-neutral-700 flex items-center justify-end gap-3">
+        <button id="feedback-cancel-btn" class="px-4 py-2 border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors font-semibold text-sm">
+          Cancel
+        </button>
+        <button id="feedback-submit-btn" class="px-6 py-2 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-lg hover:from-primary-700 hover:to-primary-800 transition-all font-semibold text-sm shadow-lg shadow-primary-500/20">
+          Send feedback
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- JavaScript -->
   <script src="js/main.js"></script>
   
@@ -1998,6 +2066,71 @@
           modal.classList.add('hidden');
         }
       });
+    });
+    
+    // Feedback Modal
+    const feedbackBtn = document.getElementById('feedback-btn');
+    const feedbackModal = document.getElementById('feedback-modal');
+    const feedbackCloseBtn = document.getElementById('feedback-close-btn');
+    const feedbackCancelBtn = document.getElementById('feedback-cancel-btn');
+    const feedbackSubmitBtn = document.getElementById('feedback-submit-btn');
+    const feedbackYesBtn = document.getElementById('feedback-yes');
+    const feedbackNoBtn = document.getElementById('feedback-no');
+    
+    let feedbackHelpful = null;
+    
+    // Open feedback modal
+    feedbackBtn?.addEventListener('click', () => {
+      feedbackModal?.classList.remove('hidden');
+      lucide.createIcons();
+    });
+    
+    // Close feedback modal
+    function closeFeedbackModal() {
+      feedbackModal?.classList.add('hidden');
+      // Reset form
+      feedbackHelpful = null;
+      document.getElementById('feedback-comments').value = '';
+      document.getElementById('feedback-email').value = '';
+      // Reset button states
+      feedbackYesBtn?.classList.remove('bg-green-100', 'dark:bg-green-900/30', 'border-green-500', 'text-green-600', 'dark:text-green-400');
+      feedbackNoBtn?.classList.remove('bg-red-100', 'dark:bg-red-900/30', 'border-red-500', 'text-red-600', 'dark:text-red-400');
+    }
+    
+    feedbackCloseBtn?.addEventListener('click', closeFeedbackModal);
+    feedbackCancelBtn?.addEventListener('click', closeFeedbackModal);
+    
+    // Track helpful/not helpful selection
+    feedbackYesBtn?.addEventListener('click', function() {
+      feedbackHelpful = true;
+      this.classList.add('bg-green-100', 'dark:bg-green-900/30', 'border-green-500', 'text-green-600', 'dark:text-green-400');
+      feedbackNoBtn?.classList.remove('bg-red-100', 'dark:bg-red-900/30', 'border-red-500', 'text-red-600', 'dark:text-red-400');
+    });
+    
+    feedbackNoBtn?.addEventListener('click', function() {
+      feedbackHelpful = false;
+      this.classList.add('bg-red-100', 'dark:bg-red-900/30', 'border-red-500', 'text-red-600', 'dark:text-red-400');
+      feedbackYesBtn?.classList.remove('bg-green-100', 'dark:bg-green-900/30', 'border-green-500', 'text-green-600', 'dark:text-green-400');
+    });
+    
+    // Submit feedback
+    feedbackSubmitBtn?.addEventListener('click', () => {
+      const comments = document.getElementById('feedback-comments').value.trim();
+      if (!comments) {
+        alert('Please tell us more about your feedback');
+        return;
+      }
+      
+      // Here you would send the feedback to your backend
+      console.log('Feedback submitted:', {
+        helpful: feedbackHelpful,
+        comments: comments,
+        email: document.getElementById('feedback-email').value
+      });
+      
+      // Show success message (you could make this fancier)
+      alert('Thank you for your feedback!');
+      closeFeedbackModal();
     });
     
     // Glossary Toggle Button
