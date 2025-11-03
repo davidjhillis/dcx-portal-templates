@@ -15,33 +15,33 @@
     * { margin: 0; padding: 0; }
   </style>
 </head>
-<body class="bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-white">
+<body class="bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white">
 
   <!-- Header -->
-  <header class="sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+  <header class="sticky top-0 z-50 bg-white dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-700">
     <div class="mx-auto px-6">
       <div class="flex items-center justify-between h-16">
         
         <!-- Mobile Menu Button with Dropdown -->
         <div class="relative md:hidden">
-          <button id="mobile-menu-btn" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg">
-            <i data-lucide="menu" class="w-6 h-6 text-gray-600 dark:text-gray-400"></i>
+          <button id="mobile-menu-btn" class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg">
+            <i data-lucide="menu" class="w-6 h-6 text-neutral-600 dark:text-neutral-400"></i>
           </button>
           
           <!-- Mobile Menu Dropdown -->
-          <div id="mobile-menu" class="hidden absolute right-0 top-full mt-2 w-64 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 z-50 py-2">
+          <div id="mobile-menu" class="hidden absolute right-0 top-full mt-2 w-64 bg-white dark:bg-neutral-800 rounded-xl shadow-2xl border border-neutral-200 dark:border-neutral-700 z-50 py-2">
             <nav class="py-2">
-              <a href="index.html" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-                <i data-lucide="home" class="w-4 h-4 text-gray-600 dark:text-gray-400"></i>
-                <span class="text-sm font-medium text-gray-900 dark:text-white">Home</span>
+              <a href="index.html" class="flex items-center gap-3 px-4 py-3 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors">
+                <i data-lucide="home" class="w-4 h-4 text-neutral-600 dark:text-neutral-400"></i>
+                <span class="text-sm font-medium text-neutral-900 dark:text-white">Home</span>
               </a>
-              <a href="doc-page.html" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-                <i data-lucide="book-open" class="w-4 h-4 text-gray-600 dark:text-gray-400"></i>
-                <span class="text-sm font-medium text-gray-900 dark:text-white">Documentation</span>
+              <a href="doc-page.html" class="flex items-center gap-3 px-4 py-3 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors">
+                <i data-lucide="book-open" class="w-4 h-4 text-neutral-600 dark:text-neutral-400"></i>
+                <span class="text-sm font-medium text-neutral-900 dark:text-white">Documentation</span>
               </a>
-              <a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-                <i data-lucide="life-buoy" class="w-4 h-4 text-gray-600 dark:text-gray-400"></i>
-                <span class="text-sm font-medium text-gray-900 dark:text-white">Support</span>
+              <a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors">
+                <i data-lucide="life-buoy" class="w-4 h-4 text-neutral-600 dark:text-neutral-400"></i>
+                <span class="text-sm font-medium text-neutral-900 dark:text-white">Support</span>
               </a>
             </nav>
           </div>
@@ -49,23 +49,19 @@
         
         <!-- Logo -->
         <a href="index.html" class="flex items-center gap-3 hover:opacity-80 flex-shrink-0">
-          <svg class="w-8 h-8 text-purple-600 dark:text-purple-400" viewBox="0 0 32 32" fill="currentColor">
-            <path d="M16 2L3 9v14l13 7 13-7V9L16 2zm0 3.24L25.08 9 16 13.76 6.92 9 16 5.24zM5 10.92l10 5.38v10.46l-10-5.38V10.92zm12 15.84V16.3l10-5.38v10.46l-10 5.38z"/>
-          </svg>
-          <div class="hidden sm:flex items-baseline gap-2">
-            <span class="font-bold text-lg text-gray-900 dark:text-white">Discover CX</span>
-            <span class="font-normal text-lg text-gray-600 dark:text-gray-400">Product Documentation</span>
-          </div>
+          <img src="admin/assets/discover-cx-logo.svg" alt="Discover CX" class="h-7 w-auto dark:hidden">
+          <img src="admin/assets/discover-cx-logo-white.svg" alt="Discover CX" class="h-7 w-auto hidden dark:block">
+          <span class="hidden lg:inline font-normal text-lg text-neutral-600 dark:text-neutral-400">Product Documentation</span>
         </a>
         
         <!-- Search Bar -->
         <div class="flex-1 max-w-md mx-4 hidden md:block">
           <div class="relative">
-            <i data-lucide="search" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400"></i>
+            <i data-lucide="search" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-neutral-400"></i>
             <input 
               type="search" 
               placeholder="Search docs..." 
-              class="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm"
+              class="w-full pl-10 pr-4 py-2 border border-neutral-300 dark:border-gray-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm"
             />
           </div>
         </div>
@@ -73,65 +69,65 @@
         <!-- Right Side -->
         <div class="flex items-center gap-3">
           <!-- Notifications -->
-          <button class="relative p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg">
-            <i data-lucide="bell" class="w-5 h-5 text-gray-600 dark:text-gray-400"></i>
-            <span class="absolute top-1 right-1 w-2 h-2 bg-purple-600 rounded-full"></span>
+          <button class="relative p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg">
+            <i data-lucide="bell" class="w-5 h-5 text-neutral-600 dark:text-neutral-400"></i>
+            <span class="absolute top-1 right-1 w-2 h-2 bg-primary-600 rounded-full"></span>
           </button>
           
           <!-- User Avatar Dropdown -->
           <div class="relative">
-            <button id="user-menu-btn-profile" class="flex items-center gap-2 p-1.5 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors">
-              <div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center text-white font-semibold text-sm">
+            <button id="user-menu-btn-profile" class="flex items-center gap-2 p-1.5 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors">
+              <div class="w-8 h-8 rounded-full bg-gradient-to-br from-neutral-600 to-neutral-700 flex items-center justify-center text-white font-semibold text-sm">
                 JD
               </div>
-              <i data-lucide="chevron-down" class="w-4 h-4 text-gray-600 dark:text-gray-400 hidden sm:block"></i>
+              <i data-lucide="chevron-down" class="w-4 h-4 text-neutral-600 dark:text-neutral-400 hidden sm:block"></i>
             </button>
             
             <!-- Dropdown Menu -->
-            <div id="user-dropdown-profile" class="hidden absolute right-0 mt-2 w-56 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 py-2 z-50">
+            <div id="user-dropdown-profile" class="hidden absolute right-0 mt-2 w-56 bg-white dark:bg-neutral-800 rounded-xl shadow-2xl border border-neutral-200 dark:border-neutral-700 py-2 z-50">
               <!-- User Info -->
-              <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
-                <p class="text-sm font-semibold text-gray-900 dark:text-white">Jane Doe</p>
-                <p class="text-xs text-gray-600 dark:text-gray-400">jane.doe@company.com</p>
+              <div class="px-4 py-3 border-b border-neutral-200 dark:border-neutral-700">
+                <p class="text-sm font-semibold text-neutral-900 dark:text-white">Jane Doe</p>
+                <p class="text-xs text-neutral-600 dark:text-neutral-400">jane.doe@company.com</p>
               </div>
               
               <!-- Theme Selector -->
-              <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+              <div class="px-4 py-3 border-b border-neutral-200 dark:border-neutral-700">
                 <div class="flex items-center justify-between gap-2">
-                  <button id="theme-auto" class="flex-1 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" title="Auto">
-                    <i data-lucide="monitor" class="w-4 h-4 mx-auto text-gray-600 dark:text-gray-400"></i>
+                  <button id="theme-auto" class="flex-1 p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors" title="Auto">
+                    <i data-lucide="monitor" class="w-4 h-4 mx-auto text-neutral-600 dark:text-neutral-400"></i>
                   </button>
                   <button id="theme-light" class="flex-1 p-2 rounded-lg bg-yellow-100 dark:bg-yellow-900/30 transition-colors" title="Light">
                     <i data-lucide="sun" class="w-4 h-4 mx-auto text-yellow-600 dark:text-yellow-400"></i>
                   </button>
-                  <button id="theme-dark" class="flex-1 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" title="Dark">
-                    <i data-lucide="moon" class="w-4 h-4 mx-auto text-gray-600 dark:text-gray-400"></i>
+                  <button id="theme-dark" class="flex-1 p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors" title="Dark">
+                    <i data-lucide="moon" class="w-4 h-4 mx-auto text-neutral-600 dark:text-neutral-400"></i>
                   </button>
                 </div>
               </div>
               
               <!-- Menu Items -->
               <div class="py-2">
-                <a href="#profile-tab" class="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-                  <i data-lucide="user" class="w-4 h-4 text-gray-600 dark:text-gray-400"></i>
-                  <span class="text-sm text-gray-900 dark:text-white">My Profile</span>
+                <a href="#profile-tab" class="flex items-center gap-3 px-4 py-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors">
+                  <i data-lucide="user" class="w-4 h-4 text-neutral-600 dark:text-neutral-400"></i>
+                  <span class="text-sm text-neutral-900 dark:text-white">My Profile</span>
                 </a>
-                <a href="#" class="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-                  <i data-lucide="bookmark" class="w-4 h-4 text-gray-600 dark:text-gray-400"></i>
-                  <span class="text-sm text-gray-900 dark:text-white">Bookmarks</span>
+                <a href="#" class="flex items-center gap-3 px-4 py-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors">
+                  <i data-lucide="bookmark" class="w-4 h-4 text-neutral-600 dark:text-neutral-400"></i>
+                  <span class="text-sm text-neutral-900 dark:text-white">Bookmarks</span>
                 </a>
-                <a href="#" class="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-                  <i data-lucide="clock" class="w-4 h-4 text-gray-600 dark:text-gray-400"></i>
-                  <span class="text-sm text-gray-900 dark:text-white">Reading History</span>
+                <a href="#" class="flex items-center gap-3 px-4 py-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors">
+                  <i data-lucide="clock" class="w-4 h-4 text-neutral-600 dark:text-neutral-400"></i>
+                  <span class="text-sm text-neutral-900 dark:text-white">Reading History</span>
                 </a>
-                <a href="#" class="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-                  <i data-lucide="settings" class="w-4 h-4 text-gray-600 dark:text-gray-400"></i>
-                  <span class="text-sm text-gray-900 dark:text-white">Settings</span>
+                <a href="#" class="flex items-center gap-3 px-4 py-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors">
+                  <i data-lucide="settings" class="w-4 h-4 text-neutral-600 dark:text-neutral-400"></i>
+                  <span class="text-sm text-neutral-900 dark:text-white">Settings</span>
                 </a>
               </div>
               
               <!-- Divider -->
-              <div class="border-t border-gray-200 dark:border-gray-700 my-2"></div>
+              <div class="border-t border-neutral-200 dark:border-neutral-700 my-2"></div>
               
               <!-- Logout -->
               <div class="py-2">
@@ -153,8 +149,8 @@
     
     <!-- Page Header -->
     <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">My Profile</h1>
-      <p class="text-gray-600 dark:text-gray-400">Manage your account settings and preferences</p>
+      <h1 class="text-3xl font-bold text-neutral-900 dark:text-white mb-2">My Profile</h1>
+      <p class="text-neutral-600 dark:text-neutral-400">Manage your account settings and preferences</p>
     </div>
 
     <!-- Profile Layout - 2 Columns -->
@@ -164,7 +160,7 @@
       <div class="lg:col-span-1 space-y-6">
         
         <!-- Profile Card -->
-        <div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+        <div class="bg-white dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
           <!-- Cover/Header -->
           <div class="h-24 bg-gradient-to-r from-purple-600 to-pink-600"></div>
           
@@ -173,28 +169,28 @@
             <div class="flex flex-col items-center -mt-12">
               <!-- Avatar with Edit Button -->
               <div class="relative">
-                <div class="w-24 h-24 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center text-white font-bold text-3xl border-4 border-white dark:border-gray-900">
+                <div class="w-24 h-24 rounded-full bg-gradient-to-br from-neutral-600 to-neutral-700 flex items-center justify-center text-white font-bold text-3xl border-4 border-white dark:border-gray-900">
                   JD
                 </div>
-                <button class="absolute bottom-0 right-0 w-8 h-8 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-full flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-                  <i data-lucide="camera" class="w-4 h-4 text-gray-600 dark:text-gray-400"></i>
+                <button class="absolute bottom-0 right-0 w-8 h-8 bg-white dark:bg-neutral-800 border-2 border-neutral-200 dark:border-neutral-700 rounded-full flex items-center justify-center hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors">
+                  <i data-lucide="camera" class="w-4 h-4 text-neutral-600 dark:text-neutral-400"></i>
                 </button>
               </div>
               
               <!-- Name & Role -->
-              <h2 class="mt-4 text-xl font-bold text-gray-900 dark:text-white">Jane Doe</h2>
-              <p class="text-sm text-gray-600 dark:text-gray-400">Senior Developer</p>
-              <p class="text-xs text-gray-500 dark:text-gray-500 mt-1">jane.doe@company.com</p>
+              <h2 class="mt-4 text-xl font-bold text-neutral-900 dark:text-white">Jane Doe</h2>
+              <p class="text-sm text-neutral-600 dark:text-neutral-400">Senior Developer</p>
+              <p class="text-xs text-neutral-500 dark:text-neutral-500 mt-1">jane.doe@company.com</p>
               
               <!-- Quick Stats -->
               <div class="flex items-center gap-4 mt-4 w-full">
-                <div class="flex-1 text-center py-2 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                  <p class="text-lg font-bold text-gray-900 dark:text-white">127</p>
-                  <p class="text-xs text-gray-600 dark:text-gray-400">Articles Read</p>
+                <div class="flex-1 text-center py-2 bg-white dark:bg-neutral-800 rounded-lg">
+                  <p class="text-lg font-bold text-neutral-900 dark:text-white">127</p>
+                  <p class="text-xs text-neutral-600 dark:text-neutral-400">Articles Read</p>
                 </div>
-                <div class="flex-1 text-center py-2 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                  <p class="text-lg font-bold text-gray-900 dark:text-white">23</p>
-                  <p class="text-xs text-gray-600 dark:text-gray-400">Bookmarks</p>
+                <div class="flex-1 text-center py-2 bg-white dark:bg-neutral-800 rounded-lg">
+                  <p class="text-lg font-bold text-neutral-900 dark:text-white">23</p>
+                  <p class="text-xs text-neutral-600 dark:text-neutral-400">Bookmarks</p>
                 </div>
               </div>
             </div>
@@ -202,19 +198,19 @@
         </div>
 
         <!-- Quick Links -->
-        <div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-          <h3 class="font-semibold text-gray-900 dark:text-white mb-4">Quick Links</h3>
+        <div class="bg-white dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-700 p-6">
+          <h3 class="font-semibold text-neutral-900 dark:text-white mb-4">Quick Links</h3>
           <div class="space-y-2">
-            <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-700 dark:text-gray-300">
-              <i data-lucide="bookmark" class="w-4 h-4 text-purple-600"></i>
+            <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors text-neutral-700 dark:text-neutral-300">
+              <i data-lucide="bookmark" class="w-4 h-4 text-primary-600"></i>
               <span class="text-sm">My Bookmarks</span>
             </a>
-            <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-700 dark:text-gray-300">
-              <i data-lucide="clock" class="w-4 h-4 text-purple-600"></i>
+            <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors text-neutral-700 dark:text-neutral-300">
+              <i data-lucide="clock" class="w-4 h-4 text-primary-600"></i>
               <span class="text-sm">Reading History</span>
             </a>
-            <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-700 dark:text-gray-300">
-              <i data-lucide="star" class="w-4 h-4 text-purple-600"></i>
+            <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors text-neutral-700 dark:text-neutral-300">
+              <i data-lucide="star" class="w-4 h-4 text-primary-600"></i>
               <span class="text-sm">Saved Searches</span>
             </a>
           </div>
@@ -226,19 +222,19 @@
       <div class="lg:col-span-2 space-y-6">
         
         <!-- Tabs -->
-        <div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700">
-          <div class="border-b border-gray-200 dark:border-gray-700">
+        <div class="bg-white dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-700">
+          <div class="border-b border-neutral-200 dark:border-neutral-700">
             <nav class="flex gap-2 px-6">
-              <button data-tab="profile" class="tab-btn px-4 py-3 border-b-2 border-purple-600 text-purple-600 dark:text-purple-400 font-semibold text-sm">
+              <button data-tab="profile" class="tab-btn px-4 py-3 border-b-2 border-purple-600 text-primary-600 dark:text-primary-400 font-semibold text-sm">
                 Profile
               </button>
-              <button data-tab="notifications" class="tab-btn px-4 py-3 border-b-2 border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white font-semibold text-sm">
+              <button data-tab="notifications" class="tab-btn px-4 py-3 border-b-2 border-transparent text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white font-semibold text-sm">
                 Notifications
               </button>
-              <button data-tab="subscriptions" class="tab-btn px-4 py-3 border-b-2 border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white font-semibold text-sm">
+              <button data-tab="subscriptions" class="tab-btn px-4 py-3 border-b-2 border-transparent text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white font-semibold text-sm">
                 Subscriptions
               </button>
-              <button data-tab="security" class="tab-btn px-4 py-3 border-b-2 border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white font-semibold text-sm">
+              <button data-tab="security" class="tab-btn px-4 py-3 border-b-2 border-transparent text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white font-semibold text-sm">
                 Security
               </button>
             </nav>
@@ -249,73 +245,73 @@
             
             <!-- Personal Information -->
             <div class="mb-8">
-              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Personal Information</h3>
+              <h3 class="text-lg font-semibold text-neutral-900 dark:text-white mb-4">Personal Information</h3>
               <div class="space-y-4">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">First Name</label>
+                    <label class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">First Name</label>
                     <input 
                       type="text" 
                       value="Jane" 
-                      class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      class="w-full px-4 py-2 border border-neutral-300 dark:border-gray-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
                     />
                   </div>
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Last Name</label>
+                    <label class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">Last Name</label>
                     <input 
                       type="text" 
                       value="Doe" 
-                      class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      class="w-full px-4 py-2 border border-neutral-300 dark:border-gray-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
                     />
                   </div>
                 </div>
                 
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Email Address</label>
+                  <label class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">Email Address</label>
                   <input 
                     type="email" 
                     value="jane.doe@company.com" 
-                    class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    class="w-full px-4 py-2 border border-neutral-300 dark:border-gray-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
                   />
                 </div>
                 
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Job Title</label>
+                  <label class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">Job Title</label>
                   <input 
                     type="text" 
                     value="Senior Developer" 
-                    class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    class="w-full px-4 py-2 border border-neutral-300 dark:border-gray-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
                   />
                 </div>
                 
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Company</label>
+                  <label class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">Company</label>
                   <input 
                     type="text" 
                     value="Acme Corporation" 
-                    class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    class="w-full px-4 py-2 border border-neutral-300 dark:border-gray-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
                   />
                 </div>
                 
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Bio</label>
+                  <label class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">Bio</label>
                   <textarea 
                     rows="3" 
-                    class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none"
+                    class="w-full px-4 py-2 border border-neutral-300 dark:border-gray-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none"
                     placeholder="Tell us about yourself...">Senior developer with 10+ years experience in enterprise content management.</textarea>
                 </div>
               </div>
             </div>
 
             <!-- Preferences -->
-            <div class="mb-8 border-t border-gray-200 dark:border-gray-700 pt-8">
-              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Preferences</h3>
+            <div class="mb-8 border-t border-neutral-200 dark:border-neutral-700 pt-8">
+              <h3 class="text-lg font-semibold text-neutral-900 dark:text-white mb-4">Preferences</h3>
               <div class="space-y-4">
                 
                 <!-- Language -->
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Language</label>
-                  <select class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500">
+                  <label class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">Language</label>
+                  <select class="w-full px-4 py-2 border border-neutral-300 dark:border-gray-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500">
                     <option>English (US)</option>
                     <option>English (UK)</option>
                     <option>Spanish</option>
@@ -326,8 +322,8 @@
                 
                 <!-- Timezone -->
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Timezone</label>
-                  <select class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500">
+                  <label class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">Timezone</label>
+                  <select class="w-full px-4 py-2 border border-neutral-300 dark:border-gray-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500">
                     <option>Pacific Time (PT)</option>
                     <option>Mountain Time (MT)</option>
                     <option>Central Time (CT)</option>
@@ -337,17 +333,17 @@
                 
                 <!-- Theme -->
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Theme</label>
+                  <label class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">Theme</label>
                   <div class="flex gap-3">
-                    <button class="flex-1 px-4 py-3 border-2 border-purple-600 bg-purple-50 dark:bg-purple-900/20 rounded-lg text-sm font-semibold text-purple-600 dark:text-purple-400">
+                    <button class="flex-1 px-4 py-3 border-2 border-purple-600 bg-purple-50 dark:bg-purple-900/20 rounded-lg text-sm font-semibold text-primary-600 dark:text-primary-400">
                       <i data-lucide="sun" class="w-4 h-4 inline mr-2"></i>
                       Light
                     </button>
-                    <button class="flex-1 px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg text-sm font-semibold text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800">
+                    <button class="flex-1 px-4 py-3 border-2 border-neutral-300 dark:border-gray-600 rounded-lg text-sm font-semibold text-neutral-700 dark:text-neutral-300 hover:bg-white dark:hover:bg-neutral-800">
                       <i data-lucide="moon" class="w-4 h-4 inline mr-2"></i>
                       Dark
                     </button>
-                    <button class="flex-1 px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg text-sm font-semibold text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800">
+                    <button class="flex-1 px-4 py-3 border-2 border-neutral-300 dark:border-gray-600 rounded-lg text-sm font-semibold text-neutral-700 dark:text-neutral-300 hover:bg-white dark:hover:bg-neutral-800">
                       <i data-lucide="monitor" class="w-4 h-4 inline mr-2"></i>
                       Auto
                     </button>
@@ -357,8 +353,8 @@
             </div>
 
             <!-- Save Button -->
-            <div class="flex items-center justify-end gap-3 pt-6 border-t border-gray-200 dark:border-gray-700">
-              <button class="px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors font-semibold text-sm">
+            <div class="flex items-center justify-end gap-3 pt-6 border-t border-neutral-200 dark:border-neutral-700">
+              <button class="px-4 py-2 border border-neutral-300 dark:border-gray-600 text-neutral-700 dark:text-neutral-300 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors font-semibold text-sm">
                 Cancel
               </button>
               <button class="px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:from-purple-700 hover:to-pink-700 transition-colors font-semibold text-sm">
@@ -371,100 +367,100 @@
         
         <!-- Notifications Tab Content -->
         <div id="notifications-tab" class="tab-content hidden p-6">
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Notification Center</h3>
-          <p class="text-sm text-gray-600 dark:text-gray-400 mb-6">View and manage all your notifications</p>
+          <h3 class="text-lg font-semibold text-neutral-900 dark:text-white mb-2">Notification Center</h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400 mb-6">View and manage all your notifications</p>
           
           <!-- Filter Buttons -->
           <div class="flex gap-2 mb-6">
-            <button class="px-4 py-2 bg-purple-600 text-white rounded-lg text-sm font-semibold">All</button>
-            <button class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg text-sm font-semibold hover:bg-gray-300 dark:hover:bg-gray-600">Unread</button>
-            <button class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg text-sm font-semibold hover:bg-gray-300 dark:hover:bg-gray-600">Mentions</button>
+            <button class="px-4 py-2 bg-primary-600 text-white rounded-lg text-sm font-semibold">All</button>
+            <button class="px-4 py-2 bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 rounded-lg text-sm font-semibold hover:bg-gray-300 dark:hover:bg-gray-600">Unread</button>
+            <button class="px-4 py-2 bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 rounded-lg text-sm font-semibold hover:bg-gray-300 dark:hover:bg-gray-600">Mentions</button>
           </div>
           
           <!-- Notifications List -->
           <div class="space-y-3">
             <!-- Notification 1 - Unread -->
             <div class="flex gap-4 p-4 bg-purple-50 dark:bg-purple-900/20 border-l-4 border-purple-600 rounded-lg">
-              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary-600 flex items-center justify-center">
                 <i data-lucide="file-text" class="w-5 h-5 text-white"></i>
               </div>
               <div class="flex-1">
-                <p class="text-sm font-semibold text-gray-900 dark:text-white">New Article Published</p>
-                <p class="text-sm text-gray-700 dark:text-gray-300 mt-1">"Advanced Caching Strategies" is now available in the Core Concepts section.</p>
-                <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">2 hours ago</p>
+                <p class="text-sm font-semibold text-neutral-900 dark:text-white">New Article Published</p>
+                <p class="text-sm text-neutral-700 dark:text-neutral-300 mt-1">"Advanced Caching Strategies" is now available in the Core Concepts section.</p>
+                <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-2">2 hours ago</p>
               </div>
-              <button class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+              <button class="text-neutral-400 hover:text-neutral-600 dark:hover:text-gray-300">
                 <i data-lucide="x" class="w-4 h-4"></i>
               </button>
             </div>
             
             <!-- Notification 2 - Read -->
-            <div class="flex gap-4 p-4 hover:bg-gray-50 dark:hover:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
+            <div class="flex gap-4 p-4 hover:bg-white dark:hover:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg">
               <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center">
                 <i data-lucide="message-circle" class="w-5 h-5 text-white"></i>
               </div>
               <div class="flex-1">
-                <p class="text-sm font-semibold text-gray-900 dark:text-white">Comment Reply</p>
-                <p class="text-sm text-gray-700 dark:text-gray-300 mt-1">John Smith replied to your comment on "Getting Started"</p>
-                <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">5 hours ago</p>
+                <p class="text-sm font-semibold text-neutral-900 dark:text-white">Comment Reply</p>
+                <p class="text-sm text-neutral-700 dark:text-neutral-300 mt-1">John Smith replied to your comment on "Getting Started"</p>
+                <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-2">5 hours ago</p>
               </div>
-              <button class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+              <button class="text-neutral-400 hover:text-neutral-600 dark:hover:text-gray-300">
                 <i data-lucide="x" class="w-4 h-4"></i>
               </button>
             </div>
             
             <!-- Notification 3 - Read -->
-            <div class="flex gap-4 p-4 hover:bg-gray-50 dark:hover:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
+            <div class="flex gap-4 p-4 hover:bg-white dark:hover:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg">
               <div class="flex-shrink-0 w-10 h-10 rounded-full bg-green-600 flex items-center justify-center">
                 <i data-lucide="check-circle" class="w-5 h-5 text-white"></i>
               </div>
               <div class="flex-1">
-                <p class="text-sm font-semibold text-gray-900 dark:text-white">Profile Updated</p>
-                <p class="text-sm text-gray-700 dark:text-gray-300 mt-1">Your profile information was successfully updated.</p>
-                <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">1 day ago</p>
+                <p class="text-sm font-semibold text-neutral-900 dark:text-white">Profile Updated</p>
+                <p class="text-sm text-neutral-700 dark:text-neutral-300 mt-1">Your profile information was successfully updated.</p>
+                <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-2">1 day ago</p>
               </div>
-              <button class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+              <button class="text-neutral-400 hover:text-neutral-600 dark:hover:text-gray-300">
                 <i data-lucide="x" class="w-4 h-4"></i>
               </button>
             </div>
             
             <!-- Notification 4 -->
-            <div class="flex gap-4 p-4 hover:bg-gray-50 dark:hover:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
+            <div class="flex gap-4 p-4 hover:bg-white dark:hover:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg">
               <div class="flex-shrink-0 w-10 h-10 rounded-full bg-orange-600 flex items-center justify-center">
                 <i data-lucide="alert-triangle" class="w-5 h-5 text-white"></i>
               </div>
               <div class="flex-1">
-                <p class="text-sm font-semibold text-gray-900 dark:text-white">Security Alert</p>
-                <p class="text-sm text-gray-700 dark:text-gray-300 mt-1">New login from Chrome on Windows detected.</p>
-                <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">2 days ago</p>
+                <p class="text-sm font-semibold text-neutral-900 dark:text-white">Security Alert</p>
+                <p class="text-sm text-neutral-700 dark:text-neutral-300 mt-1">New login from Chrome on Windows detected.</p>
+                <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-2">2 days ago</p>
               </div>
-              <button class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+              <button class="text-neutral-400 hover:text-neutral-600 dark:hover:text-gray-300">
                 <i data-lucide="x" class="w-4 h-4"></i>
               </button>
             </div>
             
             <!-- Notification 5 -->
-            <div class="flex gap-4 p-4 hover:bg-gray-50 dark:hover:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
+            <div class="flex gap-4 p-4 hover:bg-white dark:hover:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg">
               <div class="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center">
                 <i data-lucide="star" class="w-5 h-5 text-white"></i>
               </div>
               <div class="flex-1">
-                <p class="text-sm font-semibold text-gray-900 dark:text-white">Product Update</p>
-                <p class="text-sm text-gray-700 dark:text-gray-300 mt-1">Discover CX v3.5 released with new AI features.</p>
-                <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">3 days ago</p>
+                <p class="text-sm font-semibold text-neutral-900 dark:text-white">Product Update</p>
+                <p class="text-sm text-neutral-700 dark:text-neutral-300 mt-1">Discover CX v3.5 released with new AI features.</p>
+                <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-2">3 days ago</p>
               </div>
-              <button class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+              <button class="text-neutral-400 hover:text-neutral-600 dark:hover:text-gray-300">
                 <i data-lucide="x" class="w-4 h-4"></i>
               </button>
             </div>
           </div>
           
           <!-- Mark All Read -->
-          <div class="flex items-center justify-between mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-            <button class="text-sm text-purple-600 dark:text-purple-400 hover:text-purple-700 font-semibold">
+          <div class="flex items-center justify-between mt-6 pt-6 border-t border-neutral-200 dark:border-neutral-700">
+            <button class="text-sm text-primary-600 dark:text-primary-400 hover:text-primary-700 font-semibold">
               Mark all as read
             </button>
-            <button class="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white font-semibold">
+            <button class="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white font-semibold">
               Clear all notifications
             </button>
           </div>
@@ -472,119 +468,119 @@
         
         <!-- Subscriptions Tab Content -->
         <div id="subscriptions-tab" class="tab-content hidden p-6">
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Email Subscriptions</h3>
-          <p class="text-sm text-gray-600 dark:text-gray-400 mb-6">Choose what updates you want to receive via email</p>
+          <h3 class="text-lg font-semibold text-neutral-900 dark:text-white mb-2">Email Subscriptions</h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400 mb-6">Choose what updates you want to receive via email</p>
           
           <div class="space-y-4">
             <!-- Subscription Group 1: Documentation -->
-            <div class="border border-gray-200 dark:border-gray-700 rounded-xl p-6">
-              <h4 class="font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                <i data-lucide="book-open" class="w-5 h-5 text-purple-600"></i>
+            <div class="border border-neutral-200 dark:border-neutral-700 rounded-xl p-6">
+              <h4 class="font-semibold text-neutral-900 dark:text-white mb-4 flex items-center gap-2">
+                <i data-lucide="book-open" class="w-5 h-5 text-primary-600"></i>
                 Documentation Updates
               </h4>
               <div class="space-y-4">
-                <div class="flex items-start justify-between py-3 border-b border-gray-200 dark:border-gray-700">
+                <div class="flex items-start justify-between py-3 border-b border-neutral-200 dark:border-neutral-700">
                   <div class="flex-1">
-                    <p class="font-medium text-gray-900 dark:text-white">New Articles</p>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Get notified when new documentation is published</p>
+                    <p class="font-medium text-neutral-900 dark:text-white">New Articles</p>
+                    <p class="text-sm text-neutral-600 dark:text-neutral-400 mt-1">Get notified when new documentation is published</p>
                   </div>
                   <label class="relative inline-flex items-center cursor-pointer ml-4">
                     <input type="checkbox" checked class="sr-only peer">
-                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-500 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-purple-600"></div>
+                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-500 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-600"></div>
                   </label>
                 </div>
                 
-                <div class="flex items-start justify-between py-3 border-b border-gray-200 dark:border-gray-700">
+                <div class="flex items-start justify-between py-3 border-b border-neutral-200 dark:border-neutral-700">
                   <div class="flex-1">
-                    <p class="font-medium text-gray-900 dark:text-white">Article Updates</p>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">When articles you've bookmarked are updated</p>
+                    <p class="font-medium text-neutral-900 dark:text-white">Article Updates</p>
+                    <p class="text-sm text-neutral-600 dark:text-neutral-400 mt-1">When articles you've bookmarked are updated</p>
                   </div>
                   <label class="relative inline-flex items-center cursor-pointer ml-4">
                     <input type="checkbox" checked class="sr-only peer">
-                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-500 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-purple-600"></div>
+                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-500 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-600"></div>
                   </label>
                 </div>
                 
                 <div class="flex items-start justify-between py-3">
                   <div class="flex-1">
-                    <p class="font-medium text-gray-900 dark:text-white">Weekly Digest</p>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Summary of new and updated documentation</p>
+                    <p class="font-medium text-neutral-900 dark:text-white">Weekly Digest</p>
+                    <p class="text-sm text-neutral-600 dark:text-neutral-400 mt-1">Summary of new and updated documentation</p>
                   </div>
                   <label class="relative inline-flex items-center cursor-pointer ml-4">
                     <input type="checkbox" class="sr-only peer">
-                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-500 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-purple-600"></div>
+                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-500 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-600"></div>
                   </label>
                 </div>
               </div>
             </div>
             
             <!-- Subscription Group 2: Product -->
-            <div class="border border-gray-200 dark:border-gray-700 rounded-xl p-6">
-              <h4 class="font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                <i data-lucide="package" class="w-5 h-5 text-purple-600"></i>
+            <div class="border border-neutral-200 dark:border-neutral-700 rounded-xl p-6">
+              <h4 class="font-semibold text-neutral-900 dark:text-white mb-4 flex items-center gap-2">
+                <i data-lucide="package" class="w-5 h-5 text-primary-600"></i>
                 Product Updates
               </h4>
               <div class="space-y-4">
-                <div class="flex items-start justify-between py-3 border-b border-gray-200 dark:border-gray-700">
+                <div class="flex items-start justify-between py-3 border-b border-neutral-200 dark:border-neutral-700">
                   <div class="flex-1">
-                    <p class="font-medium text-gray-900 dark:text-white">Release Announcements</p>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Major releases and new features</p>
+                    <p class="font-medium text-neutral-900 dark:text-white">Release Announcements</p>
+                    <p class="text-sm text-neutral-600 dark:text-neutral-400 mt-1">Major releases and new features</p>
                   </div>
                   <label class="relative inline-flex items-center cursor-pointer ml-4">
                     <input type="checkbox" checked class="sr-only peer">
-                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-500 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-purple-600"></div>
+                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-500 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-600"></div>
                   </label>
                 </div>
                 
                 <div class="flex items-start justify-between py-3">
-                  <p class="font-medium text-gray-900 dark:text-white">Beta Features</p>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Early access to new capabilities</p>
+                  <p class="font-medium text-neutral-900 dark:text-white">Beta Features</p>
+                    <p class="text-sm text-neutral-600 dark:text-neutral-400 mt-1">Early access to new capabilities</p>
                   </div>
                   <label class="relative inline-flex items-center cursor-pointer ml-4">
                     <input type="checkbox" class="sr-only peer">
-                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-500 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-purple-600"></div>
+                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-500 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-600"></div>
                   </label>
                 </div>
               </div>
             </div>
             
             <!-- Subscription Group 3: Community -->
-            <div class="border border-gray-200 dark:border-gray-700 rounded-xl p-6">
-              <h4 class="font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                <i data-lucide="users" class="w-5 h-5 text-purple-600"></i>
+            <div class="border border-neutral-200 dark:border-neutral-700 rounded-xl p-6">
+              <h4 class="font-semibold text-neutral-900 dark:text-white mb-4 flex items-center gap-2">
+                <i data-lucide="users" class="w-5 h-5 text-primary-600"></i>
                 Community & Support
               </h4>
               <div class="space-y-4">
-                <div class="flex items-start justify-between py-3 border-b border-gray-200 dark:border-gray-700">
+                <div class="flex items-start justify-between py-3 border-b border-neutral-200 dark:border-neutral-700">
                   <div class="flex-1">
-                    <p class="font-medium text-gray-900 dark:text-white">Comment Replies</p>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">When someone replies to your comments</p>
+                    <p class="font-medium text-neutral-900 dark:text-white">Comment Replies</p>
+                    <p class="text-sm text-neutral-600 dark:text-neutral-400 mt-1">When someone replies to your comments</p>
                   </div>
                   <label class="relative inline-flex items-center cursor-pointer ml-4">
                     <input type="checkbox" checked class="sr-only peer">
-                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-500 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-purple-600"></div>
+                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-500 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-600"></div>
                   </label>
                 </div>
                 
-                <div class="flex items-start justify-between py-3 border-b border-gray-200 dark:border-gray-700">
+                <div class="flex items-start justify-between py-3 border-b border-neutral-200 dark:border-neutral-700">
                   <div class="flex-1">
-                    <p class="font-medium text-gray-900 dark:text-white">Mentions</p>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">When you're @mentioned in discussions</p>
+                    <p class="font-medium text-neutral-900 dark:text-white">Mentions</p>
+                    <p class="text-sm text-neutral-600 dark:text-neutral-400 mt-1">When you're @mentioned in discussions</p>
                   </div>
                   <label class="relative inline-flex items-center cursor-pointer ml-4">
                     <input type="checkbox" checked class="sr-only peer">
-                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-500 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-purple-600"></div>
+                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-500 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-600"></div>
                   </label>
                 </div>
                 
                 <div class="flex items-start justify-between py-3">
                   <div class="flex-1">
-                    <p class="font-medium text-gray-900 dark:text-white">Marketing & Tips</p>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Best practices, tips, and case studies</p>
+                    <p class="font-medium text-neutral-900 dark:text-white">Marketing & Tips</p>
+                    <p class="text-sm text-neutral-600 dark:text-neutral-400 mt-1">Best practices, tips, and case studies</p>
                   </div>
                   <label class="relative inline-flex items-center cursor-pointer ml-4">
                     <input type="checkbox" class="sr-only peer">
-                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-500 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-purple-600"></div>
+                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-500 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-600"></div>
                   </label>
                 </div>
               </div>
@@ -593,69 +589,69 @@
         
         <!-- Security Tab Content -->
         <div id="security-tab" class="tab-content hidden p-6">
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Security Settings</h3>
-          <p class="text-sm text-gray-600 dark:text-gray-400 mb-6">Manage your account security and privacy</p>
+          <h3 class="text-lg font-semibold text-neutral-900 dark:text-white mb-2">Security Settings</h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400 mb-6">Manage your account security and privacy</p>
           
           <!-- Password Section -->
           <div class="mb-8">
-            <h4 class="font-semibold text-gray-900 dark:text-white mb-4">Password</h4>
-            <button class="w-full flex items-center justify-between p-4 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+            <h4 class="font-semibold text-neutral-900 dark:text-white mb-4">Password</h4>
+            <button class="w-full flex items-center justify-between p-4 border border-neutral-300 dark:border-gray-600 rounded-lg hover:bg-white dark:hover:bg-neutral-800 transition-colors">
               <div class="flex items-center gap-3">
-                <i data-lucide="key" class="w-5 h-5 text-purple-600"></i>
+                <i data-lucide="key" class="w-5 h-5 text-primary-600"></i>
                 <div class="text-left">
-                  <p class="font-medium text-gray-900 dark:text-white">Change Password</p>
-                  <p class="text-xs text-gray-600 dark:text-gray-400">Last changed 3 months ago</p>
+                  <p class="font-medium text-neutral-900 dark:text-white">Change Password</p>
+                  <p class="text-xs text-neutral-600 dark:text-neutral-400">Last changed 3 months ago</p>
                 </div>
               </div>
-              <i data-lucide="chevron-right" class="w-5 h-5 text-gray-400"></i>
+              <i data-lucide="chevron-right" class="w-5 h-5 text-neutral-400"></i>
             </button>
           </div>
           
           <!-- Two-Factor Authentication -->
           <div class="mb-8">
-            <h4 class="font-semibold text-gray-900 dark:text-white mb-4">Two-Factor Authentication</h4>
-            <div class="border border-gray-200 dark:border-gray-700 rounded-xl p-6">
+            <h4 class="font-semibold text-neutral-900 dark:text-white mb-4">Two-Factor Authentication</h4>
+            <div class="border border-neutral-200 dark:border-neutral-700 rounded-xl p-6">
               <div class="flex items-start justify-between mb-4">
                 <div class="flex items-center gap-3">
                   <div class="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
                     <i data-lucide="shield-check" class="w-6 h-6 text-green-600"></i>
                   </div>
                   <div>
-                    <p class="font-semibold text-gray-900 dark:text-white">Enabled</p>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">Extra security for your account</p>
+                    <p class="font-semibold text-neutral-900 dark:text-white">Enabled</p>
+                    <p class="text-sm text-neutral-600 dark:text-neutral-400">Extra security for your account</p>
                   </div>
                 </div>
-                <button class="px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors font-semibold text-sm">
+                <button class="px-4 py-2 border border-neutral-300 dark:border-gray-600 text-neutral-700 dark:text-neutral-300 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors font-semibold text-sm">
                   Manage
                 </button>
               </div>
-              <p class="text-sm text-gray-600 dark:text-gray-400">Using authenticator app (Google Authenticator)</p>
+              <p class="text-sm text-neutral-600 dark:text-neutral-400">Using authenticator app (Google Authenticator)</p>
             </div>
           </div>
           
           <!-- Connected Devices -->
           <div class="mb-8">
-            <h4 class="font-semibold text-gray-900 dark:text-white mb-4">Connected Devices</h4>
+            <h4 class="font-semibold text-neutral-900 dark:text-white mb-4">Connected Devices</h4>
             <div class="space-y-3">
               <!-- Current Device -->
               <div class="flex items-center justify-between p-4 bg-purple-50 dark:bg-purple-900/20 border-l-4 border-purple-600 rounded-lg">
                 <div class="flex items-center gap-3">
-                  <i data-lucide="laptop" class="w-5 h-5 text-purple-600"></i>
+                  <i data-lucide="laptop" class="w-5 h-5 text-primary-600"></i>
                   <div>
-                    <p class="font-medium text-gray-900 dark:text-white">MacBook Pro (Current)</p>
-                    <p class="text-xs text-gray-600 dark:text-gray-400">Chrome • San Francisco, CA • Active now</p>
+                    <p class="font-medium text-neutral-900 dark:text-white">MacBook Pro (Current)</p>
+                    <p class="text-xs text-neutral-600 dark:text-neutral-400">Chrome • San Francisco, CA • Active now</p>
                   </div>
                 </div>
                 <span class="text-xs bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-2 py-1 rounded-full font-semibold">Active</span>
               </div>
               
               <!-- Other Device 1 -->
-              <div class="flex items-center justify-between p-4 border border-gray-200 dark:border-gray-700 rounded-lg">
+              <div class="flex items-center justify-between p-4 border border-neutral-200 dark:border-neutral-700 rounded-lg">
                 <div class="flex items-center gap-3">
-                  <i data-lucide="smartphone" class="w-5 h-5 text-gray-600 dark:text-gray-400"></i>
+                  <i data-lucide="smartphone" class="w-5 h-5 text-neutral-600 dark:text-neutral-400"></i>
                   <div>
-                    <p class="font-medium text-gray-900 dark:text-white">iPhone 14 Pro</p>
-                    <p class="text-xs text-gray-600 dark:text-gray-400">Safari • Last active 2 hours ago</p>
+                    <p class="font-medium text-neutral-900 dark:text-white">iPhone 14 Pro</p>
+                    <p class="text-xs text-neutral-600 dark:text-neutral-400">Safari • Last active 2 hours ago</p>
                   </div>
                 </div>
                 <button class="text-red-600 dark:text-red-400 hover:text-red-700 text-sm font-semibold">
@@ -664,12 +660,12 @@
               </div>
               
               <!-- Other Device 2 -->
-              <div class="flex items-center justify-between p-4 border border-gray-200 dark:border-gray-700 rounded-lg">
+              <div class="flex items-center justify-between p-4 border border-neutral-200 dark:border-neutral-700 rounded-lg">
                 <div class="flex items-center gap-3">
-                  <i data-lucide="monitor" class="w-5 h-5 text-gray-600 dark:text-gray-400"></i>
+                  <i data-lucide="monitor" class="w-5 h-5 text-neutral-600 dark:text-neutral-400"></i>
                   <div>
-                    <p class="font-medium text-gray-900 dark:text-white">Windows Desktop</p>
-                    <p class="text-xs text-gray-600 dark:text-gray-400">Edge • Last active 1 day ago</p>
+                    <p class="font-medium text-neutral-900 dark:text-white">Windows Desktop</p>
+                    <p class="text-xs text-neutral-600 dark:text-neutral-400">Edge • Last active 1 day ago</p>
                   </div>
                 </div>
                 <button class="text-red-600 dark:text-red-400 hover:text-red-700 text-sm font-semibold">
@@ -681,36 +677,36 @@
           
           <!-- Data & Privacy -->
           <div class="mb-8">
-            <h4 class="font-semibold text-gray-900 dark:text-white mb-4">Data & Privacy</h4>
+            <h4 class="font-semibold text-neutral-900 dark:text-white mb-4">Data & Privacy</h4>
             <div class="space-y-3">
-              <button class="w-full flex items-center justify-between p-4 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+              <button class="w-full flex items-center justify-between p-4 border border-neutral-300 dark:border-gray-600 rounded-lg hover:bg-white dark:hover:bg-neutral-800 transition-colors">
                 <div class="flex items-center gap-3">
-                  <i data-lucide="download" class="w-5 h-5 text-gray-600 dark:text-gray-400"></i>
+                  <i data-lucide="download" class="w-5 h-5 text-neutral-600 dark:text-neutral-400"></i>
                   <div class="text-left">
-                    <p class="font-medium text-gray-900 dark:text-white">Download Your Data</p>
-                    <p class="text-xs text-gray-600 dark:text-gray-400">Export all your profile and activity data</p>
+                    <p class="font-medium text-neutral-900 dark:text-white">Download Your Data</p>
+                    <p class="text-xs text-neutral-600 dark:text-neutral-400">Export all your profile and activity data</p>
                   </div>
                 </div>
-                <i data-lucide="chevron-right" class="w-5 h-5 text-gray-400"></i>
+                <i data-lucide="chevron-right" class="w-5 h-5 text-neutral-400"></i>
               </button>
               
-              <button class="w-full flex items-center justify-between p-4 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+              <button class="w-full flex items-center justify-between p-4 border border-neutral-300 dark:border-gray-600 rounded-lg hover:bg-white dark:hover:bg-neutral-800 transition-colors">
                 <div class="flex items-center gap-3">
-                  <i data-lucide="shield" class="w-5 h-5 text-gray-600 dark:text-gray-400"></i>
+                  <i data-lucide="shield" class="w-5 h-5 text-neutral-600 dark:text-neutral-400"></i>
                   <div class="text-left">
-                    <p class="font-medium text-gray-900 dark:text-white">Privacy Settings</p>
-                    <p class="text-xs text-gray-600 dark:text-gray-400">Control your data and privacy preferences</p>
+                    <p class="font-medium text-neutral-900 dark:text-white">Privacy Settings</p>
+                    <p class="text-xs text-neutral-600 dark:text-neutral-400">Control your data and privacy preferences</p>
                   </div>
                 </div>
-                <i data-lucide="chevron-right" class="w-5 h-5 text-gray-400"></i>
+                <i data-lucide="chevron-right" class="w-5 h-5 text-neutral-400"></i>
               </button>
             </div>
           </div>
           
           <!-- Delete Account -->
-          <div class="border-t border-gray-200 dark:border-gray-700 pt-8">
-            <h4 class="font-semibold text-gray-900 dark:text-white mb-4">Delete Account</h4>
-            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Permanently delete your account and all associated data.</p>
+          <div class="border-t border-neutral-200 dark:border-neutral-700 pt-8">
+            <h4 class="font-semibold text-neutral-900 dark:text-white mb-4">Delete Account</h4>
+            <p class="text-sm text-neutral-600 dark:text-neutral-400 mb-4">Permanently delete your account and all associated data.</p>
             <button id="delete-account-btn" class="px-4 py-2 text-red-600 dark:text-red-400 border border-red-600 dark:border-red-400 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors font-semibold text-sm">
               Delete Account
             </button>
@@ -722,21 +718,21 @@
   
   <!-- Delete Account Confirmation Modal -->
   <div id="delete-account-modal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-    <div class="bg-white dark:bg-gray-900 rounded-xl max-w-md w-full p-6 shadow-2xl">
+    <div class="bg-white dark:bg-neutral-900 rounded-xl max-w-md w-full p-6 shadow-2xl">
       <div class="flex items-start gap-4 mb-4">
         <div class="flex-shrink-0 w-12 h-12 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
           <i data-lucide="alert-triangle" class="w-6 h-6 text-red-600 dark:text-red-400"></i>
         </div>
         <div class="flex-1">
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Delete Account?</h3>
-          <p class="text-sm text-gray-600 dark:text-gray-400">
+          <h3 class="text-lg font-semibold text-neutral-900 dark:text-white mb-2">Delete Account?</h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-400">
             This action cannot be undone. Your account and all associated data will be permanently deleted.
           </p>
         </div>
       </div>
       
       <div class="flex gap-3 mt-6">
-        <button id="cancel-delete-btn" class="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors font-semibold text-sm">
+        <button id="cancel-delete-btn" class="flex-1 px-4 py-2 border border-neutral-300 dark:border-gray-600 text-neutral-700 dark:text-neutral-300 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors font-semibold text-sm">
           Cancel
         </button>
         <button id="confirm-delete-btn" class="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-semibold text-sm">
@@ -749,20 +745,20 @@
   </main>
 
   <!-- Footer -->
-  <footer class="bg-gray-900 dark:bg-black text-white py-12 mt-20" style="width: 100vw; position: relative; left: 0; right: 0;">
+  <footer class="bg-neutral-900 dark:bg-black text-white py-12 mt-20" style="width: 100vw; position: relative; left: 0; right: 0;">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
         <div class="col-span-1">
-          <div class="flex items-center space-x-2 mb-4">
-            <svg class="w-8 h-8 text-indigo-400" viewBox="0 0 32 32" fill="currentColor">
-              <path d="M16 2L3 9v14l13 7 13-7V9L16 2zm0 3.24L25.08 9 16 13.76 6.92 9 16 5.24zM5 10.92l10 5.38v10.46l-10-5.38V10.92zm12 15.84V16.3l10-5.38v10.46l-10 5.38z"/>
-            </svg>
-            <span class="font-bold text-lg">Discover CX</span>
-          </div>
+          <a href="index.html" class="flex items-center gap-2 mb-4">
+            <img src="admin/assets/discover-cx-logo-white.svg" alt="Discover CX" class="h-6 w-auto">
+          </a>
+          <p class="text-sm text-neutral-400 leading-relaxed">
+            Enterprise content management and customer experience platform.
+          </p>
         </div>
         <div>
           <h3 class="font-bold mb-4">Products</h3>
-          <div class="space-y-2 text-sm text-gray-400">
+          <div class="space-y-2 text-sm text-neutral-400">
             <a href="#" class="block hover:text-white">Discover CX Platform</a>
             <a href="#" class="block hover:text-white">AI Assists</a>
             <a href="#" class="block hover:text-white">InSite Search</a>
@@ -770,7 +766,7 @@
         </div>
         <div>
           <h3 class="font-bold mb-4">Resources</h3>
-          <div class="space-y-2 text-sm text-gray-400">
+          <div class="space-y-2 text-sm text-neutral-400">
             <a href="#" class="block hover:text-white">Documentation</a>
             <a href="#" class="block hover:text-white">API Reference</a>
             <a href="#" class="block hover:text-white">Knowledge Base</a>
@@ -778,14 +774,14 @@
         </div>
         <div>
           <h3 class="font-bold mb-4">Company</h3>
-          <div class="space-y-2 text-sm text-gray-400">
+          <div class="space-y-2 text-sm text-neutral-400">
             <a href="#" class="block hover:text-white">About Us</a>
             <a href="#" class="block hover:text-white">Contact Sales</a>
             <a href="#" class="block hover:text-white">Support</a>
           </div>
         </div>
       </div>
-      <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-500">
+      <div class="border-t border-neutral-700 mt-8 pt-8 text-center text-sm text-neutral-500">
         © 2025 Discover CX by Ingeniux. All rights reserved.
       </div>
     </div>
@@ -795,34 +791,34 @@
   <div id="cmd-k-modal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 p-4 md:p-8">
     <div class="max-w-3xl mx-auto mt-20">
       <!-- Search Container -->
-      <div class="bg-white dark:bg-gray-900 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+      <div class="bg-white dark:bg-neutral-900 rounded-xl shadow-2xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
         
         <!-- Search Input -->
-        <div class="flex items-center gap-3 px-4 py-4 border-b border-gray-200 dark:border-gray-700">
-          <i data-lucide="search" class="w-5 h-5 text-gray-400"></i>
+        <div class="flex items-center gap-3 px-4 py-4 border-b border-neutral-200 dark:border-neutral-700">
+          <i data-lucide="search" class="w-5 h-5 text-neutral-400"></i>
           <input 
             id="cmd-k-input"
             type="text" 
             placeholder="Search documentation or ask AI..." 
-            class="flex-1 bg-transparent text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none text-lg"
+            class="flex-1 bg-transparent text-neutral-900 dark:text-white placeholder-gray-400 focus:outline-none text-lg"
             autocomplete="off"
           />
-          <button id="cmd-k-close" class="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-800 rounded">
-            <i data-lucide="x" class="w-5 h-5 text-gray-400"></i>
+          <button id="cmd-k-close" class="p-1.5 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded">
+            <i data-lucide="x" class="w-5 h-5 text-neutral-400"></i>
           </button>
         </div>
         
         <!-- Filters -->
-        <div class="flex items-center gap-2 px-4 py-3 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
-          <span class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">Filter:</span>
+        <div class="flex items-center gap-2 px-4 py-3 border-b border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800">
+          <span class="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wide">Filter:</span>
           <div class="flex gap-2">
-            <button class="filter-btn active px-3 py-1.5 rounded-lg text-xs font-semibold bg-purple-600 text-white">
+            <button class="filter-btn active px-3 py-1.5 rounded-lg text-xs font-semibold bg-primary-600 text-white">
               All Results
             </button>
-            <button class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600">
+            <button class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 border border-neutral-300 dark:border-gray-600 hover:bg-neutral-100 dark:hover:bg-gray-600">
               Documentation
             </button>
-            <button class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600">
+            <button class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 border border-neutral-300 dark:border-gray-600 hover:bg-neutral-100 dark:hover:bg-gray-600">
               AI Answers
             </button>
           </div>
@@ -833,19 +829,19 @@
           
           <!-- Recent Searches (when empty) -->
           <div id="recent-searches" class="p-4">
-            <p class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3">Recent Searches</p>
+            <p class="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wide mb-3">Recent Searches</p>
             <div class="space-y-1">
-              <button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-left">
-                <i data-lucide="clock" class="w-4 h-4 text-gray-400"></i>
-                <span class="text-sm text-gray-700 dark:text-gray-300">Profile settings</span>
+              <button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors text-left">
+                <i data-lucide="clock" class="w-4 h-4 text-neutral-400"></i>
+                <span class="text-sm text-neutral-700 dark:text-neutral-300">Profile settings</span>
               </button>
-              <button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-left">
-                <i data-lucide="clock" class="w-4 h-4 text-gray-400"></i>
-                <span class="text-sm text-gray-700 dark:text-gray-300">Notification preferences</span>
+              <button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors text-left">
+                <i data-lucide="clock" class="w-4 h-4 text-neutral-400"></i>
+                <span class="text-sm text-neutral-700 dark:text-neutral-300">Notification preferences</span>
               </button>
-              <button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-left">
-                <i data-lucide="clock" class="w-4 h-4 text-gray-400"></i>
-                <span class="text-sm text-gray-700 dark:text-gray-300">Two-factor authentication</span>
+              <button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors text-left">
+                <i data-lucide="clock" class="w-4 h-4 text-neutral-400"></i>
+                <span class="text-sm text-neutral-700 dark:text-neutral-300">Two-factor authentication</span>
               </button>
             </div>
           </div>
@@ -854,32 +850,32 @@
           <div id="search-results" class="hidden">
             <!-- Documentation Results -->
             <div class="p-4">
-              <p class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3">Documentation</p>
+              <p class="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wide mb-3">Documentation</p>
               <div class="space-y-1">
-                <a href="doc-page.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                <a href="doc-page.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
                   <i data-lucide="file-text" class="w-5 h-5 text-blue-600 dark:text-blue-400"></i>
                   <div class="flex-1">
-                    <p class="text-sm font-semibold text-gray-900 dark:text-white">Getting Started</p>
-                    <p class="text-xs text-gray-600 dark:text-gray-400">Learn the basics of Discover CX</p>
+                    <p class="text-sm font-semibold text-neutral-900 dark:text-white">Getting Started</p>
+                    <p class="text-xs text-neutral-600 dark:text-neutral-400">Learn the basics of Discover CX</p>
                   </div>
-                  <span class="text-xs text-gray-400">Guide</span>
+                  <span class="text-xs text-neutral-400">Guide</span>
                 </a>
               </div>
             </div>
             
             <!-- AI Answers -->
-            <div class="p-4 border-t border-gray-200 dark:border-gray-700">
-              <p class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3 flex items-center gap-2">
+            <div class="p-4 border-t border-neutral-200 dark:border-neutral-700">
+              <p class="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wide mb-3 flex items-center gap-2">
                 <i data-lucide="sparkles" class="w-3 h-3"></i>
                 AI Answers
               </p>
               <div class="space-y-3">
-                <div class="px-3 py-3 rounded-lg bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800">
-                  <p class="text-sm font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
-                    <i data-lucide="sparkles" class="w-4 h-4 text-purple-600 dark:text-purple-400"></i>
+                <div class="px-3 py-3 rounded-lg bg-purple-50 dark:bg-purple-900/20 border border-primary-200 dark:border-purple-800">
+                  <p class="text-sm font-semibold text-neutral-900 dark:text-white mb-2 flex items-center gap-2">
+                    <i data-lucide="sparkles" class="w-4 h-4 text-primary-600 dark:text-primary-400"></i>
                     Quick Answer
                   </p>
-                  <p class="text-sm text-gray-700 dark:text-gray-300">You can update your profile information in the Profile tab. Changes will be saved when you click "Save Changes".</p>
+                  <p class="text-sm text-neutral-700 dark:text-neutral-300">You can update your profile information in the Profile tab. Changes will be saved when you click "Save Changes".</p>
                 </div>
               </div>
             </div>
@@ -888,18 +884,18 @@
         </div>
         
         <!-- Footer hint -->
-        <div class="flex items-center justify-between px-4 py-3 bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
-          <div class="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400">
+        <div class="flex items-center justify-between px-4 py-3 bg-white dark:bg-neutral-800 border-t border-neutral-200 dark:border-neutral-700">
+          <div class="flex items-center gap-4 text-xs text-neutral-500 dark:text-neutral-400">
             <span class="flex items-center gap-1.5">
-              <kbd class="px-1.5 py-0.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded text-xs">↑↓</kbd>
+              <kbd class="px-1.5 py-0.5 bg-white dark:bg-neutral-700 border border-neutral-300 dark:border-gray-600 rounded text-xs">↑↓</kbd>
               Navigate
             </span>
             <span class="flex items-center gap-1.5">
-              <kbd class="px-1.5 py-0.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded text-xs">↵</kbd>
+              <kbd class="px-1.5 py-0.5 bg-white dark:bg-neutral-700 border border-neutral-300 dark:border-gray-600 rounded text-xs">↵</kbd>
               Select
             </span>
             <span class="flex items-center gap-1.5">
-              <kbd class="px-1.5 py-0.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded text-xs">esc</kbd>
+              <kbd class="px-1.5 py-0.5 bg-white dark:bg-neutral-700 border border-neutral-300 dark:border-gray-600 rounded text-xs">esc</kbd>
               Close
             </span>
           </div>
@@ -943,18 +939,18 @@
       
       // Reset all
       Object.values(buttons).forEach(btn => {
-        btn?.classList.remove('bg-yellow-100', 'dark:bg-yellow-900/30', 'bg-gray-700', 'bg-gray-100');
-        btn?.classList.add('hover:bg-gray-100', 'dark:hover:bg-gray-700');
+        btn?.classList.remove('bg-yellow-100', 'dark:bg-yellow-900/30', 'bg-gray-700', 'bg-neutral-100');
+        btn?.classList.add('hover:bg-neutral-100', 'dark:hover:bg-neutral-700');
       });
       
       // Highlight active
       if (activeTheme === 'light') {
         buttons.light?.classList.add('bg-yellow-100', 'dark:bg-yellow-900/30');
-        buttons.light?.classList.remove('hover:bg-gray-100', 'dark:hover:bg-gray-700');
+        buttons.light?.classList.remove('hover:bg-neutral-100', 'dark:hover:bg-neutral-700');
       } else if (activeTheme === 'dark') {
-        buttons.dark?.classList.add('bg-gray-100', 'dark:bg-gray-700');
+        buttons.dark?.classList.add('bg-neutral-100', 'dark:bg-neutral-700');
       } else {
-        buttons.auto?.classList.add('bg-gray-100', 'dark:bg-gray-700');
+        buttons.auto?.classList.add('bg-neutral-100', 'dark:bg-neutral-700');
       }
       
       lucide.createIcons();
@@ -1048,12 +1044,12 @@
     document.querySelectorAll('.filter-btn').forEach(btn => {
       btn.addEventListener('click', function() {
         document.querySelectorAll('.filter-btn').forEach(b => {
-          b.classList.remove('bg-purple-600', 'text-white');
-          b.classList.add('bg-white', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300', 'border', 'border-gray-300', 'dark:border-gray-600');
+          b.classList.remove('bg-primary-600', 'text-white');
+          b.classList.add('bg-white', 'dark:bg-neutral-700', 'text-neutral-700', 'dark:text-neutral-300', 'border', 'border-neutral-300', 'dark:border-gray-600');
         });
         
-        this.classList.remove('bg-white', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300', 'border', 'border-gray-300', 'dark:border-gray-600');
-        this.classList.add('bg-purple-600', 'text-white');
+        this.classList.remove('bg-white', 'dark:bg-neutral-700', 'text-neutral-700', 'dark:text-neutral-300', 'border', 'border-neutral-300', 'dark:border-gray-600');
+        this.classList.add('bg-primary-600', 'text-white');
       });
     });
   </script>
@@ -1067,12 +1063,12 @@
         
         // Update tab buttons
         document.querySelectorAll('.tab-btn').forEach(b => {
-          b.classList.remove('border-purple-600', 'text-purple-600', 'dark:text-purple-400');
-          b.classList.add('border-transparent', 'text-gray-600', 'dark:text-gray-400');
+          b.classList.remove('border-purple-600', 'text-primary-600', 'dark:text-primary-400');
+          b.classList.add('border-transparent', 'text-neutral-600', 'dark:text-neutral-400');
         });
         
-        this.classList.remove('border-transparent', 'text-gray-600', 'dark:text-gray-400');
-        this.classList.add('border-purple-600', 'text-purple-600', 'dark:text-purple-400');
+        this.classList.remove('border-transparent', 'text-neutral-600', 'dark:text-neutral-400');
+        this.classList.add('border-purple-600', 'text-primary-600', 'dark:text-primary-400');
         
         // Update tab content
         document.querySelectorAll('.tab-content').forEach(content => {
