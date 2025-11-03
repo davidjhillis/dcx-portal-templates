@@ -1729,6 +1729,80 @@
     IGXDocs.glossaryActive = false;
     IGXDocs.summaryGenerated = false;
     
+    // Code Explanation Configuration
+    const CodeExplainConfig = {
+      enabled: true,
+      // Target selector - only <code> inside <pre> tags
+      targetSelector: 'pre code',
+      // Minimum lines of code to show button
+      minLines: 2,
+      // Exclude elements matching these selectors
+      excludeSelector: '.prose pre, .quote, .formatted-text, [data-no-explain]',
+      // Require code indicators to avoid formatted text
+      requireCodeIndicators: true,
+      codeIndicators: ['const', 'function', 'var', 'let', 'class', 'import', 'export', 'async', 'await', '{', '}', '=>', '()', 'return'],
+      // Button position
+      buttonPosition: 'top-right'
+    };
+    
+    // Auto-inject "Explain this code" buttons
+    IGXDocs.initCodeExplainButtons = function() {
+      if (!CodeExplainConfig.enabled) return;
+      
+      const codeElements = document.querySelectorAll(CodeExplainConfig.targetSelector);
+      
+      codeElements.forEach((codeElement, index) => {
+        // Skip if excluded
+        if (CodeExplainConfig.excludeSelector && 
+            codeElement.closest(CodeExplainConfig.excludeSelector)) {
+          return;
+        }
+        
+        const codeText = codeElement.textContent || '';
+        
+        // Check minimum lines
+        const lines = codeText.trim().split('\n').length;
+        if (lines < CodeExplainConfig.minLines) return;
+        
+        // Check for code indicators if required
+        if (CodeExplainConfig.requireCodeIndicators) {
+          const hasIndicator = CodeExplainConfig.codeIndicators.some(indicator => 
+            codeText.includes(indicator)
+          );
+          if (!hasIndicator) return;
+        }
+        
+        // Find the container (look for .not-prose wrapper or the pre tag)
+        const container = codeElement.closest('.not-prose') || codeElement.closest('pre');
+        if (!container) return;
+        
+        // Skip if button already exists
+        if (container.querySelector('.code-actions')) return;
+        
+        // Create button bar if not exists
+        const buttonBar = document.createElement('div');
+        buttonBar.className = 'flex items-center justify-between mb-2';
+        buttonBar.innerHTML = `
+          <button class="explain-code-btn inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 rounded-lg text-sm font-semibold hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-all" data-code-index="${index}">
+            <i data-lucide="sparkles" class="w-4 h-4"></i>
+            Explain this code
+          </button>
+          <button class="copy-code-btn inline-flex items-center gap-1.5 px-3 py-1.5 bg-neutral-700 dark:bg-neutral-800 text-white rounded-md text-xs font-semibold hover:bg-neutral-600">
+            <i data-lucide="copy" class="w-3 h-3"></i>
+            Copy
+          </button>
+        `;
+        
+        // Store reference to code element
+        buttonBar.querySelector('.explain-code-btn').codeElement = codeElement;
+        buttonBar.querySelector('.copy-code-btn').codeElement = codeElement;
+        
+        container.insertBefore(buttonBar, container.firstChild);
+      });
+      
+      lucide.createIcons();
+    };
+    
     // AI Summary - Streaming Text Effect
     IGXDocs.streamText = async function(element, text, speed = 30) {
       element.textContent = '';
@@ -1749,6 +1823,204 @@
           li.textContent += bullet[i];
           await new Promise(resolve => setTimeout(resolve, speed));
         }
+      }
+    };
+    
+    // Code Explanation - Inline with Q&A
+    IGXDocs.explainCode = async function(codeElement, codeIndex) {
+      // Check if explanation already exists
+      const existingExplanation = codeElement.closest('.not-prose, pre').parentElement.querySelector(`#code-explanation-${codeIndex}`);
+      if (existingExplanation) return; // Already explained
+      
+      const container = codeElement.closest('.not-prose') || codeElement.parentElement;
+      
+      // Create explanation container
+      const explanationContainer = document.createElement('div');
+      explanationContainer.id = `code-explanation-${codeIndex}`;
+      explanationContainer.className = 'mt-6 mb-8 p-6 border-2 border-neutral-200 dark:border-neutral-600 rounded-xl bg-white dark:bg-neutral-800';
+      explanationContainer.innerHTML = `
+        <!-- Thinking State -->
+        <div class="code-thinking flex items-center gap-3 py-4">
+          <div class="flex items-center gap-2">
+            <div class="w-2 h-2 bg-primary-600 dark:bg-primary-400 rounded-full animate-pulse"></div>
+            <div class="w-2 h-2 bg-primary-600 dark:bg-primary-400 rounded-full animate-pulse" style="animation-delay: 0.2s"></div>
+            <div class="w-2 h-2 bg-primary-600 dark:bg-primary-400 rounded-full animate-pulse" style="animation-delay: 0.4s"></div>
+          </div>
+          <span class="text-sm text-neutral-600 dark:text-neutral-400">Analyzing code<span class="inline-block w-0.5 h-4 bg-neutral-600 dark:bg-neutral-400 ml-1 animate-blink"></span></span>
+        </div>
+        
+        <!-- Explanation Content (Hidden initially) -->
+        <div class="code-explanation-text hidden">
+          <div class="mb-6">
+            <h4 class="text-sm font-semibold text-neutral-900 dark:text-white mb-3">What This Code Does</h4>
+            <p class="text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed code-overview"></p>
+          </div>
+          
+          <div class="mb-6">
+            <h4 class="text-sm font-semibold text-neutral-900 dark:text-white mb-3">Line-by-line breakdown:</h4>
+            <div class="space-y-4 code-breakdown"></div>
+          </div>
+          
+          <!-- Ask Questions Section -->
+          <div class="mt-6 pt-6 border-t border-neutral-200 dark:border-neutral-700">
+            <h4 class="text-sm font-semibold text-neutral-900 dark:text-white mb-3">Ask a question about this code</h4>
+            <div class="flex flex-wrap gap-2 mb-4 quick-questions">
+              <button class="code-question-btn px-3 py-1.5 bg-neutral-50 dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-600 rounded-full text-xs font-medium text-neutral-700 dark:text-neutral-300 hover:border-primary-500 dark:hover:border-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors">
+                What does this do?
+              </button>
+              <button class="code-question-btn px-3 py-1.5 bg-neutral-50 dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-600 rounded-full text-xs font-medium text-neutral-700 dark:text-neutral-300 hover:border-primary-500 dark:hover:border-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors">
+                Why use this approach?
+              </button>
+              <button class="code-question-btn px-3 py-1.5 bg-neutral-50 dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-600 rounded-full text-xs font-medium text-neutral-700 dark:text-neutral-300 hover:border-primary-500 dark:hover:border-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors">
+                Are there alternatives?
+              </button>
+            </div>
+            <div class="flex gap-2">
+              <input 
+                type="text" 
+                placeholder="Or type your own question..."
+                class="flex-1 px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white placeholder-neutral-400 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 code-custom-question"
+              />
+              <button class="px-4 py-2 bg-gradient-to-r from-primary-600 to-blue-600 text-white rounded-lg hover:from-primary-700 hover:to-blue-700 transition-all font-semibold text-sm code-ask-btn">
+                Ask
+              </button>
+            </div>
+            <div class="code-answer-area mt-4 hidden"></div>
+          </div>
+          
+          <!-- About AI & Feedback -->
+          <div class="text-right mb-4 mt-6">
+            <a href="#" class="inline-flex items-center gap-1.5 text-xs text-neutral-500 dark:text-neutral-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+              <i data-lucide="info" class="w-3.5 h-3.5"></i>
+              <span>About AI-based content</span>
+            </a>
+          </div>
+          
+          <div class="pt-4 border-t border-neutral-200 dark:border-neutral-700">
+            <div class="flex items-center justify-between">
+              <p class="text-sm text-neutral-600 dark:text-neutral-400">Was this explanation helpful?</p>
+              <div class="flex items-center gap-3">
+                <button class="flex items-center gap-2 px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg text-sm font-medium text-neutral-700 dark:text-neutral-300 hover:border-green-500 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-900/20 transition-colors">
+                  <i data-lucide="thumbs-up" class="w-4 h-4"></i>
+                  <span>Yes</span>
+                </button>
+                <button class="flex items-center gap-2 px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg text-sm font-medium text-neutral-700 dark:text-neutral-300 hover:border-red-500 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors">
+                  <i data-lucide="thumbs-down" class="w-4 h-4"></i>
+                  <span>No</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      container.parentNode.insertBefore(explanationContainer, container.nextSibling);
+      
+      // Start explanation
+      const thinking = explanationContainer.querySelector('.code-thinking');
+      const explanationText = explanationContainer.querySelector('.code-explanation-text');
+      const overview = explanationContainer.querySelector('.code-overview');
+      const breakdown = explanationContainer.querySelector('.code-breakdown');
+      
+      // Simulate AI thinking (2 seconds)
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      // Hide thinking, show content
+      thinking.classList.add('hidden');
+      explanationText.classList.remove('hidden');
+      
+      // Stream overview
+      const overviewText = "This code snippet demonstrates how to create a new page using the CMS API. It uses async/await syntax to handle the asynchronous API call and includes essential parameters like name, schema, parent ID, and title.";
+      await this.streamText(overview, overviewText, 20);
+      
+      // Stream line-by-line breakdown
+      const breakdowns = [
+        { lines: '1', code: 'const newPage = await cmsAPI.createPage({', explanation: 'Declares a constant variable that will store the result of creating a new page. The await keyword pauses execution until the API call completes.' },
+        { lines: '2-5', code: '  name: \'getting-started\', schema: \'ArticlePage\', ...', explanation: 'Passes configuration object with page name (URL-friendly), schema type (defines structure), parent location, and display title.' },
+        { lines: '6', code: '});', explanation: 'Closes the configuration object and completes the function call.' }
+      ];
+      
+      for (const item of breakdowns) {
+        const lineDiv = document.createElement('div');
+        lineDiv.className = 'flex gap-3';
+        lineDiv.innerHTML = `
+          <div class="w-12 h-8 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
+            <span class="text-xs font-bold text-primary-700 dark:text-primary-300">${item.lines}</span>
+          </div>
+          <div class="flex-1">
+            <p class="text-xs font-mono text-neutral-600 dark:text-neutral-400 mb-1 code-line-snippet"></p>
+            <p class="text-sm text-neutral-700 dark:text-neutral-300 code-line-explanation"></p>
+          </div>
+        `;
+        breakdown.appendChild(lineDiv);
+        
+        const snippet = lineDiv.querySelector('.code-line-snippet');
+        const explanation = lineDiv.querySelector('.code-line-explanation');
+        
+        await this.streamText(snippet, item.code, 15);
+        await this.streamText(explanation, item.explanation, 15);
+      }
+      
+      lucide.createIcons();
+      
+      // Setup Q&A functionality
+      this.setupCodeQuestions(explanationContainer);
+    };
+    
+    // Setup Q&A for code explanations
+    IGXDocs.setupCodeQuestions = function(container) {
+      const quickQuestions = container.querySelectorAll('.code-question-btn');
+      const customInput = container.querySelector('.code-custom-question');
+      const askBtn = container.querySelector('.code-ask-btn');
+      const answerArea = container.querySelector('.code-answer-area');
+      
+      async function answerQuestion(question) {
+        answerArea.classList.remove('hidden');
+        answerArea.innerHTML = `
+          <div class="p-4 bg-primary-50 dark:bg-primary-900/20 border-l-4 border-primary-500 rounded-r">
+            <p class="text-xs font-semibold text-primary-700 dark:text-primary-300 mb-2">Q: ${question}</p>
+            <p class="text-sm text-neutral-700 dark:text-neutral-300 answer-text"></p>
+          </div>
+        `;
+        
+        const answerText = answerArea.querySelector('.answer-text');
+        const answer = "This is a demonstration answer that would be generated by AI based on the code context. In production, this would analyze the specific code and provide a detailed, context-aware response.";
+        
+        await IGXDocs.streamText(answerText, answer, 20);
+        lucide.createIcons();
+      }
+      
+      quickQuestions.forEach(btn => {
+        btn.addEventListener('click', () => {
+          answerQuestion(btn.textContent.trim());
+        });
+      });
+      
+      askBtn?.addEventListener('click', () => {
+        const question = customInput?.value.trim();
+        if (question) {
+          answerQuestion(question);
+          customInput.value = '';
+        }
+      });
+      
+      customInput?.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          const question = customInput.value.trim();
+          if (question) {
+            answerQuestion(question);
+            customInput.value = '';
+          }
+        }
+      });
+    };
+    
+    // AI Summary - Streaming Text Effect
+    IGXDocs.streamText = async function(element, text, speed = 30) {
+      element.textContent = '';
+      for (let i = 0; i < text.length; i++) {
+        element.textContent += text[i];
+        await new Promise(resolve => setTimeout(resolve, speed));
       }
     };
     
@@ -1909,7 +2181,29 @@
       document.getElementById('glossary-tooltip').classList.add('hidden');
     };
     
-    // Summarize button is now handled by generate-summary-btn event listener above
+    // Handle dynamically created "Explain this code" buttons
+    document.addEventListener('click', (e) => {
+      const explainBtn = e.target.closest('.explain-code-btn');
+      if (explainBtn && explainBtn.codeElement) {
+        const codeIndex = explainBtn.getAttribute('data-code-index');
+        IGXDocs.explainCode(explainBtn.codeElement, codeIndex);
+      }
+      
+      // Handle copy buttons
+      const copyBtn = e.target.closest('.copy-code-btn');
+      if (copyBtn && copyBtn.codeElement) {
+        const codeText = copyBtn.codeElement.textContent;
+        navigator.clipboard.writeText(codeText).then(() => {
+          const originalText = copyBtn.innerHTML;
+          copyBtn.innerHTML = '<i data-lucide="check" class="w-3 h-3"></i> Copied!';
+          lucide.createIcons();
+          setTimeout(() => {
+            copyBtn.innerHTML = originalText;
+            lucide.createIcons();
+          }, 2000);
+        });
+      }
+    });
     
     // Show Listen Modal
     document.querySelectorAll('button:has([data-lucide="headphones"])').forEach(btn => {
@@ -2063,14 +2357,9 @@
       }
     });
     
-    // Show Explain Code Modal
-    document.querySelectorAll('button').forEach(btn => {
-      if (btn.textContent.includes('Explain this code')) {
-        btn.addEventListener('click', () => {
-          document.getElementById('explain-code-modal').classList.remove('hidden');
-          lucide.createIcons();
-        });
-      }
+    // Initialize code explanation buttons on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      IGXDocs.initCodeExplainButtons();
     });
     
     // Close modals on backdrop click
