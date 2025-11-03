@@ -69,6 +69,18 @@
       border-color: #8b5cf6;
       box-shadow: 0 0 0 2px rgba(139,92,246,0.2);
     }
+    .theme-preset.manage-mode {
+      cursor: default;
+    }
+    .theme-preset.manage-mode:hover {
+      transform: none;
+    }
+    
+    /* Theme checkbox styling */
+    .theme-checkbox {
+      accent-color: #8b5cf6;
+      cursor: pointer;
+    }
     
     /* Color swatch */
     .color-swatch {
@@ -133,7 +145,18 @@
       --preview-primary-600: #9333ea;
       --preview-primary-500: #a855f7;
       --preview-primary-50: #faf5ff;
+      --preview-accent-950: #1e1b4b;
+      --preview-accent-900: #312e81;
+      --preview-accent-700: #4338ca;
+      --preview-accent-600: #4f46e5;
+      --preview-accent-500: #6366f1;
+      --preview-accent-300: #a5b4fc;
+      --preview-accent-100: #e0e7ff;
+      --preview-accent-50: #eef2ff;
+      --preview-neutral-950: #0a0a0a;
+      --preview-neutral-900: #171717;
       --preview-neutral-300: #d4d4d8;
+      --preview-neutral-50: #fafafa;
     }
     
     #modal-component-preview .modal-card {
@@ -170,10 +193,57 @@
       border-color: var(--preview-primary-500);
     }
     
+    /* Style select to show placeholder-like text when default option selected */
+    #modal-component-preview select.modal-input {
+      color: #9ca3af;
+    }
+    
+    #modal-component-preview.dark select.modal-input {
+      color: #6b7280;
+    }
+    
+    /* Once an option is selected, use normal text color */
+    #modal-component-preview select.modal-input:valid {
+      color: #111827;
+    }
+    
+    #modal-component-preview.dark select.modal-input:valid {
+      color: #ffffff;
+    }
+    
     /* Modal checkboxes and radios - use theme primary color */
     #modal-component-preview .modal-checkbox:checked,
     #modal-component-preview .modal-radio:checked {
       accent-color: var(--preview-primary-600);
+    }
+    
+    /* Accent color components */
+    #modal-component-preview .modal-btn-accent {
+      background-color: var(--preview-accent-600);
+    }
+    
+    #modal-component-preview .modal-btn-accent:hover {
+      background-color: var(--preview-accent-700);
+    }
+    
+    #modal-component-preview .modal-accent-alert {
+      background-color: var(--preview-accent-50);
+      border-left: 3px solid var(--preview-accent-600);
+    }
+    
+    #modal-component-preview .modal-accent-tag {
+      background-color: var(--preview-accent-100);
+      color: var(--preview-accent-700);
+    }
+    
+    #modal-component-preview.dark .modal-accent-alert {
+      background-color: var(--preview-accent-950);
+      border-left-color: var(--preview-accent-500);
+    }
+    
+    #modal-component-preview.dark .modal-accent-tag {
+      background-color: var(--preview-accent-900);
+      color: var(--preview-accent-300);
     }
     
     #modal-component-preview .modal-checkbox:focus,
@@ -355,7 +425,31 @@
         
         <!-- Theme Presets -->
         <div class="section mb-4">
-          <span class="text-[11px] font-semibold text-white/50 uppercase tracking-wider block mb-3">Select Theme</span>
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-[11px] font-semibold text-white/50 uppercase tracking-wider">Select Theme</span>
+            <button id="manage-themes-btn" class="px-2 py-1 text-[11px] font-medium text-indigo-400 hover:text-indigo-300 hover:bg-white/[0.03] rounded transition-colors">
+              Manage
+            </button>
+          </div>
+          
+          <!-- Bulk Actions Bar (Hidden by default) -->
+          <div id="bulk-actions-bar" class="hidden mb-3 p-2 bg-white/[0.03] border border-white/[0.08] rounded-lg">
+            <div class="flex items-center justify-end gap-1">
+              <button id="bulk-download-btn" class="px-2 py-1 text-[10px] font-medium text-white/70 hover:text-white hover:bg-white/[0.05] rounded transition-colors flex items-center gap-1">
+                <i data-lucide="download" class="w-3 h-3"></i>
+                Download
+              </button>
+              <button id="bulk-delete-btn" class="px-2 py-1 text-[10px] font-medium text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded transition-colors flex items-center gap-1">
+                <i data-lucide="trash-2" class="w-3 h-3"></i>
+                Delete
+              </button>
+              <div class="w-px h-4 bg-white/10 mx-1"></div>
+              <button id="cancel-manage-btn" class="px-2 py-1 text-[10px] font-medium text-white/50 hover:text-white/70 hover:bg-white/[0.05] rounded transition-colors">
+                Cancel
+              </button>
+            </div>
+          </div>
+          
           <div class="space-y-2" id="theme-presets">
             <!-- Generated dynamically -->
           </div>
@@ -1058,6 +1152,10 @@
     // Theme Presets
     // ========================================
     
+    // Management mode state
+    let manageMode = false;
+    let selectedThemes = new Set();
+    
     function generateThemePresets() {
       const container = document.getElementById('theme-presets');
       
@@ -1067,19 +1165,24 @@
         
         if (theme.primary.startsWith('custom-')) {
           // Custom theme: direct access to color scale
-          primaryColor = tailwindColors.colors[theme.primary]?.[600] || '#9333ea';
-          accentColor = tailwindColors.colors[theme.accent]?.[600] || '#7c3aed';
+          const primaryScale = tailwindColors.colors[theme.primary];
+          const accentScale = tailwindColors.colors[theme.accent];
+          primaryColor = (primaryScale && primaryScale[600]) || '#9333ea';
+          accentColor = (accentScale && accentScale[600]) || '#7c3aed';
         } else {
           // Standard Tailwind color
           primaryColor = tailwindColors.getColor(theme.primary, 600);
           accentColor = tailwindColors.getColor(theme.accent, 600);
         }
         
+        const isChecked = selectedThemes.has(key);
+        
         return `
           <button 
-            class="theme-preset w-full flex items-center gap-3 p-3 rounded-lg ${currentState.preset === key ? 'selected' : ''}"
+            class="theme-preset w-full flex items-center gap-3 p-3 rounded-lg ${currentState.preset === key ? 'selected' : ''} ${manageMode ? 'manage-mode' : ''}"
             data-preset="${key}"
           >
+            ${manageMode ? `<input type="checkbox" class="theme-checkbox w-4 h-4 rounded" data-theme="${key}" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation();">` : ''}
             <div class="flex gap-1">
               <div class="w-6 h-6 rounded-md" style="background: ${primaryColor};"></div>
               <div class="w-6 h-6 rounded-md" style="background: ${accentColor};"></div>
@@ -1088,7 +1191,7 @@
               <div class="text-[12px] font-semibold text-white/90">${theme.name}</div>
               <div class="text-[10px] text-white/40">${theme.description}</div>
             </div>
-            ${currentState.preset === key ? '<i data-lucide="check" class="w-4 h-4 text-indigo-400"></i>' : ''}
+            ${!manageMode && currentState.preset === key ? '<i data-lucide="check" class="w-4 h-4 text-indigo-400"></i>' : ''}
           </button>
         `;
       }).join('');
@@ -1097,30 +1200,122 @@
       
       lucide.createIcons();
       
-      // Attach click handlers to preset themes
-      document.querySelectorAll('.theme-preset[data-preset]').forEach(btn => {
-        btn.addEventListener('click', function() {
-          const presetKey = this.dataset.preset;
-          const preset = tailwindColors.presets[presetKey];
-          
-          currentState.preset = presetKey;
-          currentState.primary = preset.primary;
-          currentState.accent = preset.accent;
-          currentState.neutral = preset.neutral;
-          
-          saveToHistory(currentState);
-          applyTheme();
-          updateUI();
-          generateColorSwatches();
-          generateThemePresets();
+      if (manageMode) {
+        // In manage mode, only handle checkbox clicks
+        document.querySelectorAll('.theme-checkbox').forEach(checkbox => {
+          checkbox.addEventListener('change', function(e) {
+            const themeKey = this.dataset.theme;
+            if (this.checked) {
+              selectedThemes.add(themeKey);
+            } else {
+              selectedThemes.delete(themeKey);
+            }
+          });
         });
-      });
+      } else {
+        // Normal mode: handle theme selection
+        document.querySelectorAll('.theme-preset[data-preset]').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const presetKey = this.dataset.preset;
+            const preset = tailwindColors.presets[presetKey];
+            
+            currentState.preset = presetKey;
+            currentState.primary = preset.primary;
+            currentState.accent = preset.accent;
+            currentState.neutral = preset.neutral;
+            
+            saveToHistory(currentState);
+            applyTheme();
+            updateUI();
+            generateColorSwatches();
+            generateThemePresets();
+          });
+        });
+      }
       
       // Attach click handler to Custom button
       document.getElementById('custom-theme-btn-preset').addEventListener('click', () => {
         openModal();
       });
     }
+    
+    // Enter manage mode
+    document.getElementById('manage-themes-btn').addEventListener('click', () => {
+      manageMode = true;
+      selectedThemes.clear();
+      document.getElementById('bulk-actions-bar').classList.remove('hidden');
+      generateThemePresets();
+      lucide.createIcons();
+    });
+    
+    // Exit manage mode
+    document.getElementById('cancel-manage-btn').addEventListener('click', () => {
+      manageMode = false;
+      selectedThemes.clear();
+      document.getElementById('bulk-actions-bar').classList.add('hidden');
+      generateThemePresets();
+    });
+    
+    // Bulk Download
+    document.getElementById('bulk-download-btn').addEventListener('click', () => {
+      if (selectedThemes.size === 0) {
+        showDialog('error', 'No Themes Selected', 'Please select at least one theme to download.');
+        return;
+      }
+      
+      // Create JSON object with selected themes
+      const themesToExport = {};
+      selectedThemes.forEach(key => {
+        themesToExport[key] = tailwindColors.presets[key];
+      });
+      
+      // Download as JSON file
+      const blob = new Blob([JSON.stringify(themesToExport, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `themes-${new Date().getTime()}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+      
+      showDialog('success', 'Themes Downloaded', `${selectedThemes.size} theme(s) have been downloaded successfully.`);
+      
+      // Exit manage mode
+      manageMode = false;
+      selectedThemes.clear();
+      document.getElementById('bulk-actions-bar').classList.add('hidden');
+      generateThemePresets();
+    });
+    
+    // Bulk Delete
+    document.getElementById('bulk-delete-btn').addEventListener('click', async () => {
+      if (selectedThemes.size === 0) {
+        showDialog('error', 'No Themes Selected', 'Please select at least one theme to delete.');
+        return;
+      }
+      
+      // Show confirmation dialog
+      const themeNames = Array.from(selectedThemes).map(key => tailwindColors.presets[key].name).join(', ');
+      const confirmed = await showConfirm(
+        `Delete ${selectedThemes.size} Theme${selectedThemes.size > 1 ? 's' : ''}?`,
+        `Are you sure you want to delete: ${themeNames}? This action cannot be undone.`
+      );
+      
+      if (confirmed) {
+        // Delete selected themes
+        selectedThemes.forEach(key => {
+          delete tailwindColors.presets[key];
+        });
+        
+        showDialog('success', 'Themes Deleted', `${selectedThemes.size} theme(s) have been deleted successfully.`);
+        
+        // Exit manage mode and refresh
+        manageMode = false;
+        selectedThemes.clear();
+        document.getElementById('bulk-actions-bar').classList.add('hidden');
+        generateThemePresets();
+      }
+    });
 
     // ========================================
     // Color Swatches
@@ -1366,20 +1561,22 @@
         const customAccentId = `custom-${key}-accent`;
         const customNeutralId = `custom-${key}-neutral`;
         
-        // Add colors to tailwindColors.colors
-        tailwindColors.colors[customPrimaryId] = theme.light.primary;
-        tailwindColors.colors[customAccentId] = theme.light.accent;
-        tailwindColors.colors[customNeutralId] = theme.light.neutral;
-        
-        // Add preset if not already exists
-        if (!tailwindColors.presets[key]) {
-          tailwindColors.presets[key] = {
-            name: theme.name,
-            primary: customPrimaryId,
-            accent: customAccentId,
-            neutral: customNeutralId,
-            description: 'Custom enterprise theme'
-          };
+        // Add colors to tailwindColors.colors - ensure they're scale objects
+        if (theme.light && theme.light.primary) {
+          tailwindColors.colors[customPrimaryId] = theme.light.primary;
+          tailwindColors.colors[customAccentId] = theme.light.accent;
+          tailwindColors.colors[customNeutralId] = theme.light.neutral;
+          
+          // Add preset if not already exists
+          if (!tailwindColors.presets[key]) {
+            tailwindColors.presets[key] = {
+              name: theme.name,
+              primary: customPrimaryId,
+              accent: customAccentId,
+              neutral: customNeutralId,
+              description: 'Custom enterprise theme'
+            };
+          }
         }
       });
     }
@@ -1463,10 +1660,10 @@
       const modal = document.getElementById('customize-modal');
       
       if (modalState.currentMode === 'light') {
-        lightBtn.classList.add('text-indigo-400', 'bg-indigo-500/20');
-        lightBtn.classList.remove('text-white/60');
-        darkBtn.classList.remove('text-indigo-400', 'bg-indigo-500/20');
-        darkBtn.classList.add('text-white/60');
+        lightBtn.classList.add('bg-white/[0.08]', 'text-white/90');
+        lightBtn.classList.remove('text-white/40');
+        darkBtn.classList.remove('bg-white/[0.08]', 'text-white/90');
+        darkBtn.classList.add('text-white/40');
         preview.classList.remove('dark');
         modal.classList.remove('dark');
         // Set light mode background (neutral-50)
@@ -1474,10 +1671,10 @@
         // Update labels for light mode
         updateCategoryLabels('light');
       } else {
-        darkBtn.classList.add('text-indigo-400', 'bg-indigo-500/20');
-        darkBtn.classList.remove('text-white/60');
-        lightBtn.classList.remove('text-indigo-400', 'bg-indigo-500/20');
-        lightBtn.classList.add('text-white/60');
+        darkBtn.classList.add('bg-white/[0.08]', 'text-white/90');
+        darkBtn.classList.remove('text-white/40');
+        lightBtn.classList.remove('bg-white/[0.08]', 'text-white/90');
+        lightBtn.classList.add('text-white/40');
         preview.classList.add('dark');
         modal.classList.add('dark');
         // Set dark mode background (neutral-900)
@@ -2222,7 +2419,6 @@
         <!-- Modal Header -->
         <div class="px-6 py-4 border-b border-white/10 flex items-center justify-between flex-shrink-0">
           <div class="flex items-center gap-3 flex-1 mr-4">
-            <i data-lucide="palette" class="w-5 h-5 text-indigo-400 flex-shrink-0"></i>
             <div class="flex-1">
               <input 
                 type="text" 
@@ -2231,7 +2427,6 @@
                 placeholder="Untitled Theme"
                 value=""
               />
-              <p class="text-xs text-white/50">Click name to edit</p>
             </div>
           </div>
           
@@ -2475,7 +2670,7 @@
                   <div class="space-y-4">
                     <!-- Product Card -->
                     <div class="bg-transparent rounded-lg p-3">
-                      <h4 class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wider">Card</h4>
+                      <h4 class="text-[10px] font-semibold text-gray-700 dark:text-gray-300 mb-2 uppercase tracking-wider">Card</h4>
                       <div class="modal-card bg-gradient-to-r rounded-lg overflow-hidden">
                         <div class="p-3">
                           <h5 class="text-sm font-bold text-white mb-1">CX CMS</h5>
@@ -2489,7 +2684,7 @@
                     
                     <!-- Badges -->
                     <div class="bg-transparent rounded-lg p-3">
-                      <h4 class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wider">Badges</h4>
+                      <h4 class="text-[10px] font-semibold text-gray-700 dark:text-gray-300 mb-2 uppercase tracking-wider">Badges</h4>
                       <div class="flex flex-wrap gap-1.5">
                         <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium modal-btn-primary text-white">New</span>
                         <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border-2 modal-btn-secondary">Beta</span>
@@ -2499,7 +2694,7 @@
                     
                     <!-- User Card -->
                     <div class="bg-transparent rounded-lg p-3">
-                      <h4 class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wider">User Card</h4>
+                      <h4 class="text-[10px] font-semibold text-gray-700 dark:text-gray-300 mb-2 uppercase tracking-wider">User Card</h4>
                       <div class="flex items-center gap-2">
                         <div class="w-9 h-9 rounded-full modal-btn-primary flex items-center justify-center text-white text-sm font-semibold">
                           JD
@@ -2510,40 +2705,54 @@
                         </div>
                       </div>
                     </div>
+                    
+                    <!-- Accent Alert -->
+                    <div class="bg-transparent rounded-lg p-3">
+                      <h4 class="text-[10px] font-semibold text-gray-700 dark:text-gray-300 mb-2 uppercase tracking-wider">Accent Alert</h4>
+                      <div class="modal-accent-alert rounded-lg p-2.5">
+                        <div class="flex items-start gap-2">
+                          <i data-lucide="bell" class="w-3.5 h-3.5 flex-shrink-0" style="color: var(--preview-accent-600)"></i>
+                          <div>
+                            <div class="text-xs font-semibold text-gray-900 dark:text-white mb-0.5">New Update</div>
+                            <p class="text-[10px] text-gray-600 dark:text-gray-400 leading-relaxed">Documentation has been published.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   
                   <!-- Column 2: Buttons & Forms -->
                   <div class="space-y-4">
                     <!-- Buttons -->
                     <div class="bg-transparent rounded-lg p-3">
-                      <h4 class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wider">Buttons</h4>
+                      <h4 class="text-[10px] font-semibold text-gray-700 dark:text-gray-300 mb-2 uppercase tracking-wider">Buttons</h4>
                       <div class="space-y-2">
                         <button class="w-full modal-btn-primary px-3 py-1.5 rounded text-xs font-semibold text-white transition-colors">
                           Primary Button
                         </button>
+                        <button class="w-full modal-btn-accent px-3 py-1.5 rounded text-xs font-semibold text-white transition-colors">
+                          Accent Button
+                        </button>
                         <button class="w-full modal-btn-secondary px-3 py-1.5 rounded text-xs font-semibold transition-colors">
                           Secondary Button
-                        </button>
-                        <button class="w-full px-3 py-1.5 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded text-xs font-semibold">
-                          Neutral Button
                         </button>
                       </div>
                     </div>
                     
                     <!-- Dropdown -->
                     <div class="bg-transparent rounded-lg p-3">
-                      <h4 class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wider">Dropdown</h4>
-                      <select class="w-full px-3 py-1.5 modal-input rounded text-xs border-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
+                      <h4 class="text-[10px] font-semibold text-gray-700 dark:text-gray-300 mb-2 uppercase tracking-wider">Dropdown</h4>
+                      <select class="w-full px-3 py-1.5 modal-input rounded text-xs border-2 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300">
                         <option>Select an option...</option>
-                        <option>Option 1</option>
-                        <option>Option 2</option>
+                        <option class="text-gray-900 dark:text-white">Option 1</option>
+                        <option class="text-gray-900 dark:text-white">Option 2</option>
                       </select>
                     </div>
                     
                     <!-- Input Field -->
                     <div class="bg-transparent rounded-lg p-3">
-                      <h4 class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wider">Text Input</h4>
-                      <input type="text" placeholder="Search documentation..." class="modal-input w-full px-3 py-1.5 rounded text-xs border-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors">
+                      <h4 class="text-[10px] font-semibold text-gray-700 dark:text-gray-300 mb-2 uppercase tracking-wider">Text Input</h4>
+                      <input type="text" placeholder="Search documentation..." class="modal-input w-full px-3 py-1.5 rounded text-xs border-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder:text-gray-600 dark:placeholder:text-gray-300 transition-colors">
                     </div>
                   </div>
                   
@@ -2551,7 +2760,7 @@
                   <div class="space-y-4">
                     <!-- Checkboxes & Radios -->
                     <div class="bg-transparent rounded-lg p-3">
-                      <h4 class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wider">Checkboxes</h4>
+                      <h4 class="text-[10px] font-semibold text-gray-700 dark:text-gray-300 mb-2 uppercase tracking-wider">Checkboxes</h4>
                       <div class="space-y-1.5">
                         <label class="flex items-center gap-2 cursor-pointer">
                           <input type="checkbox" checked class="w-4 h-4 rounded modal-checkbox" />
@@ -2566,7 +2775,7 @@
                     
                     <!-- Radio Buttons -->
                     <div class="bg-transparent rounded-lg p-3">
-                      <h4 class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wider">Radio Group</h4>
+                      <h4 class="text-[10px] font-semibold text-gray-700 dark:text-gray-300 mb-2 uppercase tracking-wider">Radio Group</h4>
                       <div class="space-y-1.5">
                         <label class="flex items-center gap-2 cursor-pointer">
                           <input type="radio" name="preview-radio" checked class="w-4 h-4 modal-radio" />
@@ -2581,11 +2790,26 @@
                     
                     <!-- Links & Typography -->
                     <div class="bg-transparent rounded-lg p-3">
-                      <h4 class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wider">Typography</h4>
+                      <h4 class="text-[10px] font-semibold text-gray-700 dark:text-gray-300 mb-2 uppercase tracking-wider">Typography</h4>
                       <p class="text-xs text-gray-600 dark:text-gray-300 leading-relaxed">
                         Your <a href="#" class="modal-link hover:underline">documentation links</a> and 
                         <strong class="text-gray-900 dark:text-white">important text</strong> use these colors.
                       </p>
+                    </div>
+                    
+                    <!-- Accent Highlights -->
+                    <div class="bg-transparent rounded-lg p-3">
+                      <h4 class="text-[10px] font-semibold text-gray-700 dark:text-gray-300 mb-2 uppercase tracking-wider">Accent Tags</h4>
+                      <div class="flex flex-wrap gap-1.5">
+                        <span class="modal-accent-tag inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium">
+                          <i data-lucide="zap" class="w-2.5 h-2.5 mr-1"></i>
+                          Featured
+                        </span>
+                        <span class="modal-accent-tag inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium">
+                          <i data-lucide="star" class="w-2.5 h-2.5 mr-1"></i>
+                          Popular
+                        </span>
+                      </div>
                     </div>
                   </div>
                 
