@@ -586,7 +586,7 @@
               <i data-lucide="headphones" class="w-4 h-4"></i>
               Listen
             </button>
-            <button class="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 rounded-lg text-sm font-semibold hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-all">
+            <button id="ask-ai-btn" class="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 rounded-lg text-sm font-semibold hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-all">
               <i data-lucide="message-circle" class="w-4 h-4"></i>
               Ask AI
             </button>
@@ -1990,67 +1990,171 @@
       }
     });
     
-    // Inline Ask AI - Show chat area below button
-    document.querySelectorAll('button:has([data-lucide="message-circle"])').forEach(btn => {
-      if (btn.textContent.includes('Ask')) {
-        btn.addEventListener('click', (e) => {
-          if (IGXDocs.inlineChatOpen) return;
+    // Toggle Inline Ask AI
+    let askAIOpen = false;
+    document.getElementById('ask-ai-btn')?.addEventListener('click', function() {
+      const container = document.getElementById('ai-tools-container');
+      let chatContainer = document.getElementById('ask-ai-container');
+      
+      if (askAIOpen && chatContainer) {
+        // Close chat
+        chatContainer.remove();
+        askAIOpen = false;
+      } else {
+        // Create and open chat
+        chatContainer = document.createElement('div');
+        chatContainer.id = 'ask-ai-container';
+        chatContainer.className = 'mt-6 mb-8 p-6 border-2 border-neutral-200 dark:border-neutral-600 rounded-xl bg-white dark:bg-neutral-800';
+        chatContainer.innerHTML = `
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
+                <i data-lucide="message-circle" class="w-5 h-5 text-primary-600 dark:text-primary-400"></i>
+              </div>
+              <h4 class="text-sm font-semibold text-neutral-900 dark:text-white">Ask about this article</h4>
+            </div>
+            <button class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors close-chat-btn">
+              <i data-lucide="x" class="w-5 h-5 text-neutral-600 dark:text-neutral-400"></i>
+            </button>
+          </div>
           
-          const buttonContainer = btn.parentElement;
-          const chatHTML = `
-            <div id="inline-chat-area" class="mt-6 bg-gradient-to-br from-primary-50 to-pink-50 dark:from-primary-900/20 dark:to-pink-900/20 border-2 border-primary-200 dark:border-primary-800 rounded-xl p-5 animate-fadeIn">
-              <div class="flex items-start gap-3 mb-4">
-                <i data-lucide="message-circle" class="w-5 h-5 text-primary-600 flex-shrink-0 mt-1"></i>
-                <div class="flex-1">
-                  <h4 class="font-bold text-neutral-900 dark:text-white mb-1">Ask about this article</h4>
-                  <p class="text-xs text-neutral-600 dark:text-neutral-400">Click a common question or ask your own</p>
+          <!-- Question Input -->
+          <div class="mb-4">
+            <div class="flex gap-2">
+              <input 
+                type="text" 
+                placeholder="Ask a question about this article..."
+                class="flex-1 px-4 py-2.5 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white placeholder-neutral-400 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 ai-question-input"
+              />
+              <button class="px-4 py-2.5 bg-gradient-to-r from-primary-600 to-blue-600 text-white rounded-lg hover:from-primary-700 hover:to-blue-700 transition-all font-semibold text-sm ai-ask-btn">
+                Ask
+              </button>
+            </div>
+          </div>
+          
+          <!-- Quick Questions -->
+          <div class="mb-4">
+            <p class="text-xs text-neutral-500 dark:text-neutral-400 mb-2">Quick questions:</p>
+            <div class="flex flex-wrap gap-2">
+              <button class="quick-question-btn px-3 py-1.5 bg-neutral-50 dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-600 rounded-lg text-xs font-medium text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-600 transition-colors">
+                How do I get started?
+              </button>
+              <button class="quick-question-btn px-3 py-1.5 bg-neutral-50 dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-600 rounded-lg text-xs font-medium text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-600 transition-colors">
+                What are best practices?
+              </button>
+              <button class="quick-question-btn px-3 py-1.5 bg-neutral-50 dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-600 rounded-lg text-xs font-medium text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-600 transition-colors">
+                Common mistakes?
+              </button>
+            </div>
+          </div>
+          
+          <!-- Answer Area -->
+          <div class="ai-answer-area"></div>
+        `;
+        
+        container.parentNode.insertBefore(chatContainer, container.nextSibling);
+        askAIOpen = true;
+        lucide.createIcons();
+        
+        // Close button handler
+        chatContainer.querySelector('.close-chat-btn')?.addEventListener('click', () => {
+          chatContainer.remove();
+          askAIOpen = false;
+        });
+        
+        // Ask AI functionality
+        const questionInput = chatContainer.querySelector('.ai-question-input');
+        const askBtn = chatContainer.querySelector('.ai-ask-btn');
+        const answerArea = chatContainer.querySelector('.ai-answer-area');
+        const quickQuestions = chatContainer.querySelectorAll('.quick-question-btn');
+        
+        async function askQuestion(question) {
+          // Show thinking state
+          answerArea.innerHTML = `
+            <div class="pt-4 border-t border-neutral-200 dark:border-neutral-700">
+              <div class="flex items-center gap-3 py-4">
+                <div class="flex items-center gap-2">
+                  <div class="w-2 h-2 bg-primary-600 dark:bg-primary-400 rounded-full animate-pulse"></div>
+                  <div class="w-2 h-2 bg-primary-600 dark:bg-primary-400 rounded-full animate-pulse" style="animation-delay: 0.2s"></div>
+                  <div class="w-2 h-2 bg-primary-600 dark:bg-primary-400 rounded-full animate-pulse" style="animation-delay: 0.4s"></div>
                 </div>
-                <button onclick="this.closest('#inline-chat-area').remove(); IGXDocs.inlineChatOpen = false;" class="text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300">
-                  <i data-lucide="x" class="w-4 h-4"></i>
-                </button>
+                <span class="text-sm text-neutral-600 dark:text-neutral-400">Thinking<span class="inline-block w-0.5 h-4 bg-neutral-600 dark:bg-neutral-400 ml-1 animate-blink"></span></span>
+              </div>
+            </div>
+          `;
+          
+          await new Promise(resolve => setTimeout(resolve, 1500));
+          
+          // Show answer
+          answerArea.innerHTML = `
+            <div class="pt-4 border-t border-neutral-200 dark:border-neutral-700">
+              <div class="mb-3">
+                <p class="text-xs text-neutral-500 dark:text-neutral-400 mb-1">Question:</p>
+                <p class="text-sm font-medium text-neutral-900 dark:text-white">${question}</p>
+              </div>
+              <div class="mb-4">
+                <p class="text-xs text-neutral-500 dark:text-neutral-400 mb-2">Answer:</p>
+                <p class="text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed ai-answer-text"></p>
               </div>
               
-              <!-- Common Questions (Bubble style) -->
-              <div class="flex flex-wrap gap-2 mb-4">
-                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-neutral-800 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors text-xs text-neutral-900 dark:text-white font-medium">
-                  <span>How to get started?</span>
-                </button>
-                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-neutral-800 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors text-xs text-neutral-900 dark:text-white font-medium">
-                  <span>Strategy differences?</span>
-                </button>
-                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-neutral-800 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors text-xs text-neutral-900 dark:text-white font-medium">
-                  <span>Why predictive?</span>
-                </button>
-                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-neutral-800 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors text-xs text-neutral-900 dark:text-white font-medium">
-                  <span>Common mistakes?</span>
-                </button>
-                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-neutral-800 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors text-xs text-neutral-900 dark:text-white font-medium">
-                  <span>Best practices?</span>
-                </button>
-                <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-neutral-800 border border-primary-300 dark:border-primary-700 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors text-xs text-neutral-900 dark:text-white font-medium">
-                  <span>Configuration options?</span>
-                </button>
+              <!-- About AI & Feedback -->
+              <div class="text-right mb-4">
+                <a href="#" class="inline-flex items-center gap-1.5 text-xs text-neutral-500 dark:text-neutral-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                  <i data-lucide="info" class="w-3.5 h-3.5"></i>
+                  <span>About AI-based content</span>
+                </a>
               </div>
               
-              <!-- Custom Question -->
-              <div class="border-t border-primary-200 dark:border-primary-800 pt-4">
-                <div class="flex gap-2">
-                  <input 
-                    type="text" 
-                    placeholder="Or ask your own question..." 
-                    class="flex-1 px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-neutral-50 dark:bg-neutral-900 text-neutral-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm"
-                  />
-                  <button class="px-4 py-2 bg-gradient-to-r from-primary-600 to-pink-600 text-white rounded-lg hover:from-primary-700 hover:to-pink-700 transition-colors">
-                    <i data-lucide="send" class="w-4 h-4"></i>
-                  </button>
+              <div class="pt-4 border-t border-neutral-200 dark:border-neutral-700">
+                <div class="flex items-center justify-between">
+                  <p class="text-sm text-neutral-600 dark:text-neutral-400">Was this answer helpful?</p>
+                  <div class="flex items-center gap-3">
+                    <button class="flex items-center gap-2 px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg text-sm font-medium text-neutral-700 dark:text-neutral-300 hover:border-green-500 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-900/20 transition-colors">
+                      <i data-lucide="thumbs-up" class="w-4 h-4"></i>
+                      <span>Yes</span>
+                    </button>
+                    <button class="flex items-center gap-2 px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg text-sm font-medium text-neutral-700 dark:text-neutral-300 hover:border-red-500 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors">
+                      <i data-lucide="thumbs-down" class="w-4 h-4"></i>
+                      <span>No</span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           `;
           
-          buttonContainer.insertAdjacentHTML('afterend', chatHTML);
+          const answerText = answerArea.querySelector('.ai-answer-text');
+          const answer = "To get started with creating pages in Ingeniux CMS, you have three main options: using the Site Toolbar for quick page creation, right-clicking in the Site Tree for more control over placement, or using the Content Creation Wizard for a guided approach. Choose the appropriate page schema that matches your content type, and remember to follow naming conventions while avoiding special characters.";
+          
+          await IGXDocs.streamText(answerText, answer, 20);
           lucide.createIcons();
-          IGXDocs.inlineChatOpen = true;
+        }
+        
+        // Quick question buttons
+        quickQuestions.forEach(btn => {
+          btn.addEventListener('click', () => {
+            askQuestion(btn.textContent.trim());
+          });
+        });
+        
+        // Ask button
+        askBtn?.addEventListener('click', () => {
+          const question = questionInput?.value.trim();
+          if (question) {
+            askQuestion(question);
+            questionInput.value = '';
+          }
+        });
+        
+        // Enter key
+        questionInput?.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            const question = questionInput.value.trim();
+            if (question) {
+              askQuestion(question);
+              questionInput.value = '';
+            }
+          }
         });
       }
     });
