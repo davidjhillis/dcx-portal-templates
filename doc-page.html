@@ -1443,8 +1443,14 @@
           // Show results for this search
           recentSearches?.classList.add('hidden');
           searchResults?.classList.remove('hidden');
+        } else {
+          // Execute search query
+          e.preventDefault();
+          const query = cmdKInput.value.trim();
+          if (query) {
+            window.location.href = `search-results.html?q=${encodeURIComponent(query)}`;
+          }
         }
-        // If no selection, Enter submits the search (default behavior)
       }
     });
     
