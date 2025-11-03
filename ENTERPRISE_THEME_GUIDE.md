@@ -2,7 +2,7 @@
 
 ## 🎨 Overview
 
-The Enterprise Theme is a premium, high-end redesign inspired by [Seismic's documentation portal](https://docs.seismic.com/), featuring:
+The Enterprise Theme is a premium, high-end professional design featuring:
 
 - **Deep Purple Brand**: Premium `#220929` color scheme
 - **Dark Mode Support**: Full light/dark theme toggle
@@ -41,7 +41,7 @@ http://localhost:8000/index-enterprise.html
 - Light, friendly aesthetic
 
 **After (Enterprise)**:
-- Primary: `#220929` (Deep Purple/Plum) - Seismic-inspired
+- Primary: `#220929` (Deep Purple/Plum) - Premium brand color
 - Accent: `#7C3AED` (Vibrant Purple)
 - Premium, enterprise-grade aesthetic
 
@@ -55,7 +55,7 @@ http://localhost:8000/index-enterprise.html
 
 ### Header
 
-**70px Height** (matching Seismic):
+**70px Height** (premium navigation):
 - Cleaner, more refined
 - Subtle backdrop blur effect
 - Minimal border
@@ -209,7 +209,7 @@ const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matc
 ### Spacing
 ```css
 :root {
-  --header-height: 70px;             /* Seismic-style */
+  --header-height: 70px;             /* Premium navigation */
   --sidebar-width: 280px;
   --content-max-width: 850px;
 }
@@ -461,7 +461,7 @@ document.documentElement.classList.toggle('dark');
 The Enterprise Theme delivers:
 - ✅ Premium, high-end design
 - ✅ Full dark mode support
-- ✅ Seismic-inspired layout
+- ✅ Professional corporate layout
 - ✅ Brand-forward aesthetic
 - ✅ Enterprise-grade polish
 - ✅ Production-ready code

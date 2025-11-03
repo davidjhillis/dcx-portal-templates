@@ -35,21 +35,12 @@ Static HTML/Tailwind CSS templates for IGX Technology documentation portal with 
    npx http-server
    ```
 
-2. **Choose Your Version**
+2. **Open in Browser**
    
-   **⭐ SEISMIC-MATCHED VERSION (RECOMMENDED)**: http://localhost:8000/index-seismic.html
-   - ✅ **Exact layout match to Seismic docs**
-   - ✅ Product cards with **dark purple headers** (#220929)
-   - ✅ Orange icon cards for actions
-   - ✅ Light cyan featured content cards (#E7F5F6)
-   - ✅ **Full dark mode support**
-   - ✅ Enterprise-grade design
-   
-   **Original Theme** (First iteration):
    - Home: http://localhost:8000/index.html
-   - Docs: http://localhost:8000/doc-page.html
-   
-   See `SEISMIC_DESIGN_MATCH.md` for layout verification details
+   - Documentation: http://localhost:8000/doc-page.html
+   - User Profile: http://localhost:8000/user-profile.html
+   - Search Results: http://localhost:8000/search-results.html
 
 ## Features
 
@@ -62,8 +53,8 @@ Static HTML/Tailwind CSS templates for IGX Technology documentation portal with 
 💬 **Chat with Docs** - Ask questions about current page  
 
 ### Design System
-- **Modern & Clean** - Inspired by Seismic docs
-- **AI-First Aesthetic** - Purple/blue gradients with glow effects
+- **Modern & Clean** - Professional corporate design
+- **AI-First Aesthetic** - Subtle gradients and modern styling
 - **Fully Responsive** - Mobile, tablet, and desktop optimized
 - **Accessible** - WCAG 2.1 AA compliant
 - **Dark Mode Ready** - Toggle between light/dark themes

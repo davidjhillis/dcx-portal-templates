@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-**Purpose**: Create a modern, AI-powered documentation portal for IGX Technology with static HTML/Tailwind templates inspired by [Seismic's documentation site](https://docs.seismic.com/).
+**Purpose**: Create a modern, AI-powered documentation portal for IGX Technology with static HTML/Tailwind templates featuring a professional corporate design.
 
 **Technology Stack**:
 - Pure HTML5
@@ -231,7 +231,7 @@ Base Unit: 4px (0.25rem)
 
 **Features**:
 - Sticky positioning
-- Prominent search bar (inspired by Seismic)
+- Prominent search bar with Command K shortcut
 - AI Assistant quick access
 - User menu/avatar
 - Responsive mobile menu
@@ -1213,7 +1213,7 @@ Each component should have:
 ## 15. Inspiration & References
 
 ### Primary Inspiration
-- **Seismic Docs**: https://docs.seismic.com/ - Clean layout, prominent search, user-friendly navigation
+- **Modern Documentation Portals**: Clean layout, prominent search, user-friendly navigation
 - **Stripe Docs**: API reference design patterns
 - **Vercel Docs**: Modern aesthetic, smooth interactions
 - **OpenAI Platform**: AI-forward design language

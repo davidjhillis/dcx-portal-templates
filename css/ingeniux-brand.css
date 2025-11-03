@@ -18,14 +18,14 @@
   --ingeniux-primary-dark: oklch(0.3 0.05 257.287);       /* Darker purple */
   --ingeniux-primary-light: oklch(0.5 0.04 257.287);      /* Lighter purple */
   
-  /* Seismic Purple for product headers */
-  --seismic-purple: #220929;
-  --seismic-purple-light: #3d1548;
+  /* Purple for product headers */
+  --product-purple: #220929;
+  --product-purple-light: #3d1548;
   
   /* Orange accent (keep for icons) */
   --brand-orange: #FF6B35;
   
-  /* Cyan for featured cards (from Seismic) */
+  /* Cyan for featured cards */
   --brand-cyan: #E7F5F6;
   
   /* Dark Mode Colors */
@@ -161,7 +161,7 @@ p {
 }
 
 /* ========================================
-   Product Cards - Seismic Layout + Ingeniux Brand
+   Product Cards - Professional Layout
    ======================================== */
 
 .product-card {
@@ -183,7 +183,7 @@ p {
 }
 
 .product-card-header {
-  background: linear-gradient(135deg, var(--seismic-purple) 0%, var(--seismic-purple-light) 100%);
+  background: linear-gradient(135deg, var(--product-purple) 0%, var(--product-purple-light) 100%);
   padding: 2rem;
   color: white;
 }
@@ -322,7 +322,7 @@ p {
 .featured-card-button {
   width: 100%;
   padding: 0.625rem 1rem;
-  background-color: var(--seismic-purple);
+  background-color: var(--product-purple);
   color: white;
   border: none;
   border-radius: var(--radius-small);
@@ -333,7 +333,7 @@ p {
 }
 
 .featured-card-button:hover {
-  background-color: var(--seismic-purple-light);
+  background-color: var(--product-purple-light);
 }
 
 /* ========================================
@@ -341,7 +341,7 @@ p {
    ======================================== */
 
 .cta-box {
-  background: linear-gradient(135deg, var(--seismic-purple) 0%, var(--seismic-purple-light) 100%);
+  background: linear-gradient(135deg, var(--product-purple) 0%, var(--product-purple-light) 100%);
   border-radius: var(--radius-large);
   padding: 2rem;
   color: white;
