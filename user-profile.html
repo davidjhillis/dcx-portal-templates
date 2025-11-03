@@ -5,20 +5,106 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Profile - Discover CX Docs</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="admin/assets/theme-loader.js"></script>
   <script>
     tailwind.config = {
-      darkMode: 'class'
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            // Semantic color tokens mapped to CSS variables
+            primary: {
+              50: 'rgb(var(--color-primary-50))',
+              100: 'rgb(var(--color-primary-100))',
+              200: 'rgb(var(--color-primary-200))',
+              300: 'rgb(var(--color-primary-300))',
+              400: 'rgb(var(--color-primary-400))',
+              500: 'rgb(var(--color-primary-500))',
+              600: 'rgb(var(--color-primary-600))',
+              700: 'rgb(var(--color-primary-700))',
+              800: 'rgb(var(--color-primary-800))',
+              900: 'rgb(var(--color-primary-900))',
+              950: 'rgb(var(--color-primary-950))',
+            },
+            accent: {
+              50: 'rgb(var(--color-accent-50))',
+              100: 'rgb(var(--color-accent-100))',
+              200: 'rgb(var(--color-accent-200))',
+              300: 'rgb(var(--color-accent-300))',
+              400: 'rgb(var(--color-accent-400))',
+              500: 'rgb(var(--color-accent-500))',
+              600: 'rgb(var(--color-accent-600))',
+              700: 'rgb(var(--color-accent-700))',
+              800: 'rgb(var(--color-accent-800))',
+              900: 'rgb(var(--color-accent-900))',
+              950: 'rgb(var(--color-accent-950))',
+            },
+            neutral: {
+              50: 'rgb(var(--color-neutral-50))',
+              100: 'rgb(var(--color-neutral-100))',
+              200: 'rgb(var(--color-neutral-200))',
+              300: 'rgb(var(--color-neutral-300))',
+              400: 'rgb(var(--color-neutral-400))',
+              500: 'rgb(var(--color-neutral-500))',
+              600: 'rgb(var(--color-neutral-600))',
+              700: 'rgb(var(--color-neutral-700))',
+              800: 'rgb(var(--color-neutral-800))',
+              900: 'rgb(var(--color-neutral-900))',
+              950: 'rgb(var(--color-neutral-950))',
+            }
+          }
+        }
+      }
     }
   </script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
+    /* Default theme CSS variables (purple/violet/gray) */
+    :root {
+      --color-primary-50: 250 245 255;
+      --color-primary-100: 243 232 255;
+      --color-primary-200: 233 213 255;
+      --color-primary-300: 216 180 254;
+      --color-primary-400: 192 132 252;
+      --color-primary-500: 168 85 247;
+      --color-primary-600: 147 51 234;
+      --color-primary-700: 126 34 206;
+      --color-primary-800: 107 33 168;
+      --color-primary-900: 88 28 135;
+      --color-primary-950: 59 7 100;
+      
+      --color-accent-50: 250 245 255;
+      --color-accent-100: 243 232 255;
+      --color-accent-200: 233 213 255;
+      --color-accent-300: 216 180 254;
+      --color-accent-400: 192 132 252;
+      --color-accent-500: 168 85 247;
+      --color-accent-600: 147 51 234;
+      --color-accent-700: 126 34 206;
+      --color-accent-800: 107 33 168;
+      --color-accent-900: 88 28 135;
+      --color-accent-950: 59 7 100;
+      
+      --color-neutral-50: 249 250 251;
+      --color-neutral-100: 243 244 246;
+      --color-neutral-200: 229 231 235;
+      --color-neutral-300: 209 213 219;
+      --color-neutral-400: 156 163 175;
+      --color-neutral-500: 107 114 128;
+      --color-neutral-600: 75 85 99;
+      --color-neutral-700: 55 65 81;
+      --color-neutral-800: 31 41 55;
+      --color-neutral-900: 17 24 39;
+      --color-neutral-950: 3 7 18;
+    }
+    
     * { margin: 0; padding: 0; }
   </style>
 </head>
-<body class="bg-neutral-50 dark:bg-neutral-900 text-neutral-900 dark:text-white">
+<body class="bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white">
 
   <!-- Header -->
-  <header class="sticky top-0 z-50 bg-white dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-700">
+  <header class="sticky top-0 z-50 bg-neutral-50 dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-700">
     <div class="mx-auto px-6">
       <div class="flex items-center justify-between h-16">
         
@@ -29,7 +115,7 @@
           </button>
           
           <!-- Mobile Menu Dropdown -->
-          <div id="mobile-menu" class="hidden absolute right-0 top-full mt-2 w-64 bg-white dark:bg-neutral-800 rounded-xl shadow-2xl border border-neutral-200 dark:border-neutral-700 z-50 py-2">
+          <div id="mobile-menu" class="hidden absolute right-0 top-full mt-2 w-64 bg-neutral-50 dark:bg-neutral-800 rounded-xl shadow-2xl border border-neutral-200 dark:border-neutral-700 z-50 py-2">
             <nav class="py-2">
               <a href="index.html" class="flex items-center gap-3 px-4 py-3 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors">
                 <i data-lucide="home" class="w-4 h-4 text-neutral-600 dark:text-neutral-400"></i>
@@ -48,10 +134,10 @@
         </div>
         
         <!-- Logo -->
-        <a href="index.html" class="flex items-center gap-3 hover:opacity-80 flex-shrink-0">
-          <img src="admin/assets/discover-cx-logo.svg" alt="Discover CX" class="h-7 w-auto dark:hidden">
-          <img src="admin/assets/discover-cx-logo-white.svg" alt="Discover CX" class="h-7 w-auto hidden dark:block">
-          <span class="hidden lg:inline font-normal text-lg text-neutral-600 dark:text-neutral-400">Product Documentation</span>
+        <a href="index.html" class="flex items-center gap-3 hover:opacity-90 transition-opacity flex-shrink-0">
+          <img src="admin/assets/discover-cx-logo.svg" alt="Discover CX" class="h-7 dark:hidden">
+          <img src="admin/assets/discover-cx-logo-white.svg" alt="Discover CX" class="h-7 hidden dark:block">
+          <span class="hidden sm:inline font-normal text-lg text-neutral-600 dark:text-neutral-400">Product Documentation</span>
         </a>
         
         <!-- Search Bar -->
@@ -61,7 +147,7 @@
             <input 
               type="search" 
               placeholder="Search docs..." 
-              class="w-full pl-10 pr-4 py-2 border border-neutral-300 dark:border-gray-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm"
+              class="w-full pl-10 pr-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm"
             />
           </div>
         </div>
@@ -84,7 +170,7 @@
             </button>
             
             <!-- Dropdown Menu -->
-            <div id="user-dropdown-profile" class="hidden absolute right-0 mt-2 w-56 bg-white dark:bg-neutral-800 rounded-xl shadow-2xl border border-neutral-200 dark:border-neutral-700 py-2 z-50">
+            <div id="user-dropdown-profile" class="hidden absolute right-0 mt-2 w-56 bg-neutral-50 dark:bg-neutral-800 rounded-xl shadow-2xl border border-neutral-200 dark:border-neutral-700 py-2 z-50">
               <!-- User Info -->
               <div class="px-4 py-3 border-b border-neutral-200 dark:border-neutral-700">
                 <p class="text-sm font-semibold text-neutral-900 dark:text-white">Jane Doe</p>
@@ -160,19 +246,19 @@
       <div class="lg:col-span-1 space-y-6">
         
         <!-- Profile Card -->
-        <div class="bg-white dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
+        <div class="bg-neutral-50 dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
           <!-- Cover/Header -->
-          <div class="h-24 bg-neutral-800 dark:bg-neutral-700"></div>
+          <div class="h-24 bg-gradient-to-r from-primary-600 to-pink-600"></div>
           
           <!-- Avatar & Basic Info -->
           <div class="px-6 pb-6">
             <div class="flex flex-col items-center -mt-12">
               <!-- Avatar with Edit Button -->
               <div class="relative">
-                <div class="w-24 h-24 rounded-full bg-gradient-to-br from-neutral-600 to-neutral-700 flex items-center justify-center text-white font-bold text-3xl border-4 border-white dark:border-gray-900">
+                <div class="w-24 h-24 rounded-full bg-gradient-to-br from-neutral-600 to-neutral-700 flex items-center justify-center text-white font-bold text-3xl border-4 border-white dark:border-neutral-900">
                   JD
                 </div>
-                <button class="absolute bottom-0 right-0 w-8 h-8 bg-white dark:bg-neutral-800 border-2 border-neutral-200 dark:border-neutral-700 rounded-full flex items-center justify-center hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors">
+                <button class="absolute bottom-0 right-0 w-8 h-8 bg-neutral-50 dark:bg-neutral-800 border-2 border-neutral-200 dark:border-neutral-700 rounded-full flex items-center justify-center hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors">
                   <i data-lucide="camera" class="w-4 h-4 text-neutral-600 dark:text-neutral-400"></i>
                 </button>
               </div>
@@ -184,11 +270,11 @@
               
               <!-- Quick Stats -->
               <div class="flex items-center gap-4 mt-4 w-full">
-                <div class="flex-1 text-center py-2 bg-white dark:bg-neutral-800 rounded-lg">
+                <div class="flex-1 text-center py-2 bg-neutral-50 dark:bg-neutral-800 rounded-lg">
                   <p class="text-lg font-bold text-neutral-900 dark:text-white">127</p>
                   <p class="text-xs text-neutral-600 dark:text-neutral-400">Articles Read</p>
                 </div>
-                <div class="flex-1 text-center py-2 bg-white dark:bg-neutral-800 rounded-lg">
+                <div class="flex-1 text-center py-2 bg-neutral-50 dark:bg-neutral-800 rounded-lg">
                   <p class="text-lg font-bold text-neutral-900 dark:text-white">23</p>
                   <p class="text-xs text-neutral-600 dark:text-neutral-400">Bookmarks</p>
                 </div>
@@ -198,7 +284,7 @@
         </div>
 
         <!-- Quick Links -->
-        <div class="bg-white dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-700 p-6">
+        <div class="bg-neutral-50 dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-700 p-6">
           <h3 class="font-semibold text-neutral-900 dark:text-white mb-4">Quick Links</h3>
           <div class="space-y-2">
             <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors text-neutral-700 dark:text-neutral-300">
@@ -222,10 +308,10 @@
       <div class="lg:col-span-2 space-y-6">
         
         <!-- Tabs -->
-        <div class="bg-white dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-700">
+        <div class="bg-neutral-50 dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-700">
           <div class="border-b border-neutral-200 dark:border-neutral-700">
             <nav class="flex gap-2 px-6">
-              <button data-tab="profile" class="tab-btn px-4 py-3 border-b-2 border-purple-600 text-primary-600 dark:text-primary-400 font-semibold text-sm">
+              <button data-tab="profile" class="tab-btn px-4 py-3 border-b-2 border-primary-600 text-primary-600 dark:text-primary-400 font-semibold text-sm">
                 Profile
               </button>
               <button data-tab="notifications" class="tab-btn px-4 py-3 border-b-2 border-transparent text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white font-semibold text-sm">
@@ -253,7 +339,7 @@
                     <input 
                       type="text" 
                       value="Jane" 
-                      class="w-full px-4 py-2 border border-neutral-300 dark:border-gray-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      class="w-full px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
                     />
                   </div>
                   <div>
@@ -261,7 +347,7 @@
                     <input 
                       type="text" 
                       value="Doe" 
-                      class="w-full px-4 py-2 border border-neutral-300 dark:border-gray-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      class="w-full px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
                     />
                   </div>
                 </div>
@@ -271,7 +357,7 @@
                   <input 
                     type="email" 
                     value="jane.doe@company.com" 
-                    class="w-full px-4 py-2 border border-neutral-300 dark:border-gray-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    class="w-full px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
                   />
                 </div>
                 
@@ -280,7 +366,7 @@
                   <input 
                     type="text" 
                     value="Senior Developer" 
-                    class="w-full px-4 py-2 border border-neutral-300 dark:border-gray-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    class="w-full px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
                   />
                 </div>
                 
@@ -289,7 +375,7 @@
                   <input 
                     type="text" 
                     value="Acme Corporation" 
-                    class="w-full px-4 py-2 border border-neutral-300 dark:border-gray-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    class="w-full px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
                   />
                 </div>
                 
@@ -297,7 +383,7 @@
                   <label class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">Bio</label>
                   <textarea 
                     rows="3" 
-                    class="w-full px-4 py-2 border border-neutral-300 dark:border-gray-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none"
+                    class="w-full px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none"
                     placeholder="Tell us about yourself...">Senior developer with 10+ years experience in enterprise content management.</textarea>
                 </div>
               </div>
@@ -311,7 +397,7 @@
                 <!-- Language -->
                 <div>
                   <label class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">Language</label>
-                  <select class="w-full px-4 py-2 border border-neutral-300 dark:border-gray-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500">
+                  <select class="w-full px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500">
                     <option>English (US)</option>
                     <option>English (UK)</option>
                     <option>Spanish</option>
@@ -323,7 +409,7 @@
                 <!-- Timezone -->
                 <div>
                   <label class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">Timezone</label>
-                  <select class="w-full px-4 py-2 border border-neutral-300 dark:border-gray-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500">
+                  <select class="w-full px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500">
                     <option>Pacific Time (PT)</option>
                     <option>Mountain Time (MT)</option>
                     <option>Central Time (CT)</option>
@@ -335,15 +421,15 @@
                 <div>
                   <label class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">Theme</label>
                   <div class="flex gap-3">
-                    <button class="flex-1 px-4 py-3 border-2 border-purple-600 bg-purple-50 dark:bg-purple-900/20 rounded-lg text-sm font-semibold text-primary-600 dark:text-primary-400">
+                    <button class="flex-1 px-4 py-3 border-2 border-primary-600 bg-primary-50 dark:bg-primary-900/20 rounded-lg text-sm font-semibold text-primary-600 dark:text-primary-400">
                       <i data-lucide="sun" class="w-4 h-4 inline mr-2"></i>
                       Light
                     </button>
-                    <button class="flex-1 px-4 py-3 border-2 border-neutral-300 dark:border-gray-600 rounded-lg text-sm font-semibold text-neutral-700 dark:text-neutral-300 hover:bg-white dark:hover:bg-neutral-800">
+                    <button class="flex-1 px-4 py-3 border-2 border-neutral-300 dark:border-neutral-600 rounded-lg text-sm font-semibold text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800">
                       <i data-lucide="moon" class="w-4 h-4 inline mr-2"></i>
                       Dark
                     </button>
-                    <button class="flex-1 px-4 py-3 border-2 border-neutral-300 dark:border-gray-600 rounded-lg text-sm font-semibold text-neutral-700 dark:text-neutral-300 hover:bg-white dark:hover:bg-neutral-800">
+                    <button class="flex-1 px-4 py-3 border-2 border-neutral-300 dark:border-neutral-600 rounded-lg text-sm font-semibold text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800">
                       <i data-lucide="monitor" class="w-4 h-4 inline mr-2"></i>
                       Auto
                     </button>
@@ -354,10 +440,10 @@
 
             <!-- Save Button -->
             <div class="flex items-center justify-end gap-3 pt-6 border-t border-neutral-200 dark:border-neutral-700">
-              <button class="px-4 py-2 border border-neutral-300 dark:border-gray-600 text-neutral-700 dark:text-neutral-300 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors font-semibold text-sm">
+              <button class="px-4 py-2 border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors font-semibold text-sm">
                 Cancel
               </button>
-              <button class="px-4 py-2 bg-neutral-800 dark:bg-neutral-700 text-white rounded-lg hover:from-purple-700 hover:to-pink-700 transition-colors font-semibold text-sm">
+              <button class="px-4 py-2 bg-gradient-to-r from-primary-600 to-pink-600 text-white rounded-lg hover:from-primary-700 hover:to-pink-700 transition-colors font-semibold text-sm">
                 Save Changes
               </button>
             </div>
@@ -373,14 +459,14 @@
           <!-- Filter Buttons -->
           <div class="flex gap-2 mb-6">
             <button class="px-4 py-2 bg-primary-600 text-white rounded-lg text-sm font-semibold">All</button>
-            <button class="px-4 py-2 bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 rounded-lg text-sm font-semibold hover:bg-gray-300 dark:hover:bg-gray-600">Unread</button>
-            <button class="px-4 py-2 bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 rounded-lg text-sm font-semibold hover:bg-gray-300 dark:hover:bg-gray-600">Mentions</button>
+            <button class="px-4 py-2 bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 rounded-lg text-sm font-semibold hover:bg-neutral-300 dark:hover:bg-neutral-600">Unread</button>
+            <button class="px-4 py-2 bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 rounded-lg text-sm font-semibold hover:bg-neutral-300 dark:hover:bg-neutral-600">Mentions</button>
           </div>
           
           <!-- Notifications List -->
           <div class="space-y-3">
             <!-- Notification 1 - Unread -->
-            <div class="flex gap-4 p-4 bg-purple-50 dark:bg-purple-900/20 border-l-4 border-purple-600 rounded-lg">
+            <div class="flex gap-4 p-4 bg-primary-50 dark:bg-primary-900/20 border-l-4 border-primary-600 rounded-lg">
               <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary-600 flex items-center justify-center">
                 <i data-lucide="file-text" class="w-5 h-5 text-white"></i>
               </div>
@@ -389,13 +475,13 @@
                 <p class="text-sm text-neutral-700 dark:text-neutral-300 mt-1">"Advanced Caching Strategies" is now available in the Core Concepts section.</p>
                 <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-2">2 hours ago</p>
               </div>
-              <button class="text-neutral-400 hover:text-neutral-600 dark:hover:text-gray-300">
+              <button class="text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300">
                 <i data-lucide="x" class="w-4 h-4"></i>
               </button>
             </div>
             
             <!-- Notification 2 - Read -->
-            <div class="flex gap-4 p-4 hover:bg-white dark:hover:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg">
+            <div class="flex gap-4 p-4 hover:bg-neutral-50 dark:hover:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg">
               <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center">
                 <i data-lucide="message-circle" class="w-5 h-5 text-white"></i>
               </div>
@@ -404,13 +490,13 @@
                 <p class="text-sm text-neutral-700 dark:text-neutral-300 mt-1">John Smith replied to your comment on "Getting Started"</p>
                 <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-2">5 hours ago</p>
               </div>
-              <button class="text-neutral-400 hover:text-neutral-600 dark:hover:text-gray-300">
+              <button class="text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300">
                 <i data-lucide="x" class="w-4 h-4"></i>
               </button>
             </div>
             
             <!-- Notification 3 - Read -->
-            <div class="flex gap-4 p-4 hover:bg-white dark:hover:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg">
+            <div class="flex gap-4 p-4 hover:bg-neutral-50 dark:hover:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg">
               <div class="flex-shrink-0 w-10 h-10 rounded-full bg-green-600 flex items-center justify-center">
                 <i data-lucide="check-circle" class="w-5 h-5 text-white"></i>
               </div>
@@ -419,13 +505,13 @@
                 <p class="text-sm text-neutral-700 dark:text-neutral-300 mt-1">Your profile information was successfully updated.</p>
                 <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-2">1 day ago</p>
               </div>
-              <button class="text-neutral-400 hover:text-neutral-600 dark:hover:text-gray-300">
+              <button class="text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300">
                 <i data-lucide="x" class="w-4 h-4"></i>
               </button>
             </div>
             
             <!-- Notification 4 -->
-            <div class="flex gap-4 p-4 hover:bg-white dark:hover:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg">
+            <div class="flex gap-4 p-4 hover:bg-neutral-50 dark:hover:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg">
               <div class="flex-shrink-0 w-10 h-10 rounded-full bg-orange-600 flex items-center justify-center">
                 <i data-lucide="alert-triangle" class="w-5 h-5 text-white"></i>
               </div>
@@ -434,14 +520,14 @@
                 <p class="text-sm text-neutral-700 dark:text-neutral-300 mt-1">New login from Chrome on Windows detected.</p>
                 <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-2">2 days ago</p>
               </div>
-              <button class="text-neutral-400 hover:text-neutral-600 dark:hover:text-gray-300">
+              <button class="text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300">
                 <i data-lucide="x" class="w-4 h-4"></i>
               </button>
             </div>
             
             <!-- Notification 5 -->
-            <div class="flex gap-4 p-4 hover:bg-white dark:hover:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg">
-              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center">
+            <div class="flex gap-4 p-4 hover:bg-neutral-50 dark:hover:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-accent-600 flex items-center justify-center">
                 <i data-lucide="star" class="w-5 h-5 text-white"></i>
               </div>
               <div class="flex-1">
@@ -449,7 +535,7 @@
                 <p class="text-sm text-neutral-700 dark:text-neutral-300 mt-1">Discover CX v3.5 released with new AI features.</p>
                 <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-2">3 days ago</p>
               </div>
-              <button class="text-neutral-400 hover:text-neutral-600 dark:hover:text-gray-300">
+              <button class="text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300">
                 <i data-lucide="x" class="w-4 h-4"></i>
               </button>
             </div>
@@ -486,7 +572,7 @@
                   </div>
                   <label class="relative inline-flex items-center cursor-pointer ml-4">
                     <input type="checkbox" checked class="sr-only peer">
-                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-500 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-600"></div>
+                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-500 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-neutral-50 after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-neutral-600 peer-checked:bg-primary-600"></div>
                   </label>
                 </div>
                 
@@ -497,7 +583,7 @@
                   </div>
                   <label class="relative inline-flex items-center cursor-pointer ml-4">
                     <input type="checkbox" checked class="sr-only peer">
-                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-500 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-600"></div>
+                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-500 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-neutral-50 after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-neutral-600 peer-checked:bg-primary-600"></div>
                   </label>
                 </div>
                 
@@ -508,7 +594,7 @@
                   </div>
                   <label class="relative inline-flex items-center cursor-pointer ml-4">
                     <input type="checkbox" class="sr-only peer">
-                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-500 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-600"></div>
+                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-500 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-neutral-50 after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-neutral-600 peer-checked:bg-primary-600"></div>
                   </label>
                 </div>
               </div>
@@ -528,7 +614,7 @@
                   </div>
                   <label class="relative inline-flex items-center cursor-pointer ml-4">
                     <input type="checkbox" checked class="sr-only peer">
-                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-500 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-600"></div>
+                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-500 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-neutral-50 after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-neutral-600 peer-checked:bg-primary-600"></div>
                   </label>
                 </div>
                 
@@ -538,7 +624,7 @@
                   </div>
                   <label class="relative inline-flex items-center cursor-pointer ml-4">
                     <input type="checkbox" class="sr-only peer">
-                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-500 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-600"></div>
+                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-500 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-neutral-50 after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-neutral-600 peer-checked:bg-primary-600"></div>
                   </label>
                 </div>
               </div>
@@ -558,7 +644,7 @@
                   </div>
                   <label class="relative inline-flex items-center cursor-pointer ml-4">
                     <input type="checkbox" checked class="sr-only peer">
-                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-500 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-600"></div>
+                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-500 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-neutral-50 after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-neutral-600 peer-checked:bg-primary-600"></div>
                   </label>
                 </div>
                 
@@ -569,7 +655,7 @@
                   </div>
                   <label class="relative inline-flex items-center cursor-pointer ml-4">
                     <input type="checkbox" checked class="sr-only peer">
-                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-500 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-600"></div>
+                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-500 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-neutral-50 after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-neutral-600 peer-checked:bg-primary-600"></div>
                   </label>
                 </div>
                 
@@ -580,7 +666,7 @@
                   </div>
                   <label class="relative inline-flex items-center cursor-pointer ml-4">
                     <input type="checkbox" class="sr-only peer">
-                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-500 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-600"></div>
+                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-500 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-neutral-50 after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-neutral-600 peer-checked:bg-primary-600"></div>
                   </label>
                 </div>
               </div>
@@ -595,7 +681,7 @@
           <!-- Password Section -->
           <div class="mb-8">
             <h4 class="font-semibold text-neutral-900 dark:text-white mb-4">Password</h4>
-            <button class="w-full flex items-center justify-between p-4 border border-neutral-300 dark:border-gray-600 rounded-lg hover:bg-white dark:hover:bg-neutral-800 transition-colors">
+            <button class="w-full flex items-center justify-between p-4 border border-neutral-300 dark:border-neutral-600 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors">
               <div class="flex items-center gap-3">
                 <i data-lucide="key" class="w-5 h-5 text-primary-600"></i>
                 <div class="text-left">
@@ -621,7 +707,7 @@
                     <p class="text-sm text-neutral-600 dark:text-neutral-400">Extra security for your account</p>
                   </div>
                 </div>
-                <button class="px-4 py-2 border border-neutral-300 dark:border-gray-600 text-neutral-700 dark:text-neutral-300 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors font-semibold text-sm">
+                <button class="px-4 py-2 border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors font-semibold text-sm">
                   Manage
                 </button>
               </div>
@@ -634,7 +720,7 @@
             <h4 class="font-semibold text-neutral-900 dark:text-white mb-4">Connected Devices</h4>
             <div class="space-y-3">
               <!-- Current Device -->
-              <div class="flex items-center justify-between p-4 bg-purple-50 dark:bg-purple-900/20 border-l-4 border-purple-600 rounded-lg">
+              <div class="flex items-center justify-between p-4 bg-primary-50 dark:bg-primary-900/20 border-l-4 border-primary-600 rounded-lg">
                 <div class="flex items-center gap-3">
                   <i data-lucide="laptop" class="w-5 h-5 text-primary-600"></i>
                   <div>
@@ -679,7 +765,7 @@
           <div class="mb-8">
             <h4 class="font-semibold text-neutral-900 dark:text-white mb-4">Data & Privacy</h4>
             <div class="space-y-3">
-              <button class="w-full flex items-center justify-between p-4 border border-neutral-300 dark:border-gray-600 rounded-lg hover:bg-white dark:hover:bg-neutral-800 transition-colors">
+              <button class="w-full flex items-center justify-between p-4 border border-neutral-300 dark:border-neutral-600 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors">
                 <div class="flex items-center gap-3">
                   <i data-lucide="download" class="w-5 h-5 text-neutral-600 dark:text-neutral-400"></i>
                   <div class="text-left">
@@ -690,7 +776,7 @@
                 <i data-lucide="chevron-right" class="w-5 h-5 text-neutral-400"></i>
               </button>
               
-              <button class="w-full flex items-center justify-between p-4 border border-neutral-300 dark:border-gray-600 rounded-lg hover:bg-white dark:hover:bg-neutral-800 transition-colors">
+              <button class="w-full flex items-center justify-between p-4 border border-neutral-300 dark:border-neutral-600 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors">
                 <div class="flex items-center gap-3">
                   <i data-lucide="shield" class="w-5 h-5 text-neutral-600 dark:text-neutral-400"></i>
                   <div class="text-left">
@@ -717,8 +803,8 @@
     </div>
   
   <!-- Delete Account Confirmation Modal -->
-  <div id="delete-account-modal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-    <div class="bg-white dark:bg-neutral-900 rounded-xl max-w-md w-full p-6 shadow-2xl">
+  <div id="delete-account-modal" class="hidden fixed inset-0 bg-neutral-950/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-neutral-50 dark:bg-neutral-900 rounded-xl max-w-md w-full p-6 shadow-2xl">
       <div class="flex items-start gap-4 mb-4">
         <div class="flex-shrink-0 w-12 h-12 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
           <i data-lucide="alert-triangle" class="w-6 h-6 text-red-600 dark:text-red-400"></i>
@@ -732,7 +818,7 @@
       </div>
       
       <div class="flex gap-3 mt-6">
-        <button id="cancel-delete-btn" class="flex-1 px-4 py-2 border border-neutral-300 dark:border-gray-600 text-neutral-700 dark:text-neutral-300 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors font-semibold text-sm">
+        <button id="cancel-delete-btn" class="flex-1 px-4 py-2 border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors font-semibold text-sm">
           Cancel
         </button>
         <button id="confirm-delete-btn" class="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-semibold text-sm">
@@ -745,16 +831,16 @@
   </main>
 
   <!-- Footer -->
-  <footer class="bg-neutral-900 dark:bg-black text-white py-12 mt-20" style="width: 100vw; position: relative; left: 0; right: 0;">
+  <footer class="bg-neutral-900 dark:bg-neutral-950 text-white py-12 mt-20" style="width: 100vw; position: relative; left: 0; right: 0;">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
         <div class="col-span-1">
-          <a href="index.html" class="flex items-center gap-2 mb-4">
-            <img src="admin/assets/discover-cx-logo-white.svg" alt="Discover CX" class="h-6 w-auto">
-          </a>
-          <p class="text-sm text-neutral-400 leading-relaxed">
-            Enterprise content management and customer experience platform.
-          </p>
+          <div class="flex items-center space-x-2 mb-4">
+            <svg class="w-8 h-8 text-accent-400" viewBox="0 0 32 32" fill="currentColor">
+              <path d="M16 2L3 9v14l13 7 13-7V9L16 2zm0 3.24L25.08 9 16 13.76 6.92 9 16 5.24zM5 10.92l10 5.38v10.46l-10-5.38V10.92zm12 15.84V16.3l10-5.38v10.46l-10 5.38z"/>
+            </svg>
+            <span class="font-bold text-lg">Discover CX</span>
+          </div>
         </div>
         <div>
           <h3 class="font-bold mb-4">Products</h3>
@@ -788,10 +874,10 @@
   </footer>
 
   <!-- Command K Search Modal -->
-  <div id="cmd-k-modal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 p-4 md:p-8">
+  <div id="cmd-k-modal" class="hidden fixed inset-0 bg-neutral-950/50 backdrop-blur-sm z-50 p-4 md:p-8">
     <div class="max-w-3xl mx-auto mt-20">
       <!-- Search Container -->
-      <div class="bg-white dark:bg-neutral-900 rounded-xl shadow-2xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
+      <div class="bg-neutral-50 dark:bg-neutral-900 rounded-xl shadow-2xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
         
         <!-- Search Input -->
         <div class="flex items-center gap-3 px-4 py-4 border-b border-neutral-200 dark:border-neutral-700">
@@ -809,16 +895,16 @@
         </div>
         
         <!-- Filters -->
-        <div class="flex items-center gap-2 px-4 py-3 border-b border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800">
+        <div class="flex items-center gap-2 px-4 py-3 border-b border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800">
           <span class="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wide">Filter:</span>
           <div class="flex gap-2">
             <button class="filter-btn active px-3 py-1.5 rounded-lg text-xs font-semibold bg-primary-600 text-white">
               All Results
             </button>
-            <button class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 border border-neutral-300 dark:border-gray-600 hover:bg-neutral-100 dark:hover:bg-gray-600">
+            <button class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-neutral-50 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 border border-neutral-300 dark:border-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-600">
               Documentation
             </button>
-            <button class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 border border-neutral-300 dark:border-gray-600 hover:bg-neutral-100 dark:hover:bg-gray-600">
+            <button class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-neutral-50 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 border border-neutral-300 dark:border-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-600">
               AI Answers
             </button>
           </div>
@@ -870,7 +956,7 @@
                 AI Answers
               </p>
               <div class="space-y-3">
-                <div class="px-3 py-3 rounded-lg bg-purple-50 dark:bg-purple-900/20 border border-primary-200 dark:border-purple-800">
+                <div class="px-3 py-3 rounded-lg bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800">
                   <p class="text-sm font-semibold text-neutral-900 dark:text-white mb-2 flex items-center gap-2">
                     <i data-lucide="sparkles" class="w-4 h-4 text-primary-600 dark:text-primary-400"></i>
                     Quick Answer
@@ -884,18 +970,18 @@
         </div>
         
         <!-- Footer hint -->
-        <div class="flex items-center justify-between px-4 py-3 bg-white dark:bg-neutral-800 border-t border-neutral-200 dark:border-neutral-700">
+        <div class="flex items-center justify-between px-4 py-3 bg-neutral-50 dark:bg-neutral-800 border-t border-neutral-200 dark:border-neutral-700">
           <div class="flex items-center gap-4 text-xs text-neutral-500 dark:text-neutral-400">
             <span class="flex items-center gap-1.5">
-              <kbd class="px-1.5 py-0.5 bg-white dark:bg-neutral-700 border border-neutral-300 dark:border-gray-600 rounded text-xs">↑↓</kbd>
+              <kbd class="px-1.5 py-0.5 bg-neutral-50 dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-600 rounded text-xs">↑↓</kbd>
               Navigate
             </span>
             <span class="flex items-center gap-1.5">
-              <kbd class="px-1.5 py-0.5 bg-white dark:bg-neutral-700 border border-neutral-300 dark:border-gray-600 rounded text-xs">↵</kbd>
+              <kbd class="px-1.5 py-0.5 bg-neutral-50 dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-600 rounded text-xs">↵</kbd>
               Select
             </span>
             <span class="flex items-center gap-1.5">
-              <kbd class="px-1.5 py-0.5 bg-white dark:bg-neutral-700 border border-neutral-300 dark:border-gray-600 rounded text-xs">esc</kbd>
+              <kbd class="px-1.5 py-0.5 bg-neutral-50 dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-600 rounded text-xs">esc</kbd>
               Close
             </span>
           </div>
@@ -939,7 +1025,7 @@
       
       // Reset all
       Object.values(buttons).forEach(btn => {
-        btn?.classList.remove('bg-yellow-100', 'dark:bg-yellow-900/30', 'bg-gray-700', 'bg-neutral-100');
+        btn?.classList.remove('bg-yellow-100', 'dark:bg-yellow-900/30', 'bg-neutral-700', 'bg-neutral-100');
         btn?.classList.add('hover:bg-neutral-100', 'dark:hover:bg-neutral-700');
       });
       
@@ -1045,10 +1131,10 @@
       btn.addEventListener('click', function() {
         document.querySelectorAll('.filter-btn').forEach(b => {
           b.classList.remove('bg-primary-600', 'text-white');
-          b.classList.add('bg-white', 'dark:bg-neutral-700', 'text-neutral-700', 'dark:text-neutral-300', 'border', 'border-neutral-300', 'dark:border-gray-600');
+          b.classList.add('bg-neutral-50', 'dark:bg-neutral-700', 'text-neutral-700', 'dark:text-neutral-300', 'border', 'border-neutral-300', 'dark:border-neutral-600');
         });
         
-        this.classList.remove('bg-white', 'dark:bg-neutral-700', 'text-neutral-700', 'dark:text-neutral-300', 'border', 'border-neutral-300', 'dark:border-gray-600');
+        this.classList.remove('bg-neutral-50', 'dark:bg-neutral-700', 'text-neutral-700', 'dark:text-neutral-300', 'border', 'border-neutral-300', 'dark:border-neutral-600');
         this.classList.add('bg-primary-600', 'text-white');
       });
     });
@@ -1063,12 +1149,12 @@
         
         // Update tab buttons
         document.querySelectorAll('.tab-btn').forEach(b => {
-          b.classList.remove('border-purple-600', 'text-primary-600', 'dark:text-primary-400');
+          b.classList.remove('border-primary-600', 'text-primary-600', 'dark:text-primary-400');
           b.classList.add('border-transparent', 'text-neutral-600', 'dark:text-neutral-400');
         });
         
         this.classList.remove('border-transparent', 'text-neutral-600', 'dark:text-neutral-400');
-        this.classList.add('border-purple-600', 'text-primary-600', 'dark:text-primary-400');
+        this.classList.add('border-primary-600', 'text-primary-600', 'dark:text-primary-400');
         
         // Update tab content
         document.querySelectorAll('.tab-content').forEach(content => {
