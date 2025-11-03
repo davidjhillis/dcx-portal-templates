@@ -78,58 +78,27 @@
   <div class="min-h-full flex">
     
     <!-- Left Side - Branding -->
-    <div class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-primary-600 to-blue-600 p-12 flex-col justify-between relative overflow-hidden">
-      <!-- Decorative Background Pattern -->
-      <div class="absolute inset-0 opacity-10">
-        <div class="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+    <div class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-primary-600 to-blue-600 p-12 flex-col justify-center items-center relative overflow-hidden">
+      <!-- Decorative Background Pattern (Topographic Lines) -->
+      <div class="absolute inset-0 opacity-20">
+        <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="topographic" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+              <path d="M20,50 Q60,30 100,50 T180,50" fill="none" stroke="white" stroke-width="1.5" opacity="0.5"/>
+              <path d="M30,80 Q70,60 110,80 T190,80" fill="none" stroke="white" stroke-width="1" opacity="0.3" stroke-dasharray="5,5"/>
+              <path d="M10,120 Q50,100 90,120 T170,120" fill="none" stroke="white" stroke-width="1.5" opacity="0.6"/>
+              <path d="M40,150 Q80,130 120,150 T200,150" fill="none" stroke="white" stroke-width="1" opacity="0.4"/>
+              <path d="M0,20 Q40,0 80,20 T160,20" fill="none" stroke="white" stroke-width="1" opacity="0.3" stroke-dasharray="3,3"/>
+              <path d="M25,180 Q65,160 105,180 T185,180" fill="none" stroke="white" stroke-width="1.5" opacity="0.5"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#topographic)"/>
+        </svg>
       </div>
       
+      <!-- Logo -->
       <div class="relative z-10">
-        <!-- Logo -->
-        <div class="flex items-center gap-3">
-          <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center">
-            <span class="text-2xl font-bold bg-gradient-to-r from-primary-600 to-blue-600 bg-clip-text text-transparent">CX</span>
-          </div>
-          <span class="text-2xl font-semibold text-white">Discover CX</span>
-        </div>
-      </div>
-
-      <div class="relative z-10">
-        <h1 class="text-4xl font-bold text-white mb-6">
-          Welcome to<br />Product Documentation
-        </h1>
-        <p class="text-xl text-white/90 mb-8">
-          Access comprehensive documentation, guides, and resources for all Ingeniux products.
-        </p>
-        
-        <!-- Features List -->
-        <div class="space-y-4">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
-              <i data-lucide="search" class="w-5 h-5 text-white"></i>
-            </div>
-            <span class="text-white/90">AI-powered search</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
-              <i data-lucide="book-open" class="w-5 h-5 text-white"></i>
-            </div>
-            <span class="text-white/90">Comprehensive guides</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
-              <i data-lucide="message-circle" class="w-5 h-5 text-white"></i>
-            </div>
-            <span class="text-white/90">24/7 support assistant</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="relative z-10">
-        <p class="text-sm text-white/70">
-          © 2025 Discover CX. All rights reserved.
-        </p>
+        <img src="admin/assets/discover-cx-logo-white.svg" alt="Discover CX" class="h-12 w-auto mb-8">
       </div>
     </div>
 
@@ -139,12 +108,8 @@
         
         <!-- Mobile Logo -->
         <div class="lg:hidden mb-8 text-center">
-          <div class="inline-flex items-center gap-3 mb-2">
-            <div class="w-10 h-10 bg-gradient-to-r from-primary-600 to-blue-600 rounded-xl flex items-center justify-center">
-              <span class="text-xl font-bold text-white">CX</span>
-            </div>
-            <span class="text-2xl font-semibold text-neutral-900 dark:text-white">Discover CX</span>
-          </div>
+          <img src="admin/assets/discover-cx-logo.svg" alt="Discover CX" class="h-10 w-auto mx-auto dark:hidden">
+          <img src="admin/assets/discover-cx-logo-white.svg" alt="Discover CX" class="h-10 w-auto mx-auto hidden dark:block">
         </div>
 
         <div>
