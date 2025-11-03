@@ -1680,7 +1680,7 @@
       if (!summaryContainer) {
         summaryContainer = document.createElement('div');
         summaryContainer.id = 'ai-summary-container';
-        summaryContainer.className = 'mt-6 p-6 border border-neutral-200 dark:border-neutral-700 rounded-xl bg-white dark:bg-neutral-800';
+        summaryContainer.className = 'mt-6 p-6 border-2 border-neutral-200 dark:border-neutral-600 rounded-xl bg-white dark:bg-neutral-800';
         summaryContainer.innerHTML = `
           <!-- Thinking State -->
           <div id="ai-thinking" class="flex items-center gap-3 py-4">
@@ -1723,6 +1723,7 @@
           </div>
         `;
         container.parentNode.insertBefore(summaryContainer, container.nextSibling);
+        lucide.createIcons();
       }
       
       const thinking = document.getElementById('ai-thinking');
