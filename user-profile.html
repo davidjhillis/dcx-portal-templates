@@ -317,6 +317,9 @@
               <button data-tab="notifications" class="tab-btn px-4 py-3 border-b-2 border-transparent text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white font-semibold text-sm">
                 Notifications
               </button>
+              <button data-tab="subscriptions" class="tab-btn px-4 py-3 border-b-2 border-transparent text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white font-semibold text-sm">
+                Subscriptions
+              </button>
             </nav>
           </div>
           
@@ -493,6 +496,133 @@
             </div>
             <p class="text-neutral-600 dark:text-neutral-400 font-medium mb-1">No notifications</p>
             <p class="text-sm text-neutral-500">You're all caught up!</p>
+          </div>
+        </div>
+        
+        <!-- Subscriptions Tab Content -->
+        <div id="subscriptions-tab" class="tab-content hidden p-6">
+          <div class="mb-6">
+            <h3 class="text-lg font-semibold text-neutral-900 dark:text-white">Email Subscriptions</h3>
+            <p class="text-sm text-neutral-600 dark:text-neutral-400 mt-1">Manage your documentation email preferences</p>
+          </div>
+          
+          <div class="space-y-4">
+            <!-- Documentation Updates -->
+            <div class="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-5">
+              <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center">
+                    <i data-lucide="book-open" class="w-5 h-5 text-primary-600 dark:text-primary-400"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-neutral-900 dark:text-white">Documentation Updates</h4>
+                    <p class="text-sm text-neutral-600 dark:text-neutral-400 mt-0.5">Get notified about new and updated articles</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="space-y-3 ml-13">
+                <label class="flex items-center justify-between py-2">
+                  <span class="text-sm text-neutral-700 dark:text-neutral-300">New articles published</span>
+                  <div class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" checked class="sr-only peer">
+                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-500 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
+                  </div>
+                </label>
+                
+                <label class="flex items-center justify-between py-2">
+                  <span class="text-sm text-neutral-700 dark:text-neutral-300">Bookmarked articles updated</span>
+                  <div class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" checked class="sr-only peer">
+                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-500 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
+                  </div>
+                </label>
+                
+                <label class="flex items-center justify-between py-2">
+                  <span class="text-sm text-neutral-700 dark:text-neutral-300">Weekly digest</span>
+                  <div class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" class="sr-only peer">
+                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-500 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
+                  </div>
+                </label>
+              </div>
+            </div>
+            
+            <!-- Product Updates -->
+            <div class="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-5">
+              <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+                    <i data-lucide="package" class="w-5 h-5 text-blue-600 dark:text-blue-400"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-neutral-900 dark:text-white">Product Updates</h4>
+                    <p class="text-sm text-neutral-600 dark:text-neutral-400 mt-0.5">Stay informed about releases and features</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="space-y-3 ml-13">
+                <label class="flex items-center justify-between py-2">
+                  <span class="text-sm text-neutral-700 dark:text-neutral-300">Release announcements</span>
+                  <div class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" checked class="sr-only peer">
+                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-500 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
+                  </div>
+                </label>
+                
+                <label class="flex items-center justify-between py-2">
+                  <span class="text-sm text-neutral-700 dark:text-neutral-300">Beta program updates</span>
+                  <div class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" class="sr-only peer">
+                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-500 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
+                  </div>
+                </label>
+              </div>
+            </div>
+            
+            <!-- Tips & Resources -->
+            <div class="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-5">
+              <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
+                    <i data-lucide="lightbulb" class="w-5 h-5 text-green-600 dark:text-green-400"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-neutral-900 dark:text-white">Tips & Resources</h4>
+                    <p class="text-sm text-neutral-600 dark:text-neutral-400 mt-0.5">Best practices and helpful guides</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="space-y-3 ml-13">
+                <label class="flex items-center justify-between py-2">
+                  <span class="text-sm text-neutral-700 dark:text-neutral-300">Monthly tips & tricks</span>
+                  <div class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" checked class="sr-only peer">
+                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-500 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
+                  </div>
+                </label>
+                
+                <label class="flex items-center justify-between py-2">
+                  <span class="text-sm text-neutral-700 dark:text-neutral-300">Case studies</span>
+                  <div class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" class="sr-only peer">
+                    <div class="w-11 h-6 bg-neutral-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-500 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Save Button -->
+          <div class="flex items-center justify-end gap-3 mt-6 pt-6 border-t border-neutral-200 dark:border-neutral-700">
+            <button class="px-4 py-2 border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors font-semibold text-sm">
+              Cancel
+            </button>
+            <button class="px-6 py-2 bg-gradient-to-r from-primary-600 to-blue-600 text-white rounded-lg hover:from-primary-700 hover:to-blue-700 transition-all font-semibold text-sm shadow-lg shadow-primary-500/20">
+              Save Preferences
+            </button>
           </div>
         </div>
 
