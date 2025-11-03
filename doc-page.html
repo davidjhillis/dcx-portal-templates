@@ -1342,9 +1342,26 @@
     const recentSearches = document.getElementById('recent-searches');
     const searchResults = document.getElementById('search-results');
     
+    // Keyboard navigation state
+    let selectedResultIndex = -1;
+    const resultSelector = '#cmd-k-results a, #cmd-k-results button';
+    
+    function updateSelectedResult() {
+      const results = document.querySelectorAll(resultSelector);
+      results.forEach((result, index) => {
+        if (index === selectedResultIndex) {
+          result.classList.add('bg-primary-50', 'dark:bg-primary-900/30');
+          result.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        } else {
+          result.classList.remove('bg-primary-50', 'dark:bg-primary-900/30');
+        }
+      });
+    }
+    
     // Open modal
     function openCmdK() {
       cmdKModal?.classList.remove('hidden');
+      selectedResultIndex = -1;
       setTimeout(() => {
         cmdKInput?.focus();
         lucide.createIcons();
@@ -1357,6 +1374,8 @@
       if (cmdKInput) cmdKInput.value = '';
       recentSearches?.classList.remove('hidden');
       searchResults?.classList.add('hidden');
+      selectedResultIndex = -1;
+      updateSelectedResult();
     }
     
     // Keyboard shortcut: Cmd/Ctrl + K
@@ -1394,6 +1413,27 @@
         recentSearches?.classList.remove('hidden');
         searchResults?.classList.add('hidden');
       }
+      // Reset selection when search changes
+      selectedResultIndex = -1;
+      updateSelectedResult();
+    });
+    
+    // Keyboard navigation in input
+    cmdKInput?.addEventListener('keydown', (e) => {
+      const results = document.querySelectorAll(resultSelector);
+      
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        selectedResultIndex = Math.min(selectedResultIndex + 1, results.length - 1);
+        updateSelectedResult();
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        selectedResultIndex = Math.max(selectedResultIndex - 1, -1);
+        updateSelectedResult();
+      } else if (e.key === 'Enter' && selectedResultIndex >= 0) {
+        e.preventDefault();
+        results[selectedResultIndex]?.click();
+      }
     });
     
     // Filter buttons
@@ -1406,6 +1446,10 @@
         
         this.classList.remove('bg-neutral-50', 'dark:bg-neutral-700', 'text-neutral-700', 'dark:text-neutral-300', 'border', 'border-neutral-300', 'dark:border-neutral-600');
         this.classList.add('bg-primary-600', 'text-white');
+        
+        // Reset selection when filter changes
+        selectedResultIndex = -1;
+        updateSelectedResult();
       });
     });
   </script>
