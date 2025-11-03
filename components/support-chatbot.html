@@ -10,7 +10,7 @@
 </button>
 
 <!-- Chat Window -->
-<div id="chat-window" class="hidden fixed bottom-24 right-6 w-96 h-[600px] bg-white dark:bg-neutral-900 rounded-2xl shadow-2xl border border-neutral-200 dark:border-neutral-700 flex flex-col z-50 animate-slide-up">
+<div id="chat-window" class="hidden fixed bottom-24 right-6 w-96 h-[600px] bg-white dark:bg-neutral-900 rounded-2xl shadow-2xl border border-neutral-200 dark:border-neutral-700 flex flex-col z-50 animate-slide-up" style="box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.05);">
   
   <!-- Chat Header (Simplified) -->
   <div class="flex items-center justify-between px-6 py-4 border-b border-neutral-200 dark:border-neutral-700">
@@ -25,10 +25,15 @@
     
     <!-- Welcome Message -->
     <div class="flex gap-3">
-      <div class="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-primary-600 to-blue-600 rounded-full"></div>
+      <div class="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-primary-600 to-blue-600 rounded-full flex items-center justify-center">
+        <span class="text-white text-xs font-bold">CX</span>
+      </div>
       <div class="flex-1">
         <div class="bg-white dark:bg-neutral-800 rounded-2xl rounded-tl-none p-4 shadow-sm border border-neutral-200 dark:border-neutral-700">
-          <p class="text-sm text-neutral-900 dark:text-white mb-2">👋 Hi! I'm here to help. You can ask me about:</p>
+          <div class="flex items-center gap-2 mb-2">
+            <i data-lucide="hand-metal" class="w-4 h-4 text-neutral-600 dark:text-neutral-400"></i>
+            <p class="text-sm text-neutral-900 dark:text-white">Hi! I'm here to help. You can ask me about:</p>
+          </div>
           <ul class="text-sm text-neutral-700 dark:text-neutral-300 space-y-1.5 ml-4">
             <li class="flex items-start gap-2">
               <span class="text-primary-600 dark:text-primary-400 mt-0.5">•</span>
@@ -68,7 +73,9 @@
 
     <!-- Example Bot Message with References (Hidden by default) -->
     <div class="hidden bot-message flex gap-3">
-      <div class="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-primary-600 to-blue-600 rounded-full"></div>
+      <div class="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-primary-600 to-blue-600 rounded-full flex items-center justify-center">
+        <span class="text-white text-xs font-bold">CX</span>
+      </div>
       <div class="flex-1">
         <div class="bg-white dark:bg-neutral-800 rounded-2xl rounded-tl-none p-4 shadow-sm border border-neutral-200 dark:border-neutral-700">
           <div class="prose prose-sm dark:prose-invert max-w-none">
@@ -106,7 +113,9 @@
 
     <!-- Typing Indicator (Hidden by default) -->
     <div id="typing-indicator" class="hidden flex gap-3">
-      <div class="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-primary-600 to-blue-600 rounded-full"></div>
+      <div class="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-primary-600 to-blue-600 rounded-full flex items-center justify-center">
+        <span class="text-white text-xs font-bold">CX</span>
+      </div>
       <div class="flex-1">
         <div class="bg-white dark:bg-neutral-800 rounded-2xl rounded-tl-none p-4 shadow-sm border border-neutral-200 dark:border-neutral-700 w-20">
           <div class="flex items-center gap-1">
@@ -209,6 +218,11 @@
 
   .dark #chat-messages {
     scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+  }
+
+  /* Enhanced shadow for dark mode */
+  .dark #chat-window {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.1) !important;
   }
 
   /* Mobile responsive */
@@ -382,7 +396,9 @@
       }
 
       messageDiv.innerHTML = `
-        <div class="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-primary-600 to-blue-600 rounded-full"></div>
+        <div class="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-primary-600 to-blue-600 rounded-full flex items-center justify-center">
+          <span class="text-white text-xs font-bold">CX</span>
+        </div>
         <div class="flex-1">
           <div class="bg-white dark:bg-neutral-800 rounded-2xl rounded-tl-none p-4 shadow-sm border border-neutral-200 dark:border-neutral-700">
             <p class="text-sm text-neutral-900 dark:text-white">${escapeHtml(text)}</p>
