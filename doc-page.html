@@ -362,7 +362,7 @@
     <div class="flex">
       
       <!-- Left Sidebar - Syntax-style Navigation (Desktop) -->
-      <aside id="desktop-toc" class="hidden lg:block fixed left-0 top-16 bottom-0 w-64 bg-neutral-50 dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-700 overflow-y-auto" style="left: max(0px, calc(50% - 768px))">
+      <aside id="desktop-toc" class="hidden lg:block fixed left-0 top-16 bottom-0 w-80 bg-neutral-50 dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-700 overflow-y-auto" style="left: max(0px, calc(50% - 768px))">
       <nav class="p-6">
         
         <!-- Table of Contents Header -->
@@ -378,12 +378,12 @@
           
           <!-- Expand/Collapse All -->
           <div class="flex items-center gap-3 mt-3">
-            <button id="expand-all-btn" class="flex items-center gap-1 text-xs text-neutral-600 dark:text-neutral-400 hover:text-primary-600 dark:hover:text-primary-400">
-              <i data-lucide="chevron-down" class="w-3 h-3"></i>
+            <button id="expand-all-btn" class="flex items-center gap-1.5 text-sm text-neutral-600 dark:text-neutral-400 hover:text-primary-600 dark:hover:text-primary-400">
+              <i data-lucide="chevron-down" class="w-4 h-4"></i>
               <span>Expand</span>
             </button>
-            <button id="collapse-all-btn" class="flex items-center gap-1 text-xs text-neutral-600 dark:text-neutral-400 hover:text-primary-600 dark:hover:text-primary-400">
-              <i data-lucide="chevron-up" class="w-3 h-3"></i>
+            <button id="collapse-all-btn" class="flex items-center gap-1.5 text-sm text-neutral-600 dark:text-neutral-400 hover:text-primary-600 dark:hover:text-primary-400">
+              <i data-lucide="chevron-up" class="w-4 h-4"></i>
               <span>Collapse</span>
             </button>
           </div>
@@ -408,13 +408,34 @@
             <span>Authoring Basics</span>
             <i data-lucide="chevron-up" class="w-4 h-4"></i>
           </button>
-          <ul class="space-y-2 text-sm nav-section-content">
-            <li><a href="#" class="text-primary-600 dark:text-primary-400 font-semibold">Creating Pages</a></li>
-            <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Checking Pages In/Out</a></li>
-            <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Saving Pages</a></li>
-            <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Deleting & Restoring</a></li>
-            <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Publishing Content</a></li>
-          </ul>
+          <div class="nav-section-content">
+            <!-- Topic: Creating and Managing Pages -->
+            <div class="mb-3">
+              <button class="topic-toggle flex items-center justify-between w-full text-sm font-semibold text-neutral-900 dark:text-white mb-2 hover:text-primary-600 dark:hover:text-primary-400 pl-2" data-chevron-state="up">
+                <span>Creating and Managing Pages</span>
+                <i data-lucide="chevron-up" class="w-3.5 h-3.5"></i>
+              </button>
+              <ul class="space-y-1.5 text-sm topic-content pl-4">
+                <li><a href="doc-page.html" class="text-primary-600 dark:text-primary-400 font-semibold hover:underline">Creating Pages</a></li>
+                <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Checking Pages In/Out</a></li>
+                <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Saving Pages</a></li>
+                <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Deleting & Restoring</a></li>
+              </ul>
+            </div>
+            
+            <!-- Topic: Publishing -->
+            <div class="mb-3">
+              <button class="topic-toggle flex items-center justify-between w-full text-sm font-semibold text-neutral-900 dark:text-white mb-2 hover:text-primary-600 dark:hover:text-primary-400 pl-2" data-chevron-state="down">
+                <span>Publishing</span>
+                <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+              </button>
+              <ul class="space-y-1.5 text-sm topic-content hidden pl-4">
+                <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Publishing Overview</a></li>
+                <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Publishing Settings</a></li>
+                <li><a href="#" class="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white">Batch Publishing</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
         
         <!-- Section: Editing Basics -->
@@ -469,7 +490,7 @@
       </button>
 
       <!-- Main Content -->
-      <main class="flex-1 w-full lg:ml-64 lg:mr-64 overflow-x-hidden">
+      <main class="flex-1 w-full lg:ml-80 lg:mr-64 overflow-x-hidden">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
           
           <!-- Breadcrumb Navigation (Hidden on mobile) -->
@@ -2534,6 +2555,33 @@
         });
       });
       
+      // Setup topic-level toggles (nested within sections)
+      const topicToggles = document.querySelectorAll('.topic-toggle');
+      topicToggles.forEach(button => {
+        button.addEventListener('click', function() {
+          const content = this.nextElementSibling;
+          const chevronContainer = this.querySelector('i, svg');
+          
+          if (content) {
+            content.classList.toggle('hidden');
+            
+            // Toggle chevron state
+            const currentState = this.getAttribute('data-chevron-state');
+            const newState = currentState === 'up' ? 'down' : 'up';
+            this.setAttribute('data-chevron-state', newState);
+            
+            // Replace icon
+            if (chevronContainer) {
+              const newIcon = document.createElement('i');
+              newIcon.setAttribute('data-lucide', `chevron-${newState}`);
+              newIcon.className = 'w-3.5 h-3.5';
+              chevronContainer.replaceWith(newIcon);
+              lucide.createIcons();
+            }
+          }
+        });
+      });
+      
       // Version Dropdown Toggle
       const versionDropdownBtn = document.getElementById('version-dropdown-btn');
       const versionDropdown = document.getElementById('version-dropdown');
@@ -2568,7 +2616,7 @@
           // Hide TOC
           leftSidebar.classList.remove('lg:block');
           leftSidebar.classList.add('lg:hidden');
-          mainContent.classList.remove('lg:ml-64');
+          mainContent.classList.remove('lg:ml-80');
           showTocBtn.classList.remove('hidden');
           showTocBtn.classList.add('block');
           
@@ -2584,7 +2632,7 @@
           // Show TOC
           leftSidebar.classList.remove('lg:hidden');
           leftSidebar.classList.add('lg:block');
-          mainContent.classList.add('lg:ml-64');
+          mainContent.classList.add('lg:ml-80');
           showTocBtn.classList.remove('block');
           showTocBtn.classList.add('hidden');
           
@@ -2611,6 +2659,7 @@
       const expandAllBtn = document.getElementById('expand-all-btn');
       if (expandAllBtn) {
         expandAllBtn.addEventListener('click', function() {
+          // Expand sections
           const allSections = document.querySelectorAll('.nav-section-toggle');
           allSections.forEach(button => {
             const content = button.nextElementSibling;
@@ -2628,6 +2677,26 @@
               }
             }
           });
+          
+          // Expand topics
+          const allTopics = document.querySelectorAll('.topic-toggle');
+          allTopics.forEach(button => {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('i, svg');
+            
+            if (content && content.classList.contains('hidden')) {
+              content.classList.remove('hidden');
+              button.setAttribute('data-chevron-state', 'up');
+              
+              if (icon) {
+                const newIcon = document.createElement('i');
+                newIcon.setAttribute('data-lucide', 'chevron-up');
+                newIcon.className = 'w-3.5 h-3.5';
+                icon.replaceWith(newIcon);
+              }
+            }
+          });
+          
           lucide.createIcons();
         });
       }
@@ -2636,6 +2705,7 @@
       const collapseAllBtn = document.getElementById('collapse-all-btn');
       if (collapseAllBtn) {
         collapseAllBtn.addEventListener('click', function() {
+          // Collapse sections
           const allSections = document.querySelectorAll('.nav-section-toggle');
           allSections.forEach(button => {
             const content = button.nextElementSibling;
@@ -2653,6 +2723,26 @@
               }
             }
           });
+          
+          // Collapse topics
+          const allTopics = document.querySelectorAll('.topic-toggle');
+          allTopics.forEach(button => {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('i, svg');
+            
+            if (content && !content.classList.contains('hidden')) {
+              content.classList.add('hidden');
+              button.setAttribute('data-chevron-state', 'down');
+              
+              if (icon) {
+                const newIcon = document.createElement('i');
+                newIcon.setAttribute('data-lucide', 'chevron-down');
+                newIcon.className = 'w-3.5 h-3.5';
+                icon.replaceWith(newIcon);
+              }
+            }
+          });
+          
           lucide.createIcons();
         });
       }
