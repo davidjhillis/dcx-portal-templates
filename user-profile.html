@@ -943,6 +943,10 @@
     // Click trigger button
     cmdKTrigger?.addEventListener('click', openCmdK);
     
+    // Mobile search button also opens Command K modal
+    const mobileSearchBtn = document.getElementById('mobile-search-btn');
+    mobileSearchBtn?.addEventListener('click', openCmdK);
+    
     // Click close button
     cmdKClose?.addEventListener('click', closeCmdK);
     
