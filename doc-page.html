@@ -1574,24 +1574,45 @@
       document.getElementById('glossary-term-title').textContent = term.replace(/-/g, ' ');
       document.getElementById('glossary-definition').textContent = definition;
       
-      // Position below term (fixed positioning uses viewport coordinates, no scrollY needed)
+      // Show tooltip temporarily to measure height
+      tooltip.classList.remove('hidden');
+      tooltip.style.visibility = 'hidden';
+      const tooltipHeight = tooltip.offsetHeight;
+      tooltip.style.visibility = 'visible';
+      
+      // Check if tooltip would go below viewport
       const tooltipWidth = 300; // max-w-xs
       const termCenter = rect.left + (rect.width / 2);
       const left = Math.max(10, Math.min(window.innerWidth - tooltipWidth - 10, rect.left + (rect.width / 2) - (tooltipWidth / 2)));
-      const top = rect.bottom + 8;
+      const spaceBelow = window.innerHeight - rect.bottom;
+      const spaceAbove = rect.top;
+      const positionAbove = spaceBelow < tooltipHeight + 20 && spaceAbove > tooltipHeight + 20;
       
-      // Calculate arrow position to point at term center
-      const arrowLeft = termCenter - left - 8; // 8px is half arrow width
+      let top;
+      if (positionAbove) {
+        // Position above term
+        top = rect.top - tooltipHeight - 8;
+        // Update arrow to point down
+        if (arrow) {
+          arrow.className = 'absolute -bottom-2 w-4 h-4 bg-white dark:bg-neutral-800 border-r-2 border-b-2 border-neutral-200 dark:border-neutral-600 rotate-45';
+          const arrowLeft = termCenter - left - 8;
+          arrow.style.left = Math.max(12, Math.min(tooltipWidth - 20, arrowLeft)) + 'px';
+          arrow.style.top = 'auto';
+        }
+      } else {
+        // Position below term
+        top = rect.bottom + 8;
+        // Update arrow to point up
+        if (arrow) {
+          arrow.className = 'absolute -top-2 w-4 h-4 bg-white dark:bg-neutral-800 border-l-2 border-t-2 border-neutral-200 dark:border-neutral-600 rotate-45';
+          const arrowLeft = termCenter - left - 8;
+          arrow.style.left = Math.max(12, Math.min(tooltipWidth - 20, arrowLeft)) + 'px';
+          arrow.style.bottom = 'auto';
+        }
+      }
       
       tooltip.style.left = left + 'px';
       tooltip.style.top = top + 'px';
-      
-      // Position arrow to align with term
-      if (arrow) {
-        arrow.style.left = Math.max(12, Math.min(tooltipWidth - 20, arrowLeft)) + 'px';
-      }
-      
-      tooltip.classList.remove('hidden');
     };
     
     IGXDocs.hideGlossaryTooltip = function() {
@@ -1931,14 +1952,30 @@
           const range = selection.getRangeAt(0);
           const rect = range.getBoundingClientRect();
           
-          // Position tooltip below selection (fixed positioning uses viewport coordinates, no scrollY needed)
+          // Show tooltip temporarily to measure height
+          tooltip.classList.remove('hidden');
+          tooltip.style.visibility = 'hidden';
+          const tooltipHeight = tooltip.offsetHeight;
+          tooltip.style.visibility = 'visible';
+          
+          // Check if tooltip would go below viewport
           const tooltipWidth = 350; // max-w-sm
           const left = Math.max(10, Math.min(window.innerWidth - tooltipWidth - 10, rect.left + (rect.width / 2) - (tooltipWidth / 2)));
-          const top = rect.bottom + 10;
+          const spaceBelow = window.innerHeight - rect.bottom;
+          const spaceAbove = rect.top;
+          const positionAbove = spaceBelow < tooltipHeight + 20 && spaceAbove > tooltipHeight + 20;
+          
+          let top;
+          if (positionAbove) {
+            // Position above selection
+            top = rect.top - tooltipHeight - 10;
+          } else {
+            // Position below selection
+            top = rect.bottom + 10;
+          }
           
           tooltip.style.left = left + 'px';
           tooltip.style.top = top + 'px';
-          tooltip.classList.remove('hidden');
           
           // Update selected text in tooltip
           document.getElementById('selected-text-tooltip').textContent = selectedText;
