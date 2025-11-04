@@ -1563,11 +1563,11 @@
       document.getElementById('glossary-term-title').textContent = term.replace(/-/g, ' ');
       document.getElementById('glossary-definition').textContent = definition;
       
-      // Position below term
+      // Position below term (fixed positioning uses viewport coordinates, no scrollY needed)
       const tooltipWidth = 300; // max-w-xs
       const termCenter = rect.left + (rect.width / 2);
       const left = Math.max(10, Math.min(window.innerWidth - tooltipWidth - 10, rect.left + (rect.width / 2) - (tooltipWidth / 2)));
-      const top = rect.bottom + window.scrollY + 8;
+      const top = rect.bottom + 8;
       
       // Calculate arrow position to point at term center
       const arrowLeft = termCenter - left - 8; // 8px is half arrow width
@@ -1920,10 +1920,10 @@
           const range = selection.getRangeAt(0);
           const rect = range.getBoundingClientRect();
           
-          // Position tooltip below selection (Grammarly-style)
+          // Position tooltip below selection (fixed positioning uses viewport coordinates, no scrollY needed)
           const tooltipWidth = 350; // max-w-sm
           const left = Math.max(10, Math.min(window.innerWidth - tooltipWidth - 10, rect.left + (rect.width / 2) - (tooltipWidth / 2)));
-          const top = rect.bottom + window.scrollY + 10;
+          const top = rect.bottom + 10;
           
           tooltip.style.left = left + 'px';
           tooltip.style.top = top + 'px';
