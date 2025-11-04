@@ -164,14 +164,16 @@
           <img src="admin/assets/discover-cx-logo-white.svg" alt="Discover CX" class="h-10 w-auto mx-auto hidden dark:block">
         </div>
 
-        <div>
-          <h2 class="text-3xl font-bold text-neutral-900 dark:text-white mb-2">
-            Sign in to your account
-          </h2>
-          <p class="text-neutral-600 dark:text-neutral-400 mb-8">
-            Access your documentation portal
-          </p>
-        </div>
+        <!-- Login Form Container -->
+        <div id="login-form-container">
+          <div>
+            <h2 class="text-3xl font-bold text-neutral-900 dark:text-white mb-2">
+              Sign in to your account
+            </h2>
+            <p class="text-neutral-600 dark:text-neutral-400 mb-8">
+              Access your documentation portal
+            </p>
+          </div>
 
         <!-- SSO Options -->
         <div class="space-y-3 mb-6">
@@ -280,215 +282,241 @@
           </button>
         </form>
 
-        <!-- Sign Up Link -->
-        <p class="text-center text-sm text-neutral-600 dark:text-neutral-400">
-          Don't have an account?
-          <a href="#" id="show-register" class="font-medium text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300">
-            Request access
-          </a>
-        </p>
-
-        <!-- Help Links -->
-        <div class="mt-8 pt-8 border-t border-neutral-200 dark:border-neutral-700">
-          <div class="flex items-center justify-center gap-6 text-sm">
-            <a href="#" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white flex items-center gap-1">
-              <i data-lucide="help-circle" class="w-4 h-4"></i>
-              Help
+          <!-- Sign Up Link -->
+          <p class="text-center text-sm text-neutral-600 dark:text-neutral-400">
+            Don't have an account?
+            <a href="#" id="show-register" class="font-medium text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300">
+              Request access
             </a>
-            <a href="#" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white flex items-center gap-1">
-              <i data-lucide="shield" class="w-4 h-4"></i>
-              Privacy
-            </a>
-            <a href="#" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white flex items-center gap-1">
-              <i data-lucide="file-text" class="w-4 h-4"></i>
-              Terms
-            </a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Forgot Password Modal -->
-  <div id="forgot-password-modal" class="hidden fixed inset-0 z-50 overflow-y-auto">
-    <div class="flex items-center justify-center min-h-screen px-4">
-      <!-- Backdrop -->
-      <div class="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="document.getElementById('forgot-password-modal').classList.add('hidden')"></div>
-      
-      <!-- Modal Content -->
-      <div class="relative bg-white dark:bg-neutral-800 rounded-2xl shadow-2xl max-w-md w-full p-8 border border-neutral-200 dark:border-neutral-700">
-        <!-- Close Button -->
-        <button onclick="document.getElementById('forgot-password-modal').classList.add('hidden')" class="absolute right-4 top-4 p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors">
-          <i data-lucide="x" class="w-5 h-5 text-neutral-500 dark:text-neutral-400"></i>
-        </button>
-
-        <!-- Header -->
-        <div class="mb-6">
-          <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-xl flex items-center justify-center mb-4">
-            <i data-lucide="key" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
-          </div>
-          <h2 class="text-2xl font-bold text-neutral-900 dark:text-white mb-2">Reset password</h2>
-          <p class="text-neutral-600 dark:text-neutral-400 text-sm">
-            Enter your email address and we'll send you a link to reset your password.
           </p>
+
+          <!-- Help Links -->
+          <div class="mt-8 pt-8 border-t border-neutral-200 dark:border-neutral-700">
+            <div class="flex items-center justify-center gap-6 text-sm">
+              <a href="#" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white flex items-center gap-1">
+                <i data-lucide="help-circle" class="w-4 h-4"></i>
+                Help
+              </a>
+              <a href="#" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white flex items-center gap-1">
+                <i data-lucide="shield" class="w-4 h-4"></i>
+                Privacy
+              </a>
+              <a href="#" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white flex items-center gap-1">
+                <i data-lucide="file-text" class="w-4 h-4"></i>
+                Terms
+              </a>
+            </div>
+          </div>
         </div>
 
-        <!-- Form -->
-        <form id="forgot-password-form" class="space-y-4">
-          <div>
-            <label for="reset-email" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Email address
-            </label>
-            <input
-              id="reset-email"
-              name="email"
-              type="email"
-              required
-              class="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-              placeholder="you@company.com"
-            />
+        <!-- Forgot Password Form -->
+        <div id="forgot-password-form-container" class="hidden">
+          <div class="mb-8">
+            <button id="back-to-login" class="flex items-center gap-2 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white mb-6 transition-colors">
+              <i data-lucide="arrow-left" class="w-4 h-4"></i>
+              Back to login
+            </button>
+            <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-xl flex items-center justify-center mb-4">
+              <i data-lucide="key" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
+            </div>
+            <h2 class="text-3xl font-bold text-neutral-900 dark:text-white mb-2">Reset password</h2>
+            <p class="text-neutral-600 dark:text-neutral-400">
+              Enter your email address and we'll send you a link to reset your password.
+            </p>
           </div>
 
-          <button
-            type="submit"
-            class="w-full px-6 py-3 bg-gradient-to-r from-primary-600 to-blue-600 hover:from-primary-700 hover:to-blue-700 text-white rounded-lg font-semibold transition-all shadow-lg shadow-primary-500/20"
-          >
-            Send reset link
-          </button>
-
-          <button
-            type="button"
-            onclick="document.getElementById('forgot-password-modal').classList.add('hidden')"
-            class="w-full px-6 py-3 border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 rounded-lg font-medium hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors"
-          >
-            Cancel
-          </button>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <!-- Register Modal -->
-  <div id="register-modal" class="hidden fixed inset-0 z-50 overflow-y-auto">
-    <div class="flex items-center justify-center min-h-screen px-4">
-      <!-- Backdrop -->
-      <div class="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="document.getElementById('register-modal').classList.add('hidden')"></div>
-      
-      <!-- Modal Content -->
-      <div class="relative bg-white dark:bg-neutral-800 rounded-2xl shadow-2xl max-w-md w-full p-8 border border-neutral-200 dark:border-neutral-700">
-        <!-- Close Button -->
-        <button onclick="document.getElementById('register-modal').classList.add('hidden')" class="absolute right-4 top-4 p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors">
-          <i data-lucide="x" class="w-5 h-5 text-neutral-500 dark:text-neutral-400"></i>
-        </button>
-
-        <!-- Header -->
-        <div class="mb-6">
-          <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-xl flex items-center justify-center mb-4">
-            <i data-lucide="user-plus" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
-          </div>
-          <h2 class="text-2xl font-bold text-neutral-900 dark:text-white mb-2">Request access</h2>
-          <p class="text-neutral-600 dark:text-neutral-400 text-sm">
-            Fill out the form below to request access to the documentation portal.
-          </p>
-        </div>
-
-        <!-- Form -->
-        <form id="register-form" class="space-y-4">
-          <div class="grid grid-cols-2 gap-4">
+          <form id="forgot-password-form" class="space-y-4 mb-6">
             <div>
-              <label for="register-firstname" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-                First name
+              <label for="reset-email" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+                Email address
               </label>
               <input
-                id="register-firstname"
-                name="firstname"
+                id="reset-email"
+                name="email"
+                type="email"
+                required
+                class="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                placeholder="you@company.com"
+              />
+            </div>
+
+            <button
+              type="submit"
+              class="w-full px-6 py-3 bg-gradient-to-r from-primary-600 to-blue-600 hover:from-primary-700 hover:to-blue-700 text-white rounded-lg font-semibold transition-all shadow-lg shadow-primary-500/20"
+            >
+              Send reset link
+            </button>
+          </form>
+
+          <!-- Help Links -->
+          <div class="mt-8 pt-8 border-t border-neutral-200 dark:border-neutral-700">
+            <div class="flex items-center justify-center gap-6 text-sm">
+              <a href="#" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white flex items-center gap-1">
+                <i data-lucide="help-circle" class="w-4 h-4"></i>
+                Help
+              </a>
+              <a href="#" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white flex items-center gap-1">
+                <i data-lucide="shield" class="w-4 h-4"></i>
+                Privacy
+              </a>
+              <a href="#" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white flex items-center gap-1">
+                <i data-lucide="file-text" class="w-4 h-4"></i>
+                Terms
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Register Form -->
+        <div id="register-form-container" class="hidden">
+          <div class="mb-8">
+            <button id="back-to-login-from-register" class="flex items-center gap-2 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white mb-6 transition-colors">
+              <i data-lucide="arrow-left" class="w-4 h-4"></i>
+              Back to login
+            </button>
+            <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-xl flex items-center justify-center mb-4">
+              <i data-lucide="user-plus" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
+            </div>
+            <h2 class="text-3xl font-bold text-neutral-900 dark:text-white mb-2">Request access</h2>
+            <p class="text-neutral-600 dark:text-neutral-400">
+              Fill out the form below to request access to the documentation portal.
+            </p>
+          </div>
+
+          <form id="register-form" class="space-y-4 mb-6">
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label for="register-firstname" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+                  First name
+                </label>
+                <input
+                  id="register-firstname"
+                  name="firstname"
+                  type="text"
+                  required
+                  class="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  placeholder="John"
+                />
+              </div>
+              <div>
+                <label for="register-lastname" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+                  Last name
+                </label>
+                <input
+                  id="register-lastname"
+                  name="lastname"
+                  type="text"
+                  required
+                  class="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  placeholder="Doe"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label for="register-email" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+                Work email
+              </label>
+              <input
+                id="register-email"
+                name="email"
+                type="email"
+                required
+                class="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                placeholder="you@company.com"
+              />
+            </div>
+
+            <div>
+              <label for="register-company" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+                Company
+              </label>
+              <input
+                id="register-company"
+                name="company"
                 type="text"
                 required
                 class="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                placeholder="John"
+                placeholder="Acme Inc."
               />
             </div>
+
             <div>
-              <label for="register-lastname" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-                Last name
+              <label for="register-reason" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+                Reason for access
               </label>
-              <input
-                id="register-lastname"
-                name="lastname"
-                type="text"
+              <textarea
+                id="register-reason"
+                name="reason"
+                rows="3"
                 required
-                class="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                placeholder="Doe"
-              />
+                class="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
+                placeholder="Brief description of why you need access..."
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="w-full px-6 py-3 bg-gradient-to-r from-primary-600 to-blue-600 hover:from-primary-700 hover:to-blue-700 text-white rounded-lg font-semibold transition-all shadow-lg shadow-primary-500/20"
+            >
+              Submit request
+            </button>
+          </form>
+
+          <!-- Help Links -->
+          <div class="mt-8 pt-8 border-t border-neutral-200 dark:border-neutral-700">
+            <div class="flex items-center justify-center gap-6 text-sm">
+              <a href="#" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white flex items-center gap-1">
+                <i data-lucide="help-circle" class="w-4 h-4"></i>
+                Help
+              </a>
+              <a href="#" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white flex items-center gap-1">
+                <i data-lucide="shield" class="w-4 h-4"></i>
+                Privacy
+              </a>
+              <a href="#" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white flex items-center gap-1">
+                <i data-lucide="file-text" class="w-4 h-4"></i>
+                Terms
+              </a>
             </div>
           </div>
+        </div>
 
-          <div>
-            <label for="register-email" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Work email
-            </label>
-            <input
-              id="register-email"
-              name="email"
-              type="email"
-              required
-              class="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-              placeholder="you@company.com"
-            />
-          </div>
-
-          <div>
-            <label for="register-company" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Company
-            </label>
-            <input
-              id="register-company"
-              name="company"
-              type="text"
-              required
-              class="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-              placeholder="Acme Inc."
-            />
-          </div>
-
-          <div>
-            <label for="register-reason" class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              Reason for access
-            </label>
-            <textarea
-              id="register-reason"
-              name="reason"
-              rows="3"
-              required
-              class="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
-              placeholder="Brief description of why you need access..."
-            ></textarea>
-          </div>
-
-          <button
-            type="submit"
-            class="w-full px-6 py-3 bg-gradient-to-r from-primary-600 to-blue-600 hover:from-primary-700 hover:to-blue-700 text-white rounded-lg font-semibold transition-all shadow-lg shadow-primary-500/20"
-          >
-            Submit request
-          </button>
-
-          <button
-            type="button"
-            onclick="document.getElementById('register-modal').classList.add('hidden')"
-            class="w-full px-6 py-3 border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 rounded-lg font-medium hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors"
-          >
-            Cancel
-          </button>
-        </form>
       </div>
     </div>
+
   </div>
 
   <script>
     // Initialize Lucide icons
     lucide.createIcons();
+
+    // Form Containers
+    const loginForm = document.getElementById('login-form-container');
+    const forgotPasswordForm = document.getElementById('forgot-password-form-container');
+    const registerForm = document.getElementById('register-form-container');
+
+    // Show/Hide Forms
+    function showLogin() {
+      loginForm.classList.remove('hidden');
+      forgotPasswordForm.classList.add('hidden');
+      registerForm.classList.add('hidden');
+      lucide.createIcons();
+    }
+
+    function showForgotPassword() {
+      loginForm.classList.add('hidden');
+      forgotPasswordForm.classList.remove('hidden');
+      registerForm.classList.add('hidden');
+      lucide.createIcons();
+    }
+
+    function showRegister() {
+      loginForm.classList.add('hidden');
+      forgotPasswordForm.classList.add('hidden');
+      registerForm.classList.remove('hidden');
+      lucide.createIcons();
+    }
 
     // Password toggle
     const passwordInput = document.getElementById('password');
@@ -503,18 +531,27 @@
       lucide.createIcons();
     });
 
-    // Show Forgot Password Modal
+    // Show Forgot Password Form
     document.getElementById('show-forgot-password')?.addEventListener('click', function(e) {
       e.preventDefault();
-      document.getElementById('forgot-password-modal').classList.remove('hidden');
-      lucide.createIcons();
+      showForgotPassword();
     });
 
-    // Show Register Modal
+    // Show Register Form
     document.getElementById('show-register')?.addEventListener('click', function(e) {
       e.preventDefault();
-      document.getElementById('register-modal').classList.remove('hidden');
-      lucide.createIcons();
+      showRegister();
+    });
+
+    // Back to Login buttons
+    document.getElementById('back-to-login')?.addEventListener('click', function(e) {
+      e.preventDefault();
+      showLogin();
+    });
+
+    document.getElementById('back-to-login-from-register')?.addEventListener('click', function(e) {
+      e.preventDefault();
+      showLogin();
     });
 
     // Forgot Password Form submission
@@ -525,7 +562,8 @@
       
       // Show success message
       alert('Password reset link sent! Check your email.');
-      document.getElementById('forgot-password-modal').classList.add('hidden');
+      showLogin();
+      this.reset();
     });
 
     // Register Form submission
@@ -542,12 +580,13 @@
       
       // Show success message
       alert('Access request submitted! We\'ll review your request and get back to you soon.');
-      document.getElementById('register-modal').classList.add('hidden');
+      showLogin();
       this.reset();
     });
 
     // Login Form submission
-    document.querySelector('form')?.addEventListener('submit', function(e) {
+    const loginFormElement = document.querySelector('#login-form-container form');
+    loginFormElement?.addEventListener('submit', function(e) {
       e.preventDefault();
       // Add your authentication logic here
       console.log('Sign in attempted');
@@ -557,21 +596,13 @@
 
     // SSO buttons
     document.querySelectorAll('button[type="button"]').forEach(btn => {
-      if (btn.id !== 'toggle-password') {
+      if (btn.id !== 'toggle-password' && !btn.id.includes('back-to-login')) {
         btn.addEventListener('click', function() {
           // Add your SSO logic here
           const provider = this.textContent.includes('Google') ? 'Google' : 
                           this.textContent.includes('Microsoft') ? 'Microsoft' : 'Okta';
           console.log('SSO login with:', provider);
         });
-      }
-    });
-
-    // Close modals on Escape key
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        document.getElementById('forgot-password-modal')?.classList.add('hidden');
-        document.getElementById('register-modal')?.classList.add('hidden');
       }
     });
   </script>
