@@ -940,7 +940,7 @@
       </div>
       
       <!-- Tooltip Arrow (pointing to selection) -->
-      <div class="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white dark:bg-neutral-800 border-l-2 border-t-2 border-neutral-200 dark:border-neutral-600 rotate-45"></div>
+      <div id="selection-tooltip-arrow" class="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white dark:bg-neutral-800 border-l-2 border-t-2 border-neutral-200 dark:border-neutral-600 rotate-45"></div>
     </div>
   </div>
 
@@ -1564,11 +1564,21 @@
       }
     };
     
+    // Track current glossary element for scroll repositioning
+    let currentGlossaryElement = null;
+    let currentGlossaryTerm = null;
+    let currentGlossaryDefinition = null;
+    
     // Show glossary tooltip on hover
     IGXDocs.showGlossaryTooltip = function(element, term, definition) {
       const tooltip = document.getElementById('glossary-tooltip');
       const arrow = tooltip.querySelector('.absolute');
       const rect = element.getBoundingClientRect();
+      
+      // Store current element for scroll tracking
+      currentGlossaryElement = element;
+      currentGlossaryTerm = term;
+      currentGlossaryDefinition = definition;
       
       // Update content
       document.getElementById('glossary-term-title').textContent = term.replace(/-/g, ' ');
@@ -1617,6 +1627,9 @@
     
     IGXDocs.hideGlossaryTooltip = function() {
       document.getElementById('glossary-tooltip').classList.add('hidden');
+      currentGlossaryElement = null;
+      currentGlossaryTerm = null;
+      currentGlossaryDefinition = null;
     };
     
     // Handle dynamically created "Explain this code" buttons
@@ -1921,6 +1934,56 @@
     
     // Text Selection AI - Show Grammarly-style tooltip
     let selectionTimeout;
+    let currentSelectionRange = null;
+    
+    function positionSelectionTooltip() {
+      if (!currentSelectionRange) return;
+      
+      const tooltip = document.getElementById('selection-tooltip');
+      const arrow = document.getElementById('selection-tooltip-arrow');
+      const rect = currentSelectionRange.getBoundingClientRect();
+      
+      // Show tooltip temporarily to measure height
+      tooltip.classList.remove('hidden');
+      tooltip.style.visibility = 'hidden';
+      const tooltipHeight = tooltip.offsetHeight;
+      tooltip.style.visibility = 'visible';
+      
+      // Check if tooltip would go below viewport
+      const tooltipWidth = 350; // max-w-sm
+      const selectionCenter = rect.left + (rect.width / 2);
+      const left = Math.max(10, Math.min(window.innerWidth - tooltipWidth - 10, rect.left + (rect.width / 2) - (tooltipWidth / 2)));
+      const spaceBelow = window.innerHeight - rect.bottom;
+      const spaceAbove = rect.top;
+      const positionAbove = spaceBelow < tooltipHeight + 20 && spaceAbove > tooltipHeight + 20;
+      
+      let top;
+      if (positionAbove) {
+        // Position above selection
+        top = rect.top - tooltipHeight - 10;
+        // Arrow points down
+        if (arrow) {
+          arrow.className = 'absolute -bottom-2 w-4 h-4 bg-white dark:bg-neutral-800 border-r-2 border-b-2 border-neutral-200 dark:border-neutral-600 rotate-45';
+          const arrowLeft = selectionCenter - left - 8;
+          arrow.style.left = Math.max(12, Math.min(tooltipWidth - 20, arrowLeft)) + 'px';
+          arrow.style.top = 'auto';
+        }
+      } else {
+        // Position below selection
+        top = rect.bottom + 10;
+        // Arrow points up
+        if (arrow) {
+          arrow.className = 'absolute -top-2 w-4 h-4 bg-white dark:bg-neutral-800 border-l-2 border-t-2 border-neutral-200 dark:border-neutral-600 rotate-45';
+          const arrowLeft = selectionCenter - left - 8;
+          arrow.style.left = Math.max(12, Math.min(tooltipWidth - 20, arrowLeft)) + 'px';
+          arrow.style.bottom = 'auto';
+        }
+      }
+      
+      tooltip.style.left = left + 'px';
+      tooltip.style.top = top + 'px';
+    }
+    
     document.addEventListener('mouseup', (e) => {
       // Don't show if clicking inside the tooltip itself
       if (e.target.closest('#selection-tooltip')) return;
@@ -1933,6 +1996,7 @@
         
         if (!selectedText || selectedText.length < 5 || selectedText.length > 200) {
           tooltip.classList.add('hidden');
+          currentSelectionRange = null;
           return;
         }
         
@@ -1949,40 +2013,18 @@
         }
         
         if (isInArticle) {
-          const range = selection.getRangeAt(0);
-          const rect = range.getBoundingClientRect();
-          
-          // Show tooltip temporarily to measure height
-          tooltip.classList.remove('hidden');
-          tooltip.style.visibility = 'hidden';
-          const tooltipHeight = tooltip.offsetHeight;
-          tooltip.style.visibility = 'visible';
-          
-          // Check if tooltip would go below viewport
-          const tooltipWidth = 350; // max-w-sm
-          const left = Math.max(10, Math.min(window.innerWidth - tooltipWidth - 10, rect.left + (rect.width / 2) - (tooltipWidth / 2)));
-          const spaceBelow = window.innerHeight - rect.bottom;
-          const spaceAbove = rect.top;
-          const positionAbove = spaceBelow < tooltipHeight + 20 && spaceAbove > tooltipHeight + 20;
-          
-          let top;
-          if (positionAbove) {
-            // Position above selection
-            top = rect.top - tooltipHeight - 10;
-          } else {
-            // Position below selection
-            top = rect.bottom + 10;
-          }
-          
-          tooltip.style.left = left + 'px';
-          tooltip.style.top = top + 'px';
+          currentSelectionRange = selection.getRangeAt(0);
           
           // Update selected text in tooltip
           document.getElementById('selected-text-tooltip').textContent = selectedText;
           
+          // Position tooltip
+          positionSelectionTooltip();
+          
           lucide.createIcons();
         } else {
           tooltip.classList.add('hidden');
+          currentSelectionRange = null;
         }
       }, 200);
     });
@@ -1992,8 +2034,25 @@
       const tooltip = document.getElementById('selection-tooltip');
       if (tooltip && !e.target.closest('#selection-tooltip')) {
         tooltip.classList.add('hidden');
+        currentSelectionRange = null;
       }
     });
+    
+    // Reposition tooltips on scroll
+    let scrollTimeout;
+    document.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        // Reposition AI explain tooltip if active
+        if (currentSelectionRange) {
+          positionSelectionTooltip();
+        }
+        // Reposition glossary tooltip if active
+        if (currentGlossaryElement) {
+          IGXDocs.showGlossaryTooltip(currentGlossaryElement, currentGlossaryTerm, currentGlossaryDefinition);
+        }
+      }, 10);
+    }, true); // Use capture to catch all scroll events
     
     // User Dropdown Menu
     document.getElementById('user-menu-btn')?.addEventListener('click', function(e) {
