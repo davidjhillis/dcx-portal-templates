@@ -368,7 +368,7 @@
         
         <!-- Header -->
         <div class="mb-6">
-          <h1 class="text-2xl font-bold text-neutral-900 dark:text-white mb-2">Results for "component schemas"</h1>
+          <h1 id="search-query-heading" class="text-2xl font-bold text-neutral-900 dark:text-white mb-2">Results for "component schemas"</h1>
           <p class="text-sm text-neutral-600 dark:text-neutral-400">1 - 8 of 8 results found</p>
         </div>
         
@@ -832,6 +832,16 @@
             checkbox.checked = false;
           });
         });
+      }
+      
+      // Populate search query from URL parameter
+      const urlParams = new URLSearchParams(window.location.search);
+      const searchQuery = urlParams.get('q');
+      if (searchQuery) {
+        const heading = document.getElementById('search-query-heading');
+        if (heading) {
+          heading.textContent = `Results for "${searchQuery}"`;
+        }
       }
     });
   </script>
