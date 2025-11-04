@@ -4,7 +4,7 @@
 
 ## Contents
 
-This folder contains the original documentation portal templates before the Seismic-inspired design revision.
+This folder contains the original documentation portal templates before the professional design revision.
 
 ### Files
 - `index.html` - Original home page with 2-column product grid

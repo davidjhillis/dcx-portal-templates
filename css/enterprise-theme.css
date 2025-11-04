@@ -1,5 +1,5 @@
 /* IGX Documentation Portal - Premium Enterprise Theme with Dark Mode */
-/* Inspired by Seismic Docs - High-end, Brand-forward Design */
+/* High-end, Brand-forward Design */
 
 /* ========================================
    CSS Variables - Light & Dark Mode
@@ -7,7 +7,7 @@
 
 :root {
   /* Premium Brand Colors - Deep Purple/Plum Theme */
-  --brand-primary: #220929;           /* Deep purple/plum - Seismic inspired */
+  --brand-primary: #220929;           /* Deep purple/plum */
   --brand-primary-light: #3d1548;
   --brand-primary-dark: #160419;
   
