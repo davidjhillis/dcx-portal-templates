@@ -574,6 +574,10 @@
         <button id="export-css-btn" class="px-3 py-2.5 hover:bg-white/[0.05] rounded-lg transition-colors" title="Export CSS Variables">
           <i data-lucide="download" class="w-4 h-4 text-white/60"></i>
         </button>
+        <button id="export-json-btn" class="px-3 py-2.5 bg-green-600 hover:bg-green-700 rounded-lg transition-colors flex items-center gap-2" title="Export Customer Theme JSON">
+          <i data-lucide="package" class="w-4 h-4"></i>
+          <span class="text-[13px] font-semibold">Export Theme</span>
+        </button>
       </div>
     </div>
 
@@ -936,6 +940,93 @@
       a.download = `theme-${currentState.primary}-${currentState.mode}.css`;
       a.click();
       URL.revokeObjectURL(url);
+    }
+
+    // ========================================
+    // Export Customer Theme JSON
+    // ========================================
+
+    function exportThemeJSON() {
+      // Prompt for customer information
+      const customerName = prompt('Enter customer name (e.g., Acme Corp):', '');
+      if (!customerName) {
+        showNotification('Export cancelled', 'info');
+        return;
+      }
+
+      // Generate customer ID (slug format)
+      const customerId = customerName.toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-|-$/g, '');
+
+      // Build theme JSON
+      const theme = {
+        version: '1.0.0',
+        name: `${customerName} Theme`,
+        description: `Custom theme for ${customerName}`,
+        customer: customerId,
+        created: new Date().toISOString(),
+
+        colors: {
+          primary: currentState.primary,
+          accent: currentState.accent,
+          neutral: currentState.neutral
+        },
+
+        typography: {
+          heading: 'Inter',
+          body: 'Inter',
+          mono: 'JetBrains Mono'
+        },
+
+        branding: {
+          logo: 'discover-cx-logo.svg',
+          logoWhite: 'discover-cx-logo-white.svg',
+          favicon: 'favicon.ico'
+        },
+
+        settings: {
+          darkMode: currentState.mode === 'dark',
+          useGradients: currentState.useGradients !== false,
+          roundedCorners: 'md'
+        }
+      };
+
+      const jsonContent = JSON.stringify(theme, null, 2);
+
+      // Copy to clipboard
+      navigator.clipboard.writeText(jsonContent).then(() => {
+        console.log('Theme JSON copied to clipboard');
+      }).catch(err => {
+        console.warn('Could not copy to clipboard:', err);
+      });
+
+      // Download as file
+      const blob = new Blob([jsonContent], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${customerId}-theme.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+
+      // Show success message with instructions
+      showNotification(`Theme exported: ${customerId}-theme.json`, 'success');
+
+      console.log(`
+🎨 Customer Theme Exported!
+
+Next steps:
+1. Save ${customerId}-theme.json to themes/ folder
+2. Deploy with your templates
+3. Access at: ?customer=${customerId}
+
+Theme details:
+- Primary: ${theme.colors.primary}
+- Accent: ${theme.colors.accent}
+- Neutral: ${theme.colors.neutral}
+- Dark Mode: ${theme.settings.darkMode ? 'Yes' : 'No'}
+      `);
     }
 
     function updateVersionList() {
@@ -1524,6 +1615,9 @@
     
     // Export CSS button
     document.getElementById('export-css-btn').addEventListener('click', exportCSS);
+
+    // Export Theme JSON button
+    document.getElementById('export-json-btn').addEventListener('click', exportThemeJSON);
 
     // ========================================
     // Notifications

@@ -152,23 +152,23 @@
   }
 
   function detectCustomerFromURL() {
-    // Try subdomain first (acme-corp.dcx-docs.com)
-    const hostname = window.location.hostname;
-    const parts = hostname.split('.');
-    if (parts.length >= 3) {
-      return parts[0];
-    }
-
-    // Try path (docs.site.com/acme-corp/)
-    const pathParts = window.location.pathname.split('/').filter(p => p);
-    if (pathParts.length > 0 && pathParts[0] !== 'admin') {
-      return pathParts[0];
-    }
-
-    // Try query parameter (?customer=acme-corp)
+    // Try query parameter first (?customer=acme-corp) - highest priority
     const params = new URLSearchParams(window.location.search);
     if (params.has('customer')) {
       return params.get('customer');
+    }
+
+    // Try subdomain (acme-corp.dcx-docs.com)
+    const hostname = window.location.hostname;
+    const parts = hostname.split('.');
+    if (parts.length >= 3 && parts[0] !== 'localhost' && parts[0] !== 'www') {
+      return parts[0];
+    }
+
+    // Try path (docs.site.com/acme-corp/) - but exclude .html files
+    const pathParts = window.location.pathname.split('/').filter(p => p);
+    if (pathParts.length > 0 && !pathParts[0].endsWith('.html') && pathParts[0] !== 'admin') {
+      return pathParts[0];
     }
 
     return null;

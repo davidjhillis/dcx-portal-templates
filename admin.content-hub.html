@@ -77,15 +77,11 @@
     }
     
     /* Light mode border overrides */
-    [data-theme="light"] [class*="border-white/[0."] {
+    [data-theme="light"] .border-white\\/\\[0\\.08\\],
+    [data-theme="light"] .border-white\\/\\[0\\.12\\] {
       border-color: var(--border-color) !important;
     }
-    [data-theme="light"] [class*="border-indigo-500/30"],
-    [data-theme="light"] [class*="border-indigo-500/25"],
-    [data-theme="light"] [class*="border-indigo-500/20"] {
-      border-color: rgba(79, 70, 229, 0.4) !important;
-    }
-
+    
     /* Light mode background overrides */
     [data-theme="light"] .bg-white\\/\\[0\\.05\\],
     [data-theme="light"] .bg-white\\/\\[0\\.02\\] {
@@ -179,51 +175,10 @@
     .tab-btn:not(.active):hover {
       color: var(--text-secondary);
     }
-[data-theme="light"] .user-menu-surface {
-      background: rgba(255, 255, 255, 0.98);
-      border-color: rgba(17, 24, 39, 0.12);
-      box-shadow: 0 26px 48px rgba(15, 23, 42, 0.12);
-    }
-
     .tab-btn:not(.active):hover {
       color: rgba(255,255,255,0.7);
     }
     
-    .filter-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      padding: 0.45rem 0.75rem;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 9999px;
-      color: rgba(255, 255, 255, 0.78);
-      font-size: 12px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-    }
-    .filter-chip:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.2);
-      color: rgba(255, 255, 255, 0.92);
-    }
-    .filter-chip i {
-      width: 14px;
-      height: 14px;
-      opacity: 0.8;
-    }
-    [data-theme="light"] .filter-chip {
-      background: rgba(243, 244, 255, 0.92);
-      border-color: rgba(17, 24, 39, 0.12);
-      color: #374151;
-    }
-    [data-theme="light"] .filter-chip:hover {
-      background: rgba(226, 229, 255, 0.92);
-      border-color: rgba(99, 102, 241, 0.35);
-      color: #1f2937;
-    }
-
     /* Status badge */
     .status-badge {
       display: inline-flex;
@@ -523,65 +478,70 @@
 <body style="background: var(--bg-secondary); color: var(--text-primary);" class="transition-colors">
 
   <!-- Header -->
-  <header class="sticky top-0 z-50 w-full border-b shadow-sm transition-colors" style="background: rgba(37,37,37,0.96); border-color: rgba(255,255,255,0.06);">
-    <div class="max-w-screen-2xl w-full mx-auto px-6">
-      <div class="flex items-center justify-between h-20">
+  <header class="sticky top-0 z-50 border-b transition-colors" style="background: var(--bg-primary); border-color: var(--border-color);">
+    <div class="max-w-screen-2xl mx-auto px-6">
+      <div class="flex items-center justify-between h-16">
         <!-- Logo & Title -->
-        <div class="flex items-center gap-5">
-          <a href="/admin/index.html" class="flex items-center gap-3" title="Discover CX Admin Home">
-            <img src="assets/discover-cx-logo-white.svg" alt="Discover CX" class="h-8 dark-logo">
-            <img src="assets/discover-cx-logo-dark.svg" alt="Discover CX" class="h-8 light-logo hidden">
+        <div class="flex items-center gap-4">
+          <a href="/admin/index.html" class="flex items-center gap-2" title="Discover CX Admin Home">
+            <img src="assets/discover-cx-logo-white.svg" alt="Discover CX" class="h-7 dark-logo">
+            <img src="assets/discover-cx-logo-dark.svg" alt="Discover CX" class="h-7 light-logo hidden">
           </a>
-          <div><h1 class="text-[24px] font-light text-white/90 leading-tight tracking-tight">Content Hub</h1></div>
+          <div class="h-5 w-px opacity-15" style="background: var(--text-primary);"></div>
+          <div>
+            <h1 class="text-lg font-semibold tracking-tight" style="color: var(--text-primary);">Content Hub</h1>
+          </div>
         </div>
         
         <!-- Actions -->
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-2">
+          <!-- Theme Toggle -->
           <button id="theme-toggle" class="theme-toggle flex items-center justify-center w-9 h-9 rounded-md transition-colors" title="Toggle theme">
             <i data-lucide="sun" class="w-4 h-4 light-icon"></i>
             <i data-lucide="moon" class="w-4 h-4 dark-icon"></i>
           </button>
           
-          <a href="index.html" class="flex items-center gap-2 px-3 py-1.5 bg-white/15 hover:bg-white/20 text-white/85 hover:text-white rounded-md transition-colors text-sm">
+          <a href="index.html" class="flex items-center gap-2 px-3 py-1.5 bg-white/[0.05] hover:bg-white/[0.08] border border-white/[0.08] text-white/80 hover:text-white rounded-md transition-colors text-sm">
             <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
             <span>Back to Dashboard</span>
           </a>
 
+          <!-- User Dropdown -->
           <div class="relative">
-            <button id="user-menu-trigger" class="flex items-center gap-3 text-sm leading-tight text-white">
-              <div class="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center font-semibold">DH</div>
+            <button id="user-menu-trigger" class="flex items-center gap-2 px-3 py-1 bg-[#1f1f2d] hover:bg-[#29293c] border border-indigo-500/30 text-white/90 rounded-md transition-colors text-sm leading-tight">
+              <div class="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-white font-semibold">DH</div>
               <div class="hidden sm:flex flex-col items-start">
-                <span class="text-[13px] font-medium text-white/90">Dave Hillis</span>
-                <span class="text-[11px] text-white/60">Administrator</span>
+                <span class="text-[13px] font-semibold text-white">Dave Hillis</span>
+                <span class="text-[11px] text-indigo-200/80">Administrator</span>
               </div>
-              <i data-lucide="chevron-down" class="w-4 h-4 text-white/70"></i>
+              <i data-lucide="chevron-down" class="w-4 h-4 text-indigo-200/80"></i>
             </button>
-            <div id="user-menu" class="user-menu-surface absolute right-0 mt-2 w-56 rounded-lg shadow-xl hidden">
-              <div class="px-4 py-3 border-b border-white/12">
+            <div id="user-menu" class="absolute right-0 mt-2 w-56 rounded-lg border border-indigo-500/25 bg-[#1a1a28] shadow-xl hidden">
+              <div class="px-4 py-3 border-b border-white/[0.08]">
                 <p class="text-sm font-medium text-white/90">Dave Hillis</p>
-                <p class="text-[12px] text-white/60">dave.hillis@example.com</p>
+                <p class="text-[12px] text-white/50">dave.hillis@example.com</p>
               </div>
               <ul class="py-2 text-sm text-white/80">
                 <li>
-                  <a href="profile.html" class="flex items-center gap-2 px-4 py-2 hover:bg-white/10 transition-colors">
+                  <a href="profile.html" class="flex items-center gap-2 px-4 py-2 hover:bg-white/[0.08] transition-colors">
                     <i data-lucide="user" class="w-4 h-4 text-white/60"></i>
                     Profile
                   </a>
                 </li>
                 <li>
-                  <a href="settings.html" class="flex items-center gap-2 px-4 py-2 hover:bg-white/10 transition-colors">
+                  <a href="settings.html" class="flex items-center gap-2 px-4 py-2 hover:bg-white/[0.08] transition-colors">
                     <i data-lucide="settings" class="w-4 h-4 text-white/60"></i>
                     Account settings
                   </a>
                 </li>
                 <li>
-                  <a href="notifications.html" class="flex items-center gap-2 px-4 py-2 hover:bg-white/10 transition-colors">
+                  <a href="notifications.html" class="flex items-center gap-2 px-4 py-2 hover:bg-white/[0.08] transition-colors">
                     <i data-lucide="bell" class="w-4 h-4 text-white/60"></i>
                     Notifications
                   </a>
                 </li>
               </ul>
-              <div class="border-t border-white/12 py-2">
+              <div class="border-t border-indigo-500/20 py-2">
                 <button id="sign-out-btn" class="w-full flex items-center gap-2 px-4 py-2 text-left text-sm text-rose-300 hover:text-rose-200 hover:bg-rose-500/10 transition-colors">
                   <i data-lucide="log-out" class="w-4 h-4"></i>
                   Sign out
@@ -595,30 +555,30 @@
   </header>
 
   <!-- Main Content -->
-  <div class="max-w-screen-2xl w-full mx-auto px-6 py-8">
+  <div class="max-w-screen-2xl mx-auto px-6 py-8">
     
     <!-- Tabs & Actions -->
-    <div class="flex items-center justify-between gap-6 mb-8 border-b border-white/10 bg-white/5 rounded-xl px-4 py-2">
+    <div class="flex items-center justify-between gap-6 mb-8 border-b border-white/[0.08]">
       <div class="flex items-center gap-6">
-        <button class="tab-btn active px-2 py-2 text-sm font-medium text-white/90" data-tab="manage">
+        <button class="tab-btn active px-1 py-3 text-sm font-medium" data-tab="manage">
           <div class="flex items-center gap-2">
             <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
             Manage
           </div>
         </button>
-        <button class="tab-btn px-2 py-2 text-sm font-medium text-white/70" data-tab="transform">
+        <button class="tab-btn px-1 py-3 text-sm font-medium" data-tab="transform">
           <div class="flex items-center gap-2">
             <i data-lucide="wand-2" class="w-4 h-4"></i>
             Transform
           </div>
         </button>
-        <button class="tab-btn px-2 py-2 text-sm font-medium text-white/70" data-tab="target">
+        <button class="tab-btn px-1 py-3 text-sm font-medium" data-tab="target">
           <div class="flex items-center gap-2">
             <i data-lucide="target" class="w-4 h-4"></i>
             Target
           </div>
         </button>
-        <button class="tab-btn px-2 py-2 text-sm font-medium text-white/70" data-tab="deliver">
+        <button class="tab-btn px-1 py-3 text-sm font-medium" data-tab="deliver">
           <div class="flex items-center gap-2">
             <i data-lucide="send" class="w-4 h-4"></i>
             Deliver
@@ -1404,8 +1364,18 @@
             </div>
 
             <section class="space-y-3">
-              <h4 class="text-sm font-semibold text-white">Folders</h4>
-              <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              <div class="flex items-center justify-between gap-2">
+                <h4 class="text-sm font-semibold text-white">Folders</h4>
+                <div class="flex items-center gap-1 text-[11px]">
+                  <button class="folder-view-toggle flex items-center gap-1 px-2 py-1 rounded-md border border-indigo-400/30 text-indigo-100 bg-indigo-500/10" data-folder-view="grid">
+                    <i data-lucide="grid" class="w-3 h-3"></i> Grid
+                  </button>
+                  <button class="folder-view-toggle flex items-center gap-1 px-2 py-1 rounded-md border border-white/[0.08] text-white/70 hover:text-white" data-folder-view="list">
+                    <i data-lucide="list" class="w-3 h-3"></i> List
+                  </button>
+                </div>
+              </div>
+              <div class="folder-view folder-view-grid grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
                 <button class="flex items-center justify-between px-4 py-3 rounded-lg border border-white/[0.08] bg-white/[0.03] text-left hover:border-indigo-400/40 transition-colors">
                   <div>
                     <p class="text-sm font-semibold text-white">Campaign assets</p>
@@ -1433,6 +1403,24 @@
                     <p class="text-[12px] text-indigo-100/80">6 folders • Updated 2d ago</p>
                   </div>
                   <i data-lucide="folder" class="w-5 h-5 text-indigo-200"></i>
+                </button>
+              </div>
+              <div class="folder-view folder-view-list hidden divide-y divide-white/[0.08] rounded-lg border border-white/[0.08] bg-white/[0.02] text-[13px] text-white/80">
+                <button class="flex items-center justify-between px-4 py-3 hover:bg-white/[0.05] transition-colors text-left">
+                  <div class="flex items-center gap-3"><i data-lucide="folder" class="w-4 h-4 text-indigo-200"></i><span>Campaign assets</span></div>
+                  <div class="flex items-center gap-4 text-[12px] text-indigo-100/80"><span>12 folders</span><span>Updated 3h ago</span></div>
+                </button>
+                <button class="flex items-center justify-between px-4 py-3 hover:bg-white/[0.05] transition-colors text-left">
+                  <div class="flex items-center gap-3"><i data-lucide="folder" class="w-4 h-4 text-indigo-200"></i><span>Launch creative</span></div>
+                  <div class="flex items-center gap-4 text-[12px] text-indigo-100/80"><span>8 folders</span><span>Updated 1d ago</span></div>
+                </button>
+                <button class="flex items-center justify-between px-4 py-3 hover:bg-white/[0.05] transition-colors text-left">
+                  <div class="flex items-center gap-3"><i data-lucide="folder" class="w-4 h-4 text-indigo-200"></i><span>Product shots</span></div>
+                  <div class="flex items-center gap-4 text-[12px] text-indigo-100/80"><span>352 assets</span><span>Updated 4h ago</span></div>
+                </button>
+                <button class="flex items-center justify-between px-4 py-3 hover:bg-white/[0.05] transition-colors text-left">
+                  <div class="flex items-center gap-3"><i data-lucide="folder" class="w-4 h-4 text-indigo-200"></i><span>Video edits</span></div>
+                  <div class="flex items-center gap-4 text-[12px] text-indigo-100/80"><span>6 folders</span><span>Updated 2d ago</span></div>
                 </button>
               </div>
             </section>
@@ -1656,480 +1644,11 @@
 
     <!-- TRANSFORM TAB -->
     <div id="transform-content" class="tab-content">
-      <div class="space-y-6">
-        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-          <div>
-            <p class="text-[12px] text-white/50 uppercase tracking-[0.22em] flex items-center gap-2">
-              <i data-lucide="wand-2" class="w-3.5 h-3.5"></i>
-              Transform
-            </p>
-            <h2 class="mt-2 text-2xl font-semibold text-white">Transformation pipelines</h2>
-            <p class="text-sm text-white/60 mt-2 max-w-2xl">Choose how raw content types like DITA, Markdown, and OpenAPI convert into portal-ready formats. Manage pipelines, plugins, and parameters in one place.</p>
-          </div>
-          <div class="flex flex-wrap items-center gap-2">
-            <button class="flex items-center gap-2 px-3 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md text-sm font-medium">
-              <i data-lucide="plus" class="w-4 h-4"></i>
-              New pipeline
-            </button>
-            <button class="flex items-center gap-2 px-3 py-2 bg-white/10 hover:bg-white/14 text-white/80 hover:text-white rounded-md text-sm">
-              <i data-lucide="import" class="w-4 h-4"></i>
-              Import mapping
-            </button>
-            <button class="flex items-center gap-2 px-3 py-2 bg-white/10 hover:bg-white/14 text-white/80 hover:text-white rounded-md text-sm">
-              <i data-lucide="download" class="w-4 h-4"></i>
-              Export config
-            </button>
-          </div>
-        </div>
-
-        <div class="flex items-center gap-3">
-          <button class="sub-tab-btn active px-4 py-2 text-sm font-medium rounded-md transition-colors" data-subtab="transform-overview">Overview</button>
-          <button class="sub-tab-btn px-4 py-2 text-sm font-medium rounded-md transition-colors" data-subtab="transform-pipelines">Pipelines</button>
-          <button class="sub-tab-btn px-4 py-2 text-sm font-medium rounded-md transition-colors" data-subtab="transform-plugins">Plugins</button>
-          <button class="sub-tab-btn px-4 py-2 text-sm font-medium rounded-md transition-colors" data-subtab="transform-parameters">Parameters</button>
-          <button class="sub-tab-btn px-4 py-2 text-sm font-medium rounded-md transition-colors" data-subtab="transform-activity">Activity</button>
-        </div>
-
-        <div id="transform-overview-subtab" class="sub-tab-content active space-y-6">
-          <div class="grid gap-3 md:grid-cols-4">
-            <div class="source-card p-4 rounded-lg">
-              <p class="text-[12px] text-white/60">Pipelines configured</p>
-              <p class="mt-1 text-2xl font-semibold text-white">18</p>
-              <p class="text-sm text-white/50">Transformation chains currently defined</p>
-            </div>
-            <div class="source-card p-4 rounded-lg">
-              <p class="text-[12px] text-white/60">Content types covered</p>
-              <p class="mt-1 text-2xl font-semibold text-white">6</p>
-              <p class="text-sm text-white/50">DITA, Markdown, OpenAPI, Word, PDF, HTML snippets</p>
-            </div>
-            <div class="source-card p-4 rounded-lg">
-              <p class="text-[12px] text-white/60">Plugins monitored</p>
-              <p class="mt-1 text-2xl font-semibold text-white">24</p>
-              <p class="text-sm text-white/50">System + custom toolkits in use</p>
-            </div>
-            <div class="source-card p-4 rounded-lg">
-              <p class="text-[12px] text-white/60">Parameter sets</p>
-              <p class="mt-1 text-2xl font-semibold text-white">9</p>
-              <p class="text-sm text-white/50">Reusable configuration bundles</p>
-            </div>
-          </div>
-
-          <section class="source-card p-5 rounded-lg space-y-4">
-            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
-              <div>
-                <h3 class="text-lg font-semibold text-white">Transformation matrix</h3>
-                <p class="text-sm text-white/60">Map source content types to output formats and toolkits.</p>
-              </div>
-              <button class="px-3 py-1.5 text-[12px] bg-white/10 hover:bg-white/14 text-white/80 rounded-md">Download matrix</button>
-            </div>
-            <table class="w-full text-left text-[13px] text-white/70">
-              <thead class="text-white/50 text-[11px] uppercase tracking-[0.18em]">
-                <tr>
-                  <th class="px-3 py-2">Content type</th>
-                  <th class="px-3 py-2">Outputs</th>
-                  <th class="px-3 py-2">Toolkit</th>
-                  <th class="px-3 py-2">Last change</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-white/10">
-                <tr>
-                  <td class="px-3 py-3 text-white/90">DITA XML</td>
-                  <td class="px-3 py-3">HTML5, PDF2, Markdown</td>
-                  <td class="px-3 py-3">dita.normalize → html5 → pdf2</td>
-                  <td class="px-3 py-3">18 min ago</td>
-                </tr>
-                <tr>
-                  <td class="px-3 py-3 text-white/90">Markdown (GitHub)</td>
-                  <td class="px-3 py-3">HTML5, Portal JSON</td>
-                  <td class="px-3 py-3">markdown → html5 → postProcess</td>
-                  <td class="px-3 py-3">Yesterday</td>
-                </tr>
-                <tr>
-                  <td class="px-3 py-3 text-white/90">OpenAPI</td>
-                  <td class="px-3 py-3">Reference HTML, SDK stubs</td>
-                  <td class="px-3 py-3">openapi.generator → html5</td>
-                  <td class="px-3 py-3">2 days ago</td>
-                </tr>
-              </tbody>
-            </table>
-          </section>
-
-          <div class="grid gap-4 lg:grid-cols-2">
-            <section class="source-card p-5 rounded-lg space-y-3">
-              <div class="flex items-center justify-between">
-                <h4 class="text-sm font-semibold text-white">Recent configuration activity</h4>
-                <button class="px-3 py-1.5 text-[12px] bg-white/10 hover:bg-white/14 text-white/80 rounded-md">View changelog</button>
-              </div>
-              <ul class="space-y-2 text-[12px] text-white/70">
-                <li class="flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2">
-                  <div>
-                    <p class="text-white/90 font-medium">Updated pipeline <span class="text-indigo-200">Portal docs → HTML5 & PDF</span></p>
-                    <p>Sarah Chen changed plugin order</p>
-                  </div>
-                  <span class="text-white/50">18 min ago</span>
-                </li>
-                <li class="flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2">
-                  <div>
-                    <p class="text-white/90 font-medium">Parameter set <span class="text-indigo-200">markdown-staging</span> edited</p>
-                    <p>Added GH_TOKEN secret · Delivery Ops</p>
-                  </div>
-                  <span class="text-white/50">3h ago</span>
-                </li>
-                <li class="flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2">
-                  <div>
-                    <p class="text-white/90 font-medium">Imported plugin <span class="text-indigo-200">custom.ai.extractor</span></p>
-                    <p>Version 1.0.2 uploaded by DevOps</p>
-                  </div>
-                  <span class="text-white/50">Yesterday</span>
-                </li>
-              </ul>
-            </section>
-
-            <section class="source-card p-5 rounded-lg space-y-3">
-              <h4 class="text-sm font-semibold text-white">Plugin health</h4>
-              <ul class="space-y-2 text-[12px] text-white/70">
-                <li class="flex items-start gap-3 rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2">
-                  <i data-lucide="shield-check" class="w-4 h-4 text-emerald-200 mt-0.5"></i>
-                  <div>
-                    <p class="text-white/90 font-medium">org.dita.html5</p>
-                    <p>Compatible with HTML5, Markdown · Update to 3.7.0 planned</p>
-                  </div>
-                </li>
-                <li class="flex items-start gap-3 rounded-lg border border-amber-400/30 bg-amber-500/15 px-3 py-2">
-                  <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-200 mt-0.5"></i>
-                  <div>
-                    <p class="text-white/90 font-medium">custom.dc.postProcess</p>
-                    <p>Needs rebuild · checksum mismatch detected</p>
-                  </div>
-                </li>
-                <li class="flex items-start gap-3 rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2">
-                  <i data-lucide="clock" class="w-4 h-4 text-white/60 mt-0.5"></i>
-                  <div>
-                    <p class="text-white/90 font-medium">org.lwdita.markdown</p>
-                    <p>Auto-upgrade scheduled for Nov 14</p>
-                  </div>
-                </li>
-              </ul>
-            </section>
-          </div>
-        </div>
-        <div id="transform-pipelines-subtab" class="sub-tab-content hidden space-y-5">
-          <div class="source-card p-5 rounded-lg space-y-4">
-            <div class="flex flex-wrap items-center justify-between gap-3">
-              <div>
-                <h3 class="text-lg font-semibold text-white">Pipelines</h3>
-                <p class="text-sm text-white/60">18 configured · 4 currently running</p>
-              </div>
-              <div class="flex items-center gap-2">
-                <div class="relative">
-                  <i data-lucide="search" class="w-4 h-4 text-white/50 absolute left-3 top-1/2 -translate-y-1/2"></i>
-                  <input type="search" placeholder="Search pipelines" class="pl-9 pr-3 py-2 rounded-md bg-white/[0.03] border border-white/12 text-sm text-white/80">
-                </div>
-                <select class="px-3 py-2 bg-white/[0.03] border border-white/12 text-white/70 text-sm rounded-md">
-                  <option>Sort: Last run</option>
-                  <option>Sort: Name</option>
-                  <option>Sort: Owner</option>
-                </select>
-              </div>
-            </div>
-            <table class="w-full text-left text-[13px] text-white/70">
-              <thead class="text-white/50 text-[11px] uppercase tracking-[0.18em]">
-                <tr>
-                  <th class="px-3 py-2">Pipeline</th>
-                  <th class="px-3 py-2">Source</th>
-                  <th class="px-3 py-2">Outputs</th>
-                  <th class="px-3 py-2">Schedule</th>
-                  <th class="px-3 py-2">Last run</th>
-                  <th class="px-3 py-2">Status</th>
-                  <th class="px-3 py-2 text-right">Actions</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-white/10">
-                <tr>
-                  <td class="px-3 py-3 text-white/90">Portal docs → HTML5 & PDF</td>
-                  <td class="px-3 py-3">DITA · /content/dita/portal</td>
-                  <td class="px-3 py-3">HTML5, PDF2</td>
-                  <td class="px-3 py-3">Cron · every 2h</td>
-                  <td class="px-3 py-3">18 minutes ago</td>
-                  <td class="px-3 py-3 text-emerald-300">Healthy</td>
-                  <td class="px-3 py-3 text-right">
-                    <div class="inline-flex gap-2">
-                      <button class="px-3 py-1.5 rounded-md bg-white/8 hover:bg-white/12 text-white/80">Open</button>
-                      <button class="px-3 py-1.5 rounded-md bg-white/8 hover:bg-white/12 text-white/80">Run</button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="px-3 py-3 text-white/90">Release notes → HTML</td>
-                  <td class="px-3 py-3">Markdown · /repos/release-notes</td>
-                  <td class="px-3 py-3">HTML5</td>
-                  <td class="px-3 py-3">On push · Webhook</td>
-                  <td class="px-3 py-3 text-rose-300">Failed 32 min ago</td>
-                  <td class="px-3 py-3 text-rose-300">Needs attention</td>
-                  <td class="px-3 py-3 text-right">
-                    <div class="inline-flex gap-2">
-                      <button class="px-3 py-1.5 rounded-md bg-rose-500/20 text-rose-100">Retry</button>
-                      <button class="px-3 py-1.5 rounded-md bg-white/8 hover:bg-white/12 text-white/80">Logs</button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="px-3 py-3 text-white/90">Knowledge base → GitHub</td>
-                  <td class="px-3 py-3">Markdown · /repos/kb</td>
-                  <td class="px-3 py-3">Markdown (GitHub)</td>
-                  <td class="px-3 py-3">Cron · nightly</td>
-                  <td class="px-3 py-3">1 hour ago</td>
-                  <td class="px-3 py-3 text-emerald-300">Healthy</td>
-                  <td class="px-3 py-3 text-right">
-                    <div class="inline-flex gap-2">
-                      <button class="px-3 py-1.5 rounded-md bg-white/8 hover:bg-white/12 text-white/80">Open</button>
-                      <button class="px-3 py-1.5 rounded-md bg-white/8 hover:bg-white/12 text-white/80">Run</button>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="source-card p-5 rounded-lg space-y-3">
-            <h4 class="text-sm font-semibold text-white">Pipeline details</h4>
-            <div class="grid gap-3 md:grid-cols-3 text-[12px] text-white/70">
-              <div class="rounded-md border border-white/12 bg-white/[0.02] px-3 py-2">
-                <p class="text-white/50">Plugin chain</p>
-                <p class="text-white/90">dita.normalize → html5 → pdf2 → postProcess</p>
-              </div>
-              <div class="rounded-md border border-white/12 bg-white/[0.02] px-3 py-2">
-                <p class="text-white/50">Parameter set</p>
-                <p class="text-white/90">dita-ot-prod</p>
-              </div>
-              <div class="rounded-md border border-white/12 bg-white/[0.02] px-3 py-2">
-                <p class="text-white/50">Notifications</p>
-                <p class="text-white/90">Slack #doc-builds, Email ops@discovercx.com</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div id="transform-plugins-subtab" class="sub-tab-content hidden space-y-5">
-          <div class="source-card p-5 rounded-lg space-y-4">
-            <div class="flex items-center justify-between">
-              <div>
-                <h3 class="text-lg font-semibold text-white">Plugins & versions</h3>
-                <p class="text-sm text-white/60">Manage DITA-OT system plugins and custom extensions.</p>
-              </div>
-              <div class="flex items-center gap-2">
-                <button class="px-3 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md text-sm">
-                  <i data-lucide="plug" class="w-4 h-4 mr-1.5"></i>Add plugin
-                </button>
-                <button class="px-3 py-2 bg-white/10 hover:bg-white/14 text-white/80 rounded-md text-sm">
-                  <i data-lucide="refresh-cw" class="w-4 h-4 mr-1.5"></i>Sync repo
-                </button>
-              </div>
-            </div>
-
-            <table class="w-full text-left text-[13px] text-white/70">
-              <thead class="text-white/50 text-[11px] uppercase tracking-[0.18em]">
-                <tr>
-                  <th class="px-3 py-2">Plugin</th>
-                  <th class="px-3 py-2">Version</th>
-                  <th class="px-3 py-2">Type</th>
-                  <th class="px-3 py-2">Status</th>
-                  <th class="px-3 py-2">Pipelines</th>
-                  <th class="px-3 py-2 text-right">Actions</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-white/10">
-                <tr>
-                  <td class="px-3 py-3 text-white/90">org.dita.html5</td>
-                  <td class="px-3 py-3">3.6.1</td>
-                  <td class="px-3 py-3">System</td>
-                  <td class="px-3 py-3 text-amber-200">Upgrade to 3.7.0 available</td>
-                  <td class="px-3 py-3">12</td>
-                  <td class="px-3 py-3 text-right"><button class="px-3 py-1.5 rounded-md bg-white/8 hover:bg-white/12 text-white/80">View</button></td>
-                </tr>
-                <tr>
-                  <td class="px-3 py-3 text-white/90">org.lwdita.markdown</td>
-                  <td class="px-3 py-3">2.7.0</td>
-                  <td class="px-3 py-3">System</td>
-                  <td class="px-3 py-3 text-emerald-200">Up-to-date</td>
-                  <td class="px-3 py-3">8</td>
-                  <td class="px-3 py-3 text-right"><button class="px-3 py-1.5 rounded-md bg-white/8 hover:bg-white/12 text-white/80">View</button></td>
-                </tr>
-                <tr>
-                  <td class="px-3 py-3 text-white/90">custom.dc.postProcess</td>
-                  <td class="px-3 py-3">1.3.2</td>
-                  <td class="px-3 py-3">Custom</td>
-                  <td class="px-3 py-3 text-rose-200">Needs rebuild</td>
-                  <td class="px-3 py-3">3</td>
-                  <td class="px-3 py-3 text-right"><button class="px-3 py-1.5 rounded-md bg-rose-500/20 text-rose-100">Fix</button></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="grid gap-4 lg:grid-cols-2">
-            <section class="source-card p-5 rounded-lg space-y-3">
-              <h4 class="text-sm font-semibold text-white">Version lane · org.dita.pdf2</h4>
-              <ul class="space-y-2 text-[12px] text-white/70">
-                <li class="flex items-center justify-between rounded-md border border-white/12 bg-white/[0.02] px-3 py-2">
-                  <span class="text-white/90">3.7.0</span>
-                  <span class="text-emerald-200">Stable · Released 2 weeks ago</span>
-                  <button class="px-2 py-1 text-[11px] rounded-md bg-indigo-500/20 text-indigo-100">Promote</button>
-                </li>
-                <li class="flex items-center justify-between rounded-md border border-white/12 bg-white/[0.02] px-3 py-2">
-                  <span class="text-white/90">3.6.1</span>
-                  <span class="text-white/60">Current · In production</span>
-                  <button class="px-2 py-1 text-[11px] rounded-md bg-white/8 text-white/70">Compare</button>
-                </li>
-                <li class="flex items-center justify-between rounded-md border border-white/12 bg-white/[0.02] px-3 py-2">
-                  <span class="text-white/90">3.5.0</span>
-                  <span class="text-white/60">Deprecated</span>
-                  <button class="px-2 py-1 text-[11px] rounded-md bg-white/8 text-white/70">Rollback</button>
-                </li>
-              </ul>
-            </section>
-            <section class="source-card p-5 rounded-lg space-y-3">
-              <h4 class="text-sm font-semibold text-white">Compatibility</h4>
-              <table class="w-full text-center text-[11px] text-white/70">
-                <thead>
-                  <tr>
-                    <th class="px-2 py-1 text-left text-white/50">Plugin</th>
-                    <th class="px-2 py-1">DITA</th>
-                    <th class="px-2 py-1">Markdown</th>
-                    <th class="px-2 py-1">OpenAPI</th>
-                    <th class="px-2 py-1">Custom</th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-white/10">
-                  <tr>
-                    <td class="px-2 py-1 text-left text-white/90">org.dita.html5</td>
-                    <td class="px-2 py-1 text-emerald-200">Supported</td>
-                    <td class="px-2 py-1 text-emerald-200">Supported</td>
-                    <td class="px-2 py-1 text-amber-200">Experimental</td>
-                    <td class="px-2 py-1 text-rose-200">Blocked</td>
-                  </tr>
-                  <tr>
-                    <td class="px-2 py-1 text-left text-white/90">org.lwdita.markdown</td>
-                    <td class="px-2 py-1 text-rose-200">Blocked</td>
-                    <td class="px-2 py-1 text-emerald-200">Supported</td>
-                    <td class="px-2 py-1 text-emerald-200">Supported</td>
-                    <td class="px-2 py-1 text-amber-200">Experimental</td>
-                  </tr>
-                  <tr>
-                    <td class="px-2 py-1 text-left text-white/90">custom.dc.postProcess</td>
-                    <td class="px-2 py-1 text-amber-200">Experimental</td>
-                    <td class="px-2 py-1 text-emerald-200">Supported</td>
-                    <td class="px-2 py-1 text-white/50">N/A</td>
-                    <td class="px-2 py-1 text-emerald-200">Supported</td>
-                  </tr>
-                </tbody>
-              </table>
-            </section>
-          </div>
-        </div>
-        <div id="transform-parameters-subtab" class="sub-tab-content hidden space-y-5">
-          <div class="source-card p-5 rounded-lg space-y-3">
-            <div class="flex items-center justify-between">
-              <div>
-                <h3 class="text-lg font-semibold text-white">Parameter sets</h3>
-                <p class="text-sm text-white/60">Reusable configurations for environments and pipelines.</p>
-              </div>
-              <div class="flex items-center gap-2">
-                <button class="px-3 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md text-sm">
-                  <i data-lucide="plus-circle" class="w-4 h-4 mr-1.5"></i>New set
-                </button>
-                <button class="px-3 py-2 bg-white/10 hover:bg-white/14 text-white/80 rounded-md text-sm">
-                  <i data-lucide="diff" class="w-4 h-4 mr-1.5"></i>Compare
-                </button>
-              </div>
-            </div>
-            <div class="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-              <div class="rounded-lg border border-white/12 bg-white/[0.02] p-4 space-y-2">
-                <div class="flex items-center justify-between">
-                  <p class="text-sm font-semibold text-white">dita-ot-prod</p>
-                  <span class="text-[11px] text-white/50">Updated 2h ago</span>
-                </div>
-                <ul class="text-[12px] text-white/70 space-y-1">
-                  <li>Xmx: 8G</li>
-                  <li>draft-comments: false</li>
-                  <li>FO_PROCESSOR: fop</li>
-                </ul>
-                <div class="flex gap-2 text-[12px]">
-                  <button class="px-3 py-1.5 rounded-md bg-white/8 hover:bg-white/12 text-white/80">Open</button>
-                  <button class="px-3 py-1.5 rounded-md bg-white/8 hover:bg-white/12 text-white/80">Assign</button>
-                </div>
-              </div>
-              <div class="rounded-lg border border-white/12 bg-white/[0.02] p-4 space-y-2">
-                <div class="flex items-center justify-between">
-                  <p class="text-sm font-semibold text-white">markdown-staging</p>
-                  <span class="text-[11px] text-rose-200">Secret missing</span>
-                </div>
-                <ul class="text-[12px] text-white/70 space-y-1">
-                  <li>GITHUB_TOKEN: unset</li>
-                  <li>locale: en-US</li>
-                  <li>draft: true</li>
-                </ul>
-                <div class="flex gap-2 text-[12px]">
-                  <button class="px-3 py-1.5 rounded-md bg-rose-500/20 text-rose-100">Resolve</button>
-                  <button class="px-3 py-1.5 rounded-md bg-white/8 hover:bg-white/12 text-white/80">Assign</button>
-                </div>
-              </div>
-              <div class="rounded-lg border border-white/12 bg-white/[0.02] p-4 space-y-2">
-                <div class="flex items-center justify-between">
-                  <p class="text-sm font-semibold text-white">dita-ot-dev</p>
-                  <span class="text-[11px] text-white/50">Updated yesterday</span>
-                </div>
-                <ul class="text-[12px] text-white/70 space-y-1">
-                  <li>validate: true</li>
-                  <li>clean.temp: true</li>
-                  <li>branch: main</li>
-                </ul>
-                <div class="flex gap-2 text-[12px]">
-                  <button class="px-3 py-1.5 rounded-md bg-white/8 hover:bg-white/12 text-white/80">Open</button>
-                  <button class="px-3 py-1.5 rounded-md bg-white/8 hover:bg-white/12 text-white/80">Duplicate</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div id="transform-activity-subtab" class="sub-tab-content hidden space-y-4">
-          <div class="source-card p-5 rounded-lg space-y-3">
-            <div class="flex flex-wrap items-center justify-between gap-3">
-              <div>
-                <h3 class="text-lg font-semibold text-white">Recent activity</h3>
-                <p class="text-sm text-white/60">Audit trail for runs, updates, and changes.</p>
-              </div>
-              <select class="px-3 py-2 bg-white/[0.03] border border-white/12 text-white/70 text-sm rounded-md">
-                <option>Last 24 hours</option>
-                <option>Last 7 days</option>
-              </select>
-            </div>
-            <div class="space-y-3 text-[12px] text-white/70">
-              <div class="flex items-start gap-3 rounded-lg border border-white/12 bg-white/[0.02] px-4 py-3">
-                <span class="mt-1 w-2 h-2 rounded-full bg-emerald-400"></span>
-                <div>
-                  <p class="text-white/90 font-medium">Portal docs → HTML5 & PDF succeeded</p>
-                  <p>Duration 3m 42s · Trigger: schedule · Output 28 MB</p>
-                </div>
-              </div>
-              <div class="flex items-start gap-3 rounded-lg border border-rose-400/30 bg-rose-500/15 px-4 py-3">
-                <span class="mt-1 w-2 h-2 rounded-full bg-rose-300"></span>
-                <div>
-                  <p class="text-white/90 font-medium">custom.dc.postProcess failed validation</p>
-                  <p>Checksum mismatch · Assigned to DevOps</p>
-                </div>
-              </div>
-              <div class="flex items-start gap-3 rounded-lg border border-white/12 bg-white/[0.02] px-4 py-3">
-                <span class="mt-1 w-2 h-2 rounded-full bg-indigo-300"></span>
-                <div>
-                  <p class="text-white/90 font-medium">Parameter set dita-ot-prod updated</p>
-                  <p>Sarah Chen changed Xmx from 6G to 8G</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="text-center py-12 text-white/40 text-sm">
+        Transform tab coming soon...
       </div>
     </div>
+
     <!-- TARGET TAB -->
     <div id="target-content" class="tab-content">
       
@@ -2432,170 +1951,15 @@
       
       <!-- Sub-tabs -->
       <div class="flex items-center gap-3 mb-6">
-        <button class="sub-tab-btn active px-4 py-2 text-sm font-medium rounded-md transition-colors" data-subtab="deliver-deployments">Deployments</button>
-        <button class="sub-tab-btn px-4 py-2 text-sm font-medium rounded-md transition-colors" data-subtab="deliver-targets">Targets</button>
+        <button class="sub-tab-btn active px-4 py-2 text-sm font-medium rounded-md transition-colors" data-subtab="deliver-releases">Releases</button>
         <button class="sub-tab-btn px-4 py-2 text-sm font-medium rounded-md transition-colors" data-subtab="deliver-environments">Environments</button>
         <button class="sub-tab-btn px-4 py-2 text-sm font-medium rounded-md transition-colors" data-subtab="deliver-deploy">Deploy</button>
         <button class="sub-tab-btn px-4 py-2 text-sm font-medium rounded-md transition-colors" data-subtab="deliver-history">History</button>
       </div>
 
-      <!-- Deployments Sub-tab -->
-      <div id="deliver-deployments-subtab" class="sub-tab-content active space-y-6">
-        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
-          <div>
-            <h2 class="text-xl font-semibold text-white mb-1">Deployments</h2>
-            <p class="text-[13px] text-white/60">Track publishing jobs, monitor status, and inspect deployment details.</p>
-          </div>
-          <div class="flex items-center gap-2">
-            <button type="button" class="flex items-center gap-2 px-3 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md text-sm">
-              <i data-lucide="play" class="w-4 h-4"></i>Run pipeline
-            </button>
-            <button type="button" class="flex items-center gap-2 px-3 py-2 bg-white/10 hover:bg-white/14 text-white/80 rounded-md text-sm">
-              <i data-lucide="sliders" class="w-4 h-4"></i>Configure automation
-            </button>
-          </div>
-        </div>
-
-        <div class="source-card p-5 rounded-lg space-y-4">
-          <div class="flex flex-wrap items-center gap-2 text-[12px] text-white/70">
-            <button type="button" class="filter-chip">All pipelines<i data-lucide="chevron-down" class="w-3 h-3"></i></button>
-            <button type="button" class="filter-chip">All branches<i data-lucide="chevron-down" class="w-3 h-3"></i></button>
-            <button type="button" class="filter-chip">All authors<i data-lucide="chevron-down" class="w-3 h-3"></i></button>
-            <button type="button" class="filter-chip">All environments<i data-lucide="chevron-down" class="w-3 h-3"></i></button>
-            <button type="button" class="filter-chip">Last 24h<i data-lucide="chevron-down" class="w-3 h-3"></i></button>
-            <button type="button" class="filter-chip">Status<i data-lucide="chevron-down" class="w-3 h-3"></i></button>
-          </div>
-          <table class="w-full text-left text-[13px] text-white/70">
-            <thead class="text-white/50 text-[11px] uppercase tracking-[0.18em]">
-              <tr>
-                <th class="px-3 py-2">Job</th>
-                <th class="px-3 py-2">Status</th>
-                <th class="px-3 py-2">Branch / Commit</th>
-                <th class="px-3 py-2">Trigger</th>
-                <th class="px-3 py-2">Finished</th>
-                <th class="px-3 py-2">By</th>
-                <th class="px-3 py-2 text-right">Actions</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-white/10">
-              <tr class="hover:bg-white/[0.03] transition-colors">
-                <td class="px-3 py-3">
-                  <p class="text-white/90 font-medium tracking-wide">2szsXW4TB</p>
-                  <div class="flex items-center gap-2 text-[11px] text-white/50 mt-1">
-                    <span class="px-2 py-0.5 rounded-full bg-white/10 border border-white/20">Production</span>
-                    <span class="px-2 py-0.5 rounded-full bg-indigo-500/15 text-indigo-100">Current</span>
-                  </div>
-                </td>
-                <td class="px-3 py-3"><span class="inline-flex items-center gap-2 text-emerald-300"><span class="w-2 h-2 rounded-full bg-emerald-400"></span>Ready</span></td>
-                <td class="px-3 py-3"><div class="flex items-center gap-2"><i data-lucide="git-branch" class="w-3.5 h-3.5 text-white/60"></i>main<span class="text-white/50">026e2be</span></div></td>
-                <td class="px-3 py-3">Schedule · Normalize → HTML5</td>
-                <td class="px-3 py-3">4s ago</td>
-                <td class="px-3 py-3">davidjhillis</td>
-                <td class="px-3 py-3 text-right"><button type="button" class="px-3 py-1.5 rounded-md bg-white/8 hover:bg-white/12 text-white/80">View</button></td>
-              </tr>
-              <tr class="hover:bg-white/[0.03] transition-colors">
-                <td class="px-3 py-3">
-                  <p class="text-white/90 font-medium tracking-wide">5pxwgr2uc</p>
-                  <div class="flex items-center gap-2 text-[11px] text-white/50 mt-1">
-                    <span class="px-2 py-0.5 rounded-full bg-white/10 border border-white/20">Production</span>
-                  </div>
-                </td>
-                <td class="px-3 py-3"><span class="inline-flex items-center gap-2 text-emerald-300"><span class="w-2 h-2 rounded-full bg-emerald-400"></span>Ready</span></td>
-                <td class="px-3 py-3"><div class="flex items-center gap-2"><i data-lucide="git-branch" class="w-3.5 h-3.5 text-white/60"></i>main<span class="text-white/50">1a4f0d2</span></div></td>
-                <td class="px-3 py-3">Manual · Markdown → HTML5</td>
-                <td class="px-3 py-3">7d ago</td>
-                <td class="px-3 py-3">delivery-ops</td>
-                <td class="px-3 py-3 text-right"><button type="button" class="px-3 py-1.5 rounded-md bg-white/8 hover:bg-white/12 text-white/80">View</button></td>
-              </tr>
-              <tr class="hover:bg-white/[0.03] transition-colors">
-                <td class="px-3 py-3">
-                  <p class="text-white/90 font-medium tracking-wide">FXBuC6gRH</p>
-                  <div class="flex items-center gap-2 text-[11px] text-white/50 mt-1">
-                    <span class="px-2 py-0.5 rounded-full bg-white/10 border border-white/20">Production</span>
-                  </div>
-                </td>
-                <td class="px-3 py-3"><span class="inline-flex items-center gap-2 text-rose-300"><span class="w-2 h-2 rounded-full bg-rose-400"></span>Failed</span></td>
-                <td class="px-3 py-3"><div class="flex items-center gap-2"><i data-lucide="git-branch" class="w-3.5 h-3.5 text-white/60"></i>main<span class="text-white/50">071a1a8</span></div></td>
-                <td class="px-3 py-3">Schedule · PDF2 with custom post</td>
-                <td class="px-3 py-3">7d ago</td>
-                <td class="px-3 py-3">build-bot</td>
-                <td class="px-3 py-3 text-right"><button type="button" class="px-3 py-1.5 rounded-md bg-rose-500/20 text-rose-100">Investigate</button></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <section class="source-card p-6 rounded-lg space-y-5">
-          <div class="flex flex-col xl:flex-row xl:items-start xl:justify-between gap-6">
-            <div class="xl:w-1/2 space-y-4">
-              <div class="relative overflow-hidden rounded-lg border border-white/10 bg-white/[0.04] aspect-video flex items-center justify-center text-white/50 text-sm">
-                Deployment preview
-              </div>
-              <div class="grid gap-3 sm:grid-cols-2 text-[12px] text-white/70">
-                <div class="rounded-md border border-white/10 bg-white/[0.03] px-3 py-2">
-                  <p class="text-white/50">Created</p>
-                  <p class="text-white/90">Nov 5 · 4s runtime</p>
-                </div>
-                <div class="rounded-md border border-white/10 bg-white/[0.03] px-3 py-2">
-                  <p class="text-white/50">Status</p>
-                  <p class="text-emerald-300 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-400"></span>Ready · Latest</p>
-                </div>
-                <div class="rounded-md border border-white/10 bg-white/[0.03] px-3 py-2">
-                  <p class="text-white/50">Environment</p>
-                  <p class="text-white/90">Production (Current)</p>
-                </div>
-                <div class="rounded-md border border-white/10 bg-white/[0.03] px-3 py-2">
-                  <p class="text-white/50">Source</p>
-                  <p class="text-white/90">main · 026e2be</p>
-                </div>
-              </div>
-              <div class="flex items-center gap-2">
-                <button type="button" class="px-3 py-2 bg-white/10 hover:bg-white/14 text-white/80 rounded-md text-sm"><i data-lucide="share" class="w-4 h-4 mr-1"></i>Share</button>
-                <button type="button" class="px-3 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md text-sm"><i data-lucide="external-link" class="w-4 h-4 mr-1"></i>Visit</button>
-              </div>
-            </div>
-
-            <div class="xl:w-1/2 space-y-3">
-              <div class="rounded-lg border border-white/10 bg-white/[0.03]">
-                <button type="button" class="w-full flex items-center justify-between px-4 py-3 text-sm text-white/80">Deployment settings<span class="text-[11px] text-indigo-200">4 recommendations</span></button>
-              </div>
-              <div class="rounded-lg border border-white/10 bg-white/[0.03]">
-                <button type="button" class="w-full flex items-center justify-between px-4 py-3 text-sm text-white/80">Build logs<span class="text-[11px] text-white/50">4s</span></button>
-              </div>
-              <div class="rounded-lg border border-white/10 bg-white/[0.03]">
-                <button type="button" class="w-full flex items-center justify-between px-4 py-3 text-sm text-white/80">Deployment summary<span class="text-[11px] text-white/50">Resources</span></button>
-              </div>
-              <div class="rounded-lg border border-white/10 bg-white/[0.03]">
-                <button type="button" class="w-full flex items-center justify-between px-4 py-3 text-sm text-white/80">Deployment checks<span class="text-[11px] text-emerald-200">Pass</span></button>
-              </div>
-              <div class="rounded-lg border border-white/10 bg-white/[0.03]">
-                <button type="button" class="w-full flex items-center justify-between px-4 py-3 text-sm text-white/80">Assign custom domains<span class="text-[11px] text-white/50">Ready</span></button>
-              </div>
-              <div class="grid gap-3 sm:grid-cols-2 text-[12px] text-white/70 pt-2">
-                <div class="rounded-md border border-white/10 bg-white/[0.03] px-3 py-2">
-                  <p class="text-white/50">Runtime logs</p>
-                  <p class="text-white/90">View and debug runtime errors</p>
-                </div>
-                <div class="rounded-md border border-white/10 bg-white/[0.03] px-3 py-2">
-                  <p class="text-white/50">Observability</p>
-                  <p class="text-white/90">Monitor performance metrics</p>
-                </div>
-                <div class="rounded-md border border-white/10 bg-white/[0.03] px-3 py-2">
-                  <p class="text-white/50">Speed insights</p>
-                  <p class="text-white/90">Not enabled</p>
-                </div>
-                <div class="rounded-md border border-white/10 bg-white/[0.03] px-3 py-2">
-                  <p class="text-white/50">Web analytics</p>
-                  <p class="text-white/90">Analytics not enabled</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-
-      <!-- Targets Sub-tab -->
-      <div id="deliver-targets-subtab" class="sub-tab-content hidden">
+      <!-- Releases Sub-tab (Deployment Targets) -->
+      <div id="deliver-releases-subtab" class="sub-tab-content active">
+        
         <!-- Header with Add Button -->
         <div class="flex items-center justify-between mb-6">
           <div>
@@ -2790,8 +2154,6 @@
           </div>
 
         </div>
-
-      </div>
 
       </div>
 
@@ -3912,45 +3274,6 @@
     signOutBtn?.addEventListener('click', () => {
       alert('Signing out...');
       window.location.href = '/admin/login.html';
-    });
-
-
-    const folderViewButtons = document.querySelectorAll('.folder-view-toggle');
-    const folderViews = document.querySelectorAll('.folder-view');
-    folderViewButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const view = btn.dataset.folderView;
-        folderViewButtons.forEach(b => b.classList.remove('border-indigo-400/30', 'text-indigo-100', 'bg-indigo-500/10'));
-        folderViewButtons.forEach(b => b.classList.add('border-white/[0.08]', 'text-white/70'));
-        btn.classList.add('border-indigo-400/30', 'text-indigo-100', 'bg-indigo-500/10');
-        btn.classList.remove('border-white/[0.08]', 'text-white/70');
-        folderViews.forEach(viewEl => {
-          if (viewEl.classList.contains(`folder-view-${view}`)) {
-            viewEl.classList.remove('hidden');
-          } else {
-            viewEl.classList.add('hidden');
-          }
-        });
-      });
-    });
-
-    const fileViewButtons = document.querySelectorAll('.file-view-toggle');
-    const fileViews = document.querySelectorAll('.file-view');
-    fileViewButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const view = btn.dataset.fileView;
-        fileViewButtons.forEach(b => b.classList.remove('border-indigo-400/30', 'text-indigo-100', 'bg-indigo-500/10'));
-        fileViewButtons.forEach(b => b.classList.add('border-white/[0.08]', 'text-white/70'));
-        btn.classList.add('border-indigo-400/30', 'text-indigo-100', 'bg-indigo-500/10');
-        btn.classList.remove('border-white/[0.08]', 'text-white/70');
-        fileViews.forEach(viewEl => {
-          if (viewEl.classList.contains(`file-view-${view}`)) {
-            viewEl.classList.remove('hidden');
-          } else {
-            viewEl.classList.add('hidden');
-          }
-        });
-      });
     });
 
 
