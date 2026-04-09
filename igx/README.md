@@ -24,7 +24,10 @@ igx/                                    → DSS Project Root
 │   │       └── DCXProductCard_Unit.cshtml
 │   └── CMSPageDefault/
 │       ├── DCX_HomePage.cshtml        → /Views/CMSPageDefault/DCX_HomePage.cshtml
-│       └── DCX_DocPage.cshtml         → /Views/CMSPageDefault/DCX_DocPage.cshtml
+│       ├── DCX_DocPage.cshtml         → /Views/CMSPageDefault/DCX_DocPage.cshtml
+│       ├── DCX_SearchResults.cshtml   → /Views/CMSPageDefault/DCX_SearchResults.cshtml
+│       ├── DCX_UserProfile.cshtml     → /Views/CMSPageDefault/DCX_UserProfile.cshtml
+│       └── DCX_LoginPage.cshtml       → /Views/CMSPageDefault/DCX_LoginPage.cshtml
 ├── Content/
 │   └── css/tokens.css                 → /Content/css/tokens.css
 └── Scripts/
@@ -41,6 +44,9 @@ The static HTML templates in the parent repo are the source of truth for design.
 |------|--------------------|
 | DCX_HomePage | `../index.html` |
 | DCX_DocPage | `../doc-page.html` |
+| DCX_SearchResults | `../search-results.html` |
+| DCX_UserProfile | `../user-profile.html` |
+| DCX_LoginPage | `../login.html` |
 | Header partial | Header section in any template |
 | Footer partial | Footer section in any template |
 
@@ -139,6 +145,61 @@ Create these schemas in **Settings > Schema Designer**. All schema names are pre
 | Description | string |
 | Icon | Asset |
 | ProductLink | Link (list) |
+
+#### DCX_SearchResults (Page schema)
+
+| Field | Type |
+|-------|------|
+| Title | string |
+| AIAnswerEnabled | boolean |
+| FilterGroups | List (Component) → DCXFilterGroup |
+
+**Properties**: `IsDynamicSitePage: true`, `ViewName: DCX_SearchResults`
+
+Note: Search results are rendered by InSite Search at runtime. The view provides the layout, filter sidebar, and AI answer container.
+
+#### DCXFilterGroup (Component)
+
+| Field | Type |
+|-------|------|
+| GroupTitle | string |
+| FilterOption | List (Component) → DCXFilterOption |
+
+#### DCXFilterOption (Component)
+
+| Field | Type |
+|-------|------|
+| Label | string |
+| Value | string |
+
+#### DCX_UserProfile (Page schema)
+
+| Field | Type |
+|-------|------|
+| Title | string |
+
+**Properties**: `IsDynamicSitePage: true`, `ViewName: DCX_UserProfile`
+
+Note: User data comes from the portal user system (`IUser`), not page fields. Bookmarks and watched pages need custom API endpoints. See `user-profile.html` for full tab HTML.
+
+#### DCX_LoginPage (Page schema)
+
+| Field | Type |
+|-------|------|
+| Heading | string |
+| Subheading | string |
+| SSOProviders | List (Component) → DCXSSOProvider |
+
+**Properties**: `IsDynamicSitePage: true`, `ViewName: DCX_LoginPage`
+
+Note: Uses its own layout (no shared `_Layout.cshtml`). Auth handled by Ingeniux SAML/CustomAccount controllers.
+
+#### DCXSSOProvider (Component)
+
+| Field | Type |
+|-------|------|
+| Name | string (e.g. "Google", "Microsoft", "Okta") |
+| Icon | Asset |
 
 #### DCXActionCard (Component)
 
