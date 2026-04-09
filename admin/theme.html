@@ -69,6 +69,18 @@
       border-color: #8b5cf6;
       box-shadow: 0 0 0 2px rgba(139,92,246,0.2);
     }
+    .theme-preset.manage-mode {
+      cursor: default;
+    }
+    .theme-preset.manage-mode:hover {
+      transform: none;
+    }
+    
+    /* Theme checkbox styling */
+    .theme-checkbox {
+      accent-color: #8b5cf6;
+      cursor: pointer;
+    }
     
     /* Color swatch */
     .color-swatch {
@@ -133,7 +145,18 @@
       --preview-primary-600: #9333ea;
       --preview-primary-500: #a855f7;
       --preview-primary-50: #faf5ff;
+      --preview-accent-950: #1e1b4b;
+      --preview-accent-900: #312e81;
+      --preview-accent-700: #4338ca;
+      --preview-accent-600: #4f46e5;
+      --preview-accent-500: #6366f1;
+      --preview-accent-300: #a5b4fc;
+      --preview-accent-100: #e0e7ff;
+      --preview-accent-50: #eef2ff;
+      --preview-neutral-950: #0a0a0a;
+      --preview-neutral-900: #171717;
       --preview-neutral-300: #d4d4d8;
+      --preview-neutral-50: #fafafa;
     }
     
     #modal-component-preview .modal-card {
@@ -168,6 +191,73 @@
     #modal-component-preview .modal-input:focus {
       outline: none;
       border-color: var(--preview-primary-500);
+    }
+    
+    /* Style select to show placeholder-like text when default option selected */
+    #modal-component-preview select.modal-input {
+      color: #9ca3af;
+    }
+    
+    #modal-component-preview.dark select.modal-input {
+      color: #6b7280;
+    }
+    
+    /* Once an option is selected, use normal text color */
+    #modal-component-preview select.modal-input:valid {
+      color: #111827;
+    }
+    
+    #modal-component-preview.dark select.modal-input:valid {
+      color: #ffffff;
+    }
+    
+    /* Modal checkboxes and radios - use theme primary color */
+    #modal-component-preview .modal-checkbox:checked,
+    #modal-component-preview .modal-radio:checked {
+      accent-color: var(--preview-primary-600);
+    }
+    
+    /* Accent color components */
+    #modal-component-preview .modal-btn-accent {
+      background-color: var(--preview-accent-600);
+    }
+    
+    #modal-component-preview .modal-btn-accent:hover {
+      background-color: var(--preview-accent-700);
+    }
+    
+    #modal-component-preview .modal-accent-alert {
+      background-color: var(--preview-accent-50);
+      border-left: 3px solid var(--preview-accent-600);
+    }
+    
+    #modal-component-preview .modal-accent-tag {
+      background-color: var(--preview-accent-100);
+      color: var(--preview-accent-700);
+    }
+    
+    #modal-component-preview.dark .modal-accent-alert {
+      background-color: var(--preview-accent-950);
+      border-left-color: var(--preview-accent-500);
+    }
+    
+    #modal-component-preview.dark .modal-accent-tag {
+      background-color: var(--preview-accent-900);
+      color: var(--preview-accent-300);
+    }
+    
+    #modal-component-preview .modal-checkbox:focus,
+    #modal-component-preview .modal-radio:focus {
+      outline-color: var(--preview-primary-500);
+    }
+    
+    /* Gradient toggle switch - use current theme color */
+    .gradient-toggle {
+      transition: background-color 0.2s;
+    }
+    
+    #gradient-toggle:checked ~ .gradient-toggle {
+      background-color: rgb(var(--color-primary-600)) !important;
     }
     
     /* ========================================
@@ -254,16 +344,16 @@
        CSS variables handle the semantic mapping */
   </style>
 </head>
-<body class="bg-neutral-900 text-white">
+<body class="bg-[#252525] text-white">
 
   <!-- Split View Container -->
   <div class="flex h-screen">
     
     <!-- LEFT PANEL: Properties (360px) -->
-    <div class="w-[360px] bg-neutral-900 border-r border-neutral-700 flex flex-col">
+    <div class="w-[360px] bg-[#252525] border-r border-white/[0.08] flex flex-col">
       
       <!-- Header -->
-      <div class="px-4 py-3 border-b border-neutral-700 flex items-center justify-between flex-shrink-0">
+      <div class="px-4 py-3 border-b border-white/[0.08] flex items-center justify-between flex-shrink-0">
         <div class="flex items-center gap-2.5">
           <a href="index.html" class="w-7 h-7 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-md flex items-center justify-center hover:opacity-90 transition-opacity">
             <i data-lucide="arrow-left" class="w-4 h-4 text-white"></i>
@@ -276,14 +366,14 @@
         
         <!-- Undo/Redo/Reset -->
         <div class="flex items-center gap-1">
-          <button id="undo-btn" disabled class="w-7 h-7 hover:bg-neutral-700 rounded-md flex items-center justify-center transition-colors disabled:opacity-30 disabled:cursor-not-allowed" title="Undo (⌘Z)">
+          <button id="undo-btn" disabled class="w-7 h-7 hover:bg-white/[0.05] rounded-md flex items-center justify-center transition-colors disabled:opacity-30 disabled:cursor-not-allowed" title="Undo (⌘Z)">
             <i data-lucide="undo-2" class="w-3.5 h-3.5 text-white/60"></i>
           </button>
-          <button id="redo-btn" disabled class="w-7 h-7 hover:bg-neutral-700 rounded-md flex items-center justify-center transition-colors disabled:opacity-30 disabled:cursor-not-allowed" title="Redo (⌘⇧Z)">
+          <button id="redo-btn" disabled class="w-7 h-7 hover:bg-white/[0.05] rounded-md flex items-center justify-center transition-colors disabled:opacity-30 disabled:cursor-not-allowed" title="Redo (⌘⇧Z)">
             <i data-lucide="redo-2" class="w-3.5 h-3.5 text-white/60"></i>
           </button>
-          <div class="h-4 w-px bg-neutral-800 mx-1"></div>
-          <button id="reset-btn" class="w-7 h-7 hover:bg-neutral-700 rounded-md flex items-center justify-center transition-colors" title="Reset to Default (⌘R)">
+          <div class="h-4 w-px bg-white/[0.08] mx-1"></div>
+          <button id="reset-btn" class="w-7 h-7 hover:bg-white/[0.05] rounded-md flex items-center justify-center transition-colors" title="Reset to Default (⌘R)">
             <i data-lucide="rotate-ccw" class="w-3.5 h-3.5 text-white/60"></i>
           </button>
         </div>
@@ -294,8 +384,8 @@
         
         <!-- Theme / AI Options Toggle -->
         <div class="section mb-4">
-          <div class="flex gap-1.5 p-0.5 bg-neutral-800 rounded-lg mb-3">
-            <button id="theme-mode" class="flex-1 px-3 py-1.5 rounded-md text-[12px] font-medium transition-all bg-neutral-800 text-white/90">
+          <div class="flex gap-1.5 p-0.5 bg-white/[0.03] rounded-lg mb-3">
+            <button id="theme-mode" class="flex-1 px-3 py-1.5 rounded-md text-[12px] font-medium transition-all bg-white/[0.08] text-white/90">
               <div class="flex items-center justify-center gap-1.5">
                 <i data-lucide="palette" class="w-3.5 h-3.5"></i>
                 <span>Theme</span>
@@ -335,7 +425,31 @@
         
         <!-- Theme Presets -->
         <div class="section mb-4">
-          <span class="text-[11px] font-semibold text-white/50 uppercase tracking-wider block mb-3">Select Theme</span>
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-[11px] font-semibold text-white/50 uppercase tracking-wider">Select Theme</span>
+            <button id="manage-themes-btn" class="px-2 py-1 text-[11px] font-medium text-indigo-400 hover:text-indigo-300 hover:bg-white/[0.03] rounded transition-colors">
+              Manage
+            </button>
+          </div>
+          
+          <!-- Bulk Actions Bar (Hidden by default) -->
+          <div id="bulk-actions-bar" class="hidden mb-3 p-2 bg-white/[0.03] border border-white/[0.08] rounded-lg">
+            <div class="flex items-center justify-end gap-1">
+              <button id="bulk-download-btn" class="px-2 py-1 text-[10px] font-medium text-white/70 hover:text-white hover:bg-white/[0.05] rounded transition-colors flex items-center gap-1">
+                <i data-lucide="download" class="w-3 h-3"></i>
+                Download
+              </button>
+              <button id="bulk-delete-btn" class="px-2 py-1 text-[10px] font-medium text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded transition-colors flex items-center gap-1">
+                <i data-lucide="trash-2" class="w-3 h-3"></i>
+                Delete
+              </button>
+              <div class="w-px h-4 bg-white/10 mx-1"></div>
+              <button id="cancel-manage-btn" class="px-2 py-1 text-[10px] font-medium text-white/50 hover:text-white/70 hover:bg-white/[0.05] rounded transition-colors">
+                Cancel
+              </button>
+            </div>
+          </div>
+          
           <div class="space-y-2" id="theme-presets">
             <!-- Generated dynamically -->
           </div>
@@ -352,7 +466,7 @@
             </div>
             <label class="relative inline-flex items-center cursor-pointer">
               <input type="checkbox" id="gradient-toggle" class="sr-only peer" checked>
-              <div class="w-9 h-5 bg-neutral-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white/60 after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600 peer-checked:after:bg-white"></div>
+              <div class="w-9 h-5 bg-white/[0.08] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white/60 after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:bg-white gradient-toggle"></div>
             </label>
           </div>
         </div>
@@ -452,13 +566,17 @@
       </div>
 
       <!-- Footer Actions -->
-      <div class="px-4 py-3 border-t border-neutral-700 flex gap-2 flex-shrink-0">
+      <div class="px-4 py-3 border-t border-white/[0.08] flex gap-2 flex-shrink-0">
         <button id="apply-btn" class="flex-1 px-3 py-2.5 bg-indigo-600 hover:bg-indigo-700 rounded-lg text-[13px] font-semibold transition-colors flex items-center justify-center gap-2">
           <i data-lucide="check" class="w-4 h-4"></i>
           <span>Apply & Save</span>
         </button>
-        <button id="export-css-btn" class="px-3 py-2.5 hover:bg-neutral-700 rounded-lg transition-colors" title="Export CSS Variables">
+        <button id="export-css-btn" class="px-3 py-2.5 hover:bg-white/[0.05] rounded-lg transition-colors" title="Export CSS Variables">
           <i data-lucide="download" class="w-4 h-4 text-white/60"></i>
+        </button>
+        <button id="export-json-btn" class="px-3 py-2.5 bg-green-600 hover:bg-green-700 rounded-lg transition-colors flex items-center gap-2" title="Export Customer Theme JSON">
+          <i data-lucide="package" class="w-4 h-4"></i>
+          <span class="text-[13px] font-semibold">Export Theme</span>
         </button>
       </div>
     </div>
@@ -467,23 +585,23 @@
     <div class="flex-1 bg-[#252525] flex flex-col">
       
       <!-- Preview Toolbar -->
-      <div class="px-6 py-3 border-b border-neutral-700 flex items-center justify-between flex-shrink-0">
+      <div class="px-6 py-3 border-b border-white/[0.08] flex items-center justify-between flex-shrink-0">
         <div class="flex items-center gap-4">
           <span class="text-[13px] font-semibold text-white/90">Live Preview</span>
           
           <!-- Light/Dark Mode Toggle -->
-          <div class="flex gap-1.5 p-0.5 bg-neutral-800 rounded-lg">
+          <div class="flex gap-1.5 p-0.5 bg-white/[0.03] rounded-lg">
             <button id="light-mode" class="px-2.5 py-1 rounded-md text-[11px] font-medium transition-all text-white/40 hover:text-white/60">
               <i data-lucide="sun" class="w-3.5 h-3.5"></i>
             </button>
-            <button id="dark-mode" class="px-2.5 py-1 rounded-md text-[11px] font-medium transition-all bg-neutral-800 text-white/90">
+            <button id="dark-mode" class="px-2.5 py-1 rounded-md text-[11px] font-medium transition-all bg-white/[0.08] text-white/90">
               <i data-lucide="moon" class="w-3.5 h-3.5"></i>
             </button>
           </div>
           
           <!-- Device Toggle -->
-          <div class="flex items-center gap-0.5 bg-neutral-800 rounded-lg p-0.5">
-            <button data-device="desktop" class="device-btn px-2.5 py-1 rounded-md text-[11px] font-medium transition-all bg-neutral-800 text-white/90">
+          <div class="flex items-center gap-0.5 bg-white/[0.03] rounded-lg p-0.5">
+            <button data-device="desktop" class="device-btn px-2.5 py-1 rounded-md text-[11px] font-medium transition-all bg-white/[0.08] text-white/90">
               <i data-lucide="monitor" class="w-3.5 h-3.5"></i>
             </button>
             <button data-device="tablet" class="device-btn px-2.5 py-1 rounded-md text-[11px] font-medium transition-all text-white/40 hover:text-white/60">
@@ -511,8 +629,8 @@
         <div id="preview-wrapper" class="transition-all duration-300" style="width: 100%; height: 100%;">
           <iframe 
             id="preview-iframe" 
-            src="preview-templates/index.html" 
-            class="w-full h-full bg-white dark:bg-gray-900 rounded-lg shadow-2xl border border-neutral-700"
+            src="preview-templates/index.html?v=3" 
+            class="w-full h-full bg-white dark:bg-gray-900 rounded-lg shadow-2xl border border-white/[0.08]"
             style="transform-origin: center center;"
           ></iframe>
         </div>
@@ -527,8 +645,31 @@
     
     lucide.createIcons();
     
-    // Helper function to get color scale (Tailwind doesn't need mode parameter)
+    // Helper function to get color scale (handles both Tailwind and custom colors)
     function getColorScale(colorName, mode) {
+      // Check if this is a custom color (starts with "custom-")
+      if (colorName && colorName.startsWith('custom-')) {
+        // Extract theme key from custom color ID: "custom-mytheme-primary" → "mytheme"
+        const match = colorName.match(/^custom-([^-]+)-/);
+        if (match) {
+          const themeKey = match[1];
+          const customThemes = JSON.parse(localStorage.getItem('customThemes') || '{}');
+          const theme = customThemes[themeKey];
+          
+          if (theme) {
+            // Determine which property (primary, accent, or neutral)
+            const colorType = colorName.endsWith('-primary') ? 'primary' 
+                           : colorName.endsWith('-accent') ? 'accent' 
+                           : 'neutral';
+            
+            // Return the appropriate mode's colors
+            const modeColors = mode === 'dark' ? theme.dark : theme.light;
+            return modeColors[colorType] || {};
+          }
+        }
+      }
+      
+      // Fall back to standard Tailwind colors
       return tailwindColors.getScale(colorName);
     }
 
@@ -578,6 +719,18 @@
       }
       
       updateUndoRedoButtons();
+      
+      // Save active theme to localStorage for cross-page sync
+      saveActiveTheme(state);
+    }
+    
+    function saveActiveTheme(state) {
+      try {
+        localStorage.setItem('themeEditorState', JSON.stringify(state));
+        console.log('✅ Active theme saved to localStorage:', state.preset || 'custom');
+      } catch (error) {
+        console.error('Failed to save theme to localStorage:', error);
+      }
     }
 
     function undo() {
@@ -658,6 +811,16 @@
     // Export CSS Variables
     // ========================================
     
+    // Helper: Convert hex to RGB space-separated format for Tailwind
+    function hexToRGB(hex) {
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      if (!result) return hex;
+      const r = parseInt(result[1], 16);
+      const g = parseInt(result[2], 16);
+      const b = parseInt(result[3], 16);
+      return `${r} ${g} ${b}`;
+    }
+
     function exportCSS() {
       const primaryScale = getColorScale(currentState.primary, currentState.mode);
       const accentScale = getColorScale(currentState.accent, currentState.mode);
@@ -685,17 +848,17 @@
   
   /* Primary Color Scale - ${capitalize(currentState.primary)} (50=lightest, 900=darkest) */
   ${Object.entries(primaryScale).map(([shade, color]) => 
-    `--color-primary-${shade}: ${color};`
+    `--color-primary-${shade}: ${hexToRGB(color)};`
   ).join('\n  ')}
   
   /* Accent Color Scale - ${capitalize(currentState.accent)} */
   ${Object.entries(accentScale).map(([shade, color]) => 
-    `--color-accent-${shade}: ${color};`
+    `--color-accent-${shade}: ${hexToRGB(color)};`
   ).join('\n  ')}
   
   /* Neutral Color Scale - ${capitalize(currentState.neutral)} */
   ${Object.entries(neutralScale).map(([shade, color]) => 
-    `--color-neutral-${shade}: ${color};`
+    `--color-neutral-${shade}: ${hexToRGB(color)};`
   ).join('\n  ')}
   
   /* ============================================
@@ -779,6 +942,93 @@
       URL.revokeObjectURL(url);
     }
 
+    // ========================================
+    // Export Customer Theme JSON
+    // ========================================
+
+    function exportThemeJSON() {
+      // Prompt for customer information
+      const customerName = prompt('Enter customer name (e.g., Acme Corp):', '');
+      if (!customerName) {
+        showNotification('Export cancelled', 'info');
+        return;
+      }
+
+      // Generate customer ID (slug format)
+      const customerId = customerName.toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-|-$/g, '');
+
+      // Build theme JSON
+      const theme = {
+        version: '1.0.0',
+        name: `${customerName} Theme`,
+        description: `Custom theme for ${customerName}`,
+        customer: customerId,
+        created: new Date().toISOString(),
+
+        colors: {
+          primary: currentState.primary,
+          accent: currentState.accent,
+          neutral: currentState.neutral
+        },
+
+        typography: {
+          heading: 'Inter',
+          body: 'Inter',
+          mono: 'JetBrains Mono'
+        },
+
+        branding: {
+          logo: 'discover-cx-logo.svg',
+          logoWhite: 'discover-cx-logo-white.svg',
+          favicon: 'favicon.ico'
+        },
+
+        settings: {
+          darkMode: currentState.mode === 'dark',
+          useGradients: currentState.useGradients !== false,
+          roundedCorners: 'md'
+        }
+      };
+
+      const jsonContent = JSON.stringify(theme, null, 2);
+
+      // Copy to clipboard
+      navigator.clipboard.writeText(jsonContent).then(() => {
+        console.log('Theme JSON copied to clipboard');
+      }).catch(err => {
+        console.warn('Could not copy to clipboard:', err);
+      });
+
+      // Download as file
+      const blob = new Blob([jsonContent], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${customerId}-theme.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+
+      // Show success message with instructions
+      showNotification(`Theme exported: ${customerId}-theme.json`, 'success');
+
+      console.log(`
+🎨 Customer Theme Exported!
+
+Next steps:
+1. Save ${customerId}-theme.json to themes/ folder
+2. Deploy with your templates
+3. Access at: ?customer=${customerId}
+
+Theme details:
+- Primary: ${theme.colors.primary}
+- Accent: ${theme.colors.accent}
+- Neutral: ${theme.colors.neutral}
+- Dark Mode: ${theme.settings.darkMode ? 'Yes' : 'No'}
+      `);
+    }
+
     function updateVersionList() {
       const container = document.getElementById('version-list');
       const count = document.getElementById('version-count');
@@ -792,7 +1042,7 @@
         
         return `
           <button 
-            class="w-full flex items-center justify-between py-2 px-2.5 rounded-md hover:bg-neutral-800 transition-colors text-left group"
+            class="w-full flex items-center justify-between py-2 px-2.5 rounded-md hover:bg-white/[0.03] transition-colors text-left group"
             onclick="window.loadVersion(${version.id})"
           >
             <div class="flex-1">
@@ -815,27 +1065,35 @@
     
     function applyTheme() {
       const iframe = document.getElementById('preview-iframe');
-      if (!iframe || !iframe.contentDocument) return;
+      if (!iframe || !iframe.contentDocument) {
+        console.warn('⚠️ applyTheme() called but iframe not ready');
+        return;
+      }
       
       const doc = iframe.contentDocument;
       const html = doc.documentElement;
+      
+      console.log(`🎨 Applying theme: ${currentState.preset || 'custom'} (${currentState.mode}) to iframe`);
+      console.log(`   Primary: ${currentState.primary}, Accent: ${currentState.accent}, Neutral: ${currentState.neutral}`);
       
       // Get color scales
       const primaryScale = getColorScale(currentState.primary, currentState.mode);
       const accentScale = getColorScale(currentState.accent, currentState.mode);
       const neutralScale = getColorScale(currentState.neutral, currentState.mode);
       
-      // Apply CSS variables to iframe (Tailwind uses shade numbers: 50, 100, ..., 900)
+      console.log(`   Scales loaded - Primary: ${Object.keys(primaryScale).length} shades, Accent: ${Object.keys(accentScale).length} shades, Neutral: ${Object.keys(neutralScale).length} shades`);
+      
+      // Apply CSS variables to iframe in RGB format (for Tailwind's rgb() usage)
       Object.entries(primaryScale).forEach(([shade, color]) => {
-        html.style.setProperty(`--color-primary-${shade}`, color);
+        html.style.setProperty(`--color-primary-${shade}`, hexToRGB(color));
       });
       
       Object.entries(accentScale).forEach(([shade, color]) => {
-        html.style.setProperty(`--color-accent-${shade}`, color);
+        html.style.setProperty(`--color-accent-${shade}`, hexToRGB(color));
       });
       
       Object.entries(neutralScale).forEach(([shade, color]) => {
-        html.style.setProperty(`--color-neutral-${shade}`, color);
+        html.style.setProperty(`--color-neutral-${shade}`, hexToRGB(color));
       });
       
       // Apply mode class
@@ -873,205 +1131,52 @@
         ` : ''}
         
         /* ========================================
-           PRIMARY COLOR - All Shades
-           Direct Tailwind mapping: 50=50, 600=600, 900=900
+           SEMANTIC COLOR TOKENS
+           Templates use primary/accent/neutral classes.
+           Tailwind config maps them to CSS variables.
+           No CSS overrides needed! ✨
            ======================================== */
-        
-        /* Backgrounds */
-        .bg-indigo-50 { background-color: var(--color-primary-50) !important; }
-        .bg-indigo-100 { background-color: var(--color-primary-100) !important; }
-        .bg-indigo-200 { background-color: var(--color-primary-200) !important; }
-        .bg-indigo-300 { background-color: var(--color-primary-300) !important; }
-        .bg-indigo-400 { background-color: var(--color-primary-400) !important; }
-        .bg-indigo-500 { background-color: var(--color-primary-500) !important; }
-        .bg-indigo-600, .hover\\:bg-indigo-600:hover { background-color: var(--color-primary-600) !important; }
-        .bg-indigo-700, .hover\\:bg-indigo-700:hover { background-color: var(--color-primary-700) !important; }
-        .bg-indigo-800, .hover\\:bg-indigo-800:hover { background-color: var(--color-primary-800) !important; }
-        .bg-indigo-900, .hover\\:bg-indigo-900:hover { background-color: var(--color-primary-900) !important; }
-        
-        /* Dark mode backgrounds (using dark: variants) */
-        .dark\\:bg-indigo-900\\/20 { background-color: color-mix(in srgb, var(--color-primary-900) 20%, transparent) !important; }
-        .dark\\:bg-indigo-900\\/30 { background-color: color-mix(in srgb, var(--color-primary-900) 30%, transparent) !important; }
-        .dark\\:bg-indigo-800 { background-color: var(--color-primary-800) !important; }
-        
-        /* Text colors */
-        .text-indigo-100 { color: var(--color-primary-100) !important; }
-        .text-indigo-200, .dark\\:text-indigo-200 { color: var(--color-primary-200) !important; }
-        .text-indigo-300, .dark\\:text-indigo-300 { color: var(--color-primary-300) !important; }
-        .text-indigo-400, .dark\\:text-indigo-400, .hover\\:text-indigo-400:hover, .dark\\:hover\\:text-indigo-400:hover { color: var(--color-primary-400) !important; }
-        .text-indigo-500 { color: var(--color-primary-500) !important; }
-        .text-indigo-600, .hover\\:text-indigo-600:hover, .dark\\:hover\\:text-indigo-600:hover { color: var(--color-primary-600) !important; }
-        .text-indigo-700 { color: var(--color-primary-700) !important; }
-        .text-indigo-800 { color: var(--color-primary-800) !important; }
-        .text-indigo-900 { color: var(--color-primary-900) !important; }
-        
-        /* Borders */
-        .border-indigo-200 { border-color: var(--color-primary-200) !important; }
-        .border-indigo-400, .hover\\:border-indigo-400:hover { border-color: var(--color-primary-400) !important; }
-        .border-indigo-500, .hover\\:border-indigo-500:hover { border-color: var(--color-primary-500) !important; }
-        .border-indigo-600 { border-color: var(--color-primary-600) !important; }
-        .border-indigo-700, .dark\\:border-indigo-700 { border-color: var(--color-primary-700) !important; }
         
         /* ========================================
-           PURPLE COLOR MAPPINGS (Original Template)
+           FORM PRIMITIVES - Theme-aware
            ======================================== */
         
-        /* Purple backgrounds */
-        .bg-purple-50 { background-color: var(--color-primary-50) !important; }
-        .bg-purple-100, .dark\\:bg-purple-900 { background-color: var(--color-primary-100) !important; }
-        .bg-purple-200, .dark\\:border-purple-900 { background-color: var(--color-primary-200) !important; }
-        .bg-purple-600, .hover\\:bg-purple-600:hover { background-color: var(--color-primary-600) !important; }
-        .bg-purple-900 { background-color: var(--color-primary-900) !important; }
+        /* Checkboxes and Radio Buttons */
+        input[type="checkbox"]:checked,
+        input[type="radio"]:checked {
+          background-color: rgb(var(--color-primary-600)) !important;
+          border-color: rgb(var(--color-primary-600)) !important;
+        }
         
-        /* Purple text colors */
-        .text-purple-400, .dark\\:text-purple-400, .dark\\:group-hover\\:text-purple-400:hover, .group-hover\\:text-purple-600:hover { color: var(--color-primary-400) !important; }
-        .text-purple-600, .dark\\:text-purple-600, .hover\\:text-purple-600:hover, .dark\\:hover\\:text-purple-400:hover { color: var(--color-primary-600) !important; }
+        input[type="checkbox"]:focus,
+        input[type="radio"]:focus {
+          ring-color: rgb(var(--color-primary-500)) !important;
+          border-color: rgb(var(--color-primary-500)) !important;
+        }
         
-        /* Purple borders */
-        .border-purple-200 { border-color: var(--color-primary-200) !important; }
-        .border-purple-500, .hover\\:border-purple-500:hover, .dark\\:hover\\:border-purple-400:hover { border-color: var(--color-primary-500) !important; }
-        .dark\\:border-purple-900 { border-color: var(--color-primary-900) !important; }
+        /* Text Inputs, Selects, Textareas */
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="search"]:focus,
+        input[type="password"]:focus,
+        select:focus,
+        textarea:focus {
+          border-color: rgb(var(--color-primary-500)) !important;
+          ring-color: rgb(var(--color-primary-500)) !important;
+          outline-color: rgb(var(--color-primary-500)) !important;
+        }
         
-        /* Purple gradients - Light mode */
-        html:not(.dark) .from-purple-50 { --tw-gradient-from: var(--color-primary-50) !important; }
-        html:not(.dark) .from-purple-900 { --tw-gradient-from: var(--color-primary-900) !important; }
-        html:not(.dark) .to-purple-800 { --tw-gradient-to: var(--color-primary-800) !important; }
-        html:not(.dark) .to-pink-900 { --tw-gradient-to: var(--color-accent-900) !important; }
+        /* Toggle Switches (if using Tailwind's peer pattern) */
+        .peer:checked ~ div {
+          background-color: rgb(var(--color-primary-600)) !important;
+        }
         
-        /* Purple gradients - Dark mode */
-        .dark .from-purple-900 { --tw-gradient-from: var(--color-primary-900) !important; }
-        .dark .to-purple-800 { --tw-gradient-to: var(--color-primary-800) !important; }
-        .dark .from-purple-900\\/10 { --tw-gradient-from: color-mix(in srgb, var(--color-primary-900) 10%, transparent) !important; }
-        .dark .from-pink-900 { --tw-gradient-from: var(--color-accent-900) !important; }
-        .dark .to-pink-900 { --tw-gradient-to: var(--color-accent-900) !important; }
-        .dark .to-blue-900\\/10 { --tw-gradient-to: color-mix(in srgb, var(--color-accent-900) 10%, transparent) !important; }
-        
-        /* Gradients - Product Cards (only apply when NOT in dark mode) */
-        html:not(.dark) .from-indigo-50 { --tw-gradient-from: var(--color-primary-50) !important; }
-        html:not(.dark) .from-indigo-100 { --tw-gradient-from: var(--color-primary-100) !important; }
-        html:not(.dark) .from-indigo-600 { --tw-gradient-from: var(--color-primary-600) !important; }
-        html:not(.dark) .from-indigo-700 { --tw-gradient-from: var(--color-primary-700) !important; }
-        html:not(.dark) .from-indigo-800 { --tw-gradient-from: var(--color-primary-800) !important; }
-        html:not(.dark) .from-indigo-900 { --tw-gradient-from: var(--color-primary-900) !important; }
-        
-        html:not(.dark) .to-indigo-50 { --tw-gradient-to: var(--color-primary-50) !important; }
-        html:not(.dark) .to-indigo-100 { --tw-gradient-to: var(--color-primary-100) !important; }
-        html:not(.dark) .to-indigo-600 { --tw-gradient-to: var(--color-primary-600) !important; }
-        html:not(.dark) .to-indigo-700 { --tw-gradient-to: var(--color-primary-700) !important; }
-        html:not(.dark) .to-indigo-800 { --tw-gradient-to: var(--color-primary-800) !important; }
-        html:not(.dark) .to-indigo-900 { --tw-gradient-to: var(--color-primary-900) !important; }
-        
-        /* Blue gradients (for hero section - light mode only) */
-        html:not(.dark) .from-blue-50 { --tw-gradient-from: var(--color-accent-50) !important; }
-        html:not(.dark) .to-blue-50 { --tw-gradient-to: var(--color-accent-50) !important; }
-        
-        /* ========================================
-           NEUTRAL COLORS (Gray - for backgrounds)
-           ======================================== */
-        
-        /* Light mode neutral backgrounds */
-        html:not(.dark) .bg-white { background-color: var(--color-neutral-50) !important; }
-        html:not(.dark) .bg-gray-50 { background-color: var(--color-neutral-100) !important; }
-        html:not(.dark) .bg-gray-100 { background-color: var(--color-neutral-100) !important; }
-        html:not(.dark) .bg-gray-800 { background-color: var(--color-neutral-800) !important; }
-        html:not(.dark) .bg-gray-900 { background-color: var(--color-neutral-900) !important; }
-        
-        /* Hover states for light mode */
-        html:not(.dark) .hover\\:bg-gray-100:hover { background-color: var(--color-neutral-100) !important; }
-        
-        /* Dark mode gray backgrounds (using dark: prefix) */
-        html.dark .dark\\:bg-gray-700 { background-color: var(--color-neutral-700) !important; }
-        html.dark .dark\\:bg-gray-800 { background-color: var(--color-neutral-800) !important; }
-        html.dark .dark\\:bg-gray-900 { background-color: var(--color-neutral-900) !important; }
-        html.dark .dark\\:bg-black { background-color: var(--color-neutral-950) !important; }
-        
-        /* Hover states for dark mode */
-        html.dark .dark\\:hover\\:bg-gray-700:hover { background-color: var(--color-neutral-700) !important; }
-        html.dark .dark\\:hover\\:bg-gray-800:hover { background-color: var(--color-neutral-800) !important; }
-        
-        /* Dark mode gray gradients */
-        html.dark .dark\\:from-gray-800 { --tw-gradient-from: var(--color-neutral-800) !important; }
-        html.dark .dark\\:to-gray-900 { --tw-gradient-to: var(--color-neutral-900) !important; }
-        
-        /* Gray borders */
-        html:not(.dark) .border-gray-200 { border-color: var(--color-neutral-200) !important; }
-        html.dark .dark\\:border-gray-700 { border-color: var(--color-neutral-700) !important; }
-        
-        /* Gray text - Light mode (darker text on light bg) */
-        html:not(.dark) .text-gray-500 { color: var(--color-neutral-600) !important; }
-        html:not(.dark) .text-gray-600 { color: var(--color-neutral-700) !important; }
-        html:not(.dark) .text-gray-700 { color: var(--color-neutral-800) !important; }
-        html:not(.dark) .text-gray-900 { color: var(--color-neutral-900) !important; }
-        
-        /* Gray text - Hover states in light mode */
-        html:not(.dark) .hover\\:text-gray-900:hover { color: var(--color-neutral-900) !important; }
-        
-        /* Gray text - Dark mode (lighter text on dark bg) */
-        html.dark .dark\\:text-gray-300 { color: var(--color-neutral-300) !important; }
-        html.dark .dark\\:text-gray-400 { color: var(--color-neutral-400) !important; }
-        html.dark .dark\\:text-white { color: white !important; }
-        
-        /* Dark mode hover states */
-        html.dark .dark\\:hover\\:text-white:hover { color: white !important; }
-        
-        /* ========================================
-           ACCENT COLOR (Indigo/Blue/Violet)
-           ======================================== */
-        
-        /* Backgrounds */
-        .bg-indigo-50 { background-color: var(--color-accent-50) !important; }
-        .bg-blue-50 { background-color: var(--color-accent-50) !important; }
-        .bg-indigo-100 { background-color: var(--color-accent-100) !important; }
-        .bg-indigo-600 { background-color: var(--color-accent-600) !important; }
-        .bg-indigo-700 { background-color: var(--color-accent-700) !important; }
-        .bg-indigo-800, .hover\\:bg-indigo-800:hover { background-color: var(--color-accent-800) !important; }
-        .bg-indigo-900, .hover\\:bg-indigo-900:hover { background-color: var(--color-accent-900) !important; }
-        .dark\\:bg-indigo-900\\/20 { background-color: color-mix(in srgb, var(--color-accent-900) 20%, transparent) !important; }
-        .dark\\:bg-indigo-900\\/30 { background-color: color-mix(in srgb, var(--color-accent-900) 30%, transparent) !important; }
-        
-        /* Text colors */
-        .text-indigo-200 { color: var(--color-accent-200) !important; }
-        .text-indigo-300 { color: var(--color-accent-300) !important; }
-        .text-indigo-400, .dark\\:text-indigo-400 { color: var(--color-accent-400) !important; }
-        .text-indigo-600, .hover\\:text-indigo-600:hover { color: var(--color-accent-600) !important; }
-        .text-indigo-700 { color: var(--color-accent-700) !important; }
-        
-        /* Borders */
-        .border-indigo-200 { border-color: var(--color-accent-200) !important; }
-        .border-indigo-500, .hover\\:border-indigo-500:hover { border-color: var(--color-accent-500) !important; }
-        .border-indigo-700 { border-color: var(--color-accent-700) !important; }
-        
-        /* Gradients */
-        .from-indigo-50 { --tw-gradient-from: var(--color-accent-50) !important; }
-        .from-indigo-100 { --tw-gradient-from: var(--color-accent-100) !important; }
-        .from-indigo-600 { --tw-gradient-from: var(--color-accent-600) !important; }
-        .from-indigo-700 { --tw-gradient-from: var(--color-accent-700) !important; }
-        .from-indigo-800 { --tw-gradient-from: var(--color-accent-800) !important; }
-        .from-indigo-900 { --tw-gradient-from: var(--color-accent-900) !important; }
-        
-        .to-indigo-50 { --tw-gradient-to: var(--color-accent-50) !important; }
-        .to-indigo-100 { --tw-gradient-to: var(--color-accent-100) !important; }
-        .to-indigo-600 { --tw-gradient-to: var(--color-accent-600) !important; }
-        .to-indigo-700 { --tw-gradient-to: var(--color-accent-700) !important; }
-        .to-indigo-800 { --tw-gradient-to: var(--color-accent-800) !important; }
-        .to-indigo-900 { --tw-gradient-to: var(--color-accent-900) !important; }
-        
-        /* Blue gradients */
-        .from-blue-900 { --tw-gradient-from: var(--color-accent-900) !important; }
-        .from-blue-800 { --tw-gradient-from: var(--color-accent-800) !important; }
-        .to-blue-900 { --tw-gradient-to: var(--color-accent-900) !important; }
-        .to-blue-800 { --tw-gradient-to: var(--color-accent-800) !important; }
-        
-        /* Pink gradients (for avatar, etc.) */
-        .to-pink-600 { --tw-gradient-to: var(--color-accent-600) !important; }
-        .to-pink-900 { --tw-gradient-to: var(--color-accent-900) !important; }
-        
-        /* Logo brand gradients */
-        .from-indigo-600.to-indigo-600 { 
-          --tw-gradient-from: var(--color-primary-600) !important;
-          --tw-gradient-to: var(--color-accent-600) !important;
+        .peer:focus ~ div {
+          ring-color: rgb(var(--color-primary-500)) !important;
         }
       `;
+      
+      console.log(`✅ Theme applied successfully to iframe at ${iframe.src}`);
     }
 
     // ========================================
@@ -1084,14 +1189,14 @@
       const darkBtn = document.getElementById('dark-mode');
       
       if (currentState.mode === 'dark') {
-        darkBtn.classList.add('bg-neutral-800', 'text-white/90');
+        darkBtn.classList.add('bg-white/[0.08]', 'text-white/90');
         darkBtn.classList.remove('text-white/50');
-        lightBtn.classList.remove('bg-neutral-800', 'text-white/90');
+        lightBtn.classList.remove('bg-white/[0.08]', 'text-white/90');
         lightBtn.classList.add('text-white/50');
       } else {
-        lightBtn.classList.add('bg-neutral-800', 'text-white/90');
+        lightBtn.classList.add('bg-white/[0.08]', 'text-white/90');
         lightBtn.classList.remove('text-white/50');
-        darkBtn.classList.remove('bg-neutral-800', 'text-white/90');
+        darkBtn.classList.remove('bg-white/[0.08]', 'text-white/90');
         darkBtn.classList.add('text-white/50');
       }
       
@@ -1138,18 +1243,37 @@
     // Theme Presets
     // ========================================
     
+    // Management mode state
+    let manageMode = false;
+    let selectedThemes = new Set();
+    
     function generateThemePresets() {
       const container = document.getElementById('theme-presets');
       
       const presetsHTML = Object.entries(tailwindColors.presets).map(([key, theme]) => {
-        const primaryColor = tailwindColors.getColor(theme.primary, 600);  // Use 600 as primary shade
-        const accentColor = tailwindColors.getColor(theme.accent, 600);
+        // Get color from the scale - handle both regular and custom colors
+        let primaryColor, accentColor;
+        
+        if (theme.primary.startsWith('custom-')) {
+          // Custom theme: direct access to color scale
+          const primaryScale = tailwindColors.colors[theme.primary];
+          const accentScale = tailwindColors.colors[theme.accent];
+          primaryColor = (primaryScale && primaryScale[600]) || '#9333ea';
+          accentColor = (accentScale && accentScale[600]) || '#7c3aed';
+        } else {
+          // Standard Tailwind color
+          primaryColor = tailwindColors.getColor(theme.primary, 600);
+          accentColor = tailwindColors.getColor(theme.accent, 600);
+        }
+        
+        const isChecked = selectedThemes.has(key);
         
         return `
           <button 
-            class="theme-preset w-full flex items-center gap-3 p-3 rounded-lg ${currentState.preset === key ? 'selected' : ''}"
+            class="theme-preset w-full flex items-center gap-3 p-3 rounded-lg ${currentState.preset === key ? 'selected' : ''} ${manageMode ? 'manage-mode' : ''}"
             data-preset="${key}"
           >
+            ${manageMode ? `<input type="checkbox" class="theme-checkbox w-4 h-4 rounded" data-theme="${key}" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation();">` : ''}
             <div class="flex gap-1">
               <div class="w-6 h-6 rounded-md" style="background: ${primaryColor};"></div>
               <div class="w-6 h-6 rounded-md" style="background: ${accentColor};"></div>
@@ -1158,7 +1282,7 @@
               <div class="text-[12px] font-semibold text-white/90">${theme.name}</div>
               <div class="text-[10px] text-white/40">${theme.description}</div>
             </div>
-            ${currentState.preset === key ? '<i data-lucide="check" class="w-4 h-4 text-indigo-400"></i>' : ''}
+            ${!manageMode && currentState.preset === key ? '<i data-lucide="check" class="w-4 h-4 text-indigo-400"></i>' : ''}
           </button>
         `;
       }).join('');
@@ -1167,30 +1291,122 @@
       
       lucide.createIcons();
       
-      // Attach click handlers to preset themes
-      document.querySelectorAll('.theme-preset[data-preset]').forEach(btn => {
-        btn.addEventListener('click', function() {
-          const presetKey = this.dataset.preset;
-          const preset = tailwindColors.presets[presetKey];
-          
-          currentState.preset = presetKey;
-          currentState.primary = preset.primary;
-          currentState.accent = preset.accent;
-          currentState.neutral = preset.neutral;
-          
-          saveToHistory(currentState);
-          applyTheme();
-          updateUI();
-          generateColorSwatches();
-          generateThemePresets();
+      if (manageMode) {
+        // In manage mode, only handle checkbox clicks
+        document.querySelectorAll('.theme-checkbox').forEach(checkbox => {
+          checkbox.addEventListener('change', function(e) {
+            const themeKey = this.dataset.theme;
+            if (this.checked) {
+              selectedThemes.add(themeKey);
+            } else {
+              selectedThemes.delete(themeKey);
+            }
+          });
         });
-      });
+      } else {
+        // Normal mode: handle theme selection
+        document.querySelectorAll('.theme-preset[data-preset]').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const presetKey = this.dataset.preset;
+            const preset = tailwindColors.presets[presetKey];
+            
+            currentState.preset = presetKey;
+            currentState.primary = preset.primary;
+            currentState.accent = preset.accent;
+            currentState.neutral = preset.neutral;
+            
+            saveToHistory(currentState);
+            applyTheme();
+            updateUI();
+            generateColorSwatches();
+            generateThemePresets();
+          });
+        });
+      }
       
       // Attach click handler to Custom button
       document.getElementById('custom-theme-btn-preset').addEventListener('click', () => {
         openModal();
       });
     }
+    
+    // Enter manage mode
+    document.getElementById('manage-themes-btn').addEventListener('click', () => {
+      manageMode = true;
+      selectedThemes.clear();
+      document.getElementById('bulk-actions-bar').classList.remove('hidden');
+      generateThemePresets();
+      lucide.createIcons();
+    });
+    
+    // Exit manage mode
+    document.getElementById('cancel-manage-btn').addEventListener('click', () => {
+      manageMode = false;
+      selectedThemes.clear();
+      document.getElementById('bulk-actions-bar').classList.add('hidden');
+      generateThemePresets();
+    });
+    
+    // Bulk Download
+    document.getElementById('bulk-download-btn').addEventListener('click', () => {
+      if (selectedThemes.size === 0) {
+        showDialog('error', 'No Themes Selected', 'Please select at least one theme to download.');
+        return;
+      }
+      
+      // Create JSON object with selected themes
+      const themesToExport = {};
+      selectedThemes.forEach(key => {
+        themesToExport[key] = tailwindColors.presets[key];
+      });
+      
+      // Download as JSON file
+      const blob = new Blob([JSON.stringify(themesToExport, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `themes-${new Date().getTime()}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+      
+      showDialog('success', 'Themes Downloaded', `${selectedThemes.size} theme(s) have been downloaded successfully.`);
+      
+      // Exit manage mode
+      manageMode = false;
+      selectedThemes.clear();
+      document.getElementById('bulk-actions-bar').classList.add('hidden');
+      generateThemePresets();
+    });
+    
+    // Bulk Delete
+    document.getElementById('bulk-delete-btn').addEventListener('click', async () => {
+      if (selectedThemes.size === 0) {
+        showDialog('error', 'No Themes Selected', 'Please select at least one theme to delete.');
+        return;
+      }
+      
+      // Show confirmation dialog
+      const themeNames = Array.from(selectedThemes).map(key => tailwindColors.presets[key].name).join(', ');
+      const confirmed = await showConfirm(
+        `Delete ${selectedThemes.size} Theme${selectedThemes.size > 1 ? 's' : ''}?`,
+        `Are you sure you want to delete: ${themeNames}? This action cannot be undone.`
+      );
+      
+      if (confirmed) {
+        // Delete selected themes
+        selectedThemes.forEach(key => {
+          delete tailwindColors.presets[key];
+        });
+        
+        showDialog('success', 'Themes Deleted', `${selectedThemes.size} theme(s) have been deleted successfully.`);
+        
+        // Exit manage mode and refresh
+        manageMode = false;
+        selectedThemes.clear();
+        document.getElementById('bulk-actions-bar').classList.add('hidden');
+        generateThemePresets();
+      }
+    });
 
     // ========================================
     // Color Swatches
@@ -1300,9 +1516,9 @@
       const aiBtn = document.getElementById('ai-options-mode');
       
       // Update button states
-      themeBtn.classList.add('bg-neutral-800', 'text-white/90');
+      themeBtn.classList.add('bg-white/[0.08]', 'text-white/90');
       themeBtn.classList.remove('text-white/50', 'hover:text-white/70');
-      aiBtn.classList.remove('bg-neutral-800', 'text-white/90');
+      aiBtn.classList.remove('bg-white/[0.08]', 'text-white/90');
       aiBtn.classList.add('text-white/50', 'hover:text-white/70');
       
       // Show theme configuration (this is the default view)
@@ -1315,9 +1531,9 @@
       const aiBtn = document.getElementById('ai-options-mode');
       
       // Update button states
-      aiBtn.classList.add('bg-neutral-800', 'text-white/90');
+      aiBtn.classList.add('bg-white/[0.08]', 'text-white/90');
       aiBtn.classList.remove('text-white/50', 'hover:text-white/70');
-      themeBtn.classList.remove('bg-neutral-800', 'text-white/90');
+      themeBtn.classList.remove('bg-white/[0.08]', 'text-white/90');
       themeBtn.classList.add('text-white/50', 'hover:text-white/70');
       
       // Show AI configuration options
@@ -1353,7 +1569,7 @@
     // Page selector
     document.getElementById('page-select').addEventListener('change', function() {
       const iframe = document.getElementById('preview-iframe');
-      iframe.src = `preview-templates/${this.value}`;
+      iframe.src = `preview-templates/${this.value}?v=3`;
       
       // Reapply theme after iframe loads
       iframe.onload = () => {
@@ -1369,12 +1585,12 @@
         
         // Remove active state from all
         document.querySelectorAll('.device-btn').forEach(b => {
-          b.classList.remove('bg-neutral-800', 'text-white/90');
+          b.classList.remove('bg-white/[0.08]', 'text-white/90');
           b.classList.add('text-white/40');
         });
         
         // Add active state
-        this.classList.add('bg-neutral-800', 'text-white/90');
+        this.classList.add('bg-white/[0.08]', 'text-white/90');
         this.classList.remove('text-white/40');
         
         // Update wrapper size
@@ -1399,6 +1615,9 @@
     
     // Export CSS button
     document.getElementById('export-css-btn').addEventListener('click', exportCSS);
+
+    // Export Theme JSON button
+    document.getElementById('export-json-btn').addEventListener('click', exportThemeJSON);
 
     // ========================================
     // Notifications
@@ -1436,48 +1655,25 @@
         const customAccentId = `custom-${key}-accent`;
         const customNeutralId = `custom-${key}-neutral`;
         
-        // Add colors to tailwindColors.colors
-        tailwindColors.colors[customPrimaryId] = theme.light.primary;
-        tailwindColors.colors[customAccentId] = theme.light.accent;
-        tailwindColors.colors[customNeutralId] = theme.light.neutral;
-        
-        // Add preset if not already exists
-        if (!tailwindColors.presets[key]) {
-          tailwindColors.presets[key] = {
-            name: theme.name,
-            primary: customPrimaryId,
-            accent: customAccentId,
-            neutral: customNeutralId,
-            description: 'Custom enterprise theme'
-          };
+        // Add colors to tailwindColors.colors - ensure they're scale objects
+        if (theme.light && theme.light.primary) {
+          tailwindColors.colors[customPrimaryId] = theme.light.primary;
+          tailwindColors.colors[customAccentId] = theme.light.accent;
+          tailwindColors.colors[customNeutralId] = theme.light.neutral;
+          
+          // Add preset if not already exists
+          if (!tailwindColors.presets[key]) {
+            tailwindColors.presets[key] = {
+              name: theme.name,
+              primary: customPrimaryId,
+              accent: customAccentId,
+              neutral: customNeutralId,
+              description: 'Custom enterprise theme'
+            };
+          }
         }
       });
     }
-    
-    // Wait for iframe to load
-    const iframe = document.getElementById('preview-iframe');
-    iframe.onload = () => {
-      // Load custom themes from storage first
-      loadCustomThemesFromStorage();
-      
-      // Initialize
-      saveToHistory(currentState);
-      generateThemePresets();
-      generateColorSwatches();
-      updateUI();
-      applyTheme();
-      
-      // Create initial saved versions
-      savedVersions = [
-        {
-          id: 1,
-          timestamp: new Date(Date.now() - 86400000).toISOString(),
-          state: JSON.parse(JSON.stringify(currentState)),
-          name: 'Initial Design'
-        }
-      ];
-      updateVersionList();
-    };
     
     // ========================================
     // CUSTOMIZE MODAL - Enterprise Features
@@ -1558,10 +1754,10 @@
       const modal = document.getElementById('customize-modal');
       
       if (modalState.currentMode === 'light') {
-        lightBtn.classList.add('text-indigo-400', 'bg-indigo-500/20');
-        lightBtn.classList.remove('text-white/60');
-        darkBtn.classList.remove('text-indigo-400', 'bg-indigo-500/20');
-        darkBtn.classList.add('text-white/60');
+        lightBtn.classList.add('bg-white/[0.08]', 'text-white/90');
+        lightBtn.classList.remove('text-white/40');
+        darkBtn.classList.remove('bg-white/[0.08]', 'text-white/90');
+        darkBtn.classList.add('text-white/40');
         preview.classList.remove('dark');
         modal.classList.remove('dark');
         // Set light mode background (neutral-50)
@@ -1569,10 +1765,10 @@
         // Update labels for light mode
         updateCategoryLabels('light');
       } else {
-        darkBtn.classList.add('text-indigo-400', 'bg-indigo-500/20');
-        darkBtn.classList.remove('text-white/60');
-        lightBtn.classList.remove('text-indigo-400', 'bg-indigo-500/20');
-        lightBtn.classList.add('text-white/60');
+        darkBtn.classList.add('bg-white/[0.08]', 'text-white/90');
+        darkBtn.classList.remove('text-white/40');
+        lightBtn.classList.remove('bg-white/[0.08]', 'text-white/90');
+        lightBtn.classList.add('text-white/40');
         preview.classList.add('dark');
         modal.classList.add('dark');
         // Set dark mode background (neutral-900)
@@ -2274,6 +2470,37 @@
     window.loadVersion = loadVersion;
     window.getColorScale = getColorScale;
     window.tailwindColors = tailwindColors;
+
+    // ========================================
+    // INITIALIZATION - Run on page load
+    // ========================================
+    
+    // Wait for Tailwind colors to load
+    if (typeof tailwindColors !== 'undefined') {
+      // Load custom themes from storage first (adds to tailwindColors)
+      loadCustomThemesFromStorage();
+      
+      // Generate UI elements (can run immediately, don't need iframe)
+      generateThemePresets();
+      generateColorSwatches();
+      
+      // Initialize Lucide icons for sidebar
+      lucide.createIcons();
+      
+      console.log('Theme editor sidebar initialized');
+    } else {
+      console.error('Failed to load tailwindColors');
+    }
+    
+    // Wait for iframe to load before applying theme
+    const previewIframe = document.getElementById('preview-iframe');
+    if (previewIframe) {
+      previewIframe.addEventListener('load', () => {
+        console.log('Preview iframe loaded - applying theme');
+        applyTheme();
+        updateUI();
+      });
+    }
   </script>
 
   <!-- ========================================
@@ -2286,7 +2513,6 @@
         <!-- Modal Header -->
         <div class="px-6 py-4 border-b border-white/10 flex items-center justify-between flex-shrink-0">
           <div class="flex items-center gap-3 flex-1 mr-4">
-            <i data-lucide="palette" class="w-5 h-5 text-indigo-400 flex-shrink-0"></i>
             <div class="flex-1">
               <input 
                 type="text" 
@@ -2295,11 +2521,10 @@
                 placeholder="Untitled Theme"
                 value=""
               />
-              <p class="text-xs text-white/50">Click name to edit</p>
             </div>
           </div>
           
-          <button id="close-modal-btn" class="px-3 py-2 hover:bg-neutral-700 rounded-lg transition-colors">
+          <button id="close-modal-btn" class="px-3 py-2 hover:bg-white/[0.05] rounded-lg transition-colors">
             <i data-lucide="x" class="w-5 h-5 text-white/60"></i>
           </button>
         </div>
@@ -2314,7 +2539,7 @@
               <!-- Light/Dark Mode Toggle -->
               <div class="flex flex-col gap-1.5">
                 <label class="text-xs font-semibold text-white/90">Mode</label>
-                <div class="flex items-center gap-2 px-3 py-1.5 bg-neutral-800 rounded-lg border border-white/10 h-9">
+                <div class="flex items-center gap-2 px-3 py-1.5 bg-white/[0.03] rounded-lg border border-white/10 h-9">
                   <button id="modal-light-mode" class="px-2 py-1 text-xs font-medium text-white/60 hover:text-white rounded transition-colors">
                     <i data-lucide="sun" class="w-3.5 h-3.5"></i>
                   </button>
@@ -2328,7 +2553,7 @@
               <div class="grid grid-cols-[120px_1fr] gap-3 items-end">
                 <div>
                   <label class="text-xs font-semibold text-white/90 mb-1.5 block">Primary</label>
-                  <select id="primary-color-select" class="w-full px-2 py-1.5 bg-neutral-800 border border-white/10 rounded text-white text-xs">
+                  <select id="primary-color-select" class="w-full px-2 py-1.5 bg-white/[0.03] border border-white/10 rounded text-white text-xs">
                     <option value="purple">Purple</option>
                     <option value="violet">Violet</option>
                     <option value="indigo">Indigo</option>
@@ -2358,7 +2583,7 @@
                   <input 
                     type="text" 
                     id="modal-primary-hex" 
-                    class="flex-1 px-2 py-1.5 bg-neutral-800 border border-white/10 rounded text-white text-xs font-mono uppercase"
+                    class="flex-1 px-2 py-1.5 bg-white/[0.03] border border-white/10 rounded text-white text-xs font-mono uppercase"
                     placeholder="9333EA"
                     maxlength="7"
                     value="#9333EA"
@@ -2370,7 +2595,7 @@
               <div class="grid grid-cols-[120px_1fr] gap-3 items-end">
                 <div>
                   <label class="text-xs font-semibold text-white/90 mb-1.5 block">Accent</label>
-                  <select id="accent-color-select" class="w-full px-2 py-1.5 bg-neutral-800 border border-white/10 rounded text-white text-xs">
+                  <select id="accent-color-select" class="w-full px-2 py-1.5 bg-white/[0.03] border border-white/10 rounded text-white text-xs">
                     <option value="purple">Purple</option>
                     <option value="violet">Violet</option>
                     <option value="indigo">Indigo</option>
@@ -2400,7 +2625,7 @@
                   <input 
                     type="text" 
                     id="modal-accent-hex" 
-                    class="flex-1 px-2 py-1.5 bg-neutral-800 border border-white/10 rounded text-white text-xs font-mono uppercase"
+                    class="flex-1 px-2 py-1.5 bg-white/[0.03] border border-white/10 rounded text-white text-xs font-mono uppercase"
                     placeholder="8B5CF6"
                     maxlength="7"
                     value="#8B5CF6"
@@ -2412,7 +2637,7 @@
               <div class="grid grid-cols-[120px_1fr] gap-3 items-end">
                 <div>
                   <label class="text-xs font-semibold text-white/90 mb-1.5 block">Neutral</label>
-                  <select id="neutral-color-select" class="w-full px-2 py-1.5 bg-neutral-800 border border-white/10 rounded text-white text-xs">
+                  <select id="neutral-color-select" class="w-full px-2 py-1.5 bg-white/[0.03] border border-white/10 rounded text-white text-xs">
                     <option value="gray">Gray</option>
                     <option value="coolGray">Cool Gray</option>
                     <option value="warmGray">Warm Gray</option>
@@ -2432,7 +2657,7 @@
                   <input 
                     type="text" 
                     id="modal-neutral-hex" 
-                    class="flex-1 px-2 py-1.5 bg-neutral-800 border border-white/10 rounded text-white text-xs font-mono uppercase"
+                    class="flex-1 px-2 py-1.5 bg-white/[0.03] border border-white/10 rounded text-white text-xs font-mono uppercase"
                     placeholder="71717A"
                     maxlength="7"
                     value="#71717A"
@@ -2539,7 +2764,7 @@
                   <div class="space-y-4">
                     <!-- Product Card -->
                     <div class="bg-transparent rounded-lg p-3">
-                      <h4 class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wider">Card</h4>
+                      <h4 class="text-[10px] font-semibold text-gray-700 dark:text-gray-300 mb-2 uppercase tracking-wider">Card</h4>
                       <div class="modal-card bg-gradient-to-r rounded-lg overflow-hidden">
                         <div class="p-3">
                           <h5 class="text-sm font-bold text-white mb-1">CX CMS</h5>
@@ -2553,7 +2778,7 @@
                     
                     <!-- Badges -->
                     <div class="bg-transparent rounded-lg p-3">
-                      <h4 class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wider">Badges</h4>
+                      <h4 class="text-[10px] font-semibold text-gray-700 dark:text-gray-300 mb-2 uppercase tracking-wider">Badges</h4>
                       <div class="flex flex-wrap gap-1.5">
                         <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium modal-btn-primary text-white">New</span>
                         <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border-2 modal-btn-secondary">Beta</span>
@@ -2563,7 +2788,7 @@
                     
                     <!-- User Card -->
                     <div class="bg-transparent rounded-lg p-3">
-                      <h4 class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wider">User Card</h4>
+                      <h4 class="text-[10px] font-semibold text-gray-700 dark:text-gray-300 mb-2 uppercase tracking-wider">User Card</h4>
                       <div class="flex items-center gap-2">
                         <div class="w-9 h-9 rounded-full modal-btn-primary flex items-center justify-center text-white text-sm font-semibold">
                           JD
@@ -2574,40 +2799,54 @@
                         </div>
                       </div>
                     </div>
+                    
+                    <!-- Accent Alert -->
+                    <div class="bg-transparent rounded-lg p-3">
+                      <h4 class="text-[10px] font-semibold text-gray-700 dark:text-gray-300 mb-2 uppercase tracking-wider">Accent Alert</h4>
+                      <div class="modal-accent-alert rounded-lg p-2.5">
+                        <div class="flex items-start gap-2">
+                          <i data-lucide="bell" class="w-3.5 h-3.5 flex-shrink-0" style="color: var(--preview-accent-600)"></i>
+                          <div>
+                            <div class="text-xs font-semibold text-gray-900 dark:text-white mb-0.5">New Update</div>
+                            <p class="text-[10px] text-gray-600 dark:text-gray-400 leading-relaxed">Documentation has been published.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   
                   <!-- Column 2: Buttons & Forms -->
                   <div class="space-y-4">
                     <!-- Buttons -->
                     <div class="bg-transparent rounded-lg p-3">
-                      <h4 class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wider">Buttons</h4>
+                      <h4 class="text-[10px] font-semibold text-gray-700 dark:text-gray-300 mb-2 uppercase tracking-wider">Buttons</h4>
                       <div class="space-y-2">
                         <button class="w-full modal-btn-primary px-3 py-1.5 rounded text-xs font-semibold text-white transition-colors">
                           Primary Button
                         </button>
+                        <button class="w-full modal-btn-accent px-3 py-1.5 rounded text-xs font-semibold text-white transition-colors">
+                          Accent Button
+                        </button>
                         <button class="w-full modal-btn-secondary px-3 py-1.5 rounded text-xs font-semibold transition-colors">
                           Secondary Button
-                        </button>
-                        <button class="w-full px-3 py-1.5 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded text-xs font-semibold">
-                          Neutral Button
                         </button>
                       </div>
                     </div>
                     
                     <!-- Dropdown -->
                     <div class="bg-transparent rounded-lg p-3">
-                      <h4 class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wider">Dropdown</h4>
-                      <select class="w-full px-3 py-1.5 modal-input rounded text-xs border-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
+                      <h4 class="text-[10px] font-semibold text-gray-700 dark:text-gray-300 mb-2 uppercase tracking-wider">Dropdown</h4>
+                      <select class="w-full px-3 py-1.5 modal-input rounded text-xs border-2 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300">
                         <option>Select an option...</option>
-                        <option>Option 1</option>
-                        <option>Option 2</option>
+                        <option class="text-gray-900 dark:text-white">Option 1</option>
+                        <option class="text-gray-900 dark:text-white">Option 2</option>
                       </select>
                     </div>
                     
                     <!-- Input Field -->
                     <div class="bg-transparent rounded-lg p-3">
-                      <h4 class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wider">Text Input</h4>
-                      <input type="text" placeholder="Search documentation..." class="modal-input w-full px-3 py-1.5 rounded text-xs border-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors">
+                      <h4 class="text-[10px] font-semibold text-gray-700 dark:text-gray-300 mb-2 uppercase tracking-wider">Text Input</h4>
+                      <input type="text" placeholder="Search documentation..." class="modal-input w-full px-3 py-1.5 rounded text-xs border-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder:text-gray-600 dark:placeholder:text-gray-300 transition-colors">
                     </div>
                   </div>
                   
@@ -2615,14 +2854,14 @@
                   <div class="space-y-4">
                     <!-- Checkboxes & Radios -->
                     <div class="bg-transparent rounded-lg p-3">
-                      <h4 class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wider">Checkboxes</h4>
+                      <h4 class="text-[10px] font-semibold text-gray-700 dark:text-gray-300 mb-2 uppercase tracking-wider">Checkboxes</h4>
                       <div class="space-y-1.5">
                         <label class="flex items-center gap-2 cursor-pointer">
-                          <input type="checkbox" checked class="w-4 h-4 rounded modal-input accent-indigo-600" />
+                          <input type="checkbox" checked class="w-4 h-4 rounded modal-checkbox" />
                           <span class="text-xs text-gray-700 dark:text-gray-300">Enable feature</span>
                         </label>
                         <label class="flex items-center gap-2 cursor-pointer">
-                          <input type="checkbox" class="w-4 h-4 rounded modal-input accent-indigo-600" />
+                          <input type="checkbox" class="w-4 h-4 rounded modal-checkbox" />
                           <span class="text-xs text-gray-700 dark:text-gray-300">Disabled option</span>
                         </label>
                       </div>
@@ -2630,14 +2869,14 @@
                     
                     <!-- Radio Buttons -->
                     <div class="bg-transparent rounded-lg p-3">
-                      <h4 class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wider">Radio Group</h4>
+                      <h4 class="text-[10px] font-semibold text-gray-700 dark:text-gray-300 mb-2 uppercase tracking-wider">Radio Group</h4>
                       <div class="space-y-1.5">
                         <label class="flex items-center gap-2 cursor-pointer">
-                          <input type="radio" name="preview-radio" checked class="w-4 h-4 accent-indigo-600" />
+                          <input type="radio" name="preview-radio" checked class="w-4 h-4 modal-radio" />
                           <span class="text-xs text-gray-700 dark:text-gray-300">Option A</span>
                         </label>
                         <label class="flex items-center gap-2 cursor-pointer">
-                          <input type="radio" name="preview-radio" class="w-4 h-4 accent-indigo-600" />
+                          <input type="radio" name="preview-radio" class="w-4 h-4 modal-radio" />
                           <span class="text-xs text-gray-700 dark:text-gray-300">Option B</span>
                         </label>
                       </div>
@@ -2645,11 +2884,26 @@
                     
                     <!-- Links & Typography -->
                     <div class="bg-transparent rounded-lg p-3">
-                      <h4 class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wider">Typography</h4>
+                      <h4 class="text-[10px] font-semibold text-gray-700 dark:text-gray-300 mb-2 uppercase tracking-wider">Typography</h4>
                       <p class="text-xs text-gray-600 dark:text-gray-300 leading-relaxed">
                         Your <a href="#" class="modal-link hover:underline">documentation links</a> and 
                         <strong class="text-gray-900 dark:text-white">important text</strong> use these colors.
                       </p>
+                    </div>
+                    
+                    <!-- Accent Highlights -->
+                    <div class="bg-transparent rounded-lg p-3">
+                      <h4 class="text-[10px] font-semibold text-gray-700 dark:text-gray-300 mb-2 uppercase tracking-wider">Accent Tags</h4>
+                      <div class="flex flex-wrap gap-1.5">
+                        <span class="modal-accent-tag inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium">
+                          <i data-lucide="zap" class="w-2.5 h-2.5 mr-1"></i>
+                          Featured
+                        </span>
+                        <span class="modal-accent-tag inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium">
+                          <i data-lucide="star" class="w-2.5 h-2.5 mr-1"></i>
+                          Popular
+                        </span>
+                      </div>
                     </div>
                   </div>
                 
@@ -2663,7 +2917,7 @@
 
         <!-- Modal Footer -->
         <div class="px-6 py-4 border-t border-white/10 flex items-center justify-between flex-shrink-0">
-          <button id="modal-cancel-btn" class="px-4 py-2.5 hover:bg-neutral-700 rounded-lg text-sm font-semibold text-white/70 hover:text-white transition-colors">
+          <button id="modal-cancel-btn" class="px-4 py-2.5 hover:bg-white/[0.05] rounded-lg text-sm font-semibold text-white/70 hover:text-white transition-colors">
             Cancel
           </button>
           <button id="modal-save-theme-btn" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 rounded-lg text-sm font-semibold text-white transition-colors flex items-center gap-2">
@@ -2699,7 +2953,7 @@
       
       <!-- Dialog Footer (Two Buttons - for confirmations) -->
       <div id="dialog-footer-double" class="hidden px-6 py-4 border-t border-white/10 flex items-center justify-between">
-        <button id="dialog-cancel-btn" class="px-6 py-2.5 hover:bg-neutral-700 rounded-lg text-sm font-semibold text-white/70 hover:text-white transition-colors">
+        <button id="dialog-cancel-btn" class="px-6 py-2.5 hover:bg-white/[0.05] rounded-lg text-sm font-semibold text-white/70 hover:text-white transition-colors">
           Cancel
         </button>
         <button id="dialog-confirm-btn" class="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 rounded-lg text-sm font-semibold text-white transition-colors">
