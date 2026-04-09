@@ -1,5 +1,6 @@
 @using Ingeniux.Runtime
 @model ICMSEnvironment
+@using Cartella.Interfaces
 @{
     CMSPageRequest page = (CMSPageRequest)Model;
     ICMSElement siteControl = _Functions.GetSiteControl(page);
@@ -8,6 +9,9 @@
         ? page.GetElementValue("BrowserBarTitle")
         : page?.GetElementValue("Title");
     title = ViewBag.Title ?? title;
+
+    IUser user = Utilities.CurrentUser();
+    bool isLoggedIn = user != null;
 }
 <!DOCTYPE html>
 <html lang="en" class="h-full">
@@ -51,7 +55,10 @@
     }
 
     <!-- Shared Components -->
-    <script src="@Url.Content("~/Scripts/user-dropdown.js")"></script>
+    @if (isLoggedIn)
+    {
+        <script src="@Url.Content("~/Scripts/user-dropdown.js")"></script>
+    }
     <script src="@Url.Content("~/Scripts/main.js")"></script>
 
     @RenderSection("AddToFooter", false)

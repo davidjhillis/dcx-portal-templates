@@ -83,6 +83,7 @@ Create these schemas in **Settings > Schema Designer**. All schema names are pre
 | Logo | Asset |
 | LogoDark | Asset |
 | SearchResults | Link |
+| LoginPage | Link |
 
 #### DCXFooter (Component)
 

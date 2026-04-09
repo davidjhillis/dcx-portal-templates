@@ -1,5 +1,6 @@
 @model ICMSElement
 @using Ingeniux.Runtime
+@using Cartella.Interfaces
 @{
     var header = Model.Element("DCXHeader").Elements().FirstOrDefault();
     var logoUrl = header?.GetElementValue("Logo");
@@ -8,6 +9,19 @@
 
     ICMSElement[] menuItems = Model.Elements("DCXNavigationTab").ToArray();
     ICMSLinkElement searchLink = header?.GetLinkItem("SearchResults");
+    ICMSLinkElement loginLink = header?.GetLinkItem("LoginPage");
+
+    IUser user = Utilities.CurrentUser();
+    bool isLoggedIn = user != null;
+    var initials = "";
+    if (isLoggedIn)
+    {
+        var name = user.DisplayName ?? "";
+        var parts = name.Split(' ');
+        initials = parts.Length > 1
+            ? "" + parts[0][0] + parts.Last()[0]
+            : name.Length >= 2 ? name.Substring(0, 2) : "U";
+    }
 }
 <header class="sticky top-0 z-50 bg-white dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800 px-6">
     <div class="max-w-screen-2xl mx-auto">
@@ -77,19 +91,29 @@
                     </div>
                 </div>
 
-                <!-- User Avatar + Dropdown (injected by user-dropdown.js) -->
-                <div class="relative">
-                    <button id="user-menu-btn" class="flex items-center gap-2 p-1.5 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors">
-                        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-neutral-600 to-neutral-700 flex items-center justify-center text-white font-semibold text-sm">
-                            @* TODO: Replace with user initials from auth context *@
-                            JD
+                @if (isLoggedIn)
+                {
+                    <!-- Logged in: Avatar + Dropdown (injected by user-dropdown.js) -->
+                    <div class="relative">
+                        <button id="user-menu-btn" class="flex items-center gap-2 p-1.5 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors">
+                            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-neutral-600 to-neutral-700 flex items-center justify-center text-white font-semibold text-sm">
+                                @initials
+                            </div>
+                            <i data-lucide="chevron-down" class="w-4 h-4 text-neutral-600 dark:text-neutral-400 hidden sm:block"></i>
+                        </button>
+                        <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-56 bg-white dark:bg-neutral-800 rounded-xl shadow-2xl border border-neutral-200 dark:border-neutral-700 py-2 z-50">
+                            <!-- Injected by user-dropdown.js -->
                         </div>
-                        <i data-lucide="chevron-down" class="w-4 h-4 text-neutral-600 dark:text-neutral-400 hidden sm:block"></i>
-                    </button>
-                    <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-56 bg-white dark:bg-neutral-800 rounded-xl shadow-2xl border border-neutral-200 dark:border-neutral-700 py-2 z-50">
-                        <!-- Injected by user-dropdown.js -->
                     </div>
-                </div>
+                }
+                else
+                {
+                    <!-- Anonymous: Sign In link -->
+                    <a href="@(loginLink != null ? _Functions.GetLinkAction(loginLink, Url) : "/login")"
+                       class="px-4 py-2 text-sm font-semibold bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors">
+                        Sign In
+                    </a>
+                }
             </div>
         </div>
     </div>
