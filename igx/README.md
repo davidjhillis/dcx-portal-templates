@@ -285,6 +285,101 @@ Dark mode is controlled by the `dark` class on `<html>`. The theme switcher in t
 
 All Content Unit views include `@_Helpers.RenderICEAttribute()` calls on editable elements. When ICE is enabled in CMS Settings, content editors can click directly on rendered text to edit it.
 
+## AI Assists Integration
+
+The doc pages include AI-powered features: article summary, code explanation with Q&A, and AI-enhanced search. The UI for these features is already built in the page views (thinking states, streaming text, feedback buttons). The `ai-assists.js` module provides the API abstraction layer.
+
+### Architecture
+
+```
+Page JS (existing UI code in doc-page views)
+    │  calls AIAssists.summary(), AIAssists.explainCode(), etc.
+    ▼
+ai-assists.js (API abstraction layer)
+    │  POST /api/ai-assists/summary, /explain, /chat
+    ▼
+AIAssistsController.cs (.NET MVC controller)
+    │  HttpClient call to LLM API
+    ▼
+LLM Service (Claude API, OpenRouter, or Ingeniux AI service)
+```
+
+### Files
+
+| File | Purpose |
+|------|---------|
+| `Scripts/ai-assists.js` | Client-side API abstraction — mock responses until backend connected |
+| `Controllers/AIAssistsController.cs` | .NET controller with endpoints for summary, explain, chat, status |
+
+### Configuration (Web.config)
+
+```xml
+<appSettings>
+  <add key="AIAssists.Enabled" value="true" />
+  <add key="AIAssists.ApiEndpoint" value="https://api.anthropic.com/v1/messages" />
+  <add key="AIAssists.ApiKey" value="sk-..." />
+  <add key="AIAssists.Model" value="claude-sonnet-4-20250514" />
+  <add key="AIAssists.CacheDuration" value="3600" />
+</appSettings>
+```
+
+### API Endpoints
+
+| Endpoint | Method | Input | Output |
+|----------|--------|-------|--------|
+| `/api/ai-assists/summary` | POST | `pageId`, `content` | `{ summary, cached }` |
+| `/api/ai-assists/explain` | POST | `code`, `language` | `{ overview, breakdowns[] }` |
+| `/api/ai-assists/chat` | POST | `message`, `pageContent`, `pageTitle` | `{ response }` |
+| `/api/ai-assists/status` | GET | — | `{ enabled, hasApiKey, model }` |
+
+### Connecting to a Real LLM
+
+1. Set `AIAssists.Enabled` to `true` in Web.config
+2. Add your API key and endpoint
+3. Uncomment the `CallLLM()` method in `AIAssistsController.cs`
+4. Replace the TODO mock responses with the `CallLLM()` calls
+5. Set `AIAssists.config.useMocks = false` in the client JS (or remove mock fallbacks)
+
+Responses are cached by page ID / content hash. The cache duration is configurable.
+
+### Integrating with Ingeniux AI Services
+
+If Ingeniux provides native AI summary or search services:
+
+1. Replace the `CallLLM()` method in the controller with calls to the Ingeniux AI API
+2. For search, the AI answer section in `DCX_SearchResults.cshtml` can be populated by InSite Search's AI features directly — no need to route through this controller
+
+### Mock Mode
+
+By default, `ai-assists.js` returns mock responses so the UI works for demos without a backend. The page views handle these identically to real responses — same streaming, same UI states. When ready to go live, flip `useMocks` to `false`.
+
+### Client API
+
+```javascript
+// Initialize with custom endpoint
+AIAssists.init({ endpoint: '/api/ai-assists', useMocks: false });
+
+// Summary
+var result = await AIAssists.summary(articleText, pageId);
+// → { summary: "...", cached: true/false }
+
+// Code explanation
+var result = await AIAssists.explainCode(codeText, 'javascript');
+// → { overview: "...", breakdowns: [{ lines, code, explanation }] }
+
+// Code Q&A follow-up
+var result = await AIAssists.answerCodeQuestion("Why use async?", codeText, 'javascript');
+// → { answer: "..." }
+
+// Chat with page context
+var result = await AIAssists.chat("How do I configure this?", pageText, pageTitle);
+// → { response: "..." }
+
+// Check backend status
+var status = await AIAssists.checkStatus();
+// → { enabled: true, hasApiKey: true, model: "claude-sonnet-4-20250514" }
+```
+
 ## Tailwind CDN Note
 
 These templates use Tailwind via CDN (`cdn.tailwindcss.com`). This is fine for development and moderate traffic. For high-traffic production, consider compiling Tailwind with a build step to reduce page weight.
