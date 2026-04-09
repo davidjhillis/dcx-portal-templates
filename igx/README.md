@@ -1,0 +1,220 @@
+# DCX Portal - Ingeniux CMS Implementation
+
+Razor views and assets for implementing the Discover CX documentation portal in Ingeniux CMS.
+
+## For the Developer
+
+This folder contains everything you need to add to the DSS Visual Studio project. Copy these files into the corresponding locations in your `Dynamic_Site_Server_Instance.sln`.
+
+### File Mapping
+
+```
+igx/                                    → DSS Project Root
+├── Views/
+│   ├── Shared/
+│   │   ├── _Layout.cshtml             → /Views/Shared/_Layout.cshtml
+│   │   ├── PageLayout/
+│   │   │   ├── Header.cshtml          → /Views/Shared/PageLayout/Header.cshtml
+│   │   │   └── Footer.cshtml          → /Views/Shared/PageLayout/Footer.cshtml
+│   │   └── Editable/
+│   │       ├── Trays.cshtml           → /Views/Shared/Editable/Trays.cshtml
+│   │       ├── Tray.cshtml            → /Views/Shared/Editable/Tray.cshtml
+│   │       ├── DCXCodeBlock_Unit.cshtml
+│   │       ├── DCXCallout_Unit.cshtml
+│   │       └── DCXProductCard_Unit.cshtml
+│   └── CMSPageDefault/
+│       ├── DCX_HomePage.cshtml        → /Views/CMSPageDefault/DCX_HomePage.cshtml
+│       └── DCX_DocPage.cshtml         → /Views/CMSPageDefault/DCX_DocPage.cshtml
+├── Content/
+│   └── css/tokens.css                 → /Content/css/tokens.css
+└── Scripts/
+    ├── tailwind-config.js             → /Scripts/tailwind-config.js
+    ├── user-dropdown.js               → /Scripts/user-dropdown.js
+    └── main.js                        → /Scripts/main.js
+```
+
+### Reference Templates
+
+The static HTML templates in the parent repo are the source of truth for design. Compare your CMS output against these:
+
+| View | Reference Template |
+|------|--------------------|
+| DCX_HomePage | `../index.html` |
+| DCX_DocPage | `../doc-page.html` |
+| Header partial | Header section in any template |
+| Footer partial | Footer section in any template |
+
+---
+
+## Setup Steps
+
+### 1. Add Files to VS Project
+
+Copy the views, CSS, and JS files into the DSS project at the paths listed above. Add them to the `.csproj` so they deploy.
+
+### 2. Create Schemas in CMS
+
+Create these schemas in **Settings > Schema Designer**. All schema names are prefixed with `DCX_` to avoid conflicts.
+
+#### DCX_SiteControl (SiteControl schema)
+
+| Field | Type | Notes |
+|-------|------|-------|
+| SiteName | string | Site display name |
+| DCXHeader | List (Component) | CompTypes: `DCXHeader` |
+| DCXFooter | List (Component) | CompTypes: `DCXFooter` |
+| DCXNavigationTab | List (Component) | CompTypes: `DCXNavigationTab` |
+| HeadScript | dhtml | Custom head scripts |
+| BodyScript | dhtml | Custom body scripts |
+| FooterScript | dhtml | Custom footer scripts |
+
+**Properties**: `IsDynamicSitePage: false`, `IsComponent: false`
+
+#### DCXHeader (Component)
+
+| Field | Type |
+|-------|------|
+| Logo | Asset |
+| LogoDark | Asset |
+| SearchResults | Link |
+
+#### DCXFooter (Component)
+
+| Field | Type |
+|-------|------|
+| FooterLogo | Asset |
+| Tagline | string |
+| Copyright | string (use `{year}` placeholder) |
+| FooterLinkGroup | List (Component) → DCXFooterLinkGroup |
+
+#### DCXFooterLinkGroup (Component)
+
+| Field | Type |
+|-------|------|
+| GroupTitle | string |
+| FooterLink | Link (list) |
+
+#### DCXNavigationTab (Component)
+
+| Field | Type |
+|-------|------|
+| TabLink | Link |
+| SubLink | Link (list) |
+
+#### DCX_HomePage (Page schema)
+
+| Field | Type |
+|-------|------|
+| Title | string |
+| Subtitle | string |
+| SearchPrompt | string |
+| SearchResults | Link |
+| ProductCards | List (Component) → DCXProductCard |
+| ActionCards | List (Component) → DCXActionCard |
+| Trays | List (Component) → any tray component |
+
+**Properties**: `IsDynamicSitePage: true`, `ViewName: DCX_HomePage`
+
+#### DCX_DocPage (Page schema)
+
+| Field | Type |
+|-------|------|
+| Title | string |
+| Body | dhtml |
+| LastUpdated | string |
+| ReadTime | string |
+| Versions | Link (list) |
+| SidebarNavigation | Navigation (configure start node + depth in UI) |
+| ArticleTrays | List (Component) → DCXCodeBlock, DCXCallout |
+| Trays | List (Component) → any tray component |
+
+**Properties**: `IsDynamicSitePage: true`, `ViewName: DCX_DocPage`
+
+#### DCXProductCard (Component)
+
+| Field | Type |
+|-------|------|
+| ProductName | string |
+| Subtitle | string |
+| Description | string |
+| Icon | Asset |
+| ProductLink | Link (list) |
+
+#### DCXCodeBlock (Component)
+
+| Field | Type |
+|-------|------|
+| Title | string |
+| Language | string |
+| Code | dhtml |
+
+#### DCXCallout (Component)
+
+| Field | Type |
+|-------|------|
+| Type | enumeration (info, warning, error, success) |
+| Title | string |
+| Content | dhtml |
+
+### 3. Finalize All Schemas
+
+Schemas created via API or UI start in Draft mode. You **must finalize** each schema in Schema Designer before pages can be created.
+
+### 4. Create Content Units
+
+Go to **Administration > Presentation Content Units > Mass Create from Component Schemas** and select all DCX component schemas. This enables them for ICE Page Builder drag-and-drop.
+
+### 5. Register SiteControl
+
+Add to `Web.config`:
+
+```xml
+<add key="SiteControlSchemas" value="DCX_SiteControl" />
+```
+
+If there's an existing SiteControl, append with semicolon:
+```xml
+<add key="SiteControlSchemas" value="ExistingSiteControl;DCX_SiteControl" />
+```
+
+### 6. Configure Navigation Fields
+
+Navigation fields (SidebarNavigation on DCX_DocPage) **must be configured in Schema Designer UI**:
+
+1. Open DCX_DocPage schema
+2. Select the SidebarNavigation field
+3. Set **Start Node** to the documentation section root page
+4. Set **Depth** (e.g., 3 levels)
+5. Save and Finalize
+
+### 7. Create Pages
+
+1. Create a DCX_SiteControl page at the site root
+2. Populate Header (logo, dark logo) and Footer (logo, tagline, copyright, link groups)
+3. Add DCXNavigationTab items for the main nav
+4. Create a DCX_HomePage as the site root page
+5. Create DCX_DocPage pages under a documentation section
+
+### 8. Publish
+
+Run a full publish to push content to the DSS.
+
+---
+
+## Design Token System
+
+Colors are defined in `Content/css/tokens.css` as CSS custom properties. Tailwind maps them via `Scripts/tailwind-config.js`.
+
+To change the default theme, edit `tokens.css`. For per-customer theming, deploy a different `tokens.css` per DSS instance.
+
+## Dark Mode
+
+Dark mode is controlled by the `dark` class on `<html>`. The theme switcher in the user dropdown (injected by `user-dropdown.js`) toggles this class and persists to localStorage.
+
+## ICE Support
+
+All Content Unit views include `@_Helpers.RenderICEAttribute()` calls on editable elements. When ICE is enabled in CMS Settings, content editors can click directly on rendered text to edit it.
+
+## Tailwind CDN Note
+
+These templates use Tailwind via CDN (`cdn.tailwindcss.com`). This is fine for development and moderate traffic. For high-traffic production, consider compiling Tailwind with a build step to reduce page weight.

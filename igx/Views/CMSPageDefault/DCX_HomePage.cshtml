@@ -1,0 +1,70 @@
+@model CMSPageRequest
+@using Ingeniux.Runtime
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var title = Model.GetElementValue("Title");
+    var subtitle = Model.GetElementValue("Subtitle");
+    var searchPrompt = Model.GetElementValue("SearchPrompt") ?? "Search or ask a question";
+    ICMSLinkElement searchLink = Model.GetLinkItem("SearchResults");
+
+    // Product cards from component list
+    ICMSElement productsTray = Model.Element("ProductCards");
+    // Support/action cards
+    ICMSElement actionsTray = Model.Element("ActionCards");
+}
+
+<!-- Hero / Search -->
+<section class="py-16 px-6">
+    <div class="max-w-screen-xl mx-auto text-center">
+        <h1 class="text-4xl font-bold text-neutral-900 dark:text-white mb-4"
+            @_Helpers.RenderICEAttribute(Model.Element("Title"))>
+            @title
+        </h1>
+        <p class="text-lg text-neutral-600 dark:text-neutral-400 mb-8 max-w-2xl mx-auto"
+           @_Helpers.RenderICEAttribute(Model.Element("Subtitle"))>
+            @subtitle
+        </p>
+
+        <!-- Search -->
+        <form method="get" action="@_Functions.GetLinkAction(searchLink, Url)" class="max-w-2xl mx-auto">
+            <div class="relative">
+                <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400"></i>
+                <input type="text" name="term" placeholder="@searchPrompt"
+                       class="w-full pl-12 pr-4 py-3 border border-neutral-300 dark:border-neutral-600 rounded-xl bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 text-lg" />
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- Product Cards -->
+@if (productsTray != null)
+{
+    <section id="products" class="py-12 px-6">
+        <div class="max-w-screen-xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                @foreach (ICMSElement card in productsTray.Elements())
+                {
+                    Html.RenderPartial("Editable/" + card.RootElementName + "_Unit", card);
+                }
+            </div>
+        </div>
+    </section>
+}
+
+<!-- Action Cards -->
+@if (actionsTray != null)
+{
+    <section class="py-12 px-6 bg-neutral-100 dark:bg-neutral-800/50">
+        <div class="max-w-screen-xl mx-auto">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                @foreach (ICMSElement card in actionsTray.Elements())
+                {
+                    Html.RenderPartial("Editable/" + card.RootElementName + "_Unit", card);
+                }
+            </div>
+        </div>
+    </section>
+}
+
+<!-- Trays (additional content blocks from Page Builder) are rendered by _Layout -->

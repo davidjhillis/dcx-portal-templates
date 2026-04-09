@@ -1,0 +1,61 @@
+@using Ingeniux.Runtime
+@model ICMSEnvironment
+@{
+    CMSPageRequest page = (CMSPageRequest)Model;
+    ICMSElement siteControl = _Functions.GetSiteControl(page);
+
+    String title = !string.IsNullOrWhiteSpace(page?.GetElementValue("BrowserBarTitle"))
+        ? page.GetElementValue("BrowserBarTitle")
+        : page?.GetElementValue("Title");
+    title = ViewBag.Title ?? title;
+}
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@Html.Raw(title) - Discover CX Docs</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Design Tokens + Tailwind -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/tokens.css")">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="@Url.Content("~/Scripts/tailwind-config.js")"></script>
+    <script src="https://unpkg.com/lucide@@latest"></script>
+
+    @RenderSection("AddToHead", false)
+    @Html.Raw(siteControl?.GetElementValue("HeadScript"))
+    @Html.Raw(page?.GetElementValue("HeadScript"))
+</head>
+<body class="bg-neutral-50 dark:bg-neutral-900 text-neutral-900 dark:text-white min-h-screen flex flex-col">
+
+    @if (siteControl != null)
+    {
+        Html.RenderPartial("PageLayout/Header", siteControl);
+    }
+
+    <main class="flex-1">
+        @RenderBody()
+
+        @if (page?.Element("Trays") != null)
+        {
+            Html.RenderPartial("Editable/Trays", page.Element("Trays"));
+        }
+    </main>
+
+    @if (siteControl != null)
+    {
+        Html.RenderPartial("PageLayout/Footer", siteControl);
+    }
+
+    <!-- Shared Components -->
+    <script src="@Url.Content("~/Scripts/user-dropdown.js")"></script>
+    <script src="@Url.Content("~/Scripts/main.js")"></script>
+
+    @RenderSection("AddToFooter", false)
+    @Html.Raw(siteControl?.GetElementValue("FooterScript"))
+    @Html.Raw(page?.GetElementValue("FooterScript"))
+</body>
+</html>
