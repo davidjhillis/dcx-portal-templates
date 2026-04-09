@@ -646,80 +646,14 @@
       });
     }
     
-    // User menu dropdown toggle
-    const userMenuBtn = document.getElementById('user-menu-btn');
-    const userDropdown = document.getElementById('user-dropdown');
-    
-    if (userMenuBtn && userDropdown) {
-      userMenuBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        userDropdown.classList.toggle('hidden');
-        // Close mobile menu if open
-        if (mobileMenu) {
-          mobileMenu.classList.add('hidden');
-        }
-      });
-      
-      // Close dropdown when clicking outside
-      document.addEventListener('click', (e) => {
-        if (!userDropdown.contains(e.target) && !userMenuBtn.contains(e.target)) {
-          userDropdown.classList.add('hidden');
-        }
-        if (mobileMenu && !mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-          mobileMenu.classList.add('hidden');
-        }
-      });
-      
-      // Prevent dropdown from closing when clicking inside
-      userDropdown.addEventListener('click', (e) => {
-        e.stopPropagation();
-      });
-    }
-    
-    // Theme switching buttons
-    document.getElementById('theme-light')?.addEventListener('click', (e) => {
-      e.stopPropagation();
-      html.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-      updateThemeButtons('light');
-    });
-    
-    document.getElementById('theme-dark')?.addEventListener('click', (e) => {
-      e.stopPropagation();
-      html.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-      updateThemeButtons('dark');
-    });
-    
-    document.getElementById('theme-auto')?.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      html.classList.toggle('dark', prefersDark);
-      localStorage.setItem('theme', 'auto');
-      updateThemeButtons('auto');
-    });
-    
-    function updateThemeButtons(theme) {
-      // Remove all active states
-      document.querySelectorAll('[id^="theme-"]').forEach(btn => {
-        btn.classList.remove('bg-yellow-100', 'dark:bg-yellow-900/30', 'bg-neutral-700', 'bg-neutral-100');
-        btn.classList.add('hover:bg-neutral-100', 'dark:hover:bg-neutral-700');
-      });
-      
-      // Add active state to selected theme
-      const activeBtn = document.getElementById(`theme-${theme}`);
-      if (activeBtn) {
-        activeBtn.classList.remove('hover:bg-neutral-100', 'dark:hover:bg-neutral-700');
-        if (theme === 'light') {
-          activeBtn.classList.add('bg-yellow-100', 'dark:bg-yellow-900/30');
-        } else {
-          activeBtn.classList.add('bg-neutral-700');
-        }
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (mobileMenu && !mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+        mobileMenu.classList.add('hidden');
       }
-    }
+    });
     
-    // Initialize theme buttons state
-    updateThemeButtons(savedTheme);
+    // Theme handled by js/user-dropdown.js
   </script>
 
   <!-- Command K Search Widget -->
