@@ -73,6 +73,8 @@ Create these schemas in **Settings > Schema Designer**. All schema names are pre
 | HeadScript | dhtml | Custom head scripts |
 | BodyScript | dhtml | Custom body scripts |
 | FooterScript | dhtml | Custom footer scripts |
+| PostHogApiKey | string | PostHog project API key (blank = disabled) |
+| PostHogHost | string | PostHog instance URL (default: `https://us.i.posthog.com`) |
 
 **Properties**: `IsDynamicSitePage: false`, `IsComponent: false`
 
@@ -378,6 +380,68 @@ var result = await AIAssists.chat("How do I configure this?", pageText, pageTitl
 // Check backend status
 var status = await AIAssists.checkStatus();
 // → { enabled: true, hasApiKey: true, model: "claude-sonnet-4-20250514" }
+```
+
+## Analytics (PostHog)
+
+User interactions are captured as PostHog events via `analytics.js`. The PostHog snippet loads from the SiteControl `PostHogApiKey` field — leave blank to disable.
+
+### Auto-captured Events
+
+The script auto-instruments common UI patterns without requiring `data-track` attributes:
+
+| Event | Trigger |
+|-------|---------|
+| `ai_summary_requested` | User clicks Summarize |
+| `ai_summary_feedback` | Thumbs up/down on summary |
+| `ai_code_explained` | User clicks Explain on a code block |
+| `ai_code_question_asked` | User asks follow-up question about code |
+| `ai_code_feedback` | Thumbs up/down on code explanation |
+| `ai_search_feedback` | Thumbs up/down on AI search answer |
+| `bookmark_added` / `bookmark_removed` | Bookmark toggle |
+| `watch_added` / `watch_removed` | Watch toggle |
+| `article_shared` | Share button click |
+| `article_downloaded` | Download PDF click |
+| `search_performed` | Search form submitted |
+| `notification_clicked` | Notification item clicked |
+| `subscription_toggled` | Subscription toggle changed |
+| `theme_changed` | Light/dark mode switched |
+
+### Custom Tracking
+
+For events not auto-captured, use declarative or imperative tracking:
+
+```html
+<!-- Declarative -->
+<button data-track="custom_event" data-props='{"key":"value"}'>Click</button>
+
+<!-- Imperative -->
+<script>DCXAnalytics.track('custom_event', { key: 'value' });</script>
+```
+
+### User Identification
+
+When a user logs in, identify them for PostHog person profiles:
+
+```csharp
+// In _Layout.cshtml after PostHog init
+@if (isLoggedIn)
+{
+    <script>
+        DCXAnalytics.identify('@user.ID', {
+            name: '@user.DisplayName',
+            email: '@user.Email'
+        });
+    </script>
+}
+```
+
+### Debug Mode
+
+Enable console logging for development:
+
+```javascript
+DCXAnalytics.debug = true;
 ```
 
 ## Tailwind CDN Note
