@@ -11,6 +11,19 @@
     ICMSLinkElement searchLink = header?.GetLinkItem("SearchResults");
     ICMSLinkElement loginLink = header?.GetLinkItem("LoginPage");
 
+    // Language - from page's locale links (linked translations)
+    var currentPage = Model.Page as CMSPageRequest;
+    String currentLang = currentPage?.GetElementValue("Locale") ?? "en";
+    ICMSLinkElement[] translations = currentPage?.GetNavigationItems("LocaleLinks")
+        ?.Where(p => p.Schema != "Folder").ToArray() ?? new ICMSLinkElement[0];
+
+    // Language display names
+    var langNames = new Dictionary<string, string> {
+        {"en", "English"}, {"es", "Spanish"}, {"fr", "French"},
+        {"de", "German"}, {"ja", "Japanese"}, {"zh", "Chinese"},
+        {"pt", "Portuguese"}, {"ko", "Korean"}, {"it", "Italian"}
+    };
+
     IUser user = Utilities.CurrentUser();
     bool isLoggedIn = user != null;
     var initials = "";
@@ -67,6 +80,30 @@
                     @* Search bar is positioned via JS to avoid layout conflicts with centered nav *@
                 </button>
 
+                <!-- Language Switcher (only if translations exist) -->
+                @if (translations.Length > 0)
+                {
+                    <div class="relative">
+                        <button id="lang-switcher-btn" class="flex items-center gap-1.5 px-2 py-1.5 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors text-sm text-neutral-600 dark:text-neutral-400">
+                            <i data-lucide="globe" class="w-4 h-4"></i>
+                            <span class="hidden sm:inline">@currentLang.ToUpper()</span>
+                        </button>
+                        <div id="lang-switcher-menu" class="hidden absolute right-0 mt-2 w-44 bg-white dark:bg-neutral-800 rounded-xl shadow-2xl border border-neutral-200 dark:border-neutral-700 py-1 z-50">
+                            @foreach (ICMSLinkElement translation in translations)
+                            {
+                                var locale = translation.GetAttributeValue("Locale") ?? translation.LinkName;
+                                var displayName = langNames.ContainsKey(locale) ? langNames[locale] : locale;
+                                var isCurrent = locale == currentLang;
+                                <a href="@_Functions.GetLinkAction(translation, Url)"
+                                   class="flex items-center justify-between px-4 py-2 text-sm @(isCurrent ? "text-primary-600 dark:text-primary-400 font-medium" : "text-neutral-700 dark:text-neutral-300") hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors">
+                                    <span>@displayName</span>
+                                    @if (isCurrent) { <i data-lucide="check" class="w-4 h-4"></i> }
+                                </a>
+                            }
+                        </div>
+                    </div>
+                }
+
                 <!-- Mobile Menu -->
                 <div class="relative md:hidden">
                     <button id="mobile-menu-btn" class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg flex-shrink-0">
@@ -118,3 +155,20 @@
         </div>
     </div>
 </header>
+<script>
+    // Language switcher toggle
+    (function() {
+        document.addEventListener('click', function(e) {
+            var btn = document.getElementById('lang-switcher-btn');
+            var menu = document.getElementById('lang-switcher-menu');
+            if (!btn || !menu) return;
+            if (btn.contains(e.target)) {
+                e.stopPropagation();
+                menu.classList.toggle('hidden');
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+            } else if (!menu.contains(e.target)) {
+                menu.classList.add('hidden');
+            }
+        });
+    })();
+</script>
