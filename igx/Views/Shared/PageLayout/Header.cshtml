@@ -70,14 +70,9 @@
 
             <!-- Right Actions -->
             <div class="flex items-center gap-3 ml-auto">
-                <!-- Mobile Search -->
-                <button id="mobile-search-btn" class="lg:hidden p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg">
-                    <i data-lucide="search" class="w-6 h-6 text-neutral-600 dark:text-neutral-400"></i>
-                </button>
-
-                <!-- Command K Search Trigger (desktop) -->
-                <button id="cmd-k-trigger" class="hidden lg:flex items-center gap-3 px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-800 text-left hover:border-primary-500 transition-colors group max-w-md w-full absolute left-1/2 -translate-x-1/2" style="display:none;">
-                    @* Search bar is positioned via JS to avoid layout conflicts with centered nav *@
+                <!-- Search Icon (opens Cmd+K modal) -->
+                <button id="cmd-k-trigger" class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors" title="Search (&#8984;K)">
+                    <i data-lucide="search" class="w-5 h-5 text-neutral-600 dark:text-neutral-400"></i>
                 </button>
 
                 <!-- Language Switcher (only if translations exist) -->
