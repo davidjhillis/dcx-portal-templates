@@ -21,19 +21,24 @@ igx/                                    → DSS Project Root
 │   │       ├── Tray.cshtml            → /Views/Shared/Editable/Tray.cshtml
 │   │       ├── DCXCodeBlock_Unit.cshtml
 │   │       ├── DCXCallout_Unit.cshtml
-│   │       └── DCXProductCard_Unit.cshtml
+│   │       ├── DCXProductCard_Unit.cshtml
+│   │       └── DCXActionCard_Unit.cshtml
 │   └── CMSPageDefault/
 │       ├── DCX_HomePage.cshtml        → /Views/CMSPageDefault/DCX_HomePage.cshtml
 │       ├── DCX_DocPage.cshtml         → /Views/CMSPageDefault/DCX_DocPage.cshtml
 │       ├── DCX_SearchResults.cshtml   → /Views/CMSPageDefault/DCX_SearchResults.cshtml
 │       ├── DCX_UserProfile.cshtml     → /Views/CMSPageDefault/DCX_UserProfile.cshtml
 │       └── DCX_LoginPage.cshtml       → /Views/CMSPageDefault/DCX_LoginPage.cshtml
+├── Controllers/
+│   └── AIAssistsController.cs         → /Controllers/AIAssistsController.cs
 ├── Content/
 │   └── css/tokens.css                 → /Content/css/tokens.css
 └── Scripts/
     ├── tailwind-config.js             → /Scripts/tailwind-config.js
     ├── user-dropdown.js               → /Scripts/user-dropdown.js
-    └── main.js                        → /Scripts/main.js
+    ├── main.js                        → /Scripts/main.js
+    ├── ai-assists.js                  → /Scripts/ai-assists.js
+    └── analytics.js                   → /Scripts/analytics.js
 ```
 
 ### Reference Templates
