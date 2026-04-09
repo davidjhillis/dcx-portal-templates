@@ -4,74 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign In - Discover CX</title>
+  <!-- Design Tokens + Tailwind -->
+  <link rel="stylesheet" href="css/tokens.css">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="js/tailwind-config.js"></script>
   <script src="admin/assets/theme-loader.js"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            primary: {
-              50: 'rgb(var(--color-primary-50))',
-              100: 'rgb(var(--color-primary-100))',
-              200: 'rgb(var(--color-primary-200))',
-              300: 'rgb(var(--color-primary-300))',
-              400: 'rgb(var(--color-primary-400))',
-              500: 'rgb(var(--color-primary-500))',
-              600: 'rgb(var(--color-primary-600))',
-              700: 'rgb(var(--color-primary-700))',
-              800: 'rgb(var(--color-primary-800))',
-              900: 'rgb(var(--color-primary-900))',
-              950: 'rgb(var(--color-primary-950))',
-            },
-            neutral: {
-              50: 'rgb(var(--color-neutral-50))',
-              100: 'rgb(var(--color-neutral-100))',
-              200: 'rgb(var(--color-neutral-200))',
-              300: 'rgb(var(--color-neutral-300))',
-              400: 'rgb(var(--color-neutral-400))',
-              500: 'rgb(var(--color-neutral-500))',
-              600: 'rgb(var(--color-neutral-600))',
-              700: 'rgb(var(--color-neutral-700))',
-              800: 'rgb(var(--color-neutral-800))',
-              900: 'rgb(var(--color-neutral-900))',
-              950: 'rgb(var(--color-neutral-950))',
-            }
-          }
-        }
-      }
-    }
-  </script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
-    /* Default theme CSS variables (Indigo) */
+    /* Aurora effect colors */
     :root {
-      --color-primary-50: 238 242 255;
-      --color-primary-100: 224 231 255;
-      --color-primary-200: 199 210 254;
-      --color-primary-300: 165 180 252;
-      --color-primary-400: 129 140 248;
-      --color-primary-500: 99 102 241;
-      --color-primary-600: 79 70 229;
-      --color-primary-700: 67 56 202;
-      --color-primary-800: 55 48 163;
-      --color-primary-900: 49 46 129;
-      --color-primary-950: 30 27 75;
-      
-      --color-neutral-50: 249 250 251;
-      --color-neutral-100: 243 244 246;
-      --color-neutral-200: 229 231 235;
-      --color-neutral-300: 209 213 219;
-      --color-neutral-400: 156 163 175;
-      --color-neutral-500: 107 114 128;
-      --color-neutral-600: 75 85 99;
-      --color-neutral-700: 65 65 65;
-      --color-neutral-800: 50 50 50;
-      --color-neutral-900: 37 37 37;
-      --color-neutral-950: 20 20 20;
-
-      /* Aurora effect colors - using theme system */
       --white: rgba(255, 255, 255, 0.1);
       --transparent: rgba(255, 255, 255, 0);
     }
