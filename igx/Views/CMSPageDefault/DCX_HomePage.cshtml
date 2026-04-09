@@ -7,14 +7,9 @@
     var subtitle = Model.GetElementValue("Subtitle");
     var searchPrompt = Model.GetElementValue("SearchPrompt") ?? "Search or ask a question";
     ICMSLinkElement searchLink = Model.GetLinkItem("SearchResults");
-
-    // Product cards from component list
-    ICMSElement productsTray = Model.Element("ProductCards");
-    // Support/action cards
-    ICMSElement actionsTray = Model.Element("ActionCards");
 }
 
-<!-- Hero / Search -->
+<!-- Hero / Search (fixed page element, not a tray) -->
 <section class="py-16 px-6">
     <div class="max-w-screen-xl mx-auto text-center">
         <h1 class="text-4xl font-bold text-neutral-900 dark:text-white mb-4"
@@ -26,7 +21,6 @@
             @subtitle
         </p>
 
-        <!-- Search -->
         <form method="get" action="@_Functions.GetLinkAction(searchLink, Url)" class="max-w-2xl mx-auto">
             <div class="relative">
                 <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400"></i>
@@ -37,34 +31,56 @@
     </div>
 </section>
 
-<!-- Product Cards -->
-@if (productsTray != null)
+<!--
+    All content below the hero comes from Trays (Page Builder drop zones).
+    The schema defines these List fields with CompTypes:
+
+    ProductCards  → List (Component), CompTypes: "DCXProductCard"
+    ActionCards   → List (Component), CompTypes: "DCXActionCard"
+    Trays         → List (Component), CompTypes: "DCXProductCard|DCXActionCard|DCXCodeBlock|DCXCallout|DCXCTASection"
+
+    Each renders through the standard Tray dispatch:
+    Trays.cshtml → Tray.cshtml → {ComponentName}_Unit.cshtml
+
+    The wrapping HTML (grid, background color) is handled by the _Unit view,
+    not by this page view. This keeps the page flexible for editors.
+-->
+
+@{
+    // Named drop zones — each is a List field accepting specific component types
+    ICMSElement productCards = Model.Element("ProductCards");
+    ICMSElement actionCards = Model.Element("ActionCards");
+}
+
+@if (productCards != null)
 {
-    <section id="products" class="py-12 px-6">
+    <section id="products" class="py-12 px-6" @_Helpers.RenderICEAttribute(productCards, true)>
         <div class="max-w-screen-xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                @foreach (ICMSElement card in productsTray.Elements())
+                @foreach (ICMSElement comp in productCards.Elements())
                 {
-                    Html.RenderPartial("Editable/" + card.RootElementName + "_Unit", card);
+                    Html.RenderPartial("Editable/Tray", comp);
                 }
             </div>
         </div>
     </section>
 }
 
-<!-- Action Cards -->
-@if (actionsTray != null)
+@if (actionCards != null)
 {
-    <section class="py-12 px-6 bg-neutral-100 dark:bg-neutral-800/50">
+    <section class="py-12 px-6 bg-neutral-100 dark:bg-neutral-800/50" @_Helpers.RenderICEAttribute(actionCards, true)>
         <div class="max-w-screen-xl mx-auto">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                @foreach (ICMSElement card in actionsTray.Elements())
+                @foreach (ICMSElement comp in actionCards.Elements())
                 {
-                    Html.RenderPartial("Editable/" + card.RootElementName + "_Unit", card);
+                    Html.RenderPartial("Editable/Tray", comp);
                 }
             </div>
         </div>
     </section>
 }
 
-<!-- Trays (additional content blocks from Page Builder) are rendered by _Layout -->
+<!--
+    The generic "Trays" field is rendered by _Layout.cshtml after RenderBody().
+    Editors can add any additional content blocks there via Page Builder.
+-->

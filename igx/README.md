@@ -140,6 +140,14 @@ Create these schemas in **Settings > Schema Designer**. All schema names are pre
 | Icon | Asset |
 | ProductLink | Link (list) |
 
+#### DCXActionCard (Component)
+
+| Field | Type |
+|-------|------|
+| Title | string |
+| Description | string |
+| ActionLink | Link |
+
 #### DCXCodeBlock (Component)
 
 | Field | Type |
