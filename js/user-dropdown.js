@@ -131,6 +131,74 @@
     `;
     actionsContainer.insertBefore(bellWrapper, avatarWrapper);
 
+    // Language switcher
+    if (!document.getElementById('lang-switcher')) {
+      const langWrapper = document.createElement('div');
+      langWrapper.className = 'relative';
+      langWrapper.innerHTML = `
+        <button id="lang-switcher" class="flex items-center gap-1.5 px-2 py-1.5 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors text-sm text-neutral-600 dark:text-neutral-400">
+          <i data-lucide="globe" class="w-4 h-4"></i>
+          <span class="hidden sm:inline" id="lang-current">EN</span>
+        </button>
+        <div id="lang-menu" class="hidden absolute right-0 mt-2 w-44 bg-white dark:bg-neutral-800 rounded-xl shadow-2xl border border-neutral-200 dark:border-neutral-700 py-1 z-50">
+          <button data-lang="en" class="w-full flex items-center justify-between px-4 py-2 text-sm text-primary-600 dark:text-primary-400 font-medium hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors text-left">
+            <span>English</span><i data-lucide="check" class="w-4 h-4"></i>
+          </button>
+          <button data-lang="es" class="w-full flex items-center justify-between px-4 py-2 text-sm text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors text-left">
+            <span>Spanish</span>
+          </button>
+          <button data-lang="fr" class="w-full flex items-center justify-between px-4 py-2 text-sm text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors text-left">
+            <span>French</span>
+          </button>
+          <button data-lang="de" class="w-full flex items-center justify-between px-4 py-2 text-sm text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors text-left">
+            <span>German</span>
+          </button>
+          <button data-lang="ja" class="w-full flex items-center justify-between px-4 py-2 text-sm text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors text-left">
+            <span>Japanese</span>
+          </button>
+        </div>
+      `;
+      actionsContainer.insertBefore(langWrapper, bellWrapper);
+
+      const langBtn = langWrapper.querySelector('#lang-switcher');
+      const langMenu = langWrapper.querySelector('#lang-menu');
+
+      langBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        langMenu?.classList.toggle('hidden');
+        container?.classList.add('hidden');
+        panel?.classList.add('hidden');
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+      });
+      langMenu?.addEventListener('click', (e) => e.stopPropagation());
+
+      // Language selection (demo — updates label and checkmark)
+      langMenu?.querySelectorAll('[data-lang]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const lang = btn.dataset.lang;
+          document.getElementById('lang-current').textContent = lang.toUpperCase();
+          document.documentElement.lang = lang;
+          // Update checkmarks
+          langMenu.querySelectorAll('[data-lang]').forEach(b => {
+            const check = b.querySelector('[data-lucide="check"]');
+            if (b.dataset.lang === lang) {
+              b.classList.add('text-primary-600', 'dark:text-primary-400', 'font-medium');
+              b.classList.remove('text-neutral-700', 'dark:text-neutral-300');
+              if (!check) b.insertAdjacentHTML('beforeend', '<i data-lucide="check" class="w-4 h-4"></i>');
+            } else {
+              b.classList.remove('text-primary-600', 'dark:text-primary-400', 'font-medium');
+              b.classList.add('text-neutral-700', 'dark:text-neutral-300');
+              if (check) check.remove();
+            }
+          });
+          langMenu.classList.add('hidden');
+          if (typeof lucide !== 'undefined') lucide.createIcons();
+        });
+      });
+
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    }
+
     // Bell toggle
     const bell = bellWrapper.querySelector('#notification-bell');
     const panel = bellWrapper.querySelector('#notification-panel');
@@ -165,6 +233,7 @@
       e.stopPropagation();
       container.classList.toggle('hidden');
       document.getElementById('notification-panel')?.classList.add('hidden');
+      document.getElementById('lang-menu')?.classList.add('hidden');
       document.getElementById('mobile-menu')?.classList.add('hidden');
       if (typeof lucide !== 'undefined') lucide.createIcons();
     });
@@ -172,6 +241,7 @@
     document.addEventListener('click', () => {
       container.classList.add('hidden');
       document.getElementById('notification-panel')?.classList.add('hidden');
+      document.getElementById('lang-menu')?.classList.add('hidden');
     });
   }
 
