@@ -1085,17 +1085,24 @@
     
     // Code Explanation - Inline with Q&A
     IGXDocs.explainCode = async function(codeElement, codeIndex) {
-      // Check if explanation already exists
-      const existingExplanation = codeElement.closest('.not-prose, pre').parentElement.querySelector(`#code-explanation-${codeIndex}`);
-      if (existingExplanation) return; // Already explained
-      
+      // Toggle if explanation already exists
+      const existingExplanation = document.getElementById(`code-explanation-${codeIndex}`);
+      if (existingExplanation) {
+        existingExplanation.classList.toggle('hidden');
+        return;
+      }
+
       const container = codeElement.closest('.not-prose') || codeElement.parentElement;
-      
+
       // Create explanation container
       const explanationContainer = document.createElement('div');
       explanationContainer.id = `code-explanation-${codeIndex}`;
-      explanationContainer.className = 'mt-6 mb-8 p-6 border-2 border-neutral-200 dark:border-neutral-600 rounded-xl bg-white dark:bg-neutral-800';
+      explanationContainer.className = 'mt-6 mb-8 p-6 border-2 border-neutral-200 dark:border-neutral-600 rounded-xl bg-white dark:bg-neutral-800 relative';
       explanationContainer.innerHTML = `
+        <!-- Close Button -->
+        <button class="close-explanation-btn absolute top-3 right-3 p-1.5 text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors" title="Close">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
         <!-- Thinking State -->
         <div class="code-thinking flex items-center gap-3 py-4">
           <div class="flex items-center gap-2">
@@ -1172,7 +1179,13 @@
       `;
       
       container.parentNode.insertBefore(explanationContainer, container.nextSibling);
-      
+
+      // Close button handler
+      explanationContainer.querySelector('.close-explanation-btn')?.addEventListener('click', () => {
+        explanationContainer.classList.add('hidden');
+      });
+      lucide.createIcons();
+
       // Start explanation
       const thinking = explanationContainer.querySelector('.code-thinking');
       const explanationText = explanationContainer.querySelector('.code-explanation-text');
