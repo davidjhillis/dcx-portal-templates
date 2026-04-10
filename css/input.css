@@ -2,6 +2,5 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "./design-system/theme.css";
 @import "./design-system/content.css";
 @import "./design-system/shell.css";

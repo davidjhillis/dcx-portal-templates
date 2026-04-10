@@ -1,10 +1,12 @@
+const themeName = process.env.THEME || 'default';
+const theme = require(`./themes/build/${themeName}.js`);
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     './*.html',
     './js/*.js',
-    './admin/**/*.html',
-    './admin/**/*.js',
+    './assets/js/*.js',
   ],
   darkMode: 'class',
   theme: {
@@ -13,45 +15,17 @@ module.exports = {
         sans: ['Inter', 'sans-serif'],
       },
       colors: {
-        primary: {
-          50: 'rgb(var(--color-primary-50))',
-          100: 'rgb(var(--color-primary-100))',
-          200: 'rgb(var(--color-primary-200))',
-          300: 'rgb(var(--color-primary-300))',
-          400: 'rgb(var(--color-primary-400))',
-          500: 'rgb(var(--color-primary-500))',
-          600: 'rgb(var(--color-primary-600))',
-          700: 'rgb(var(--color-primary-700))',
-          800: 'rgb(var(--color-primary-800))',
-          900: 'rgb(var(--color-primary-900))',
-          950: 'rgb(var(--color-primary-950))',
-        },
-        accent: {
-          50: 'rgb(var(--color-accent-50))',
-          100: 'rgb(var(--color-accent-100))',
-          200: 'rgb(var(--color-accent-200))',
-          300: 'rgb(var(--color-accent-300))',
-          400: 'rgb(var(--color-accent-400))',
-          500: 'rgb(var(--color-accent-500))',
-          600: 'rgb(var(--color-accent-600))',
-          700: 'rgb(var(--color-accent-700))',
-          800: 'rgb(var(--color-accent-800))',
-          900: 'rgb(var(--color-accent-900))',
-          950: 'rgb(var(--color-accent-950))',
-        },
-        neutral: {
-          50: 'rgb(var(--color-neutral-50))',
-          100: 'rgb(var(--color-neutral-100))',
-          200: 'rgb(var(--color-neutral-200))',
-          300: 'rgb(var(--color-neutral-300))',
-          400: 'rgb(var(--color-neutral-400))',
-          500: 'rgb(var(--color-neutral-500))',
-          600: 'rgb(var(--color-neutral-600))',
-          700: 'rgb(var(--color-neutral-700))',
-          800: 'rgb(var(--color-neutral-800))',
-          900: 'rgb(var(--color-neutral-900))',
-          950: 'rgb(var(--color-neutral-950))',
-        }
+        primary: theme.primary,
+        accent: theme.primary,
+        neutral: theme.neutral,
+        // Standard Tailwind colors used by components
+        blue: require('tailwindcss/colors').blue,
+        green: require('tailwindcss/colors').green,
+        red: require('tailwindcss/colors').red,
+        amber: require('tailwindcss/colors').amber,
+        yellow: require('tailwindcss/colors').yellow,
+        purple: require('tailwindcss/colors').purple,
+        orange: require('tailwindcss/colors').orange,
       }
     }
   },
