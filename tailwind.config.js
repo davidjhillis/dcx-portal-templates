@@ -7,6 +7,7 @@ module.exports = {
     './*.html',
     './js/*.js',
     './assets/js/*.js',
+    './settings.html',
   ],
   darkMode: 'class',
   theme: {
