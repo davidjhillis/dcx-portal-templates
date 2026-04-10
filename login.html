@@ -4,11 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign In - Discover CX</title>
-  <!-- Design Tokens + Tailwind -->
-  <link rel="stylesheet" href="css/tokens.css">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="js/tailwind-config.js"></script>
-  <script src="admin/assets/theme-loader.js"></script>
+  <!-- Compiled Tailwind + Design System -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="assets/images/favicon.ico">
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     /* Aurora effect colors */
@@ -41,16 +39,16 @@
       left: 50%;
       width: 150%;
       height: 150%;
-      background: 
-        linear-gradient(135deg, 
-          transparent 35%, 
-          rgb(var(--color-primary-600) / 0.4) 42%,
-          rgb(var(--color-primary-500) / 0.5) 48%,
+      background:
+        linear-gradient(135deg,
+          transparent 35%,
+          rgba(79, 70, 229, 0.4) 42%,
+          rgba(99, 102, 241, 0.5) 48%,
           transparent 55%),
-        linear-gradient(-135deg, 
-          transparent 35%, 
-          rgb(var(--color-primary-700) / 0.3) 42%,
-          rgb(var(--color-primary-600) / 0.4) 48%,
+        linear-gradient(-135deg,
+          transparent 35%,
+          rgba(67, 56, 202, 0.3) 42%,
+          rgba(79, 70, 229, 0.4) 48%,
           transparent 55%);
       filter: blur(60px);
       animation: aurora-1 40s linear infinite;
@@ -64,11 +62,11 @@
       left: 50%;
       width: 140%;
       height: 140%;
-      background: 
-        linear-gradient(120deg, 
-          transparent 38%, 
-          rgb(var(--color-primary-400) / 0.3) 44%,
-          rgb(var(--color-primary-300) / 0.35) 50%,
+      background:
+        linear-gradient(120deg,
+          transparent 38%,
+          rgba(129, 140, 248, 0.3) 44%,
+          rgba(165, 180, 252, 0.35) 50%,
           transparent 58%);
       filter: blur(50px);
       animation: aurora-2 50s linear infinite;
@@ -83,7 +81,7 @@
   <div class="min-h-full flex">
     
     <!-- Left Side - Branding with Aurora Background -->
-    <div class="hidden lg:flex lg:w-1/2 p-12 flex-col justify-center items-center relative overflow-hidden" style="background-color: rgb(var(--color-primary-950));">
+    <div class="hidden lg:flex lg:w-1/2 p-12 flex-col justify-center items-center relative overflow-hidden" style="background-color: #1e1b4b;">
       <!-- Aurora Background Effect -->
       <div class="absolute inset-0 overflow-hidden">
         <div class="aurora-bg absolute inset-0"></div>
@@ -91,7 +89,7 @@
       
       <!-- Logo -->
       <div class="relative z-10">
-        <img src="admin/assets/discover-cx-logo-white.svg" alt="Discover CX" class="h-12 w-auto">
+        <img src="assets/images/discover-cx-logo-white.svg" alt="Discover CX" class="h-12 w-auto">
       </div>
     </div>
 
@@ -101,8 +99,8 @@
         
         <!-- Mobile Logo -->
         <div class="lg:hidden mb-8 text-center">
-          <img src="admin/assets/discover-cx-logo.svg" alt="Discover CX" class="h-10 w-auto mx-auto dark:hidden">
-          <img src="admin/assets/discover-cx-logo-white.svg" alt="Discover CX" class="h-10 w-auto mx-auto hidden dark:block">
+          <img src="assets/images/discover-cx-logo.svg" alt="Discover CX" class="h-10 w-auto mx-auto dark:hidden">
+          <img src="assets/images/discover-cx-logo-white.svg" alt="Discover CX" class="h-10 w-auto mx-auto hidden dark:block">
         </div>
 
         <!-- Login Form Container -->
