@@ -32,9 +32,9 @@ igx/                                    → DSS Project Root
 ├── Controllers/
 │   └── AIAssistsController.cs         → /Controllers/AIAssistsController.cs
 ├── Content/
-│   └── css/tokens.css                 → /Content/css/tokens.css
+│   ├── css/styles.css                 → /Content/css/styles.css (compiled Tailwind + design system)
+│   └── images/                        → /Content/images/ (logos, favicon)
 └── Scripts/
-    ├── tailwind-config.js             → /Scripts/tailwind-config.js
     ├── user-dropdown.js               → /Scripts/user-dropdown.js
     ├── main.js                        → /Scripts/main.js
     ├── ai-assists.js                  → /Scripts/ai-assists.js
@@ -449,6 +449,54 @@ Enable console logging for development:
 DCXAnalytics.debug = true;
 ```
 
-## Tailwind CDN Note
+## Compiled Tailwind
 
-These templates use Tailwind via CDN (`cdn.tailwindcss.com`). This is fine for development and moderate traffic. For high-traffic production, consider compiling Tailwind with a build step to reduce page weight.
+Pages use a compiled `styles.css` (53KB) — no CDN, no runtime CSS generation. The CSS includes Tailwind utilities + the design system (theme tokens, content styles, shell components).
+
+Rebuild after changing HTML or theme:
+```bash
+npx tailwindcss -i css/input.css -o css/styles.css --minify
+```
+
+Per-client theming — swap the theme file and rebuild:
+```bash
+THEME=metro npx tailwindcss -i css/input.css -o css/styles-metro.css --minify
+```
+
+Theme files are in `themes/build/` — each is a JS file with primary and neutral color scales.
+
+## DITA Rendering
+
+### XSLT Transform
+
+The portal uses a forked DITA rendering XSLT (`xslt/dcx-dita-rendering.xsl`) that outputs clean HTML with DCX class conventions. Upload to the CMS Asset Tree at `StyleSheets/_dita_/`.
+
+Key differences from the STL XSLT:
+- Notes → `<div class="callout callout-{type}">` (not `.note-wrap`)
+- Code blocks → `<div class="code-block">` with copy button (no Bootstrap grid)
+- Tables → `<div class="content-table">` (not `.table-wrap`)
+- UI controls → `<kbd>` (not `<span class="ph uicontrol">`)
+- File paths → `<code class="filepath">`
+- Menu cascades → `<kbd>` with `›` separator
+- Sections → `<section class="content-section">`
+- Short descriptions → `<p class="shortdesc">`
+
+See `docs/XSLT-CONTRACT.md` for the complete DITA element → HTML output mapping.
+
+### Content Styling
+
+The design system `css/design-system/content.css` styles the XSLT output. It targets elements within `.article-content` — headings, prose, callouts, code blocks, tables, figures, steps, definition lists, and inline DITA elements.
+
+### How DITA Content Renders
+
+```
+DITA source → Ingeniux normalization (DITA-OT) → dcx-dita-rendering.xsl
+→ HTML stored in DITAContent field → Razor view: @Html.Raw(ditaContent.Value)
+→ content.css styles the output
+```
+
+The Razor view for DITA pages (`DCX_DocPage.cshtml`) wraps the content in a `.article-content` container. The content stylesheet handles everything inside.
+
+### PDF Output
+
+DITA-OT generates PDF files during publish using `org.dita.pdf2`. The doc page download button links to the pre-built PDF asset for each article.
