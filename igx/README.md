@@ -28,7 +28,8 @@ igx/                                    → DSS Project Root
 │       ├── DCX_DocPage.cshtml         → /Views/CMSPageDefault/DCX_DocPage.cshtml
 │       ├── DCX_SearchResults.cshtml   → /Views/CMSPageDefault/DCX_SearchResults.cshtml
 │       ├── DCX_UserProfile.cshtml     → /Views/CMSPageDefault/DCX_UserProfile.cshtml
-│       └── DCX_LoginPage.cshtml       → /Views/CMSPageDefault/DCX_LoginPage.cshtml
+│       ├── DCX_LoginPage.cshtml       → /Views/CMSPageDefault/DCX_LoginPage.cshtml
+│       └── DCX_Settings.cshtml        → /Views/CMSPageDefault/DCX_Settings.cshtml
 ├── Controllers/
 │   └── AIAssistsController.cs         → /Controllers/AIAssistsController.cs
 ├── Content/
@@ -40,7 +41,17 @@ igx/                                    → DSS Project Root
     ├── ai-assists.js                  → /Scripts/ai-assists.js
     └── analytics.js                   → /Scripts/analytics.js
 
-xslt/ (in repo root, NOT in igx/)      → CMS Asset Tree: StyleSheets/_dita_/
+css/design-system/ (in repo root)       → Source CSS for the compiled build
+├── theme.css                           → Semantic tokens (surfaces, text, borders, status)
+├── content.css                         → DITA article content styling
+└── shell.css                           → Portal component classes
+
+themes/build/ (in repo root)            → Theme color palettes for per-client builds
+├── default.js                          → Broadway (Indigo/Gray)
+├── metro.js                            → Metro (Blue/Slate)
+└── terrace.js                          → Terrace (Teal/Zinc)
+
+xslt/ (in repo root)                    → CMS Asset Tree: StyleSheets/_dita_/
 ├── dcx-dita-rendering.xsl             → Upload to StyleSheets/_dita_/
 └── dita-rendering-original.xsl        → Reference only (do not deploy)
 ```
@@ -56,6 +67,7 @@ The static HTML templates in the parent repo are the source of truth for design.
 | DCX_SearchResults | `../search-results.html` |
 | DCX_UserProfile | `../user-profile.html` |
 | DCX_LoginPage | `../login.html` |
+| DCX_Settings | `../settings.html` |
 | Header partial | Header section in any template |
 | Footer partial | Footer section in any template |
 
@@ -84,6 +96,19 @@ Create these schemas in **Settings > Schema Designer**. All schema names are pre
 | FooterScript | dhtml | Custom footer scripts |
 | PostHogApiKey | string | PostHog project API key (blank = disabled) |
 | PostHogHost | string | PostHog instance URL (default: `https://us.i.posthog.com`) |
+| ActiveTheme | string | Theme name: "Broadway", "Metro", "Terrace", or custom |
+| AISummarization | boolean | Enable article summarization |
+| AICodeExplainer | boolean | Enable code block explanations |
+| AISearchAnswers | boolean | Enable AI answers in search |
+| AIChatDocs | boolean | Enable chat with docs widget |
+| AIGlossary | boolean | Enable glossary tooltips |
+| FeatureDarkMode | boolean | Allow dark mode toggle |
+| FeatureBookmarks | boolean | Enable bookmarks |
+| FeatureWatched | boolean | Enable watched pages |
+| FeatureLanguage | boolean | Show language selector |
+| FeatureFeedback | boolean | Enable feedback buttons |
+| FeatureShare | boolean | Enable share dropdown |
+| FeaturePDF | boolean | Enable PDF download |
 
 **Properties**: `IsDynamicSitePage: false`, `IsComponent: false`
 
@@ -212,6 +237,16 @@ Note: Uses its own layout (no shared `_Layout.cshtml`). Auth handled by Ingeniux
 |-------|------|
 | Name | string (e.g. "Google", "Microsoft", "Okta") |
 | Icon | Asset |
+
+#### DCX_Settings (Page schema)
+
+| Field | Type |
+|-------|------|
+| Title | string |
+
+**Properties**: `IsDynamicSitePage: true`, `ViewName: DCX_Settings`
+
+Note: Admin-only page. Feature toggles and theme selection are read from SiteControl fields (not this schema's fields). The view checks `IUser.IsAdmin` and redirects non-admin users. Impersonation uses the Ingeniux portal user system. See `settings.html` for full UI.
 
 #### DCXActionCard (Component)
 

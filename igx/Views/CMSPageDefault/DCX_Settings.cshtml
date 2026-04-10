@@ -1,0 +1,57 @@
+@model CMSPageRequest
+@using Ingeniux.Runtime
+@using Cartella.Interfaces
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    IUser user = Utilities.CurrentUser();
+    bool isAdmin = user?.IsAdmin ?? false;
+
+    // Redirect non-admin users
+    if (!isAdmin)
+    {
+        Response.Redirect("/");
+        return;
+    }
+
+    // Feature toggles come from SiteControl
+    ICMSElement siteControl = _Functions.GetSiteControl(Model);
+
+    // Active theme name
+    var activeTheme = siteControl?.GetElementValue("ActiveTheme") ?? "Broadway";
+
+    // AI Assists toggles
+    var aiSummarization = siteControl?.GetElementValue("AISummarization") != "false";
+    var aiCodeExplainer = siteControl?.GetElementValue("AICodeExplainer") != "false";
+    var aiSearchAnswers = siteControl?.GetElementValue("AISearchAnswers") != "false";
+    var aiChatDocs = siteControl?.GetElementValue("AIChatDocs") != "false";
+    var aiGlossary = siteControl?.GetElementValue("AIGlossary") == "true";
+
+    // Portal feature toggles
+    var featureDarkMode = siteControl?.GetElementValue("FeatureDarkMode") != "false";
+    var featureBookmarks = siteControl?.GetElementValue("FeatureBookmarks") != "false";
+    var featureWatched = siteControl?.GetElementValue("FeatureWatched") != "false";
+    var featureLanguage = siteControl?.GetElementValue("FeatureLanguage") != "false";
+    var featureFeedback = siteControl?.GetElementValue("FeatureFeedback") != "false";
+    var featureShare = siteControl?.GetElementValue("FeatureShare") != "false";
+    var featurePDF = siteControl?.GetElementValue("FeaturePDF") == "true";
+}
+
+<!--
+    Site Settings — admin-only page.
+    Feature toggles are stored in SiteControl fields.
+    Theme selection triggers a build/deploy (not runtime).
+    Impersonation uses the Ingeniux portal user system.
+
+    See settings.html in the static templates for the full UI reference.
+-->
+
+<div class="max-w-screen-xl mx-auto px-6 py-8">
+    <div class="mb-8">
+        <h1 class="text-lg font-bold text-neutral-900 dark:text-white">Site Settings</h1>
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">Manage portal configuration, features, and theming</p>
+    </div>
+
+    <!-- Tabs + content rendered from settings.html patterns -->
+    <!-- In production, form posts save to SiteControl fields -->
+</div>
