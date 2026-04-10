@@ -74,32 +74,34 @@
 
     <!-- ============ THEME TAB ============ -->
     <div id="theme-tab" class="tab-content max-w-2xl">
-      <p class="text-sm text-neutral-500 dark:text-neutral-400 mb-6">Select the active color theme for this portal deployment</p>
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <button class="p-4 rounded-xl border-2 border-primary-500 bg-primary-50 dark:bg-primary-900/20 text-left">
+      <p class="text-sm text-neutral-500 dark:text-neutral-400 mb-6">Select the active color theme for this portal deployment. Changes are applied during site build.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4" id="theme-cards">
+        <button data-theme="broadway" data-css="css/styles.css" onclick="switchTheme(this)" class="theme-card p-4 rounded-xl border-2 border-primary-500 bg-primary-50 dark:bg-primary-900/20 text-left">
           <div class="flex gap-1.5 mb-3">
             <div class="w-5 h-5 rounded-full bg-indigo-500"></div>
             <div class="w-5 h-5 rounded-full bg-gray-400"></div>
           </div>
-          <p class="text-sm font-semibold text-neutral-900 dark:text-white">Default</p>
-          <p class="text-xs text-neutral-500 mt-0.5">Indigo / Gray</p>
-          <span class="inline-block mt-2 text-xs font-semibold text-primary-600 dark:text-primary-400">Active</span>
+          <p class="text-sm font-semibold text-neutral-900 dark:text-white">Broadway</p>
+          <p class="text-xs text-neutral-500 mt-0.5">Bold &middot; Indigo / Gray</p>
+          <span class="theme-active-label inline-block mt-2 text-xs font-semibold text-primary-600 dark:text-primary-400">Active</span>
         </button>
-        <button class="p-4 rounded-xl border border-neutral-200 dark:border-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-600 text-left transition-colors">
+        <button data-theme="metro" data-css="css/styles-metro.css" onclick="switchTheme(this)" class="theme-card p-4 rounded-xl border border-neutral-200 dark:border-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-600 text-left transition-colors">
           <div class="flex gap-1.5 mb-3">
             <div class="w-5 h-5 rounded-full bg-blue-500"></div>
             <div class="w-5 h-5 rounded-full bg-slate-400"></div>
           </div>
-          <p class="text-sm font-semibold text-neutral-900 dark:text-white">Acme Corp</p>
-          <p class="text-xs text-neutral-500 mt-0.5">Blue / Slate</p>
+          <p class="text-sm font-semibold text-neutral-900 dark:text-white">Metro</p>
+          <p class="text-xs text-neutral-500 mt-0.5">Modern &middot; Blue / Slate</p>
+          <span class="theme-active-label hidden inline-block mt-2 text-xs font-semibold text-primary-600 dark:text-primary-400">Active</span>
         </button>
-        <button class="p-4 rounded-xl border border-neutral-200 dark:border-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-600 text-left transition-colors">
+        <button data-theme="terrace" data-css="css/styles-terrace.css" onclick="switchTheme(this)" class="theme-card p-4 rounded-xl border border-neutral-200 dark:border-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-600 text-left transition-colors">
           <div class="flex gap-1.5 mb-3">
             <div class="w-5 h-5 rounded-full bg-teal-500"></div>
             <div class="w-5 h-5 rounded-full bg-zinc-400"></div>
           </div>
-          <p class="text-sm font-semibold text-neutral-900 dark:text-white">Global Inc</p>
-          <p class="text-xs text-neutral-500 mt-0.5">Teal / Zinc</p>
+          <p class="text-sm font-semibold text-neutral-900 dark:text-white">Terrace</p>
+          <p class="text-xs text-neutral-500 mt-0.5">Warm &middot; Teal / Zinc</p>
+          <span class="theme-active-label hidden inline-block mt-2 text-xs font-semibold text-primary-600 dark:text-primary-400">Active</span>
         </button>
       </div>
     </div>
@@ -257,6 +259,18 @@
     }
     activateTab();
     window.addEventListener('hashchange', activateTab);
+
+    // Theme selection (UI only — applied during site build)
+    function switchTheme(btn) {
+      document.querySelectorAll('.theme-card').forEach(card => {
+        card.classList.remove('border-2', 'border-primary-500', 'bg-primary-50', 'dark:bg-primary-900/20');
+        card.classList.add('border', 'border-neutral-200', 'dark:border-neutral-700');
+        card.querySelector('.theme-active-label').classList.add('hidden');
+      });
+      btn.classList.remove('border', 'border-neutral-200', 'dark:border-neutral-700');
+      btn.classList.add('border-2', 'border-primary-500', 'bg-primary-50', 'dark:bg-primary-900/20');
+      btn.querySelector('.theme-active-label').classList.remove('hidden');
+    }
 
     // Account selection
     function selectAccount(name, detail) {

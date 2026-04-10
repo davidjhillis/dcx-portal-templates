@@ -1,6 +1,6 @@
-// Acme Corp theme — Blue / Slate
+// Metro theme — Blue / Slate — Clean, modern, corporate
 module.exports = {
-  name: 'Acme Corp',
+  name: 'Metro',
   primary: {
     50: '#eff6ff',
     100: '#dbeafe',
