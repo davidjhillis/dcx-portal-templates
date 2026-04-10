@@ -39,6 +39,10 @@ igx/                                    → DSS Project Root
     ├── main.js                        → /Scripts/main.js
     ├── ai-assists.js                  → /Scripts/ai-assists.js
     └── analytics.js                   → /Scripts/analytics.js
+
+xslt/ (in repo root, NOT in igx/)      → CMS Asset Tree: StyleSheets/_dita_/
+├── dcx-dita-rendering.xsl             → Upload to StyleSheets/_dita_/
+└── dita-rendering-original.xsl        → Reference only (do not deploy)
 ```
 
 ### Reference Templates
