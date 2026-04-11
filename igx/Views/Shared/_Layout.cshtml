@@ -19,6 +19,16 @@
     // Available translations (linked localized pages)
     ICMSLinkElement[] translations = page?.GetNavigationItems("LocaleLinks")
         ?.Where(p => p.Schema != "Folder").ToArray() ?? new ICMSLinkElement[0];
+
+    // Theme selection (per-client compiled CSS)
+    var activeTheme = (siteControl?.GetElementValue("ActiveTheme") ?? "Broadway").ToLower();
+    var themeFile = "styles.css";
+    if (activeTheme == "metro") { themeFile = "styles-metro.css"; }
+    else if (activeTheme == "terrace") { themeFile = "styles-terrace.css"; }
+
+    // Feature flags from SiteControl (default: enabled)
+    bool featureChatDocs  = siteControl?.GetElementValue("AIChatDocs")     != "false";
+    bool featureDarkMode  = siteControl?.GetElementValue("FeatureDarkMode") != "false";
 }
 <!DOCTYPE html>
 <html lang="@lang" class="h-full">
@@ -30,8 +40,8 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <!-- Compiled Tailwind + Design System -->
-    <link rel="stylesheet" href="@Url.Content("~/Content/css/styles.css")">
+    <!-- Compiled Tailwind + Design System (per-client theme) -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/" + themeFile)">
     <link rel="icon" href="@Url.Content("~/Content/images/favicon.ico")">
     <script src="https://unpkg.com/lucide@@latest"></script>
 
@@ -80,6 +90,11 @@
     <script src="@Url.Content("~/Scripts/main.js")"></script>
     <script src="@Url.Content("~/Scripts/ai-assists.js")"></script>
     <script src="@Url.Content("~/Scripts/analytics.js")"></script>
+    <script src="@Url.Content("~/Scripts/command-k-widget.js")"></script>
+    @if (featureChatDocs)
+    {
+        <script src="@Url.Content("~/Scripts/chatbot-widget.js")"></script>
+    }
     @if (isLoggedIn)
     {
         <script>DCXAnalytics.identify('@user.ID', { name: '@user.DisplayName', email: '@user.Email' });</script>
@@ -88,5 +103,8 @@
     @RenderSection("AddToFooter", false)
     @Html.Raw(siteControl?.GetElementValue("FooterScript"))
     @Html.Raw(page?.GetElementValue("FooterScript"))
+
+    <!-- Render Lucide icons now that all data-lucide elements are in the DOM -->
+    <script>if (typeof lucide !== 'undefined') { lucide.createIcons(); }</script>
 </body>
 </html>
