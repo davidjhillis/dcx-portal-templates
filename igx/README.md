@@ -33,27 +33,36 @@ igx/                                    → DSS Project Root
 ├── Controllers/
 │   └── AIAssistsController.cs         → /Controllers/AIAssistsController.cs
 ├── Content/
-│   ├── css/styles.css                 → /Content/css/styles.css (compiled Tailwind + design system)
-│   └── images/                        → /Content/images/ (logos, favicon)
-└── Scripts/
-    ├── user-dropdown.js               → /Scripts/user-dropdown.js
-    ├── main.js                        → /Scripts/main.js
-    ├── ai-assists.js                  → /Scripts/ai-assists.js
-    └── analytics.js                   → /Scripts/analytics.js
+│   ├── css/
+│   │   ├── styles.css                 → /Content/css/styles.css         (Broadway — default)
+│   │   ├── styles-metro.css           → /Content/css/styles-metro.css   (Metro theme)
+│   │   ├── styles-terrace.css         → /Content/css/styles-terrace.css (Terrace theme)
+│   │   ├── tokens.css                 → /Content/css/tokens.css         (CSS custom properties)
+│   │   ├── input.css                  → /Content/css/input.css          (Tailwind build entry)
+│   │   └── design-system/
+│   │       ├── theme.css              → /Content/css/design-system/theme.css
+│   │       ├── content.css            → /Content/css/design-system/content.css
+│   │       └── shell.css              → /Content/css/design-system/shell.css
+│   └── images/
+│       ├── favicon.ico                → /Content/images/favicon.ico
+│       ├── discover-cx-logo.svg       → /Content/images/discover-cx-logo.svg
+│       ├── discover-cx-logo-white.svg → /Content/images/discover-cx-logo-white.svg
+│       ├── heroo.png                  → /Content/images/heroo.png       (homepage hero still)
+│       └── Reader.png                 → /Content/images/Reader.png      (feature image)
+├── Scripts/
+│   ├── main.js                        → /Scripts/main.js                (mobile menu, keyboard shortcuts)
+│   ├── user-dropdown.js               → /Scripts/user-dropdown.js       (logged-in user menu + notifications)
+│   ├── ai-assists.js                  → /Scripts/ai-assists.js          (AI API abstraction, mock fallback)
+│   ├── analytics.js                   → /Scripts/analytics.js           (PostHog auto-instrumentation)
+│   ├── article-actions.js             → /Scripts/article-actions.js     (share menu, bookmark, watch, version dropdown, feedback)
+│   ├── command-k-widget.js            → /Scripts/command-k-widget.js    (Cmd+K search modal)
+│   ├── chatbot-widget.js              → /Scripts/chatbot-widget.js      (floating support chat; gated by AIChatDocs)
+│   └── tailwind-config.js             → /Scripts/tailwind-config.js     (used only by rebuild toolchain)
+└── StyleSheets/
+    └── _dita_/
+        └── dcx-dita-rendering.xsl     → Upload to CMS Asset Tree at StyleSheets/_dita_/
 
-css/design-system/ (in repo root)       → Source CSS for the compiled build
-├── theme.css                           → Semantic tokens (surfaces, text, borders, status)
-├── content.css                         → DITA article content styling
-└── shell.css                           → Portal component classes
-
-themes/build/ (in repo root)            → Theme color palettes for per-client builds
-├── default.js                          → Broadway (Indigo/Gray)
-├── metro.js                            → Metro (Blue/Slate)
-└── terrace.js                          → Terrace (Teal/Zinc)
-
-xslt/ (in repo root)                    → CMS Asset Tree: StyleSheets/_dita_/
-├── dcx-dita-rendering.xsl             → Upload to StyleSheets/_dita_/
-└── dita-rendering-original.xsl        → Reference only (do not deploy)
+xslt/dita-rendering-original.xsl (repo root)  → Reference only (do not deploy)
 ```
 
 ### Reference Templates
@@ -96,19 +105,20 @@ Create these schemas in **Settings > Schema Designer**. All schema names are pre
 | FooterScript | dhtml | Custom footer scripts |
 | PostHogApiKey | string | PostHog project API key (blank = disabled) |
 | PostHogHost | string | PostHog instance URL (default: `https://us.i.posthog.com`) |
-| ActiveTheme | string | Theme name: "Broadway", "Metro", "Terrace", or custom |
-| AISummarization | boolean | Enable article summarization |
-| AICodeExplainer | boolean | Enable code block explanations |
-| AISearchAnswers | boolean | Enable AI answers in search |
-| AIChatDocs | boolean | Enable chat with docs widget |
-| AIGlossary | boolean | Enable glossary tooltips |
-| FeatureDarkMode | boolean | Allow dark mode toggle |
-| FeatureBookmarks | boolean | Enable bookmarks |
-| FeatureWatched | boolean | Enable watched pages |
-| FeatureLanguage | boolean | Show language selector |
-| FeatureFeedback | boolean | Enable feedback buttons |
-| FeatureShare | boolean | Enable share dropdown |
-| FeaturePDF | boolean | Enable PDF download |
+| ActiveTheme | string | Theme name: "Broadway", "Metro", "Terrace", or custom. `_Layout.cshtml` reads this and loads the matching compiled CSS file. |
+| AISummarization | boolean | Enable article summarization (default: true) |
+| AICodeExplainer | boolean | Enable code block explanations (default: true) |
+| AISearchAnswers | boolean | Enable AI answers in search (default: true) |
+| AIChatDocs | boolean | Enable chat with docs widget — also gates whether `chatbot-widget.js` loads in `_Layout` (default: true) |
+| AIListen | boolean | Enable Listen (TTS) button on doc pages (default: false) |
+| AIGlossary | boolean | Enable glossary tooltips (default: false) |
+| FeatureDarkMode | boolean | Allow dark mode toggle (default: true) |
+| FeatureBookmarks | boolean | Enable bookmarks (default: true) |
+| FeatureWatched | boolean | Enable watched pages (default: true) |
+| FeatureLanguage | boolean | Show language selector (default: true) |
+| FeatureFeedback | boolean | Enable feedback buttons (default: true) |
+| FeatureShare | boolean | Enable share dropdown (default: true) |
+| FeaturePDF | boolean | Enable PDF download (default: false — requires PdfUrl on each DCX_DocPage) |
 
 **Properties**: `IsDynamicSitePage: false`, `IsComponent: false`
 
@@ -160,18 +170,26 @@ Create these schemas in **Settings > Schema Designer**. All schema names are pre
 
 #### DCX_DocPage (Page schema)
 
-| Field | Type |
-|-------|------|
-| Title | string |
-| Body | dhtml |
-| LastUpdated | string |
-| ReadTime | string |
-| Versions | Link (list) |
-| SidebarNavigation | Navigation (configure start node + depth in UI) |
-| ArticleTrays | List (Component) → DCXCodeBlock, DCXCallout |
-| Trays | List (Component) → any tray component |
+| Field | Type | Required | Notes |
+|-------|------|----------|-------|
+| Title | string | yes | Article title |
+| Body | dhtml | yes | Article body content |
+| LastUpdated | string | no | Display string, e.g. "Feb 1, 2025" |
+| ReadTime | string | no | Integer or string, rendered as "X min read" |
+| Section | string | no | Section label above version/tags row (e.g. "Authoring Basics") |
+| PdfUrl | string | no | URL to the pre-built PDF asset. Required for PDF download button. |
+| Versions | Link (list) | no | Version alternatives. First entry is treated as "Latest". |
+| PrevArticle | Link | no | Previous article in sequence. Renders a chevron-left button. |
+| NextArticle | Link | no | Next article in sequence. Renders a chevron-right button. |
+| Tags | Link (list) | no | Tag chips. Each link should target a filtered search-results page. |
+| SidebarNavigation | Navigation | no | Configure start node + depth in Schema Designer UI. |
+| ArticleTrays | List (Component) | no | CompTypes: DCXCodeBlock, DCXCallout |
+| Trays | List (Component) | no | CompTypes: any tray component |
 
 **Properties**: `IsDynamicSitePage: true`, `ViewName: DCX_DocPage`
+
+All optional fields are safe to omit — the Razor view renders each UI
+element conditionally. A minimal DCX_DocPage only needs `Title` + `Body`.
 
 #### DCXProductCard (Component)
 
@@ -272,6 +290,21 @@ Note: Admin-only page. Feature toggles and theme selection are read from SiteCon
 | Title | string |
 | Content | dhtml |
 
+#### Common fields on every DCX page schema
+
+`_Layout.cshtml` and `Header.cshtml` read these fields from any page.
+They are optional — if absent the layout falls back to sensible defaults.
+Add them to each DCX page schema (or a shared base schema) to enable the
+corresponding features:
+
+| Field | Type | Used for |
+|-------|------|----------|
+| BrowserBarTitle | string | Overrides the `<title>` element. Falls back to `Title` if absent. |
+| HeadScript | dhtml | Injected into `<head>` for this specific page (in addition to the SiteControl HeadScript). |
+| FooterScript | dhtml | Injected before `</body>` for this specific page (in addition to the SiteControl FooterScript). |
+| Locale | string | Two-letter language code (e.g. "en", "es"). Sets `<html lang>` and feeds analytics. |
+| LocaleLinks | Navigation | Links to translated versions of this page. Renders the header language switcher when populated. |
+
 ### 3. Finalize All Schemas
 
 Schemas created via API or UI start in Draft mode. You **must finalize** each schema in Schema Designer before pages can be created.
@@ -317,11 +350,121 @@ Run a full publish to push content to the DSS.
 
 ---
 
-## Design Token System
+## Backend Stubs — Controller Actions the Developer Must Implement
 
-Colors are defined in `Content/css/tokens.css` as CSS custom properties. Tailwind maps them via `Scripts/tailwind-config.js`.
+The Razor views POST to several controller actions that are not included
+in this package. Create a `PortalController` (and optionally extend
+`AIAssistsController`) to back these routes. Each one has a clear
+stub in its Razor view marked with TODO comments.
 
-To change the default theme, edit `tokens.css`. For per-customer theming, deploy a different `tokens.css` per DSS instance.
+### PortalController actions
+
+| Route | Called from | Purpose |
+|-------|-------------|---------|
+| `Portal/SaveSiteSettings` (POST) | `DCX_Settings.cshtml` | Write submitted `ActiveTheme`, `AI*` and `Feature*` checkboxes back to the DCX_SiteControl page. Returns to `/settings`. |
+| `Portal/SaveSubscriptions` (POST) | `DCX_UserProfile.cshtml` (Subscriptions tab) | Write the `sub_*` checkboxes to the current user's preferences. |
+| `Portal/UpdateProfile` (POST) | `DCX_UserProfile.cshtml` (Settings tab) | Update `IUser` first/last name, email, language, timezone. |
+| `Portal/SearchAccounts` (GET) | `DCX_Settings.cshtml` (Impersonation tab) | Return JSON list of customer accounts matching the search query. |
+| `Portal/Impersonate` (POST) | `DCX_Settings.cshtml` (Impersonation tab) | Set impersonation cookie for the Ingeniux portal user system. |
+
+### /api/article-actions endpoints
+
+`article-actions.js` currently persists bookmark and watch state to
+`localStorage`. To make state sync across devices and surface it in
+the user profile, implement:
+
+| Route | Method | Purpose |
+|-------|--------|---------|
+| `/api/article-actions/bookmark` | POST | `{ pageId, bookmarked }` — toggle bookmark for current user |
+| `/api/article-actions/watch` | POST | `{ pageId, watching }` — toggle watch for current user |
+| `/api/article-actions/bookmarks` | GET | Returns the current user's bookmarks for the Bookmarks tab |
+| `/api/article-actions/watched` | GET | Returns the current user's watched pages for the Watched tab |
+
+Each endpoint needs to read `Utilities.CurrentUser()` (from Cartella)
+and persist state against that user's ID. Until these are wired up,
+the UI works via localStorage as a single-device demo.
+
+### AIAssistsController (already scaffolded)
+
+`AIAssistsController.cs` ships with endpoints stubbed and mock responses
+returned. To go live:
+
+1. Set `AIAssists.Enabled = "true"` in Web.config
+2. Add `AIAssists.ApiKey` and `AIAssists.ApiEndpoint`
+3. Uncomment the `CallLLM()` method at the bottom of the controller
+4. Replace the TODO mock responses with `await CallLLM(...)` calls
+5. Set `AIAssists.config.useMocks = false` in `ai-assists.js`
+
+See the AI Assists Integration section below for full details.
+
+### Route configuration
+
+`AIAssistsController.cs` uses attribute routing (`[Route("api/ai-assists/...")]`).
+Ensure `RouteConfig.cs` enables attribute routes:
+
+```csharp
+public static void RegisterRoutes(RouteCollection routes)
+{
+    routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+    routes.MapMvcAttributeRoutes(); // ← required for [Route] attributes
+    routes.MapRoute(
+        name: "Default",
+        url: "{controller}/{action}/{id}",
+        defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+    );
+}
+```
+
+---
+
+## Theming System
+
+Three compiled CSS files ship with the portal, one per pre-built theme:
+
+| Theme | File | Palette |
+|-------|------|---------|
+| Broadway (default) | `Content/css/styles.css` | Indigo / Gray |
+| Metro | `Content/css/styles-metro.css` | Blue / Slate |
+| Terrace | `Content/css/styles-terrace.css` | Teal / Zinc |
+
+### How theme selection works
+
+`_Layout.cshtml` reads `siteControl.ActiveTheme` on every page render
+and loads the matching compiled CSS file:
+
+```razor
+var activeTheme = (siteControl?.GetElementValue("ActiveTheme") ?? "Broadway").ToLower();
+var themeFile = "styles.css";
+if (activeTheme == "metro")   { themeFile = "styles-metro.css"; }
+else if (activeTheme == "terrace") { themeFile = "styles-terrace.css"; }
+// <link rel="stylesheet" href="~/Content/css/{themeFile}">
+```
+
+To switch themes, change the `ActiveTheme` field on the DCX_SiteControl
+page in the CMS Author. The change takes effect on the next page render
+across the whole site — no rebuild required.
+
+### Adding a new theme
+
+1. In the portal repo, copy `themes/build/default.js` to `themes/build/{name}.js`
+2. Modify the `primary` and `neutral` color scales
+3. Rebuild: `THEME={name} npx tailwindcss -i css/input.css -o css/styles-{name}.css --minify`
+4. Copy the output into this package at `igx/Content/css/styles-{name}.css`
+5. Add a new `else if` branch to `_Layout.cshtml` for the name
+6. Set `ActiveTheme` to the new name in the CMS
+
+### Design token source files
+
+`Content/css/design-system/{theme,content,shell}.css` are the source
+CSS files that feed into the compiled build. They use `rgb(var(--color-*))`
+syntax so colors can be overridden by `tokens.css` at build time. These
+files ship with `igx/` for reference and rebuild purposes — they are
+not loaded directly at runtime (the compiled `styles*.css` already
+contains everything in them).
+
+`Content/css/tokens.css` defines the CSS custom properties consumed by
+`tailwind-config.js` during the build. It is not loaded at runtime
+either; editing it only affects the next rebuild.
 
 ## Dark Mode
 
